@@ -7,16 +7,16 @@ import 'package:huskies_app/widgets/score_board_widgets/match_result_widget.dart
 class MatchCard extends StatefulWidget {
   final int? homeScore;
   final int? visitorScore;
-  final String? homeImageSource;
-  final String? visitorImageSource;
+  final String? homeImage;
+  final String? visitorImage;
   final bool isLastMatch;
   final Color color;
   const MatchCard({
     super.key,
     this.homeScore,
     this.visitorScore,
-    this.homeImageSource,
-    this.visitorImageSource,
+    this.homeImage,
+    this.visitorImage,
     this.isLastMatch = true,
     this.color = Colors.white,
   });
@@ -61,8 +61,8 @@ class _MatchCardState extends State<MatchCard> {
                           LastMatchResultWidget(
                             homeScore: widget.homeScore,
                             visitiorScore: widget.visitorScore,
-                            homeImageSource: widget.homeImageSource,
-                            visitorImageSource: widget.homeImageSource,
+                            homeImage: widget.homeImage,
+                            visitorImage: widget.visitorImage,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -73,8 +73,6 @@ class _MatchCardState extends State<MatchCard> {
                                   margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
                                   color: Colors.white70,
                                   alignment: Alignment.center,
-                                  // width: 300,
-                                  // height: 300,
                                   child: const Text('Spielbericht'),
                                 ),
                               ),

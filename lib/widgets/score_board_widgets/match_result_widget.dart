@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class LastMatchResultWidget extends StatelessWidget {
   final int? homeScore;
   final int? visitiorScore;
-  final String? homeImageSource;
-  final String? visitorImageSource;
+  final String? homeImage;
+  final String? visitorImage;
   const LastMatchResultWidget({
     super.key,
     this.homeScore,
     this.visitiorScore,
-    this.homeImageSource,
-    this.visitorImageSource,
+    this.homeImage,
+    this.visitorImage,
   });
 
   @override
@@ -20,7 +20,7 @@ class LastMatchResultWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(
-              'assets\\$homeImageSource',
+              'assets/$homeImage',
               width: 45,
               height: 45,
             ),
@@ -42,7 +42,7 @@ class LastMatchResultWidget extends StatelessWidget {
               ]),
             ),
             Image.asset(
-              'assets\\$visitorImageSource',
+              'assets/$visitorImage',
               width: 45,
               height: 45,
             )

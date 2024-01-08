@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:huskies_app/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/widgets/ticket_widgets/ticket_shop_widget.dart';
@@ -40,7 +39,9 @@ class TicketShopView extends StatelessWidget {
                     backgroundColor = const Color.fromARGB(255, 215, 234, 249);
                   }
                   return TicketitemRowWidget(
-                      backgroundColor: backgroundColor, gameDate: 'Freitag, 01.03.24 19:30 Uhr');
+                      image: 'assets/fuechse.jpg',
+                      backgroundColor: backgroundColor,
+                      gameDate: 'Freitag, 01.03.24 19:30 Uhr');
                 }),
               ),
             ),
@@ -54,8 +55,9 @@ class TicketitemRowWidget extends StatelessWidget {
     super.key,
     required this.backgroundColor,
     required this.gameDate,
+    required this.image,
   });
-
+  final String image;
   final Color backgroundColor;
   final String gameDate;
 
@@ -69,7 +71,7 @@ class TicketitemRowWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/landscapeA.jpg', width: 60),
+            child: Image.asset(image, width: 60),
           ),
           Text(gameDate),
           TextButton(

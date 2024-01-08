@@ -38,7 +38,7 @@ class Helpers {
             Text('$place.', style: const TextStyle(color: Colors.black)),
             SizedBox(
               height: 30,
-              child: Center(child: Image.asset('assets\\$imageSource', width: 20, height: 20)),
+              child: Center(child: Image.asset('assets/$imageSource', width: 20, height: 20)),
             ),
             Center(child: Text('$games', style: const TextStyle(color: Colors.black))),
             Center(child: Text('$points', style: const TextStyle(color: Colors.black))),

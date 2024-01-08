@@ -26,7 +26,7 @@ class TicketHeadWidget extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(45)),
             child: Image.asset(
-              'assets/profile.jpg',
+              'assets/da.jpg',
               height: 50,
             ),
           ),

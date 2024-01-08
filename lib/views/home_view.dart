@@ -4,25 +4,6 @@ import 'package:huskies_app/widgets/match_view_widget.dart';
 import 'package:huskies_app/widgets/page_view_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-// class HomePage extends StatefulWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   State<HomePage> createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(),
-//       body: const Center(
-//         child: Text("HomePage"),
-//       ),
-//     );
-//   }
-// }
-
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -39,14 +20,9 @@ class _HomeViewState extends State<HomeView> {
           color: const Color.fromARGB(255, 22, 63, 92),
           child: Column(
             children: [
-              // erstes element
-              // ----------------------------------------------------------------------------------------------
               Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // const Drawer(),
-
                   SizedBox(
                     width: 40,
                     child: IconButton(
@@ -86,8 +62,6 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ],
               ),
-              // Container weis zweites element
-              // ---------------------------------------------------------------------------------------------------
               CarouselSlider.builder(
                 itemCount: 3,
                 itemBuilder: (context, index, realIndex) {
@@ -105,14 +79,8 @@ class _HomeViewState extends State<HomeView> {
               ),
               SizedBox(
                 height: 20,
-                child: buildIndicator(
-                    index: _current1, isBackgroundColor: Colors.white),
+                child: buildIndicator(index: _current1, isBackgroundColor: Colors.white),
               ),
-
-              // Container weis 3 element Nächstes Match
-              // ________________________________________________________________________________________
-              // --------------------------------------------------------------------------------------
-
               Container(
                 color: Colors.white,
                 child: Column(
@@ -149,15 +117,12 @@ class _HomeViewState extends State<HomeView> {
                     SizedBox(
                       height: 20,
                       child: Center(
-                        child: buildIndicator(
-                            index: _current2,
-                            isBackgroundColor: Colors.blueGrey),
+                        child: buildIndicator(index: _current2, isBackgroundColor: Colors.blueGrey),
                       ),
                     ),
                   ],
                 ),
               ),
-
               const Image(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/main.png'),
@@ -167,12 +132,10 @@ class _HomeViewState extends State<HomeView> {
         ),
       );
 
-  Widget buildIndicator(
-          {required int index, required Color isBackgroundColor}) =>
+  Widget buildIndicator({required int index, required Color isBackgroundColor}) =>
       AnimatedSmoothIndicator(
         activeIndex: index,
         count: 3,
-        effect: SlideEffect(
-            dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
+        effect: SlideEffect(dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
       );
 }

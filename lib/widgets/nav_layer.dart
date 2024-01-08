@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/auth/einstellungen.dart';
+import 'package:huskies_app/views/match_statisctics_view.dart';
 import 'package:huskies_app/widgets/shop_widgets/products_view.dart';
-import 'package:huskies_app/views/home.dart';
+import 'package:huskies_app/views/home_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_main_view.dart';
 import 'package:huskies_app/widgets/navbar_widget.dart';
 
@@ -23,9 +23,8 @@ class _ViewNavigatorState extends State<ViewNavigator> {
   Widget build(BuildContext context) => Scaffold(
         body: switch (currentViewIndex) {
           1 => const TicketMainView(),
-          2 => fakeHomeView(),
-          3 => const EinstellungPage(),
-          4 => ProductsView(),
+          2 => const MatchStatisticsView(season: 'SAISON 23/24'),
+          3 => ProductsView(),
           _ => const HomeView()
         },
         bottomNavigationBar: NavigationBar(
@@ -56,26 +55,18 @@ class _ViewNavigatorState extends State<ViewNavigator> {
               icon: Icons.mail_outline,
               name: 'Ergebnisse',
               isCurrentView: currentViewIndex == 2,
-              onPressed: () => loadAndNavigate(
-                nextView: 2,
-                adversiting: const Text('Eine weitere Werbung'),
-              ),
-            ),
-            NavBarIconWidget(
-              icon: Icons.settings_outlined,
-              name: 'Einstellungen',
-              isCurrentView: currentViewIndex == 3,
-              onPressed: () => loadAndNavigate(
-                nextView: 3,
-                adversiting: const Text('Hier könnte eine andere Werbung stehen'),
-              ),
+              onPressed: () => setState(() => currentViewIndex = 2),
+              // loadAndNavigate(
+              //   nextView: 2,
+              //   adversiting: const Text('Eine weitere Werbung'),
+              // ),
             ),
             NavBarIconWidget(
               icon: Icons.card_giftcard,
               name: 'shop',
-              isCurrentView: currentViewIndex == 4,
+              isCurrentView: currentViewIndex == 3,
               onPressed: () => loadAndNavigate(
-                nextView: 4,
+                nextView: 3,
                 adversiting: const Text('Hier könnte eine andere Werbung stehen'),
               ),
             ),
