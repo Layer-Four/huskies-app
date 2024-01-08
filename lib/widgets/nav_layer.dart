@@ -4,6 +4,7 @@ import 'package:huskies_app/widgets/shop_widgets/products_view.dart';
 import 'package:huskies_app/views/home_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_main_view.dart';
 import 'package:huskies_app/widgets/navbar_widget.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // import 'package:huskies_ticket_wallet/views/game_statistics_view..dart';
 // import 'package:huskies_ticket_wallet/views/ticket_views/ticket_main_view.dart';
@@ -67,7 +68,20 @@ class _ViewNavigatorState extends State<ViewNavigator> {
               isCurrentView: currentViewIndex == 3,
               onPressed: () => loadAndNavigate(
                 nextView: 3,
-                adversiting: const Text('Hier könnte eine andere Werbung stehen'),
+                adversiting: SizedBox(
+                  height: 250,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/profile.jpg',
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Hier könnte eine andere Werbung stehen'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
@@ -96,7 +110,10 @@ class _ViewNavigatorState extends State<ViewNavigator> {
           color: Colors.white,
           alignment: Alignment.center,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(padding: EdgeInsets.all(20)),
+              LoadingAnimationWidget.discreteCircle(color: Colors.teal, size: 50),
               // TODO: Initialize a Loading circle
               Padding(
                 padding: const EdgeInsets.all(28.0),
