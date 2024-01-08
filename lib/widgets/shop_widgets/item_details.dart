@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
 
-class ItemsDetails extends StatefulWidget {
+class ItemsDetails extends StatelessWidget {
   final Map item;
   const ItemsDetails({super.key, required this.item});
 
   @override
-  State<ItemsDetails> createState() => _ItemsDetailsState();
-}
-
-class _ItemsDetailsState extends State<ItemsDetails> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Image.asset('assets/da.jpg'),
       appBar: AppBar(
         centerTitle: true,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.shop_outlined,
-              color: Colors.black,
+            const SizedBox(),
+            const Row(
+              children: [
+                Icon(
+                  Icons.shop_outlined,
+                  color: Colors.black,
+                ),
+                Text(
+                  " Shop",
+                  style: TextStyle(color: Colors.orange),
+                ),
+              ],
             ),
-            Text(
-              " Shop",
-              style: TextStyle(color: Colors.orange),
+            Container(
+              margin: const EdgeInsets.only(right: 25),
+              width: 35,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(
+                'assets/da.jpg',
+                width: 35,
+              ),
             ),
           ],
         ),
@@ -32,16 +41,16 @@ class _ItemsDetailsState extends State<ItemsDetails> {
       ),
       body: ListView(children: [
         Image.asset(
-          widget.item['image'],
+          item['image'],
           scale: 0.6,
         ),
         Text(
-          widget.item['title'],
+          item['title'],
           textAlign: TextAlign.center,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
-          widget.item['price'],
+          item['price'],
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
         ),
