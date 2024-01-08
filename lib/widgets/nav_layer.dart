@@ -24,7 +24,7 @@ class _ViewNavigatorState extends State<ViewNavigator> {
         body: switch (currentViewIndex) {
           1 => const TicketMainView(),
           2 => const MatchStatisticsView(season: 'SAISON 23/24'),
-          3 => ProductsView(),
+          3 => const ProductsView(),
           _ => const HomeView()
         },
         bottomNavigationBar: NavigationBar(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemsDetails extends StatefulWidget {
-  final item;
-  const ItemsDetails({super.key, this.item});
+  final Map item;
+  const ItemsDetails({super.key, required this.item});
 
   @override
   State<ItemsDetails> createState() => _ItemsDetailsState();
@@ -12,7 +12,7 @@ class _ItemsDetailsState extends State<ItemsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const Drawer(),
+      endDrawer: Image.asset('assets/da.jpg'),
       appBar: AppBar(
         centerTitle: true,
         title: const Row(
@@ -23,14 +23,12 @@ class _ItemsDetailsState extends State<ItemsDetails> {
               color: Colors.black,
             ),
             Text(
-              "Shop ",
+              " Shop",
               style: TextStyle(color: Colors.orange),
             ),
           ],
         ),
         iconTheme: const IconThemeData(color: Colors.black),
-        // backgroundColor: Colors.white,
-        elevation: 0,
       ),
       body: ListView(children: [
         Image.asset(

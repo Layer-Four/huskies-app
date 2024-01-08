@@ -4,14 +4,13 @@ import 'package:huskies_app/helpers/products.dart';
 import 'package:huskies_app/widgets/shop_widgets/item_details.dart';
 
 class ProductsView extends StatelessWidget {
-  ProductsView({Key? key}) : super(key: key);
+  const ProductsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
@@ -23,7 +22,6 @@ class ProductsView extends StatelessWidget {
         title: const Text(
           'Shop',
           style: TextStyle(
-            color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 22,
             fontStyle: FontStyle.normal,
@@ -43,10 +41,10 @@ class ProductsView extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisExtent: 270,
+            mainAxisExtent: 250,
           ),
           itemCount: products.length,
-          itemBuilder: (BuildContext ctx, int i) {
+          itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -56,13 +54,14 @@ class ProductsView extends StatelessWidget {
                 );
               },
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.asset(
-                      products[i]['image']!,
-                    ),
+                  // AspectRatio(
+                  //   aspectRatio: 1,
+                  //   child:
+                  Image.asset(
+                    products[i]['image']!,
+                    // ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),

@@ -38,21 +38,23 @@ class _MatchStatisticsViewState extends State<MatchStatisticsView> {
             ],
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              const MatchCard(
-                homeScore: 3,
-                visitorScore: 1,
-                homeImage: 'huskies.png',
-                visitorImage: 'fuechse.jpg',
-              ),
-              const SizedBox(height: 12),
-              const ScoreboardViewWidget(),
-              const SizedBox(height: 6),
-              GameStaticsFooterWidget(season: widget.season)
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                const MatchCard(
+                  homeScore: 3,
+                  visitorScore: 1,
+                  homeImage: 'huskies.png',
+                  visitorImage: 'fuechse.jpg',
+                ),
+                const SizedBox(height: 12),
+                const ScoreboardViewWidget(),
+                const SizedBox(height: 6),
+                GameStaticsFooterWidget(season: widget.season)
+              ],
+            ),
           ),
         ),
       );
