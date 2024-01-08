@@ -1,98 +1,8 @@
-// import 'package:flutter/material.dart';
-// import 'package:fluttericon/font_awesome5_icons.dart';
-
-// class LayoutPage extends StatefulWidget {
-//   const LayoutPage({super.key});
-
-//   @override
-//   State<LayoutPage> createState() => _LayoutPageState();
-// }
-
-// class _LayoutPageState extends State<LayoutPage> {
-//   int currentIndex = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       bottomNavigationBar: NavigationBarTheme(
-//         data: NavigationBarThemeData(
-//           labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
-//             (Set<MaterialState> states) =>
-//                 states.contains(MaterialState.selected)
-//                     ? const TextStyle(color: Colors.white)
-//                     : const TextStyle(color: Colors.white),
-//           ),
-//         ),
-//         child: NavigationBar(
-//             onDestinationSelected: (value) => setState(() {
-//                   currentIndex = value;
-//                 }),
-//             elevation: 0,
-//             backgroundColor: const Color.fromARGB(255, 79, 132, 174),
-//             selectedIndex: currentIndex,
-//             indicatorColor: const Color.fromARGB(255, 79, 132, 174),
-//             destinations: [
-//               NavigationDestination(
-//                   icon: Container(
-//                     margin: const EdgeInsets.only(bottom: 35),
-//                     padding: const EdgeInsets.only(top: 15),
-//                     width: 25,
-//                     height: 2,
-//                     color: Colors.white,
-//                     child: const Icon(
-//                       FontAwesome5.home,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                   label: 'Home'),
-//               NavigationDestination(
-//                   icon: Container(
-//                     margin: const EdgeInsets.only(bottom: 35),
-//                     padding: const EdgeInsets.only(top: 15),
-//                     width: 25,
-//                     height: 2,
-//                     color: Colors.white.withOpacity(0),
-//                     child: const Icon(
-//                       FontAwesome5.ticket_alt,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                   label: 'Tickets'),
-//               NavigationDestination(
-//                   icon: Container(
-//                     padding: const EdgeInsets.only(top: 15),
-//                     margin: const EdgeInsets.only(bottom: 35),
-//                     width: 25,
-//                     height: 2,
-//                     color: Colors.white.withOpacity(0),
-//                     child: const Icon(
-//                       FontAwesome5.envelope,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                   label: 'Ergebnisse'),
-//               NavigationDestination(
-//                   icon: Container(
-//                     padding: const EdgeInsets.only(top: 15),
-//                     margin: const EdgeInsets.only(bottom: 35),
-//                     width: 25,
-//                     height: 2,
-//                     color: Colors.white.withOpacity(0),
-//                     child: const Icon(
-//                       Icons.settings,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                   label: 'Einstellung'),
-//             ]),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/einstellungen.dart';
 import 'package:huskies_app/products.dart';
 import 'package:huskies_app/views/home.dart';
+import 'package:huskies_app/views/ticket_views/ticket_main_view.dart';
 import 'package:huskies_app/widgets/navbarWidget.dart';
 
 // import 'package:huskies_ticket_wallet/views/game_statistics_view..dart';
@@ -112,7 +22,7 @@ class _ViewNavigatorState extends State<ViewNavigator> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: switch (currentViewIndex) {
-          1 => fakeHomeView(),
+          1 => const TicketMainView(),
           2 => fakeHomeView(),
           3 => const EinstellungPage(),
           4 => ProductsPage(),
@@ -121,8 +31,6 @@ class _ViewNavigatorState extends State<ViewNavigator> {
         bottomNavigationBar: NavigationBar(
           height: MediaQuery.of(context).size.height / 7.8,
           backgroundColor: const Color.fromARGB(255, 101, 132, 155),
-          // ff4f84a4
-          //  255,79 , 84,164
           destinations: [
             NavBarIconWidget(
               icon: Icons.home_outlined,
@@ -159,8 +67,7 @@ class _ViewNavigatorState extends State<ViewNavigator> {
               isCurrentView: currentViewIndex == 3,
               onPressed: () => loadAndNavigate(
                 nextView: 3,
-                adversiting:
-                    const Text('Hier könnte eine andere Werbung stehen'),
+                adversiting: const Text('Hier könnte eine andere Werbung stehen'),
               ),
             ),
             NavBarIconWidget(
@@ -169,8 +76,7 @@ class _ViewNavigatorState extends State<ViewNavigator> {
               isCurrentView: currentViewIndex == 4,
               onPressed: () => loadAndNavigate(
                 nextView: 4,
-                adversiting:
-                    const Text('Hier könnte eine andere Werbung stehen'),
+                adversiting: const Text('Hier könnte eine andere Werbung stehen'),
               ),
             ),
           ],
