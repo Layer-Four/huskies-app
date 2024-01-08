@@ -28,7 +28,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/barcode.png
-    - assets/profile.jpg
     - assets/da.jpg
     - assets/first.png
     - assets/four.png
