@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/layout.dart';
-import 'package:huskies_app/views/login.dart';
-import 'package:huskies_app/views/signup.dart';
+import 'package:huskies_app/widgets/nav_layer.dart';
 
 void main() => runApp(const MyApp());
 

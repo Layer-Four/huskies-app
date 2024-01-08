@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/einstellungen.dart';
-import 'package:huskies_app/products.dart';
+import 'package:huskies_app/widgets/shop_widgets/products_view.dart';
 import 'package:huskies_app/views/home.dart';
 import 'package:huskies_app/views/ticket_views/ticket_main_view.dart';
-import 'package:huskies_app/widgets/navbarWidget.dart';
+import 'package:huskies_app/widgets/navbar_widget.dart';
 
 // import 'package:huskies_ticket_wallet/views/game_statistics_view..dart';
 // import 'package:huskies_ticket_wallet/views/ticket_views/ticket_main_view.dart';
@@ -25,7 +25,7 @@ class _ViewNavigatorState extends State<ViewNavigator> {
           1 => const TicketMainView(),
           2 => fakeHomeView(),
           3 => const EinstellungPage(),
-          4 => ProductsPage(),
+          4 => ProductsView(),
           _ => const HomeView()
         },
         bottomNavigationBar: NavigationBar(

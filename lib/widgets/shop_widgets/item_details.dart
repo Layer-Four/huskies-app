@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemsDetails extends StatefulWidget {
-  final data;
-  const ItemsDetails({super.key, this.data});
+  final item;
+  const ItemsDetails({super.key, this.item});
 
   @override
   State<ItemsDetails> createState() => _ItemsDetailsState();
@@ -34,19 +34,18 @@ class _ItemsDetailsState extends State<ItemsDetails> {
       ),
       body: ListView(children: [
         Image.asset(
-          widget.data['image'],
+          widget.item['image'],
           scale: 0.6,
         ),
         Text(
-          widget.data['title'],
+          widget.item['title'],
           textAlign: TextAlign.center,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
-          widget.data['price'],
+          widget.item['price'],
           textAlign: TextAlign.center,
-          style:
-              const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
