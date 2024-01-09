@@ -6,8 +6,13 @@ import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_foo
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_widget.dart';
 
 class MatchStatisticsView extends StatefulWidget {
+  static const MatchStatisticsView _homeViewInstance =
+      MatchStatisticsView._internal('SAISON 23/24');
+  factory MatchStatisticsView() => _homeViewInstance;
+
+  const MatchStatisticsView._internal(this.season);
   final String season;
-  const MatchStatisticsView({super.key, required this.season});
+  // const MatchStatisticsView({super.key, required this.season});
 
   @override
   State<MatchStatisticsView> createState() => _MatchStatisticsViewState();

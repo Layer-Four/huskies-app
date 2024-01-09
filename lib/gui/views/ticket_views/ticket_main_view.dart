@@ -6,14 +6,17 @@ import 'package:huskies_app/gui/views/widgets/agb_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_info_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/barcode_widget.dart';
 
-class TicketMainView extends StatefulWidget {
-  const TicketMainView({super.key});
+class TicketView extends StatefulWidget {
+  static const TicketView _ticketViewInstance = TicketView._internal();
+  factory TicketView() => _ticketViewInstance;
+
+  const TicketView._internal();
 
   @override
-  State<TicketMainView> createState() => _TicketMainViewState();
+  State<TicketView> createState() => _TicketViewState();
 }
 
-class _TicketMainViewState extends State<TicketMainView> {
+class _TicketViewState extends State<TicketView> {
   int currentIndex = 0;
   final List seasonGames = List.generate(8, (index) => index++);
   final barcodesListFromState = [

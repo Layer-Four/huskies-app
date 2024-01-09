@@ -5,15 +5,18 @@ import 'package:huskies_app/gui/views/widgets/page_view_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  static const HomeView _homeViewInstance = HomeView._internal();
+  factory HomeView() => _homeViewInstance;
+
+  const HomeView._internal();
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  int _current1 = 0;
-  int _current2 = 0;
+  int indexUpperCarousel = 0;
+  int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Container(
@@ -26,6 +29,8 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(
                     width: 40,
                     child: IconButton(
+                      //TODO: Navigate to UserProfileView
+                      //TODO: Write UserProfileView.
                       onPressed: () {},
                       icon: const Icon(Icons.menu),
                       color: Colors.white,
@@ -33,19 +38,17 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   Column(
                     children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      CircleAvatar(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/da.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 5),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
                         ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          'assets/da.jpg',
+                          width: 40,
+                        ),
+                        // ),
                       ),
                       const Text(
                         "Hallo David",
@@ -72,14 +75,14 @@ class _HomeViewState extends State<HomeView> {
                   height: 110,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      _current1 = index;
+                      indexUpperCarousel = index;
                     });
                   },
                 ),
               ),
               SizedBox(
                 height: 20,
-                child: buildIndicator(index: _current1, isBackgroundColor: Colors.white),
+                child: buildIndicator(index: indexUpperCarousel, isBackgroundColor: Colors.white),
               ),
               Container(
                 color: Colors.white,
@@ -109,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
                         height: 80,
                         onPageChanged: (index, reason) {
                           setState(() {
-                            _current2 = index;
+                            indexLowerCarousel = index;
                           });
                         },
                       ),
@@ -117,7 +120,8 @@ class _HomeViewState extends State<HomeView> {
                     SizedBox(
                       height: 20,
                       child: Center(
-                        child: buildIndicator(index: _current2, isBackgroundColor: Colors.blueGrey),
+                        child: buildIndicator(
+                            index: indexLowerCarousel, isBackgroundColor: Colors.blueGrey),
                       ),
                     ),
                   ],

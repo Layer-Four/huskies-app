@@ -1,3 +1,6 @@
+//? example list for productsinfo in ShopView
+import 'package:flutter/material.dart';
+
 const List<Map<String, String>> products = [
   {
     "image": "assets/second.png",
@@ -30,3 +33,17 @@ const List<Map<String, String>> products = [
     "price": "20.00€",
   },
 ];
+
+Widget fakeHomeView() => Container(
+      color: const Color.fromARGB(255, 187, 219, 235),
+      child: const Center(
+        child: Text(
+          'Fake-Home-View',
+          style: TextStyle(
+            fontSize: 35,
+            color: Color.fromARGB(255, 0, 0, 0),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
