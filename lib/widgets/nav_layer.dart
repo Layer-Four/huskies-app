@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/views/login_view.dart';
 import 'package:huskies_app/views/match_statisctics_view.dart';
 import 'package:huskies_app/widgets/shop_widgets/products_view.dart';
 import 'package:huskies_app/views/home_view.dart';
@@ -23,7 +24,8 @@ class _ViewNavigatorState extends State<ViewNavigator> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: switch (currentViewIndex) {
-          1 => const TicketMainView(),
+          // 1 => const TicketMainView(),
+          1 => const Login(),
           2 => const MatchStatisticsView(season: 'SAISON 23/24'),
           3 => const ProductsView(),
           _ => const HomeView()
@@ -113,7 +115,8 @@ class _ViewNavigatorState extends State<ViewNavigator> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.all(20)),
-              LoadingAnimationWidget.discreteCircle(color: Colors.teal, size: 50),
+              LoadingAnimationWidget.discreteCircle(
+                  color: Colors.teal, size: 50),
               // TODO: Initialize a Loading circle
               Padding(
                 padding: const EdgeInsets.all(28.0),

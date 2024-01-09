@@ -37,11 +37,11 @@ class ProductsView extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(11),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisExtent: 250,
+            mainAxisExtent: 220,
           ),
           itemCount: products.length,
           itemBuilder: (BuildContext context, int i) {
@@ -54,42 +54,87 @@ class ProductsView extends StatelessWidget {
                 );
               },
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // AspectRatio(
-                  //   aspectRatio: 1,
-                  //   child:
                   Image.asset(
                     products[i]['image']!,
-                    // ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          products[i]['title']!,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            products[i]['title']!,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          products[i]['price']!,
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                          const SizedBox(height: 6),
+                          Text(
+                            products[i]['price']!,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             );
+
+            //
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (context) => ItemsDetails(item: products[i]),
+            //       ),
+            //     );
+            //   },
+            //   child: Column(
+            //     // crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       // AspectRatio(
+            //       //   aspectRatio: 1,
+            //       //   child:
+            //       Image.asset(
+            //         products[i]['image']!,
+            //         // ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.only(left: 1),
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text(
+            //               products[i]['title']!,
+            //               style: const TextStyle(
+            //                 fontSize: 10,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //             const SizedBox(height: 6),
+            //             Text(
+            //               products[i]['price']!,
+            //               style: const TextStyle(
+            //                 color: Colors.red,
+            //                 fontSize: 12,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // );
           },
         ),
       ),

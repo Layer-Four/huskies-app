@@ -4,8 +4,11 @@ class CustomeTextForm extends StatelessWidget {
   final String hinttext;
   final TextEditingController mycontroller;
 
-  const CustomeTextForm(
-      {super.key, required this.hinttext, required this.mycontroller});
+  const CustomeTextForm({
+    Key? key,
+    required this.hinttext,
+    required this.mycontroller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class CustomeTextForm extends StatelessWidget {
       controller: mycontroller,
       decoration: InputDecoration(
         hintText: hinttext,
-        contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         filled: true,
         fillColor: Colors.grey[200],
         border: OutlineInputBorder(

@@ -99,7 +99,7 @@ class _SignupState extends State<Signup> {
             // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("login");
+                Navigator.of(context).pop();
               },
               child: const Center(
                 child: Text.rich(

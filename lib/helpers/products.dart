@@ -6,7 +6,7 @@ const List<Map<String, String>> products = [
   },
   {
     "image": "assets/first.png",
-    "title": "EC Kassel Huskies HALLOWEEN Fan\nJersey Saison 2023 /2024",
+    "title": "EC Kassel Huskies HALLOWEEN Fan Jersey Saison 2023 /2024",
     "price": "89.00€",
   },
   {
