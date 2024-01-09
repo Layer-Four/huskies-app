@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:huskies_app/helpers/products.dart';
-import 'package:huskies_app/widgets/shop_widgets/item_details.dart';
+import 'package:huskies_app/logic/helpers/products.dart';
+import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({Key? key}) : super(key: key);

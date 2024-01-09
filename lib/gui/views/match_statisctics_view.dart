@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/score_board_widgets/match_card_widget.dart';
-import 'package:huskies_app/widgets/score_board_widgets/scoreboard_footer_widget.dart';
-import 'package:huskies_app/widgets/score_board_widgets/scoreboard_widget.dart';
+import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
+import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_footer_widget.dart';
+import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_widget.dart';
 
 class MatchStatisticsView extends StatefulWidget {
   final String season;

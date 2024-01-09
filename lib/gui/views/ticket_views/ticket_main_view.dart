@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:huskies_app/helpers/helpers.dart';
-import 'package:huskies_app/views/ticket_views/ticket_shop_view.dart';
-import 'package:huskies_app/widgets/agb_widget.dart';
-import 'package:huskies_app/widgets/ticket_info_widget.dart';
-import 'package:huskies_app/widgets/ticket_widgets/barcode_widget.dart';
+import 'package:huskies_app/logic/helpers/helpers.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
+import 'package:huskies_app/gui/views/widgets/agb_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_info_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/barcode_widget.dart';
 
 class TicketMainView extends StatefulWidget {
   const TicketMainView({super.key});

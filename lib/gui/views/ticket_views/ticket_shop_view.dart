@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/score_board_widgets/match_card_widget.dart';
-import 'package:huskies_app/widgets/ticket_widgets/ticket_shop_widget.dart';
+import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_shop_widget.dart';
 
 class TicketShopView extends StatelessWidget {
   final List gamesInSeason;

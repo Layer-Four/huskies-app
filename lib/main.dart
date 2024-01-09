@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/nav_layer.dart';
+import 'package:huskies_app/gui/views/widgets/nav_layer.dart';
 
 void main() => runApp(const MyApp());
 

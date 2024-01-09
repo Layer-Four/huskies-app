@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/match_view_widget.dart';
-import 'package:huskies_app/widgets/page_view_widget.dart';
+import 'package:huskies_app/gui/views/widgets/match_view_widget.dart';
+import 'package:huskies_app/gui/views/widgets/page_view_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {

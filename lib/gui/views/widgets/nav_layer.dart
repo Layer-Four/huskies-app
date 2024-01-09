@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/views/match_statisctics_view.dart';
-import 'package:huskies_app/widgets/shop_widgets/products_view.dart';
-import 'package:huskies_app/views/home_view.dart';
-import 'package:huskies_app/views/ticket_views/ticket_main_view.dart';
-import 'package:huskies_app/widgets/navbar_widget.dart';
+import 'package:huskies_app/gui/views/match_statisctics_view.dart';
+import 'package:huskies_app/gui/views/widgets/shop_widgets/products_view.dart';
+import 'package:huskies_app/gui/views/home_view.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_main_view.dart';
+import 'package:huskies_app/gui/views/widgets/navbar_widget.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // import 'package:huskies_ticket_wallet/views/game_statistics_view..dart';
