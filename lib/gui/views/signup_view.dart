@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
+import 'package:huskies_app/gui/views/login_view.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  final bool isPWForget;
+  const Signup({super.key, this.isPWForget = false});
 
   @override
   State<Signup> createState() => _SignupState();
@@ -41,50 +43,19 @@ class _SignupState extends State<Signup> {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  "Registrieren",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 14,
+                Text(
+                  widget.isPWForget ? 'Passwort zurücksetzten' : "Registrieren",
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
 
-                const Text(
-                  "E-Mail",
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomeTextForm(
-                    hinttext: "Email Eingeben", mycontroller: email),
-
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "Passwort",
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text("E-Mail", style: TextStyle(fontSize: 14)),
                 ),
 
-                CustomeTextForm(
-                    hinttext: "Password Eingeben", mycontroller: password),
-                Container(
-                  margin: const EdgeInsets.only(top: 10, bottom: 20),
-                  alignment: Alignment.bottomRight,
-                  child: const Text(
-                    "Passwort vergessen?",
-                    style: TextStyle(
-                      fontSize: 10,
-                    ),
-                  ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: CustomeTextForm(hinttext: "Email", mycontroller: email),
                 ),
               ],
             ),
@@ -99,7 +70,8 @@ class _SignupState extends State<Signup> {
             // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("login");
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => const LoginView()));
               },
               child: const Center(
                 child: Text.rich(
@@ -111,8 +83,7 @@ class _SignupState extends State<Signup> {
                       TextSpan(
                           text: "Anmelden",
                           style: TextStyle(
-                              color: Color.fromARGB(255, 22, 63, 92),
-                              fontWeight: FontWeight.bold)),
+                              color: Color.fromARGB(255, 22, 63, 92), fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ),

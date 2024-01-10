@@ -114,7 +114,7 @@ class Helpers {
                     'assets/$image',
                   ),
                 ),
-                Text(advertising),
+                Center(child: Text(advertising)),
               ],
             )),
       );

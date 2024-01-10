@@ -20,4 +20,20 @@ class AppTheme {
   static const EdgeInsets defaultHorizontalDistance = EdgeInsets.symmetric(horizontal: 15);
   static const EdgeInsets popUpMargin = EdgeInsets.symmetric(horizontal: 40, vertical: 100);
   static const Color cardHighlightedColor = Color.fromARGB(255, 215, 234, 249);
+  static final InputDecoration textInputDecoration = InputDecoration(
+    contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+    filled: true,
+    fillColor: Colors.grey[200],
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.transparent)),
+    focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
+    enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.transparent)),
+    errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.transparent)),
+  );
 }

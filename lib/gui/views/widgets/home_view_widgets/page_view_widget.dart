@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 
-class PageViewWidget extends StatelessWidget {
-  const PageViewWidget({
+class UserInfoWidget extends StatelessWidget {
+  const UserInfoWidget({
     super.key,
   });
 
