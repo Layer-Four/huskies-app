@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/logic/globals.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Helpers {
@@ -75,4 +79,43 @@ class Helpers {
       ),
     );
   }
+
+  /// ownNavigtion function.
+  static void loadAndNavigate(
+      {required BuildContext context,
+      required WidgetRef ref,
+      required int nextView,
+      required String image,
+      required String advertising}) {
+    final state = ref.watch(provider);
+    final notifier = ref.read(provider.notifier);
+    if (state.currentView != nextView) {
+      Helpers.showLoadingView(context, image, advertising);
+      Future.delayed(const Duration(milliseconds: 1500)).then((_) {
+        Navigator.pop(context);
+        notifier.changeView(nextView: nextView);
+      });
+    }
+  }
+
+  static void showLoadingView(BuildContext context, String image, String advertising) => showDialog(
+        context: context,
+        builder: (context) => Container(
+            color: Colors.white,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LoadingAnimationWidget.discreteCircle(
+                    color: const Color.fromARGB(129, 0, 150, 135), size: 70),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    'assets/$image',
+                  ),
+                ),
+                Text(advertising),
+              ],
+            )),
+      );
 }
