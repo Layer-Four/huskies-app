@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
 import 'package:huskies_app/views/signup_view.dart';
@@ -78,7 +77,7 @@ class _LoginState extends State<Login> {
                         height: 8,
                       ),
                       CustomeTextForm(
-                        hinttext: "Email Eingeben",
+                        // hinttext: "Email Eingeben",
                         mycontroller: email,
                       ),
 
@@ -97,7 +96,7 @@ class _LoginState extends State<Login> {
                       ),
 
                       CustomeTextForm(
-                          hinttext: "Password Eingeben",
+                          // hinttext: "Password Eingeben",
                           mycontroller: password),
                       Container(
                         margin: const EdgeInsets.only(top: 10, bottom: 20),
@@ -114,23 +113,24 @@ class _LoginState extends State<Login> {
                     onPress: () {},
                   ),
 
-                  Container(height: 20),
+                  // Container(height: 20),
 
-                  MaterialButton(
-                      height: 40,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      color: const Color.fromARGB(255, 22, 63, 92),
-                      textColor: Colors.white,
-                      onPressed: () {},
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Login With Google  "),
-                          Icon(FontAwesome5.google)
-                        ],
-                      )),
+                  // MaterialButton(
+                  //   height: 40,
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(13),
+                  //   ),
+                  //   color: const Color.fromARGB(255, 22, 63, 92),
+                  //   textColor: Colors.white,
+                  //   onPressed: () {},
+                  //   child: const Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     children: [
+                  //       Text("Login With Google  "),
+                  //       Icon(FontAwesome5.google)
+                  //     ],
+                  //   ),
+                  // ),
                   Container(height: 20),
                   // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
                   InkWell(
@@ -148,11 +148,12 @@ class _LoginState extends State<Login> {
                           children: [
                             TextSpan(
                               text: "Don't Have An Account ? ",
+                              style: TextStyle(color: Colors.white),
                             ),
                             TextSpan(
                                 text: "Register",
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 22, 63, 92),
+                                    color: Colors.white,
                                     fontWeight: FontWeight.bold)),
                           ],
                         ),

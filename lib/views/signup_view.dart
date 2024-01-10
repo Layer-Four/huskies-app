@@ -19,107 +19,133 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: ListView(children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // const SizedBox(height: 50),
-                Center(
-                  child: SizedBox(
-                    // alignment: Alignment.center,
-                    width: 140,
-                    height: 140,
-                    child: Image.asset(
-                      "assets/huskies.png",
-                      width: 100,
-                      height: 100,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                const Text(
-                  "Registrieren",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-
-                const Text(
-                  "E-Mail",
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomeTextForm(
-                    hinttext: "Email Eingeben", mycontroller: email),
-
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "Passwort",
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-
-                CustomeTextForm(
-                    hinttext: "Password Eingeben", mycontroller: password),
-                Container(
-                  margin: const EdgeInsets.only(top: 10, bottom: 20),
-                  alignment: Alignment.bottomRight,
-                  child: const Text(
-                    "Passwort vergessen?",
-                    style: TextStyle(
-                      fontSize: 10,
-                    ),
-                  ),
-                ),
-              ],
+        child: Stack(children: [
+          Opacity(
+            opacity: 0.7,
+            child: Image.asset(
+              "assets/background_image.jpg",
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+              width: double.infinity,
+              // height: double.infinity,
             ),
-            CustomButtonAuth(
-              title: "Registrieren",
-              onPress: () {},
-            ),
-
-            Container(height: 20),
-
-            Container(height: 20),
-            // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
-            InkWell(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: const Center(
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "haben Sie ein Account ? ",
-                      ),
-                      TextSpan(
-                          text: "Anmelden",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 22, 63, 92),
-                              fontWeight: FontWeight.bold)),
-                    ],
+          ),
+          Container(color: const Color.fromARGB(129, 0, 0, 0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // const SizedBox(height: 50),
+              Center(
+                child: SizedBox(
+                  // alignment: Alignment.center,
+                  width: 140,
+                  height: 140,
+                  child: Image.asset(
+                    "assets/huskies.png",
+                    width: 100,
+                    height: 100,
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Text(
+                "Registrieren",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+
+              const Text(
+                "E-Mail",
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomeTextForm(
+                  // hinttext: "Email Eingeben",
+                  mycontroller: email),
+
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Passwort",
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+
+              CustomeTextForm(
+                  // hinttext: "Password Eingeben",
+                  mycontroller: password),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Passwort wiederhölen",
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+
+              CustomeTextForm(
+                  // hinttext: "Password Eingeben",
+                  mycontroller: password),
+              Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 20),
+                alignment: Alignment.bottomRight,
+                child: const Text(
+                  "Passwort vergessen?",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          CustomButtonAuth(
+            title: "Registrieren",
+            onPress: () {},
+          ),
+
+          Container(height: 20),
+
+          Container(height: 20),
+          // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: const Center(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "haben Sie ein Account ? ",
+                    ),
+                    TextSpan(
+                        text: "Anmelden",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 22, 63, 92),
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
             ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
