@@ -18,8 +18,6 @@ class MatchViewWidget extends StatelessWidget {
           margin: const EdgeInsets.only(right: 12),
           height: 90,
           child: const Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-
             children: [
               Text(
                 "VS",

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helpers/helpers.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
 
 class ScoreboardViewWidget extends StatelessWidget {
   const ScoreboardViewWidget({

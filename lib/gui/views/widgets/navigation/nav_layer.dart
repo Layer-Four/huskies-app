@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/widgets/navbar_widget.dart';
+import 'package:huskies_app/gui/views/widgets/navigation/navbar_widget.dart';
 import 'package:huskies_app/logic/globals.dart';
-import 'package:huskies_app/logic/helpers/helpers.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
