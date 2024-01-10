@@ -147,11 +147,11 @@ class _LoginState extends State<Login> {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: "Don't Have An Account ? ",
+                              text: "Haben Sie kein Account? ",
                               style: TextStyle(color: Colors.white),
                             ),
                             TextSpan(
-                                text: "Register",
+                                text: "Registrieren",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold)),
