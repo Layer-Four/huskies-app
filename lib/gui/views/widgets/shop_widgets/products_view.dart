@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:huskies_app/helpers/products.dart';
-import 'package:huskies_app/widgets/shop_widgets/item_details.dart';
+import 'package:huskies_app/logic/globals.dart';
+import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 
-class ProductsView extends StatelessWidget {
-  const ProductsView({Key? key}) : super(key: key);
+class ProductsView extends ConsumerWidget {
+  static const ProductsView _productViewInstance = ProductsView._internal();
+  factory ProductsView() => _productViewInstance;
+
+  const ProductsView._internal();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.read(provider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,13 +48,13 @@ class ProductsView extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisExtent: 250,
           ),
-          itemCount: products.length,
+          itemCount: state.products.length,
           itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ItemsDetails(item: products[i]),
+                    builder: (context) => ItemsDetails(item: productsList[i]),
                   ),
                 );
               },
@@ -60,7 +65,7 @@ class ProductsView extends StatelessWidget {
                   //   aspectRatio: 1,
                   //   child:
                   Image.asset(
-                    products[i]['image']!,
+                    productsList[i]['image']!,
                     // ),
                   ),
                   Padding(
@@ -69,7 +74,7 @@ class ProductsView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          products[i]['title']!,
+                          productsList[i]['title']!,
                           style: const TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
@@ -77,7 +82,7 @@ class ProductsView extends StatelessWidget {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          products[i]['price']!,
+                          productsList[i]['price']!,
                           style: const TextStyle(
                             color: Colors.red,
                             fontSize: 12,

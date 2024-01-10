@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/nav_layer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/gui/views/widgets/nav_layer.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const ProviderScope(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,3 +19,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// class FirebaseAuthRepository {
+//   FirebaseAuthRepository._privateConstructor();   
+//   static final FirebaseAuthRepository _instance = FirebaseAuthRepository._privateConstructor();  
+//   factory FirebaseAuthRepository() {
+//     return _instance;
+//   }
+// }
