@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/widgets/ticket_widgets/ticket_view_body.widget.dart';
-import 'package:huskies_app/widgets/ticket_widgets/ticket_view_head_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_view_body.widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_view_head_widget.dart';
 
 class TicketInfoWidget extends StatelessWidget {
   final String? homeTeam;
