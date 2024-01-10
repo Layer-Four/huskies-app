@@ -1,7 +1,10 @@
 //? example list for productsinfo in ShopView
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/logic/app_state.dart';
+import 'package:huskies_app/logic/provider.dart';
 
-const List<Map<String, String>> products = [
+const List<Map<String, String>> productsList = [
   {
     "image": "assets/second.png",
     "title": "EC Kassel Huskies Fan Jersey\nSaison 2023 /2024",
@@ -34,16 +37,24 @@ const List<Map<String, String>> products = [
   },
 ];
 
-Widget fakeHomeView() => Container(
-      color: const Color.fromARGB(255, 187, 219, 235),
-      child: const Center(
-        child: Text(
-          'Fake-Home-View',
-          style: TextStyle(
-            fontSize: 35,
-            color: Color.fromARGB(255, 0, 0, 0),
-            fontWeight: FontWeight.bold,
-          ),
+Widget fakeHomeView() {
+  return Container(
+    color: const Color.fromARGB(255, 187, 219, 235),
+    child: const Center(
+      child: Text(
+        'Fake-Home-View',
+        style: TextStyle(
+          fontSize: 35,
+          color: Color.fromARGB(255, 0, 0, 0),
+          fontWeight: FontWeight.bold,
         ),
       ),
-    );
+    ),
+  );
+}
+
+final provider = StateNotifierProvider<AppStateNotifier, AppState>(
+  (ref) => AppStateNotifier(
+    AppState(),
+  ),
+);

@@ -5,7 +5,7 @@ import 'package:huskies_app/gui/views/widgets/shop_widgets/products_view.dart';
 import 'package:huskies_app/gui/views/home_view.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_main_view.dart';
 import 'package:huskies_app/gui/views/widgets/navbar_widget.dart';
-import 'package:huskies_app/main.dart';
+import 'package:huskies_app/logic/globals.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
@@ -13,7 +13,7 @@ class ViewNavigator extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(provider);
-    final provFunc = ref.read(provider.notifier);
+    final notifier = ref.read(provider.notifier);
     return Scaffold(
       body: switch (state.currentView) {
         1 => TicketView(),
@@ -29,7 +29,7 @@ class ViewNavigator extends ConsumerWidget {
             icon: Icons.home_outlined,
             name: 'Home',
             isCurrentView: state.currentView == 0,
-            onPressed: () => provFunc.changeView(nextView: 0),
+            onPressed: () => notifier.changeView(nextView: 0),
             // () => setState(() => currentViewIndex = 0),
             // loadAndNavigate(
             //   nextView: 0,
@@ -40,7 +40,7 @@ class ViewNavigator extends ConsumerWidget {
               icon: Icons.bookmark_border_outlined,
               name: 'Tickets',
               isCurrentView: state.currentView == 1,
-              onPressed: () => provFunc.changeView(nextView: 1)
+              onPressed: () => notifier.changeView(nextView: 1)
               // () => setState(() => currentViewIndex = 1),
               // loadAndNavigate(
               //   nextView: 1,
@@ -51,7 +51,7 @@ class ViewNavigator extends ConsumerWidget {
               icon: Icons.mail_outline,
               name: 'Ergebnisse',
               isCurrentView: state.currentView == 2,
-              onPressed: () => provFunc.changeView(nextView: 2)
+              onPressed: () => notifier.changeView(nextView: 2)
               //  () => setState(() => currentViewIndex = 2),
               // loadAndNavigate(
               //   nextView: 2,
@@ -62,7 +62,7 @@ class ViewNavigator extends ConsumerWidget {
               icon: Icons.card_giftcard,
               name: 'shop',
               isCurrentView: state.currentView == 3,
-              onPressed: () => provFunc.changeView(nextView: 3)
+              onPressed: () => notifier.changeView(nextView: 3)
               //  loadAndNavigate(
               //   context,
               //   nextView: 3,
