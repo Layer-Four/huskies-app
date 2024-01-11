@@ -46,6 +46,7 @@ flutter:
     - assets/main.png
     - assets/second.png
     - assets/third.png
+    - assets/puzzle_huskies.png
     - assets/background_image.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:

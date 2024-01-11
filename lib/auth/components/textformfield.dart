@@ -5,10 +5,10 @@ class CustomeTextForm extends StatelessWidget {
   final TextEditingController mycontroller;
 
   const CustomeTextForm({
-    Key? key,
+    super.key,
     this.hinttext,
     required this.mycontroller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,9 @@ class CustomeTextForm extends StatelessWidget {
           validator: (value) {
             if (value!.isEmpty) {
               return "leere Field bitte ausfüllen";
+            }
+            if (value.length > 10) {
+              return "bitte gebe Sie nicht mehr als 10 Zeichen";
             }
           },
           controller: mycontroller,
@@ -49,6 +52,10 @@ class CustomeTextForm extends StatelessWidget {
             ),
           ),
         ),
+        // MaterialButton(textColor: Colors.white,color: Colors.red,
+        // onPressed:(){
+        //   if(formstate.currentState!.validate()){print('valid');}else
+        // } ,);
       ),
     );
   }

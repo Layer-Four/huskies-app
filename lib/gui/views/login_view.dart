@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
-import 'package:huskies_app/views/signup_view.dart';
+import 'package:huskies_app/gui/views/signup_view.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
