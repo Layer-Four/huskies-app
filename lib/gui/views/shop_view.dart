@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class ShopView extends ConsumerWidget {
   static const ShopView _productViewInstance = ShopView._internal();
@@ -15,84 +13,7 @@ class ShopView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.read(provider);
-    return
-//     Column(
-//       children: [
-//         Padding(
-//           padding: AppTheme.mediumPadding,
-//           child: HeadWidget(
-//               leading: IconButton(
-//                 onPressed: () {},
-//                 icon: const Icon(
-//                   FontAwesomeIcons.basketShopping,
-//                   color: Colors.black,
-//                 ),
-//               ),
-//               title: 'Shop',
-//               image: 'da.jpg'),
-//         ),
-//         Padding(
-//           padding: const EdgeInsets.all(15),
-//           child: GridView.builder(
-//             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//               crossAxisCount: 2,
-//               mainAxisExtent: 250,
-//             ),
-//             itemCount: state.products.length,
-//             itemBuilder: (BuildContext context, int i) {
-//               return InkWell(
-//                 onTap: () {
-//                   Navigator.of(context).push(
-//                     MaterialPageRoute(
-//                       builder: (context) => ItemsDetails(item: productsList[i]),
-//                     ),
-//                   );
-//                 },
-//                 child: Column(
-//                   // crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     // AspectRatio(
-//                     //   aspectRatio: 1,
-//                     //   child:
-//                     Image.asset(
-//                       productsList[i]['image']!,
-//                       // ),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.only(left: 8),
-//                       child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Text(
-//                             productsList[i]['title']!,
-//                             style: const TextStyle(
-//                               fontSize: 10,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                           const SizedBox(height: 6),
-//                           Text(
-//                             productsList[i]['price']!,
-//                             style: const TextStyle(
-//                               color: Colors.red,
-//                               fontSize: 12,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               );
-//             },
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-        Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
@@ -177,6 +98,8 @@ class ShopView extends ConsumerWidget {
           },
         ),
       ),
+      // ],
+      // ),
     );
   }
 }
