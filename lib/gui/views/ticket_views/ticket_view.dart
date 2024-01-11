@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/red_text_button.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
 
 class TicketView extends ConsumerWidget {
   const TicketView({super.key});
@@ -16,28 +18,46 @@ class TicketView extends ConsumerWidget {
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
-          const HeadWidget(
-            title: Text('Tickets', style: AppTheme.headStyle),
-            end: UserIconWidget(image: 'da.jpg'),
-          ),
-          const Padding(padding: EdgeInsets.all(20)),
-          SizedBox(
-            height: 500,
-            child: ListView.builder(
-              itemCount: gamesInSeason.length,
-              itemBuilder: ((context, index) {
-                Color backgroundColor = Colors.white;
-                if (index.isEven) {
-                  backgroundColor = const Color.fromARGB(255, 215, 234, 249);
-                }
-                return TicketItemRowWidget(
-                  image: 'fuechse.png',
-                  backgroundColor: backgroundColor,
-                  gameDate: 'Freitag, 01.03.24 19:30 Uhr',
-                  onPressed: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
-                );
-              }),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                const HeadWidget(
+                  title: Text('Tickets', style: AppTheme.headStyle),
+                  end: UserIconWidget(image: 'da.jpg'),
+                ),
+                const Padding(padding: EdgeInsets.all(20)),
+                SizedBox(
+                  height: 500,
+                  child: ListView.builder(
+                    itemCount: gamesInSeason.length,
+                    itemBuilder: ((context, index) {
+                      Color backgroundColor = Colors.white;
+                      if (index.isEven) {
+                        backgroundColor = const Color.fromARGB(255, 215, 234, 249);
+                      }
+                      return TicketItemRowWidget(
+                        image: 'fuechse.png',
+                        backgroundColor: backgroundColor,
+                        gameDate: 'Freitag, 01.03.24 19:30 Uhr',
+                        onPressed: () => Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
+                      );
+                    }),
+                  ),
+                ),
+                Padding(
+                  padding: AppTheme.smallPadding,
+                  child: RedTextButton(
+                      onPressed: () => Helpers.loadAndNavigate(
+                            context: context,
+                            ref: ref,
+                            nextView: 1,
+                            image: 'profile.jpg',
+                            advertising: 'Gegen Langeweile',
+                          ),
+                      title: 'Weiter Tickets'),
+                ),
+              ],
             ),
           ),
         ],

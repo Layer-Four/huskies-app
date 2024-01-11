@@ -29,6 +29,7 @@ class AppState {
         _views = views ??= [
           HomeView(),
           TicketShopView(gamesInSeason: List.generate(13, (index) => null)),
+          const TicketView(),
           MatchStatisticsView(),
           ShopView(),
         ],

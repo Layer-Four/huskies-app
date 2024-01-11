@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
@@ -71,9 +73,28 @@ class TicketShopView extends StatelessWidget {
                     backgroundColor = const Color.fromARGB(255, 215, 234, 249);
                   }
                   return TicketItemRowWidget(
-                      image: 'fuechse.png',
-                      backgroundColor: backgroundColor,
-                      gameDate: 'Freitag, 01.03.24 19:30 Uhr');
+                    image: 'fuechse.png',
+                    backgroundColor: backgroundColor,
+                    gameDate: 'Freitag, 01.03.24 19:30 Uhr',
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Container(
+                          width: MediaQuery.of(context).size.width - 40,
+                          color: const Color.fromARGB(225, 255, 255, 255),
+                          child: TextButton(
+                              child: const Text(
+                                'Buy Ticket',
+                                style: AppTheme.headStyle,
+                              ),
+                              onPressed: () {
+                                log('add Ticket to card or open popup to choice amount of tickets');
+                                Navigator.of(context).pop();
+                              }),
+                        ),
+                      );
+                    },
+                  );
                 }),
               ),
             ),

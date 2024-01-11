@@ -17,6 +17,7 @@ class ViewNavigator extends ConsumerWidget {
           1 => state.view[1],
           2 => state.view[2],
           3 => state.view[3],
+          4 => state.view[4],
           _ => state.view.first
         },
         bottomNavigationBar: NavigationBar(
@@ -31,22 +32,27 @@ class ViewNavigator extends ConsumerWidget {
             ),
             NavBarIconWidget(
                 icon: Icons.bookmark_border_outlined,
-                name: 'Tickets',
+                name: 'Tickets-Match',
                 isCurrentView: state.currentView == 1,
                 onPressed: () => notifier.changeView(nextView: 1)),
             NavBarIconWidget(
-                icon: Icons.mail_outline,
-                name: 'Ergebnisse',
+                icon: Icons.bookmark_border_outlined,
+                name: 'Tickets-View',
                 isCurrentView: state.currentView == 2,
                 onPressed: () => notifier.changeView(nextView: 2)),
             NavBarIconWidget(
+                icon: Icons.mail_outline,
+                name: 'Ergebnisse',
+                isCurrentView: state.currentView == 3,
+                onPressed: () => notifier.changeView(nextView: 3)),
+            NavBarIconWidget(
               icon: Icons.card_giftcard,
               name: 'shop',
-              isCurrentView: state.currentView == 3,
+              isCurrentView: state.currentView == 4,
               onPressed: () => Helpers.loadAndNavigate(
                   context: context,
                   ref: ref,
-                  nextView: 3,
+                  nextView: 4,
                   advertising: 'Hier könnte Ihre Werbung stehen',
                   image: 'huskies.png'),
             ),
