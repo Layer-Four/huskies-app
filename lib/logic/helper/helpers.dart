@@ -120,6 +120,7 @@ class Helpers {
                 Text(
                   advertising,
                   style: const TextStyle(fontSize: 25, color: AppTheme.primary),
+                  textAlign: TextAlign.center,
                 ),
               ],
             )),
