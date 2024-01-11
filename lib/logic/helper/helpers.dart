@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/logic/globals.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -90,7 +91,7 @@ class Helpers {
     final state = ref.watch(provider);
     final notifier = ref.read(provider.notifier);
     if (state.currentView != nextView) {
-      Helpers.showLoadingView(context, image, advertising);
+      showLoadingView(context, image, advertising);
       Future.delayed(const Duration(milliseconds: 1500)).then((_) {
         Navigator.pop(context);
         notifier.changeView(nextView: nextView);
@@ -101,20 +102,25 @@ class Helpers {
   static void showLoadingView(BuildContext context, String image, String advertising) => showDialog(
         context: context,
         builder: (context) => Container(
+            padding: AppTheme.mediumPadding,
             color: Colors.white,
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                LoadingAnimationWidget.discreteCircle(
-                    color: const Color.fromARGB(129, 0, 150, 135), size: 70),
+                LoadingAnimationWidget.discreteCircle(size: 70, color: AppTheme.primary),
+                // const Color.fromARGB(129, 0, 150, 135), size: 70),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Image.asset(
                     'assets/$image',
+                    width: 100,
                   ),
                 ),
-                Center(child: Text(advertising)),
+                Text(
+                  advertising,
+                  style: const TextStyle(fontSize: 25, color: AppTheme.primary),
+                ),
               ],
             )),
       );
