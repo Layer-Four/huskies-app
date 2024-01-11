@@ -2,12 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
-import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 
@@ -17,7 +15,6 @@ class TicketShopView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.read(provider.notifier);
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
