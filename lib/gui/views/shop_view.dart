@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_shop_widget.dart';
+import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';

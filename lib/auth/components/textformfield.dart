@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class CustomeTextForm extends StatelessWidget {
-  final bool hidePassword;
+  final bool isPassword;
   final String hinttext;
   final TextEditingController mycontroller;
 
@@ -10,15 +10,15 @@ class CustomeTextForm extends StatelessWidget {
     super.key,
     required this.hinttext,
     required this.mycontroller,
-    this.hidePassword = false,
+    this.isPassword = false,
   });
 
   @override
   Widget build(BuildContext context) => TextFormField(
-        maxLength: hidePassword ? null : 64,
+        maxLength: isPassword ? null : 64,
         controller: mycontroller,
         decoration: AppTheme.textInputDecoration,
-        obscureText: hidePassword,
+        obscureText: isPassword,
       );
 }
 

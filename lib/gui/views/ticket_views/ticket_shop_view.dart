@@ -1,7 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
-import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_shop_widget.dart';
+import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
+import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class TicketShopView extends StatelessWidget {
@@ -15,19 +16,18 @@ class TicketShopView extends StatelessWidget {
         decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(12.0)),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: HeadWidget(title: 'Tickets', image: 'da.jpg'),
+            const HeadWidget(
+              title: Text('Tickets', style: AppTheme.headStyle),
+              end: UserIconWidget(image: 'da.jpg'),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(12),
               child: MatchCard(
                 isLastMatch: false,
                 color: Color.fromARGB(255, 215, 234, 249),
               ),
             ),
-            Padding(padding: EdgeInsets.all(20)),
+            const Padding(padding: EdgeInsets.all(20)),
             SizedBox(
               height: 285,
               child: ListView.builder(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
-import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_shop_widget.dart';
+import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
+import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class TicketView extends ConsumerWidget {
   const TicketView({super.key});
@@ -13,12 +15,9 @@ class TicketView extends ConsumerWidget {
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(12.0),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: HeadWidget(title: 'Tickets', image: 'da.jpg'),
+          const HeadWidget(
+            title: Text('Tickets', style: AppTheme.headStyle),
+            end: UserIconWidget(image: 'da.jpg'),
           ),
           const Padding(padding: EdgeInsets.all(20)),
           SizedBox(

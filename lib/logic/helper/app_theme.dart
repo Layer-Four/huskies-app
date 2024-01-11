@@ -10,6 +10,7 @@ class AppTheme {
   static const double cardElevetion = 7.0;
   static final BorderRadius lowRoundedCorner = BorderRadius.circular(8);
   static const EdgeInsets mediumPadding = EdgeInsets.all(8.0);
+  static const EdgeInsets smallPadding = EdgeInsets.all(6.0);
   static const double mediumDistance = 12;
   static const double largeDistance = 18;
   static const double lowDistance = 6;

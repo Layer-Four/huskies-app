@@ -72,7 +72,7 @@ class _LoginViewState extends State<LoginView> {
                       CustomeTextForm(
                         hinttext: "Passwort",
                         mycontroller: password,
-                        hidePassword: true,
+                        isPassword: true,
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 10, bottom: 20),
