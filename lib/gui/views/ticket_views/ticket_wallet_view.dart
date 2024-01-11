@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
+// import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/agb_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_info_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/barcode_widget.dart';
@@ -32,9 +32,9 @@ class _TicketWalletViewState extends State<TicketWalletView> {
             style: TextStyle(fontWeight: FontWeight.w700, letterSpacing: 1.5),
           ),
         ),
-        drawer: TicketShopView(
-          gamesInSeason: seasonGames,
-        ),
+        // drawer: TicketShopView(
+        //   gamesInSeason: seasonGames,
+        // ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,

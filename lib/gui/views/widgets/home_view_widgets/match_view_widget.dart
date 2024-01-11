@@ -10,9 +10,9 @@ class MatchViewWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const Image(
-          width: 130,
-          image: AssetImage('assets/fuechse.jpg'),
+        Image.asset(
+          'assets/fuechse.png',
+          height: 90,
         ),
         Container(
           margin: const EdgeInsets.only(right: 12),
@@ -30,7 +30,7 @@ class MatchViewWidget extends StatelessWidget {
             ],
           ),
         ),
-        const Image(width: 70, image: AssetImage('assets/huskies.png'))
+        Image.asset(width: 70, 'assets/huskies.png'),
       ],
     );
   }

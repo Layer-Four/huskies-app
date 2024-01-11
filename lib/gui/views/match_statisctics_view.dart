@@ -48,7 +48,7 @@ class MatchStatisticsView extends ConsumerWidget {
                 homeScore: 3,
                 visitorScore: 1,
                 homeImage: 'huskies.png',
-                visitorImage: 'fuechse.jpg',
+                visitorImage: 'fuechse.png',
               ),
               const SizedBox(height: 12),
               const ScoreboardViewWidget(),

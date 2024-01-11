@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 class UserIconWidget extends StatelessWidget {
   final String image;
-  const UserIconWidget({super.key, required this.image});
+  final void Function()? onPressed;
+  const UserIconWidget({super.key, required this.image, this.onPressed});
 
   @override
   Widget build(context) {
-    return Container(
-      // margin: const EdgeInsets.only(right: 20),
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(45)),
-      child: Image.asset(
-        'assets/$image',
-        width: 45,
+    return TextButton(
+      onPressed: onPressed,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(45)),
+        child: Image.asset(
+          'assets/$image',
+          width: 45,
+        ),
       ),
     );
   }

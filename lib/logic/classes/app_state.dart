@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:huskies_app/gui/views/home_view.dart';
 import 'package:huskies_app/gui/views/match_statisctics_view.dart';
 import 'package:huskies_app/gui/views/shop_view.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_view.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_view_match.dart';
 import 'package:huskies_app/logic/classes/season.dart';
 import 'package:huskies_app/logic/classes/user.dart';
 import 'package:huskies_app/logic/globals.dart';
@@ -27,9 +28,7 @@ class AppState {
         _shopItems = products ??= productsList,
         _views = views ??= [
           HomeView(),
-          TicketShopView(
-            gamesInSeason: List.generate(10, (index) => null),
-          ),
+          TicketShopView(gamesInSeason: List.generate(13, (index) => null)),
           MatchStatisticsView(),
           ShopView(),
         ],

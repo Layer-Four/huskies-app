@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class HeadWidget extends StatelessWidget {
   final Widget? leading;
@@ -14,13 +15,13 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: AppTheme.mediumPadding,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(width: leading == null ? 40 : null, child: leading),
             title,
-            SizedBox(width: leading == null ? 40 : null, child: end),
+            SizedBox(width: end == null ? 40 : null, child: end),
           ],
         ),
       );

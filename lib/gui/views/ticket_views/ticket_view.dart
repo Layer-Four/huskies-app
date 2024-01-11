@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
 
@@ -29,10 +30,13 @@ class TicketView extends ConsumerWidget {
                 if (index.isEven) {
                   backgroundColor = const Color.fromARGB(255, 215, 234, 249);
                 }
-                return TicketitemRowWidget(
-                    image: 'assets/fuechse.jpg',
-                    backgroundColor: backgroundColor,
-                    gameDate: 'Freitag, 01.03.24 19:30 Uhr');
+                return TicketItemRowWidget(
+                  image: 'fuechse.png',
+                  backgroundColor: backgroundColor,
+                  gameDate: 'Freitag, 01.03.24 19:30 Uhr',
+                  onPressed: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
+                );
               }),
             ),
           ),
