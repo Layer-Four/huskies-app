@@ -32,7 +32,6 @@ class Helpers {
     required int difference,
   }) =>
       Container(
-        // TODO: Need a own Style in AppTheme?
         height: 35,
         margin: const EdgeInsets.only(bottom: 1),
         decoration: BoxDecoration(

@@ -1,13 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
-import 'package:huskies_app/logic/helper/helpers.dart';
 
 class TicketShopView extends ConsumerWidget {
   final List gamesInSeason;
@@ -21,17 +18,11 @@ class TicketShopView extends ConsumerWidget {
         children: [
           HeadWidget(
             leading: IconButton(
-              onPressed: () => Helpers.loadAndNavigate(
-                  context: context, ref: ref, nextView: 2, advertising: '', image: 'profile.jpg'),
-              //  Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => TicketWalletView(),
-              // ),
-              // ),
+              onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back),
             ),
-            title: const Text('Tickets', style: AppTheme.headStyle),
+            title: const Text('Tickets',
+                style: TextStyle(fontSize: 29, color: Colors.black, inherit: false)),
             end: UserIconWidget(
               image: 'da.jpg',
               onPressed: () => Navigator.push(
@@ -87,7 +78,7 @@ class TicketShopView extends ConsumerWidget {
                         child: TextButton(
                             child: const Text(
                               'Buy Ticket',
-                              style: AppTheme.headStyle,
+                              // style: AppTheme.headStyle,
                             ),
                             onPressed: () {
                               log('add Ticket to card or open popup to choice amount of tickets');

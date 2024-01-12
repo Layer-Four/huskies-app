@@ -41,10 +41,7 @@ class UserInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'My Points',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  Text('My Points'),
                   Text(
                     '230',
                     style: TextStyle(color: Colors.teal),
@@ -90,10 +87,7 @@ class UserInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Level',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  Text('Level'),
                   Text(
                     '230',
                     style: TextStyle(color: Colors.teal),

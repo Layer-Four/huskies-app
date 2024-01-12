@@ -27,7 +27,10 @@ class TicketItemRowWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset('assets/$image', width: 60),
           ),
-          Text(gameDate),
+          Text(
+            gameDate,
+            style: const TextStyle(fontSize: 13, inherit: false, color: Colors.black),
+          ),
           RedTextButton(onPressed: onPressed, title: 'Ticket'),
         ],
       ),

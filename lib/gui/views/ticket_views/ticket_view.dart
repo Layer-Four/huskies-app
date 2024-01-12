@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/red_text_button.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
-import 'package:huskies_app/logic/helper/helpers.dart';
 
 class TicketView extends ConsumerWidget {
   const TicketView({super.key});
@@ -48,14 +48,20 @@ class TicketView extends ConsumerWidget {
                 Padding(
                   padding: AppTheme.smallPadding,
                   child: RedTextButton(
-                      onPressed: () => Helpers.loadAndNavigate(
-                            context: context,
-                            ref: ref,
-                            nextView: 1,
-                            image: 'profile.jpg',
-                            advertising: 'Gegen Langeweile',
+                      onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => TicketShopView(
+                                      gamesInSeason: List.generate(5, (index) => null),
+                                    )),
                           ),
                       title: 'Weiter Tickets'),
+                  //  Helpers.loadAndNavigate(
+                  //       context: context,
+                  //       ref: ref,
+                  //       nextView: 1,
+                  //       image: 'profile.jpg',
+                  //       advertising: 'Gegen Langeweile',
+                  //     ),
                 ),
               ],
             ),
