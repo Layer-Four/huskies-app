@@ -13,19 +13,19 @@ class PageViewWidget extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 18),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
+                          spreadRadius: 11),
                     ],
                   ),
                   child: const ColorFiltered(
@@ -46,29 +46,33 @@ class PageViewWidget extends StatelessWidget {
                 children: [
                   Text(
                     'My Points',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.black, fontSize: 13),
                   ),
                   Text(
                     '230',
-                    style: TextStyle(color: Colors.teal),
+                    style: TextStyle(
+                        color: Colors.teal,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ],
           ),
-          //middle of white box
+          // middle of white box
           Padding(
-            padding: const EdgeInsets.only(right: 11.0),
+            padding: const EdgeInsets.only(right: 40.0),
             child: Container(
               height: 44,
               width: 1,
               color: Colors.red.withOpacity(0.4),
             ),
           ),
+
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 18),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
@@ -76,7 +80,7 @@ class PageViewWidget extends StatelessWidget {
                     boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
+                          spreadRadius: 11),
                     ],
                   ),
                   child: const ColorFiltered(
@@ -97,11 +101,12 @@ class PageViewWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Level',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.black, fontSize: 13),
                   ),
                   Text(
-                    '230',
-                    style: TextStyle(color: Colors.teal),
+                    'Pro',
+                    style: TextStyle(
+                        color: Colors.teal, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

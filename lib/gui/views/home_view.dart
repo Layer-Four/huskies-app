@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/widgets/match_view_widget.dart';
 import 'package:huskies_app/gui/views/widgets/page_view_widget.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helpers/app_theme.dart';
@@ -32,7 +31,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // SizedBox(
                     //   width: 40,
@@ -47,33 +45,43 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     //     color: Colors.white,
                     //   ),
                     // ),
-                    Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 25, bottom: 10),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            'assets/da.jpg',
-                            width: 35,
-                          ),
-                          // ),
+
+                    //the first secton make it in center
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(top: 25, bottom: 10),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              clipBehavior: Clip.antiAlias,
+                              child: Image.asset(
+                                'assets/da.jpg',
+                                width: 35,
+                              ),
+                              // ),
+                            ),
+                            const Text("Hallo David",
+                                style: TextStyle(
+                                  letterSpacing: 0.5,
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                            const Text(
+                              "Willkommon zurück!",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
                         ),
-                        const Text("Hallo David",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        const Text(
-                          "Willkommon zurück!",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                      ),
                     ),
                     const SizedBox(
-                      width: 40,
+                      width: 4,
                     ),
                   ],
                 ),
@@ -92,57 +100,82 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                  child: buildIndicator(
-                      index: indexUpperCarousel,
-                      isBackgroundColor: Colors.white),
-                ),
+                // SizedBox(
+                //   height: 20,
+                //   child: buildIndicator(
+                //       index: indexUpperCarousel,
+                //       isBackgroundColor: Colors.white),
+                // ),
+/*........Trikos Section...............*/
                 Container(
                   color: Colors.white,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Container(
+                        height: 15,
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 25),
+                              child: Image.asset(
+                                'assets/second.png',
+                                width: 90,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4, right: 4),
+                              child:
+                                  Image.asset('assets/first.png', width: 100),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 25),
+                              child:
+                                  Image.asset('assets/first.png', width: 100),
+                            ),
+                          ],
+                        ),
+                      ),
                       const Padding(
-                        padding: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 1, bottom: 4),
                         child: Text(
-                          "Nächstes Match",
+                          'Unsere neuen Trikots sind da!',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
-                            letterSpacing: 1,
+                            color: Color.fromARGB(255, 22, 63, 92),
                           ),
                         ),
                       ),
-                      CarouselSlider.builder(
-                        itemCount: 3,
-                        itemBuilder: (context, index, realIndex) {
-                          return const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: MatchViewWidget(),
-                          );
-                        },
-                        options: CarouselOptions(
-                          viewportFraction: 1,
-                          height: 80,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              indexLowerCarousel = index;
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                        child: Center(
-                          child: buildIndicator(
-                              index: indexLowerCarousel,
-                              isBackgroundColor: Colors.blueGrey),
+                      TextButton(
+                        onPressed: () {},
+                        child: Container(
+                          width: 85,
+                          height: 30,
+                          padding: AppTheme.mediumPadding,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 22, 63, 92),
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Shop",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 11),
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                //Puzzle Section===================================
+
+//Puzzle Section===================================
+
                 Container(
                   color: const Color.fromARGB(255, 168, 199, 224),
                   child: Stack(
@@ -152,56 +185,68 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         child: Image.asset(
                           'assets/puzzle_huskies.png',
                           fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
                           width: double.infinity,
                         ),
                       ),
                       // Container(
                       //   color: Color.fromARGB(207, 213, 236, 255),
                       // ),
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        width: double.infinity,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Kassel Huskies",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
-                            ),
-                            const Text(
-                              "NFT-Puzzle",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
-                            ),
-                            const Text(
-                              "sichere dir jetzt dein exklusives.\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              textAlign: TextAlign.center,
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Container(
-                                padding: AppTheme.mediumPadding,
-                                decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 22, 63, 92),
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const Text(
-                                  "Mehr Infos",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12),
+                      Positioned(
+                        bottom: 20,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          // padding: const EdgeInsets.all(15),
+                          width: double.infinity,
+                          child: Column(
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Kassel Huskies",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                  color: Color.fromARGB(255, 22, 63, 92),
                                 ),
                               ),
-                            ),
-                          ],
+                              const Text(
+                                "NFT-Puzzle",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                  color: Color.fromARGB(255, 22, 63, 92),
+                                ),
+                              ),
+                              const Text(
+                                "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 14, 31, 15)),
+                                textAlign: TextAlign.center,
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Container(
+                                  width: 85,
+                                  height: 30,
+                                  padding: AppTheme.mediumPadding,
+                                  decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromARGB(255, 22, 63, 92),
+                                      borderRadius: BorderRadius.circular(7)),
+                                  child: const Center(
+                                    child: Text(
+                                      "Mehr Infos",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        // fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

@@ -26,6 +26,7 @@ class CustomeTextForm extends StatelessWidget {
             if (value.length > 10) {
               return "bitte gebe Sie nicht mehr als 10 Zeichen";
             }
+            return null;
           },
           controller: mycontroller,
           decoration: InputDecoration(
