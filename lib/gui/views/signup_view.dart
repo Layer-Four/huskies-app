@@ -154,7 +154,12 @@ class _SignupState extends State<Signup> {
                   // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ),
+                      );
                     },
                     child: const Center(
                       child: Text.rich(

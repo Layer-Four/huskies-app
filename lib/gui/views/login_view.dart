@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
 import 'package:huskies_app/gui/views/signup_view.dart';
@@ -67,83 +68,94 @@ class _LoginViewState extends State<LoginView> {
                         height: 14,
                       ),
 
-                const Text(
-                  "E-Mail",
-                  style: TextStyle(fontSize: 14),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CustomeTextForm(hinttext: "Email", mycontroller: email),
-                ),
-
-                const Text(
-                  "Passwort",
-                  style: TextStyle(fontSize: 14),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      CustomeTextForm(
-                        hinttext: "Passwort",
-                        mycontroller: password,
-                        isPassword: true,
+                      const Text(
+                        "E-Mail",
+                        style: TextStyle(fontSize: 14),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 10, bottom: 20),
-                        alignment: Alignment.bottomRight,
-                        child: TextButton(
-                          onPressed: () => Navigator.pushReplacement(
-                              context, MaterialPageRoute(builder: (context) => const Signup())),
-                          child: const Text(
-                            "Passwort vergessen?",
-                            style: TextStyle(fontSize: 10),
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: CustomeTextForm(
+                            hinttext: "Email", mycontroller: email),
+                      ),
+
+                      const Text(
+                        "Passwort",
+                        style: TextStyle(fontSize: 14),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            CustomeTextForm(
+                              hinttext: "Passwort",
+                              mycontroller: password,
+                              isPassword: true,
+                            ),
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(top: 10, bottom: 20),
+                              alignment: Alignment.bottomRight,
+                              child: TextButton(
+                                onPressed: () => Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Signup())),
+                                child: const Text(
+                                  "Passwort vergessen?",
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-            CustomButtonAuth(
-              title: "Anmelden",
-              onPress: () {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => const ViewNavigator()));
-              },
-            ),
-            const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: GoogleLogInButtonWidget(),
-            ),
-            // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
-            InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => const Signup()));
-                // Navigator.of(context).pushNamed("signup");
-              },
-              child: const Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: "Sie haben noch kein Account? ",
-                    style: TextStyle(fontSize: 13),
-                    children: [
-                      // TextSpan(
-                      TextSpan(
-                          text: "Register",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 22, 63, 92),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15)),
-                    ],
+                  CustomButtonAuth(
+                    title: "Anmelden",
+                    onPress: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ViewNavigator()));
+                    },
                   ),
-                ),
+                  const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: GoogleLogInButtonWidget(),
+                  ),
+                  // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Signup()));
+                      // Navigator.of(context).pushNamed("signup");
+                    },
+                    child: const Center(
+                      child: Text.rich(
+                        TextSpan(
+                          text: "Sie haben noch kein Account? ",
+                          style: TextStyle(fontSize: 13),
+                          children: [
+                            // TextSpan(
+                            TextSpan(
+                                text: "Register",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 22, 63, 92),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
             ),
-          ]),
+          ],
         ),
       ),
     );

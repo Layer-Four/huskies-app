@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/gui/views/widgets/home_view_widgets/page_view_widget.dart';
-import 'package:huskies_app/logic/globals.dart';
-import 'package:huskies_app/logic/helpers/app_theme.dart';
+// import 'package:huskies_app/logic/globals.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -22,8 +21,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
   int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(provider);
-    final notifier = ref.read(provider.notifier);
+    // final state = ref.read(provider);
+    // final notifier = ref.read(provider.notifier);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -89,7 +88,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 child: CarouselSlider.builder(
                   itemCount: 3,
                   itemBuilder: (context, index, realIndex) {
-                    return const PageViewWidget();
+                    return const UserInfoWidget();
                   },
                   options: CarouselOptions(
                     viewportFraction: 1,
