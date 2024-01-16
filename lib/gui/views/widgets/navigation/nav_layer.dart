@@ -27,23 +27,23 @@ class ViewNavigator extends ConsumerWidget {
               icon: Icons.home_outlined,
               name: 'Home',
               isCurrentView: state.currentView == 0,
-              onPressed: notifier.changeView(nextView: 0),
+              onPressed: () => notifier.changeView(nextView: 0),
             ),
             NavBarIconWidget(
                 icon: Icons.bookmark_border_outlined,
                 name: 'Tickets-View',
                 isCurrentView: state.currentView == 1,
-                onPressed: notifier.changeView(nextView: 1)),
+                onPressed: () => notifier.changeView(nextView: 1)),
             NavBarIconWidget(
                 icon: Icons.mail_outline,
                 name: 'Ergebnisse',
                 isCurrentView: state.currentView == 2,
-                onPressed: notifier.changeView(nextView: 2)),
+                onPressed: () => notifier.changeView(nextView: 2)),
             NavBarIconWidget(
               icon: Icons.card_giftcard,
               name: 'shop',
               isCurrentView: state.currentView == 3,
-              onPressed: Helpers.loadAndNavigate(
+              onPressed: () => Helpers.loadAndNavigate(
                   context: context,
                   ref: ref,
                   nextView: 3,

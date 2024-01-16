@@ -25,79 +25,63 @@ class _HomeViewState extends ConsumerState<HomeView> {
     // final notifier = ref.read(provider.notifier);
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 22, 63, 92),
+          toolbarHeight: 120,
+          title: Expanded(
+            child: Align(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 25, bottom: 10),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: Image.asset(
+                      'assets/da.jpg',
+                      width: 35,
+                    ),
+                    // ),
+                  ),
+                  const Text("Hallo David",
+                      style: TextStyle(
+                        letterSpacing: 0.5,
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  const Text(
+                    "Willkommon zurück!",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
         body: Container(
           color: const Color.fromARGB(255, 22, 63, 92),
           child: Column(
             children: [
-              Row(
-                children: [
-                  // SizedBox(
-                  //   width: 40,
-                  //   child: IconButton(
-                  //     //TODO: Navigate to UserProfileView
-                  //     //TODO: Write UserProfileView.
-                  //     onPressed: () {
-                  //       notifier.greeting(
-                  //           '${state.products.elementAt(0).values.toList()[2]}');
-                  //     },
-                  //     icon: const Icon(Icons.menu),
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
-
-                  //the first secton make it in center
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 25, bottom: 10),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            clipBehavior: Clip.antiAlias,
-                            child: Image.asset(
-                              'assets/da.jpg',
-                              width: 35,
-                            ),
-                            // ),
-                          ),
-                          const Text("Hallo David",
-                              style: TextStyle(
-                                letterSpacing: 0.5,
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              )),
-                          const Text(
-                            "Willkommon zurück!",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: CarouselSlider.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index, realIndex) {
-                    return const UserInfoWidget();
-                  },
-                  options: CarouselOptions(
-                    viewportFraction: 1,
-                    height: 110,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        indexUpperCarousel = index;
-                      });
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: CarouselSlider.builder(
+                    itemCount: 3,
+                    itemBuilder: (context, index, realIndex) {
+                      return const UserInfoWidget();
                     },
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      height: 110,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          indexUpperCarousel = index;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -108,6 +92,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
               //       isBackgroundColor: Colors.white),
               // ),
               /*........Trikos Section...............*/
+
               Container(
                 color: Colors.white,
                 child: Column(
@@ -184,8 +169,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         'assets/puzzle_huskies.png',
                         fit: BoxFit.cover,
                         width: double.infinity,
-                        scale: 0.1,
-                        height: 200,
+                        // scale: 0.1,
+                        // height: 200,
                       ),
                     ),
                     // Container(
@@ -220,8 +205,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ),
                             const Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 14, 31, 15)),
+                              style: TextStyle(color: Color.fromARGB(255, 14, 31, 15)),
                               textAlign: TextAlign.center,
                             ),
                             TextButton(
@@ -231,8 +215,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 height: 30,
                                 padding: AppTheme.mediumPadding,
                                 decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 22, 63, 92),
+                                    color: const Color.fromARGB(255, 22, 63, 92),
                                     borderRadius: BorderRadius.circular(7)),
                                 child: const Center(
                                   child: Text(
@@ -260,12 +243,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
     );
   }
 
-  Widget buildIndicator(
-          {required int index, required Color isBackgroundColor}) =>
+  Widget buildIndicator({required int index, required Color isBackgroundColor}) =>
       AnimatedSmoothIndicator(
         activeIndex: index,
         count: 3,
-        effect: SlideEffect(
-            dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
+        effect: SlideEffect(dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
       );
 }
