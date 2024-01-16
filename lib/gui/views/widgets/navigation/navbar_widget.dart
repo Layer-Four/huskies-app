@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavBarIconWidget extends StatelessWidget {
-  final Function() onPressed;
+  final VoidCallback onPressed;
   final IconData icon;
   final String name;
   final bool isCurrentView;

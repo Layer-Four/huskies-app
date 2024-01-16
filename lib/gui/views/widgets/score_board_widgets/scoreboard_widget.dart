@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helpers/helpers.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
 
 class ScoreboardViewWidget extends StatelessWidget {
   const ScoreboardViewWidget({
@@ -34,7 +34,7 @@ class ScoreboardViewWidget extends StatelessWidget {
           Helpers.buildScoreboardRow(
             context: context,
             place: 2,
-            imageSource: 'fuechse.jpg',
+            imageSource: 'fuechse.png',
             games: 26,
             points: 46,
             goals: 80,
@@ -51,7 +51,7 @@ class ScoreboardViewWidget extends StatelessWidget {
           Helpers.buildScoreboardRow(
               context: context,
               place: 4,
-              imageSource: 'fuechse.jpg',
+              imageSource: 'fuechse.png',
               games: 26,
               points: 41,
               goals: 85,
@@ -67,7 +67,7 @@ class ScoreboardViewWidget extends StatelessWidget {
           Helpers.buildScoreboardRow(
               context: context,
               place: 6,
-              imageSource: 'fuechse.jpg',
+              imageSource: 'fuechse.png',
               games: 26,
               points: 40,
               goals: 69,
@@ -83,7 +83,7 @@ class ScoreboardViewWidget extends StatelessWidget {
           Helpers.buildScoreboardRow(
               context: context,
               place: 8,
-              imageSource: 'fuechse.jpg',
+              imageSource: 'fuechse.png',
               games: 26,
               points: 39,
               goals: 76,

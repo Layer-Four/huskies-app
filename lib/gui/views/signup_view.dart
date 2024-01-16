@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
+import 'package:huskies_app/gui/views/login_view.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  final bool isPWForget;
+  const Signup({super.key, this.isPWForget = false});
 
   @override
   State<Signup> createState() => _SignupState();

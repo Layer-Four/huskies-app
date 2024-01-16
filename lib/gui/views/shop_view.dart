@@ -4,11 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 
-class ProductsView extends ConsumerWidget {
-  static const ProductsView _productViewInstance = ProductsView._internal();
-  factory ProductsView() => _productViewInstance;
+class ShopView extends ConsumerWidget {
+  static const ShopView _productViewInstance = ShopView._internal();
+  factory ShopView() => _productViewInstance;
 
-  const ProductsView._internal();
+  const ShopView._internal();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -98,6 +98,8 @@ class ProductsView extends ConsumerWidget {
           },
         ),
       ),
+      // ],
+      // ),
     );
   }
 }

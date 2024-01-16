@@ -1,22 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helpers/helpers.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
-import 'package:huskies_app/gui/views/widgets/agb_widget.dart';
-import 'package:huskies_app/gui/views/widgets/ticket_info_widget.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
+// import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/agb_widget.dart';
+import 'package:huskies_app/gui/views/widgets/ticket_widgets/ticket_info_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/barcode_widget.dart';
 
-class TicketView extends StatefulWidget {
-  static const TicketView _ticketViewInstance = TicketView._internal();
-  factory TicketView() => _ticketViewInstance;
+class TicketWalletView extends StatefulWidget {
+  static const TicketWalletView _ticketViewInstance = TicketWalletView._internal();
+  factory TicketWalletView() => _ticketViewInstance;
 
-  const TicketView._internal();
+  const TicketWalletView._internal();
 
   @override
-  State<TicketView> createState() => _TicketViewState();
+  State<TicketWalletView> createState() => _TicketWalletViewState();
 }
 
-class _TicketViewState extends State<TicketView> {
+class _TicketWalletViewState extends State<TicketWalletView> {
   int currentIndex = 0;
   final List seasonGames = List.generate(8, (index) => index++);
   final barcodesListFromState = [
@@ -32,9 +32,9 @@ class _TicketViewState extends State<TicketView> {
             style: TextStyle(fontWeight: FontWeight.w700, letterSpacing: 1.5),
           ),
         ),
-        drawer: TicketShopView(
-          gamesInSeason: seasonGames,
-        ),
+        // drawer: TicketShopView(
+        //   gamesInSeason: seasonGames,
+        // ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -69,7 +69,6 @@ class _TicketViewState extends State<TicketView> {
                   options: CarouselOptions(
                     viewportFraction: 1,
                     height: 430,
-                    //  MediaQuery.of(context).size.height / 1.7,
                     enableInfiniteScroll: false,
                     // enlargeCenterPage: true,
                     onPageChanged: (index, _) => setState(() => currentIndex = index),
