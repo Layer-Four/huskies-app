@@ -9,7 +9,8 @@ class UserInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -22,7 +23,9 @@ class UserInfoWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: const [
-                      BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
+                      BoxShadow(
+                          color: Color.fromARGB(255, 241, 237, 237),
+                          spreadRadius: 7),
                     ],
                   ),
                   child: const ColorFiltered(
@@ -68,7 +71,9 @@ class UserInfoWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     color: const Color.fromARGB(255, 241, 237, 237),
                     boxShadow: const [
-                      BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
+                      BoxShadow(
+                          color: Color.fromARGB(255, 241, 237, 237),
+                          spreadRadius: 7),
                     ],
                   ),
                   child: const ColorFiltered(
