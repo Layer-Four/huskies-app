@@ -81,7 +81,7 @@ class Helpers {
   }
 
   /// ownNavigtion function.
-  static void loadAndNavigate(
+  static loadAndNavigate(
       {required BuildContext context,
       required WidgetRef ref,
       required int nextView,
