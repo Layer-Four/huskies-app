@@ -9,7 +9,9 @@ class AppTheme {
   static const Color whiteBackground = Colors.white;
   static const double cardElevetion = 7.0;
   static final BorderRadius lowRoundedCorner = BorderRadius.circular(8);
+  static const EdgeInsets bigPadding = EdgeInsets.all(16);
   static const EdgeInsets mediumPadding = EdgeInsets.all(8.0);
+  static const EdgeInsets smallPadding = EdgeInsets.all(6.0);
   static const double mediumDistance = 12;
   static const double largeDistance = 18;
   static const double lowDistance = 6;
@@ -20,4 +22,25 @@ class AppTheme {
   static const EdgeInsets defaultHorizontalDistance = EdgeInsets.symmetric(horizontal: 15);
   static const EdgeInsets popUpMargin = EdgeInsets.symmetric(horizontal: 40, vertical: 100);
   static const Color cardHighlightedColor = Color.fromARGB(255, 215, 234, 249);
+  static final InputDecoration textInputDecoration = InputDecoration(
+    contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+    filled: true,
+    fillColor: Colors.grey[200],
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.transparent),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.grey),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.transparent),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.transparent),
+    ),
+  );
 }

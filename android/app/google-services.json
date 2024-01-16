@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873020037397",
+    "project_id": "huskies-app-dev",
+    "storage_bucket": "huskies-app-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873020037397:android:315a1bbcfe6a6bb160311c",
+        "android_client_info": {
+          "package_name": "com.example.huskies_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2t8xII8RPQNwHPt3P9OMTszxcKQ-UTA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 
-class PageViewWidget extends StatelessWidget {
-  const PageViewWidget({
+class UserInfoWidget extends StatelessWidget {
+  const UserInfoWidget({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -23,9 +22,7 @@ class PageViewWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
+                      BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
                     ],
                   ),
                   child: const ColorFiltered(
@@ -44,10 +41,7 @@ class PageViewWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'My Points',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  Text('My Points'),
                   Text(
                     '230',
                     style: TextStyle(color: Colors.teal),
@@ -74,9 +68,7 @@ class PageViewWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     color: const Color.fromARGB(255, 241, 237, 237),
                     boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
+                      BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
                     ],
                   ),
                   child: const ColorFiltered(
@@ -95,10 +87,7 @@ class PageViewWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Level',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  Text('Level'),
                   Text(
                     '230',
                     style: TextStyle(color: Colors.teal),

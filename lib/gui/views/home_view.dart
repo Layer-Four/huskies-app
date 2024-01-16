@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/widgets/match_view_widget.dart';
-import 'package:huskies_app/gui/views/widgets/page_view_widget.dart';
+import 'package:huskies_app/gui/views/widgets/home_view_widgets/match_view_widget.dart';
+import 'package:huskies_app/gui/views/widgets/home_view_widgets/page_view_widget.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,8 +21,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(provider);
-    final notifier = ref.read(provider.notifier);
+    final state = ref.watch(provider);
     return SingleChildScrollView(
       child: Container(
         color: const Color.fromARGB(255, 22, 63, 92),
@@ -36,11 +33,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 SizedBox(
                   width: 40,
                   child: IconButton(
-                    //TODO: Navigate to UserProfileView
-                    //TODO: Write UserProfileView.
-                    onPressed: () {
-                      notifier.greeting('${state.products.elementAt(0).values.toList()[2]}');
-                    },
+                    //TODO: Write UserProfileView, navigate to UserProfileView
+                    onPressed: () {},
                     icon: const Icon(Icons.menu),
                     color: Colors.white,
                   ),
@@ -60,7 +54,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       // ),
                     ),
                     Text(
-                      "Hallo David",
+                      state.user?.firstName != null ? "Hallo ${state.user!.firstName}" : "Hallo",
                       style: TextStyle(color: Colors.white),
                     ),
                     const Text(
@@ -77,7 +71,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
             CarouselSlider.builder(
               itemCount: 3,
               itemBuilder: (context, index, realIndex) {
-                return const PageViewWidget();
+                return const UserInfoWidget();
               },
               options: CarouselOptions(
                 viewportFraction: 1,

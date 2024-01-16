@@ -37,7 +37,6 @@ class ItemsDetails extends StatelessWidget {
             ),
           ],
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Column(
         // mainAxisSize: MainAxisSize.min,
