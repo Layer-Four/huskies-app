@@ -79,7 +79,7 @@ class _SignupState extends State<Signup> {
                         height: 8,
                       ),
                       CustomeTextForm(
-                        // hinttext: "Email Eingeben",
+                        hinttext: "Email Eingeben",
                         mycontroller: email,
                       ),
 
