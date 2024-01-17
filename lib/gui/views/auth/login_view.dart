@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/auth/components/custombuttonauth.dart';
-import 'package:huskies_app/auth/components/textformfield.dart';
-import 'package:huskies_app/gui/views/signup_view.dart';
+import 'package:huskies_app/gui/views/auth/signup_view.dart';
+import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/nav_layer.dart';
+import 'package:huskies_app/gui/views/widgets/textformfield.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -60,9 +60,7 @@ class _LoginViewState extends State<LoginView> {
                       const Text(
                         "Anmelden",
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                            fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
                       ),
                       const SizedBox(
                         height: 14,
@@ -74,8 +72,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: CustomeTextForm(
-                            hinttext: "Email", mycontroller: email),
+                        child: CustomeTextForm(hinttext: "Email", mycontroller: email),
                       ),
 
                       const Text(
@@ -93,14 +90,11 @@ class _LoginViewState extends State<LoginView> {
                               isPassword: true,
                             ),
                             Container(
-                              margin:
-                                  const EdgeInsets.only(top: 10, bottom: 20),
+                              margin: const EdgeInsets.only(top: 10, bottom: 20),
                               alignment: Alignment.bottomRight,
                               child: TextButton(
-                                onPressed: () => Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Signup())),
+                                onPressed: () => Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) => const Signup())),
                                 child: const Text(
                                   "Passwort vergessen?",
                                   style: TextStyle(fontSize: 10),
@@ -116,9 +110,7 @@ class _LoginViewState extends State<LoginView> {
                     title: "Anmelden",
                     onPress: () {
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ViewNavigator()));
+                          context, MaterialPageRoute(builder: (context) => const ViewNavigator()));
                     },
                   ),
                   const Padding(
@@ -129,9 +121,7 @@ class _LoginViewState extends State<LoginView> {
                   InkWell(
                     onTap: () {
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Signup()));
+                          context, MaterialPageRoute(builder: (context) => const Signup()));
                       // Navigator.of(context).pushNamed("signup");
                     },
                     child: const Center(

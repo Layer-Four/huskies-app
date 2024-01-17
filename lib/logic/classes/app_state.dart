@@ -1,42 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/gui/views/home_view.dart';
-import 'package:huskies_app/gui/views/match_statisctics_view.dart';
-import 'package:huskies_app/gui/views/shop_view.dart';
-import 'package:huskies_app/gui/views/ticket_views/ticket_view.dart';
 import 'package:huskies_app/logic/classes/season.dart';
 import 'package:huskies_app/logic/classes/user.dart';
 import 'package:huskies_app/logic/globals.dart';
 
 class AppState {
+  final Season? _currentSeason;
   final int _currentViewIndex;
-  final List<Widget> _views;
   final List<Map> _shopItems;
-  final List<Season> _seasons;
-  final int _currentSeason;
+  final List<Season>? _seasons;
   final User? _user;
-  AppState({
-    currentSeason,
-    currentView,
+  final List<Widget> _views;
+  const AppState({
+    Season? currentSeason,
+    int? currentView,
     products,
-    season,
-    user,
-    views,
-  })  : _currentSeason = currentSeason ??= 0,
-        _currentViewIndex = currentView ??= 0,
-        _seasons = season ??= <Season>[],
-        _shopItems = products ??= productsList,
-        _views = views ??= [
-          HomeView(),
-          const TicketView(),
-          MatchStatisticsView(),
-          ShopView(),
-        ],
+    List<Season>? season,
+    User? user,
+    required List<Widget> views,
+  })  : _currentSeason = currentSeason,
+        _currentViewIndex = currentView ?? 0,
+        _seasons = season,
+        _shopItems = products ?? productsList,
+        _views = views,
         _user = user;
 
-  int get currentseason => _currentSeason;
+  Season? get currentseason => _currentSeason;
   int get currentView => _currentViewIndex;
   List<Map> get products => _shopItems;
-  List<Season> get season => _seasons;
+  List<Season>? get season => _seasons;
   List<Widget> get view => _views;
   User? get user => _user;
 
@@ -49,7 +40,7 @@ class AppState {
       AppState(
         views: view,
         currentView: currentViewIndex ?? currentView,
-        season: choisenSeason ?? season,
+        currentSeason: choisenSeason ?? currentseason,
         user: newUSer ?? user,
       );
 }

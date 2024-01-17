@@ -7,11 +7,10 @@ import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_foo
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_widget.dart';
 
 class MatchStatisticsView extends ConsumerWidget {
-  static const MatchStatisticsView _homeViewInstance = MatchStatisticsView._internal();
-  factory MatchStatisticsView() => _homeViewInstance;
+  final String season;
 
-  const MatchStatisticsView._internal();
-  // const MatchStatisticsView({super.key, required this.season});
+  // const MatchStatisticsView();
+  const MatchStatisticsView({super.key, required this.season});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

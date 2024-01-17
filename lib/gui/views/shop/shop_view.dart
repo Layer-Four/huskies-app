@@ -5,10 +5,7 @@ import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 
 class ShopView extends ConsumerWidget {
-  static const ShopView _productViewInstance = ShopView._internal();
-  factory ShopView() => _productViewInstance;
-
-  const ShopView._internal();
+  const ShopView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

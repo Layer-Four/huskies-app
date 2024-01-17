@@ -31,7 +31,7 @@ class ViewNavigator extends ConsumerWidget {
             ),
             NavBarIconWidget(
                 icon: Icons.bookmark_border_outlined,
-                name: 'Tickets-View',
+                name: 'Tickets',
                 isCurrentView: state.currentView == 1,
                 onPressed: () => notifier.changeView(nextView: 1)),
             NavBarIconWidget(

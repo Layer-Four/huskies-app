@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/auth/components/custombuttonauth.dart';
-import 'package:huskies_app/auth/components/textformfield.dart';
-import 'package:huskies_app/gui/views/login_view.dart';
+import 'package:huskies_app/gui/views/auth/login_view.dart';
+import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
+import 'package:huskies_app/gui/views/widgets/textformfield.dart';
 
 class Signup extends StatefulWidget {
   final bool isPWForget;
@@ -60,9 +60,7 @@ class _SignupState extends State<Signup> {
                       const Text(
                         "Registrieren",
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                            fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
                       ),
                       const SizedBox(
                         height: 14,
@@ -71,9 +69,7 @@ class _SignupState extends State<Signup> {
                       const Text(
                         "E-Mail",
                         style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300),
+                            fontSize: 13, color: Colors.white, fontWeight: FontWeight.w300),
                       ),
                       const SizedBox(
                         height: 8,
@@ -171,9 +167,7 @@ class _SignupState extends State<Signup> {
                             ),
                             TextSpan(
                                 text: "Anmelden",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),

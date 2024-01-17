@@ -54,7 +54,5 @@ Widget fakeHomeView() {
 }
 
 final provider = StateNotifierProvider<AppStateNotifier, AppState>(
-  (ref) => AppStateNotifier(
-    AppState(),
-  ),
+  (ref) => AppStateNotifier(),
 );

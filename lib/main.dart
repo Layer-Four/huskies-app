@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/login_view.dart';
+import 'package:huskies_app/gui/views/auth/login_view.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/nav_layer.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:firebase_core/firebase_core.dart';

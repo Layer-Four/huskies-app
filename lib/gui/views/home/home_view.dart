@@ -7,10 +7,7 @@ import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends ConsumerStatefulWidget {
-  static const HomeView _homeViewInstance = HomeView._();
-  factory HomeView() => _homeViewInstance;
-
-  const HomeView._();
+  const HomeView({super.key});
 
   @override
   ConsumerState<HomeView> createState() => _HomeViewState();
