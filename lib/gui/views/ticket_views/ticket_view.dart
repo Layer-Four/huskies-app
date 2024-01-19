@@ -21,8 +21,8 @@ class TicketView extends ConsumerWidget {
         children: [
           Column(
             children: [
-              const HeadWidget(
-                title: Text('Tickets', style: AppTheme.headStyle),
+              HeadWidget(
+                center: Text('Tickets', style: AppTheme.headStyle),
                 end: UserIconWidget(image: 'da.jpg'),
               ),
               const Padding(padding: EdgeInsets.all(20)),

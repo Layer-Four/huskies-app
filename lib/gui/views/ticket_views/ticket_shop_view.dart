@@ -17,11 +17,11 @@ class TicketShopView extends ConsumerWidget {
       child: Column(
         children: [
           HeadWidget(
-            leading: IconButton(
+            start: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back),
             ),
-            title: const Text('Tickets',
+            center: const Text('Tickets',
                 style: TextStyle(fontSize: 29, color: Colors.black, inherit: false)),
             end: UserIconWidget(
               image: 'da.jpg',
@@ -32,10 +32,10 @@ class TicketShopView extends ConsumerWidget {
                         child: Column(
                           children: [
                             HeadWidget(
-                              leading: IconButton(
+                              start: IconButton(
                                   onPressed: () => Navigator.of(context).pop(),
                                   icon: const Icon(Icons.arrow_back)),
-                              title: const UserIconWidget(image: 'da.jpg'),
+                              center: const UserIconWidget(image: 'da.jpg'),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),

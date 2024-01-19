@@ -7,8 +7,8 @@ import 'package:huskies_app/gui/views/auth/signup_view.dart';
 import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/nav_layer.dart';
 import 'package:huskies_app/gui/views/widgets/textformfield.dart';
+import 'package:huskies_app/logic/helper/helpers.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -105,10 +105,9 @@ class _LoginViewState extends State<LoginView> {
                           title: "Anmelden",
                           onPress: () {
                             if (ref.watch(appStateNotifierProvider).user == null) {
-                              loadAnimation(context, adversiting: 'werbung');
+                              Helpers.showLoadingView(context, advertising: 'werbung');
                               Future(() => ref
                                   .watch(appStateNotifierProvider.notifier)
-                                  //TODO: implement code Generation for toJson/fromJson
                                   .signInWithEmailAndPassword(
                                       email: email.text, password: password.text)).then((isSucces) {
                                 if (!isSucces) {
@@ -191,26 +190,3 @@ class GoogleLogInButtonWidget extends StatelessWidget {
     );
   }
 }
-
-Future loadAnimation(context, {required String adversiting, String? image}) => showDialog(
-    context: context,
-    builder: (context) => Container(
-        color: Colors.white,
-        height: MediaQuery.of(context).size.height - 20,
-        width: MediaQuery.of(context).size.height - 20,
-        child: Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LoadingAnimationWidget.discreteCircle(color: Colors.blue, size: 100),
-              Card(
-                margin: const EdgeInsets.all(15),
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text(adversiting),
-                ),
-              )
-            ],
-          ),
-        )));

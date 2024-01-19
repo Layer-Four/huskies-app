@@ -90,7 +90,7 @@ class Helpers {
     final state = ref.watch(appStateNotifierProvider);
     final notifier = ref.read(appStateNotifierProvider.notifier);
     if (state.currentView != nextView) {
-      showLoadingView(context, image, advertising);
+      showLoadingView(context, image: image, advertising: advertising);
       Future.delayed(const Duration(milliseconds: 1500)).then((_) {
         Navigator.pop(context);
         notifier.changeView(nextView: nextView);
@@ -98,7 +98,8 @@ class Helpers {
     }
   }
 
-  static void showLoadingView(BuildContext context, String image, String advertising) => showDialog(
+  static void showLoadingView(BuildContext context, {String? image, required String advertising}) =>
+      showDialog(
         context: context,
         builder: (context) => Container(
             padding: AppTheme.mediumPadding,
@@ -111,10 +112,12 @@ class Helpers {
                 // const Color.fromARGB(129, 0, 150, 135), size: 70),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    'assets/$image',
-                    width: 100,
-                  ),
+                  child: image != null
+                      ? Image.asset(
+                          'assets/$image',
+                          width: 100,
+                        )
+                      : const SizedBox(height: 100),
                 ),
                 Text(
                   advertising,

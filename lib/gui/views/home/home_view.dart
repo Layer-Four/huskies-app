@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/gui/views/user/user_view.dart';
 import 'package:huskies_app/gui/views/widgets/home_view_widgets/page_view_widget.dart';
+import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
 // import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -30,18 +32,23 @@ class _HomeViewState extends ConsumerState<HomeView> {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 25, bottom: 10),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Image.asset(
-                      'assets/da.jpg',
-                      width: 35,
-                    ),
-                    // ),
+                  UserIconWidget(
+                    image: 'da.jpg',
+                    onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => UserProfileView())),
                   ),
+                  // Container(
+                  //   margin: const EdgeInsets.only(top: 25, bottom: 10),
+                  //   decoration: const BoxDecoration(
+                  //     shape: BoxShape.circle,
+                  //   ),
+                  //   clipBehavior: Clip.antiAlias,
+                  //   child: Image.asset(
+                  //     'assets/da.jpg',
+                  //     width: 35,
+                  //   ),
+                  //   // ),
+                  // ),
                   const Text("Hallo David",
                       style: TextStyle(
                         letterSpacing: 0.5,
@@ -49,10 +56,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       )),
-                  const Text(
-                    "Willkommon zurück!",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  const Text("Willkommon zurück!", style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),

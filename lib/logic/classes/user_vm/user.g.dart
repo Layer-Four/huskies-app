@@ -7,9 +7,12 @@ part of 'user.dart';
 // **************************************************************************
 
 UserVM _$UserVMFromJson(Map<String, dynamic> json) => UserVM(
+      email: json['email'] as String,
       hasPaymentData: json['hasPaymentData'] as bool? ?? false,
       isLogIn: json['isLogIn'] as bool? ?? false,
-      itemTokens: (json['itemTokens'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      itemTokens: (json['itemTokens'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       firstName: json['firstName'] as String?,
       name: json['name'] as String?,
       profileImage: json['profileImage'] as String?,
@@ -17,6 +20,7 @@ UserVM _$UserVMFromJson(Map<String, dynamic> json) => UserVM(
     );
 
 Map<String, dynamic> _$UserVMToJson(UserVM instance) => <String, dynamic>{
+      'email': instance.email,
       'hasPaymentData': instance.hasPaymentData,
       'isLogIn': instance.isLogIn,
       'firstName': instance.firstName,

@@ -3,6 +3,7 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class UserVM {
+  final String email;
   final bool hasPaymentData;
   final bool isLogIn;
   final String? firstName;
@@ -11,6 +12,7 @@ class UserVM {
   final String? profileImage;
   final List<String>? itemTokens;
   const UserVM({
+    required this.email,
     this.hasPaymentData = false,
     this.isLogIn = false,
     this.itemTokens,

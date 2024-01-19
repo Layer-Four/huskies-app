@@ -84,7 +84,10 @@ class AppStateNotifier extends _$AppStateNotifier {
         if (userDB != null) {
           log('user found to listen');
           log(userDB.toString());
-          final newUser = UserVM(name: user.displayName ?? '', uID: user.uid);
+          final newUser = UserVM(
+              name: user.displayName ?? '',
+              uID: user.uid,
+              email: user.email ?? 'beispiel@email.etc');
           state = state.copyWith(newUSer: newUser);
         }
         log('no user to listen');
@@ -101,12 +104,12 @@ class AppStateNotifier extends _$AppStateNotifier {
   }
 
   //? on Staring app there is a Firebase instance in console with a uid? is this a logged in user?
-  void listentoFireBaseAuth() {
-    final foundUser = _authService.getAuthProvider();
-    if (foundUser != null) {
-      state = state.copyWith(newUSer: UserVM(uID: foundUser));
-    }
-  }
+  // void listentoFireBaseAuth() {
+  //   final foundUser = _authService.getAuthProvider();
+  //   if (foundUser != null) {
+  //     state = state.copyWith(newUSer: UserVM(uID: foundUser,email: foundUser));
+  //   }
+  // }
 
   /// register a user request and listen to Backend service.
   Future<bool> registerUserWithEmailAndPassword(
