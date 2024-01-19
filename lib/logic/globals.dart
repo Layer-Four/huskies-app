@@ -1,8 +1,5 @@
 //? example list for productsinfo in ShopView
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/logic/classes/app_state.dart';
-import 'package:huskies_app/logic/provider/notifier.dart';
 
 const List<Map<String, String>> productsList = [
   {
@@ -52,7 +49,3 @@ Widget fakeHomeView() {
     ),
   );
 }
-
-final provider = StateNotifierProvider<AppStateNotifier, AppState>(
-  (ref) => AppStateNotifier(),
-);

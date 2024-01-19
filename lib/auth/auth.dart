@@ -2,36 +2,40 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:huskies_app/auth/auth_interface.dart';
+import 'package:huskies_app/logic/classes/user_vm/user.dart';
 import 'package:logger/logger.dart';
 
-class FirebaseAuthRepository {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final GoogleSignIn _googleSignIn = GoogleSignIn(
-  //   scopes: [
-  //     'email',
-  //     'profile',
-  //   ],
-  // );
-  final CollectionReference _users = FirebaseFirestore.instance.collection('users');
+class AuthRepository implements AuthInterface {
+  final FirebaseAuth _authService = FirebaseAuth.instance;
+  final CollectionReference _usersDB = FirebaseFirestore.instance.collection('users');
 
-  Stream<User?> userAuthState() => _auth.userChanges().handleError(
+  @override
+  Stream<User?> userAuthState() => _authService.userChanges().handleError(
         (e) {
-          log('$e en error occurent');
+          log('$e a error occurent');
           // logger.e(e.toString());
           // throw AppStrings.errorFetchingUserAuthStatus;
         },
       );
   final logger = Logger();
-  String? getAuthProvider() => _auth.currentUser?.providerData.firstOrNull?.providerId;
+  @override
+  String? getAuthProvider() => _authService.currentUser?.providerData.firstOrNull?.providerId;
 
+  @override
   Future<void> registerUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
       UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      await _auth.currentUser?.sendEmailVerification();
+          await _authService.createUserWithEmailAndPassword(email: email, password: password);
+      await _authService.currentUser?.sendEmailVerification();
 
-      await _users.doc(userCredential.user?.uid).set({
+      if (FirebaseAuth.instance.currentUser != null) {
+        log('Firebase found/create a user: ${FirebaseAuth.instance.currentUser?.uid}');
+        await userCredential.user?.updatePassword(password);
+      }
+
+      await _usersDB.doc(userCredential.user?.uid).set({
         'uid': userCredential.user?.uid,
         'email': email,
         'accountCreationDate': FieldValue.serverTimestamp(),
@@ -40,86 +44,141 @@ class FirebaseAuthRepository {
         // generateUsername(email),
       });
     } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'email-already-in-use':
-          throw ('email is already used');
-        case 'invalid-email':
-          throw 'inavlid email';
-        case 'operation-not-allowed':
-          throw 'operation is not allowed';
-        case 'weak-password':
-          throw 'weak password';
-        default:
-          throw 'es ist etwas schief gelaufen';
-      }
+      reactToFirebaseException(e);
     } catch (e) {
       logger.e(e.toString());
       throw 'es ist etwas schief gelaufen';
     }
   }
 
-  Future<void> signInWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  @override
+  Future<UserVM?> signInWithEmailPassword({required String email, required String password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(
+      final response = await _authService.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'email-already-in-use':
-          throw ('email is already used');
-        case 'invalid-email':
-          throw 'inavlid email';
-        case 'operation-not-allowed':
-          throw 'operation is not allowed';
-        case 'weak-password':
-          throw 'weak password';
-        default:
-          throw 'es ist etwas schief gelaufen';
+      if (response.user != null) {
+        return UserVM(uID: response.user!.uid, name: response.user!.displayName);
       }
+    } on FirebaseAuthException catch (e) {
+      reactToFirebaseException(e);
     } catch (e) {
       logger.e(e.toString());
       throw 'es ist etwas schiefgelaufen';
     }
+    return null;
   }
 
-  // Future<void> signInWithGoogle() async {
-  //   try {
-  //     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-  //     if (googleSignInAccount == null) {
-  //       throw Exception('Google sign in was aborted or failed.');
-  //     }
+  @override
+  Future<void> reloadUser() async {
+    try {
+      await _authService.currentUser?.reload();
+    } catch (e) {
+      logger.e(e.toString());
+      throw 'Error on reload user';
+    }
+  }
 
-  //     final GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
-  //     final OAuthCredential credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth.accessToken,
-  //       idToken: googleAuth.idToken,
-  //     );
+  @override
+  Future<void> sendEmailVerification() async {
+    try {
+      await _authService.currentUser?.sendEmailVerification();
+    } catch (e) {
+      logger.e(e.toString());
+      throw "Email can't be sendet";
+    }
+  }
 
-  //     UserCredential userCredential = await _auth.signInWithCredential(credential);
-  //     if (userCredential.user == null) {
-  //       throw Exception('Failed to obtain Firebase user after sign in.');
-  //     }
-  //     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
-  //     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
+  @override
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await _authService.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      logger.e(e.toString());
+      throw 'Error on reset password';
+    }
+  }
 
-  //     if (!userDocSnap.exists) {
-  //       await _users.doc(uid).set({
-  //         'uid': uid,
-  //         'email': googleSignInAccount.email,
-  //         'accountCreationDate': FieldValue.serverTimestamp(),
-  //         'profileImageUrl': AppStrings.noImageProfileUrl,
-  //         'name': generateUsername(googleSignInAccount.email),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     logger.e(e.toString());
-  //     throw AppStrings.errorTextGoogleSignIn;
-  //   }
-  // }
+  @override
+  Future<void> signOut() async {
+    try {
+      // await _googleSignIn.signOut();
+      await _authService.signOut();
+    } catch (e) {
+      logger.e(e.toString());
+      throw 'error on sign out';
+    }
+  }
+
+  @override
+  Future<void> deleteUser({String? password}) async {
+    // try {
+    //   //Before deleting account user needs to login again
+    //   String? userLoginService = getAuthProvider();
+    //   if (userLoginService == 'password') {
+    //     await signInWithEmailAndPassword(
+    //       email: _auth.currentUser?.email ?? '',
+    //       password: password ?? '',
+    //     );
+    //   } else if (userLoginService == 'google.com') {
+    //     await signInWithGoogle();
+    //   } else if (userLoginService == 'apple.com') {
+    //     await signInWithApple();
+    //   }
+
+    //   List<Future<void>> deletionTasks = [];
+
+    //   if (userLoginService == 'google.com') {
+    //     deletionTasks.add(_googleSignIn.signOut());
+    //   }
+
+    //   // Schedule the Firebase authentication user deletion
+    //   if (_auth.currentUser != null) {
+    //     deletionTasks.add(_auth.currentUser!.delete());
+    //   }
+
+    //   // Schedule the Firestore user data deletion
+    //   deletionTasks.add(_users.doc(_auth.currentUser?.uid).delete());
+
+    //   // Wait for all deletion tasks to complete
+    //   await Future.wait(deletionTasks);
+    // } catch (e) {
+    //   logger.e(e.toString());
+    //   throw AppStrings.errorTextDeleteUser;
+  }
+
+  void reactToFirebaseException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'email-already-in-use':
+        throw ('email is already used');
+      case 'invalid-email':
+        throw 'inavlid email';
+      case 'operation-not-allowed':
+        throw 'operation is not allowed';
+      case 'weak-password':
+        throw 'weak password';
+      case 'user-disabled':
+        throw 'user deaktiviert';
+      case 'user-not-found':
+        throw 'No user found';
+      case 'wrong-password':
+        throw 'Wrong password';
+      default:
+        throw 'es ist etwas schief gelaufen';
+    }
+  }
+}
+// * ------------------------------------------------------------------------------------------
+  // final GoogleSignIn _googleSignIn = GoogleSignIn(
+  //   scopes: [
+  //     'email',
+  //     'profile',
+  //   ],
+  // );
+
+
+  // *------------------------- signIn with Apple----------------------------------------------
 
   // Future<void> signInWithApple() async {
   //   try {
@@ -166,77 +225,42 @@ class FirebaseAuthRepository {
   //   }
   // }
 
-  Future<void> reloadUser() async {
-    try {
-      await _auth.currentUser?.reload();
-    } catch (e) {
-      logger.e(e.toString());
-      throw 'Error on reload user';
-    }
-  }
 
-  Future<void> sendEmailVerification() async {
-    try {
-      await _auth.currentUser?.sendEmailVerification();
-    } catch (e) {
-      logger.e(e.toString());
-      throw "Email can't be sendet";
-    }
-  }
+  // *------------------------- signIn with Google----------------------------------------------
 
-  Future<void> resetPassword({required String email}) async {
-    try {
-      await _auth.sendPasswordResetEmail(email: email);
-    } catch (e) {
-      logger.e(e.toString());
-      throw 'Error on reset password';
-    }
-  }
 
-  Future<void> signOut() async {
-    try {
-      // await _googleSignIn.signOut();
-      await _auth.signOut();
-    } catch (e) {
-      logger.e(e.toString());
-      throw 'error on sign out';
-    }
-  }
 
-  // Future<void> deleteUser({String? password}) async {
+  // Future<void> signInWithGoogle() async {
   //   try {
-  //     //Before deleting account user needs to login again
-  //     String? userLoginService = getAuthProvider();
-  //     if (userLoginService == 'password') {
-  //       await signInWithEmailAndPassword(
-  //         email: _auth.currentUser?.email ?? '',
-  //         password: password ?? '',
-  //       );
-  //     } else if (userLoginService == 'google.com') {
-  //       await signInWithGoogle();
-  //     } else if (userLoginService == 'apple.com') {
-  //       await signInWithApple();
+  //     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  //     if (googleSignInAccount == null) {
+  //       throw Exception('Google sign in was aborted or failed.');
   //     }
 
-  //     List<Future<void>> deletionTasks = [];
+  //     final GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
+  //     final OAuthCredential credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth.accessToken,
+  //       idToken: googleAuth.idToken,
+  //     );
 
-  //     if (userLoginService == 'google.com') {
-  //       deletionTasks.add(_googleSignIn.signOut());
+  //     UserCredential userCredential = await _auth.signInWithCredential(credential);
+  //     if (userCredential.user == null) {
+  //       throw Exception('Failed to obtain Firebase user after sign in.');
   //     }
+  //     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
+  //     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
 
-  //     // Schedule the Firebase authentication user deletion
-  //     if (_auth.currentUser != null) {
-  //       deletionTasks.add(_auth.currentUser!.delete());
+  //     if (!userDocSnap.exists) {
+  //       await _users.doc(uid).set({
+  //         'uid': uid,
+  //         'email': googleSignInAccount.email,
+  //         'accountCreationDate': FieldValue.serverTimestamp(),
+  //         'profileImageUrl': AppStrings.noImageProfileUrl,
+  //         'name': generateUsername(googleSignInAccount.email),
+  //       });
   //     }
-
-  //     // Schedule the Firestore user data deletion
-  //     deletionTasks.add(_users.doc(_auth.currentUser?.uid).delete());
-
-  //     // Wait for all deletion tasks to complete
-  //     await Future.wait(deletionTasks);
   //   } catch (e) {
   //     logger.e(e.toString());
-  //     throw AppStrings.errorTextDeleteUser;
+  //     throw AppStrings.errorTextGoogleSignIn;
   //   }
   // }
-}

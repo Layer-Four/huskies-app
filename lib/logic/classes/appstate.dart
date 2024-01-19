@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/classes/season.dart';
-import 'package:huskies_app/logic/classes/user.dart';
+import 'package:huskies_app/logic/classes/leage_classes/season.dart';
+import 'package:huskies_app/logic/classes/user_vm/user.dart';
 import 'package:huskies_app/logic/globals.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'appstate.g.dart';
 
+@JsonSerializable()
 class AppState {
   final Season? _currentSeason;
   final int _currentViewIndex;
   final List<Map> _shopItems;
   final List<Season>? _seasons;
-  final User? _user;
+  final UserVM? _user;
   final List<Widget> _views;
-  const AppState({
+  AppState({
     Season? currentSeason,
     int? currentView,
     products,
     List<Season>? season,
-    User? user,
-    required List<Widget> views,
+    UserVM? user,
+    List<Widget>? views,
   })  : _currentSeason = currentSeason,
         _currentViewIndex = currentView ?? 0,
         _seasons = season,
         _shopItems = products ?? productsList,
-        _views = views,
+        _views = views ?? [],
         _user = user;
 
   Season? get currentseason => _currentSeason;
@@ -29,12 +32,12 @@ class AppState {
   List<Map> get products => _shopItems;
   List<Season>? get season => _seasons;
   List<Widget> get view => _views;
-  User? get user => _user;
+  UserVM? get user => _user;
 
   AppState copyWith({
     int? currentViewIndex,
     Season? choisenSeason,
-    User? newUSer,
+    UserVM? newUSer,
     // List<Widget>?viewsList,
   }) =>
       AppState(
@@ -43,4 +46,7 @@ class AppState {
         currentSeason: choisenSeason ?? currentseason,
         user: newUSer ?? user,
       );
+
+  factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
+  Map<String, dynamic> toJson() => _$AppStateToJson(this);
 }

@@ -3,13 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
+import 'package:huskies_app/logic/provider/notifier.dart';
 
 class ShopView extends ConsumerWidget {
   const ShopView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.read(provider);
+    final state = ref.read(appStateNotifierProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

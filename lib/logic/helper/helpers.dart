@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/logic/provider/notifier.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -87,8 +87,8 @@ class Helpers {
       required int nextView,
       required String image,
       required String advertising}) {
-    final state = ref.watch(provider);
-    final notifier = ref.read(provider.notifier);
+    final state = ref.watch(appStateNotifierProvider);
+    final notifier = ref.read(appStateNotifierProvider.notifier);
     if (state.currentView != nextView) {
       showLoadingView(context, image, advertising);
       Future.delayed(const Duration(milliseconds: 1500)).then((_) {
