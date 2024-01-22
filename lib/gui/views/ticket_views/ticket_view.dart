@@ -17,54 +17,53 @@ class TicketView extends ConsumerWidget {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                const HeadWidget(
-                  title: Text('Tickets', style: AppTheme.headStyle),
-                  end: UserIconWidget(image: 'da.jpg'),
+          Column(
+            children: [
+              HeadWidget(
+                center: Text('Tickets', style: AppTheme.headStyle),
+                end: UserIconWidget(image: 'da.jpg'),
+              ),
+              const Padding(padding: EdgeInsets.all(20)),
+              SizedBox(
+                height: 330,
+                child: ListView.builder(
+                  itemCount: gamesInSeason.length,
+                  itemBuilder: ((context, index) {
+                    Color backgroundColor = Colors.white;
+                    if (index.isEven) {
+                      backgroundColor = const Color.fromARGB(255, 215, 234, 249);
+                    }
+                    return TicketItemRowWidget(
+                      image: 'fuechse.png',
+                      backgroundColor: backgroundColor,
+                      gameDate: 'Freitag, 01.03.24 19:30 Uhr',
+                      onPressed: () => Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
+                    );
+                  }),
                 ),
-                const Padding(padding: EdgeInsets.all(20)),
-                SizedBox(
-                  height: 500,
-                  child: ListView.builder(
-                    itemCount: gamesInSeason.length,
-                    itemBuilder: ((context, index) {
-                      Color backgroundColor = Colors.white;
-                      if (index.isEven) {
-                        backgroundColor = const Color.fromARGB(255, 215, 234, 249);
-                      }
-                      return TicketItemRowWidget(
-                        image: 'fuechse.png',
-                        backgroundColor: backgroundColor,
-                        gameDate: 'Freitag, 01.03.24 19:30 Uhr',
-                        onPressed: () => Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
-                      );
-                    }),
-                  ),
-                ),
-                Padding(
-                  padding: AppTheme.smallPadding,
-                  child: RedTextButton(
-                      onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => TicketShopView(
-                                      gamesInSeason: List.generate(5, (index) => null),
-                                    )),
-                          ),
-                      title: 'Weiter Tickets'),
-                  //  Helpers.loadAndNavigate(
-                  //       context: context,
-                  //       ref: ref,
-                  //       nextView: 1,
-                  //       image: 'profile.jpg',
-                  //       advertising: 'Gegen Langeweile',
-                  //     ),
-                ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: AppTheme.smallPadding,
+            child: RedTextButton(
+                onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => TicketShopView(
+                                gamesInSeason: List.generate(5, (index) => null),
+                              )),
+                    ),
+                title: 'Weiter Tickets'),
+            //  Helpers.loadAndNavigate(
+            //       context: context,
+            //       ref: ref,
+            //       nextView: 1,
+            //       image: 'profile.jpg',
+            //       advertising: 'Gegen Langeweile',
+            //     ),
           ),
         ],
       ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/navbar_widget.dart';
-import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
+import 'package:huskies_app/logic/provider/notifier.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(provider);
-    final notifier = ref.read(provider.notifier);
+    final state = ref.watch(appStateNotifierProvider);
+    final notifier = ref.read(appStateNotifierProvider.notifier);
     return SafeArea(
       child: Scaffold(
         body: switch (state.currentView) {
@@ -31,7 +31,7 @@ class ViewNavigator extends ConsumerWidget {
             ),
             NavBarIconWidget(
                 icon: Icons.bookmark_border_outlined,
-                name: 'Tickets-View',
+                name: 'Tickets',
                 isCurrentView: state.currentView == 1,
                 onPressed: () => notifier.changeView(nextView: 1)),
             NavBarIconWidget(

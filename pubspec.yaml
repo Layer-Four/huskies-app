@@ -24,6 +24,8 @@ dependencies:
   firebase_auth: ^4.16.0
   firebase_storage: ^11.6.0
   cloud_firestore: ^4.14.0 # throw a Error and doesent compile emulator multidex
+  logger: ^2.0.2+1
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +36,7 @@ dev_dependencies:
   build_runner: ^2.4.7
   custom_lint: ^0.5.8
   riverpod_lint: ^2.3.7
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/logic/provider/notifier.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -81,16 +81,16 @@ class Helpers {
   }
 
   /// ownNavigtion function.
-  static void loadAndNavigate(
+  static loadAndNavigate(
       {required BuildContext context,
       required WidgetRef ref,
       required int nextView,
       required String image,
       required String advertising}) {
-    final state = ref.watch(provider);
-    final notifier = ref.read(provider.notifier);
+    final state = ref.watch(appStateNotifierProvider);
+    final notifier = ref.read(appStateNotifierProvider.notifier);
     if (state.currentView != nextView) {
-      showLoadingView(context, image, advertising);
+      showLoadingView(context, image: image, advertising: advertising);
       Future.delayed(const Duration(milliseconds: 1500)).then((_) {
         Navigator.pop(context);
         notifier.changeView(nextView: nextView);
@@ -98,7 +98,8 @@ class Helpers {
     }
   }
 
-  static void showLoadingView(BuildContext context, String image, String advertising) => showDialog(
+  static void showLoadingView(BuildContext context, {String? image, required String advertising}) =>
+      showDialog(
         context: context,
         builder: (context) => Container(
             padding: AppTheme.mediumPadding,
@@ -111,10 +112,12 @@ class Helpers {
                 // const Color.fromARGB(129, 0, 150, 135), size: 70),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    'assets/$image',
-                    width: 100,
-                  ),
+                  child: image != null
+                      ? Image.asset(
+                          'assets/$image',
+                          width: 100,
+                        )
+                      : const SizedBox(height: 100),
                 ),
                 Text(
                   advertising,
