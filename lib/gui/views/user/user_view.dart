@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/gui/views/auth/login_view.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
 
@@ -188,6 +189,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                         SettingsRow(
                           endIcon: SizedBox(),
                           leadingIcon: Icon(Icons.exit_to_app),
+                          onTextPressed: () {
+                            ref.watch(appStateNotifierProvider.notifier).signOut();
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (context) => LoginView(),
+                            ));
+                          },
                           optionText: 'logout',
                         ),
                       ],
@@ -205,6 +212,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
 
 class SettingsRow extends StatelessWidget {
   final Widget leadingIcon;
+  final void Function()? onTextPressed;
   final String optionText;
   final Widget? endingWidget;
   final Widget endIcon;
@@ -213,23 +221,29 @@ class SettingsRow extends StatelessWidget {
     this.endIcon = const Icon(Icons.arrow_right, size: 40),
     this.endingWidget,
     required this.leadingIcon,
+    this.onTextPressed,
     required this.optionText,
   });
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(padding: const EdgeInsets.all(16), child: leadingIcon),
-              Text(optionText),
-            ],
+          InkWell(
+            onTap: onTextPressed,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: leadingIcon),
+                Text(optionText),
+              ],
+            ),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(padding: const EdgeInsets.all(4), child: endingWidget),
+              Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
               Padding(
                 padding: const EdgeInsets.only(right: 24),
                 child: endIcon,
