@@ -12,11 +12,11 @@ class UserProfileView extends ConsumerStatefulWidget {
 }
 
 class _UserProfileViewState extends ConsumerState<UserProfileView> {
+  bool darkMode = false;
+  bool faceID = true;
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(appStateNotifierProvider);
-    bool darkMode = false;
-    bool faceID = true;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -82,14 +82,13 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       children: [
                         SettingsRow(
                           endingWidget: const Text('Deutsch'),
-                          endingIcon: const Icon(Icons.arrow_right),
                           leadingIcon: Icon(Icons.data_saver_off_sharp),
                           optionText: 'Sprache',
                         ),
                         SettingsRow(
-                          endingWidget: Switch(
+                          endingIcon: Switch(
                             value: darkMode,
-                            onChanged: (x) => setState(() {
+                            onChanged: (_) => setState(() {
                               darkMode = !darkMode;
                             }),
                           ),
@@ -97,20 +96,18 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           leadingIcon: Icon(Icons.dark_mode_outlined),
                         ),
                         SettingsRow(
-                          endingWidget: Switch(
+                          endingIcon: Switch(
                             value: faceID,
-                            onChanged: (x) => setState(() {
+                            onChanged: (_) => setState(() {
                               faceID = !faceID;
                             }),
                           ),
-                          optionText: 'Darkmode',
+                          optionText: 'Face ID',
                           leadingIcon: Icon(Icons.dark_mode_outlined),
                         ),
                         SettingsRow(
-                          endingWidget: const Text('Deutsch'),
-                          endingIcon: const Icon(Icons.arrow_right),
                           leadingIcon: Icon(Icons.data_saver_off_sharp),
-                          optionText: 'Sprache',
+                          optionText: 'Push-Benachritung',
                         ),
                       ],
                     ),
@@ -130,36 +127,17 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SettingsRow(
-                          endingWidget: const Text('Deutsch'),
-                          endingIcon: const Icon(Icons.arrow_right),
-                          leadingIcon: Icon(Icons.data_saver_off_sharp),
-                          optionText: 'Sprache',
+                          leadingIcon: Icon(Icons.chat_bubble_outline),
+                          optionText: 'Support',
                         ),
                         SettingsRow(
-                          endingWidget: Switch(
-                            value: darkMode,
-                            onChanged: (x) => setState(() {
-                              darkMode = !darkMode;
-                            }),
-                          ),
-                          optionText: 'Darkmode',
-                          leadingIcon: Icon(Icons.dark_mode_outlined),
+                          optionText: 'Zahlungsmittel',
+                          leadingIcon: Icon(Icons.euro),
                         ),
                         SettingsRow(
-                          endingWidget: Switch(
-                            value: faceID,
-                            onChanged: (x) => setState(() {
-                              faceID = !faceID;
-                            }),
-                          ),
-                          optionText: 'Darkmode',
-                          leadingIcon: Icon(Icons.dark_mode_outlined),
-                        ),
-                        SettingsRow(
-                          endingWidget: const Text('Deutsch'),
-                          endingIcon: const Icon(Icons.arrow_right),
-                          leadingIcon: Icon(Icons.data_saver_off_sharp),
-                          optionText: 'Sprache',
+                          endingIcon: SizedBox(),
+                          leadingIcon: Icon(Icons.exit_to_app),
+                          optionText: 'logout',
                         ),
                       ],
                     ),
@@ -177,12 +155,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
 class SettingsRow extends StatelessWidget {
   final Widget leadingIcon;
   final String optionText;
-  final Widget endingWidget;
-  final Widget? endingIcon;
+  final Widget? endingWidget;
+  final Widget endingIcon;
   const SettingsRow({
     super.key,
-    this.endingIcon,
-    required this.endingWidget,
+    this.endingIcon = const Icon(Icons.arrow_right),
+    this.endingWidget,
     required this.leadingIcon,
     required this.optionText,
   });
@@ -201,7 +179,7 @@ class SettingsRow extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(padding: const EdgeInsets.all(4), child: endingWidget),
-              endingIcon ?? const SizedBox(),
+              endingIcon,
             ],
           ),
         ],
