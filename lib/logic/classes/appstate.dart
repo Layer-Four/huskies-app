@@ -27,7 +27,7 @@ class AppState {
         _views = views ?? [],
         _user = user;
 
-  Season? get currentseason => _currentSeason;
+  Season? get currentSeason => _currentSeason;
   int get currentView => _currentViewIndex;
   List<Map> get products => _shopItems;
   List<Season>? get season => _seasons;
@@ -36,14 +36,14 @@ class AppState {
 
   AppState copyWith({
     int? Function()? currentViewIndex,
-    Season? Function()? choisenSeason,
+    Season? Function()? choicenSeason,
     UserVM? Function()? newUSer,
     // List<Widget>?viewsList,
   }) =>
       AppState(
         views: view,
         currentView: currentViewIndex != null ? currentViewIndex() : _currentViewIndex,
-        currentSeason: choisenSeason != null ? choisenSeason() : _currentSeason,
+        currentSeason: choicenSeason != null ? choicenSeason() : _currentSeason,
         user: newUSer != null ? newUSer() : _user,
       );
 

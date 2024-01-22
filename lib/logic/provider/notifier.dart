@@ -4,10 +4,11 @@ import 'package:huskies_app/auth/auth.dart';
 import 'package:huskies_app/gui/views/home/home_view.dart';
 import 'package:huskies_app/gui/views/shop/shop_view.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_view.dart';
-import 'package:huskies_app/gui/views/widgets/statistic_view/match_statisctics_view.dart';
 import 'package:huskies_app/logic/classes/appstate.dart';
 import 'package:huskies_app/logic/classes/user_vm/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../gui/views/widgets/statistic_view/match_statisctics_view.dart';
 part 'notifier.g.dart';
 
 //   void sendEmailVerification() {

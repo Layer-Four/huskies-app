@@ -93,7 +93,7 @@ class _MatchCardState extends State<MatchCard> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
                 child: Helpers.buildIndicator(
-                  selcetedIndex: currentMatch,
+                  selectedIndex: currentMatch,
                   length: matches.length,
                 ),
               ),

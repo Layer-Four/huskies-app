@@ -56,7 +56,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       )),
-                  const Text("Willkommon zurück!", style: TextStyle(color: Colors.white)),
+                  const Text("Willkommen zurück!", style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
@@ -92,7 +92,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
               //       index: indexUpperCarousel,
               //       isBackgroundColor: Colors.white),
               // ),
-              /*........Trikos Section...............*/
+              /*........Trikots Section...............*/
 
               Container(
                 color: Colors.white,
@@ -102,27 +102,25 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     Container(
                       height: 5,
                     ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25),
-                            child: Image.asset(
-                              'assets/second.png',
-                              width: 80,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25),
+                          child: Image.asset(
+                            'assets/second.png',
+                            width: 80,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 4, right: 4),
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 25),
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4, right: 4),
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 25),
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                      ],
                     ),
                     const Padding(
                       padding: EdgeInsets.only(top: 1, bottom: 4),
@@ -182,7 +180,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       left: 0,
                       right: 0,
                       top: 20,
-                      child: Container(
+                      child: SizedBox(
                         // padding: const EdgeInsets.all(15),
                         width: double.infinity,
                         child: Column(

@@ -136,7 +136,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                               }),
                             ),
                           ),
-                          optionText: 'Darkmode',
+                          optionText: 'Dark-mode',
                           leadingIcon: Icon(Icons.dark_mode_outlined),
                         ),
                         SettingsRow(

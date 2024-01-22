@@ -7,7 +7,7 @@ class AppTheme {
   static const double smallTextSize = 9.5;
   static const FontWeight headWeight = FontWeight.w700;
   static const Color whiteBackground = Colors.white;
-  static const double cardElevetion = 7.0;
+  static const double cardElevation = 7.0;
   static final BorderRadius lowRoundedCorner = BorderRadius.circular(8);
   static const EdgeInsets bigPadding = EdgeInsets.all(16);
   static const EdgeInsets mediumPadding = EdgeInsets.all(8.0);

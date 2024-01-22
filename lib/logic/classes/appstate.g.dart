@@ -7,6 +7,9 @@ part of 'appstate.dart';
 // **************************************************************************
 
 AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
+      currentSeason: json['currentSeason'] == null
+          ? null
+          : Season.fromJson(json['currentSeason'] as Map<String, dynamic>),
       currentView: json['currentView'] as int?,
       products: json['products'],
       season: (json['season'] as List<dynamic>?)
@@ -18,6 +21,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
     );
 
 Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
+      'currentSeason': instance.currentSeason,
       'currentView': instance.currentView,
       'products': instance.products,
       'season': instance.season,

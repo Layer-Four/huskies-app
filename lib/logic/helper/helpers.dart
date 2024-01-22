@@ -9,9 +9,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class Helpers {
   const Helpers();
 
-  static Widget buildIndicator({required int selcetedIndex, required int length}) =>
+  static Widget buildIndicator({required int selectedIndex, required int length}) =>
       AnimatedSmoothIndicator(
-        activeIndex: selcetedIndex,
+        activeIndex: selectedIndex,
         count: length,
         // TODO: Need a own Style in AppTheme?
         effect: const SlideEffect(
@@ -80,7 +80,7 @@ class Helpers {
     );
   }
 
-  /// ownNavigtion function.
+  /// ownNavigation function.
   static loadAndNavigate(
       {required BuildContext context,
       required WidgetRef ref,

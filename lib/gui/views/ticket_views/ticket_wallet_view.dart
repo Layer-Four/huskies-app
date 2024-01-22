@@ -76,7 +76,7 @@ class _TicketWalletViewState extends State<TicketWalletView> {
                 ),
               ),
               Helpers.buildIndicator(
-                  selcetedIndex: currentIndex, length: barcodesListFromState.length),
+                  selectedIndex: currentIndex, length: barcodesListFromState.length),
               const AGBViewWidget(),
             ],
           ),

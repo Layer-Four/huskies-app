@@ -21,7 +21,7 @@ class TicketView extends ConsumerWidget {
         children: [
           Column(
             children: [
-              HeadWidget(
+              const HeadWidget(
                 center: Text('Tickets', style: AppTheme.headStyle),
                 end: UserIconWidget(image: 'da.jpg'),
               ),
@@ -62,7 +62,7 @@ class TicketView extends ConsumerWidget {
             //       ref: ref,
             //       nextView: 1,
             //       image: 'profile.jpg',
-            //       advertising: 'Gegen Langeweile',
+            //       advertising: 'gegen Langeweile',
             //     ),
           ),
         ],
