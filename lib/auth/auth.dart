@@ -60,9 +60,11 @@ class AuthRepository implements AuthInterface {
       );
       if (response.user != null) {
         return UserVM(
-            uID: response.user!.uid,
-            name: response.user!.displayName,
-            email: response.user!.email ?? 'beispiel@example.etc');
+          email: response.user!.email ?? 'beispiel@example.etc',
+          isLogIn: true,
+          name: response.user!.displayName,
+          uID: response.user!.uid,
+        );
       }
     } on FirebaseAuthException catch (e) {
       reactToFirebaseException(e);

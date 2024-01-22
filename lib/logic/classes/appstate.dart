@@ -35,16 +35,16 @@ class AppState {
   UserVM? get user => _user;
 
   AppState copyWith({
-    int? currentViewIndex,
-    Season? choisenSeason,
-    UserVM? newUSer,
+    int? Function()? currentViewIndex,
+    Season? Function()? choisenSeason,
+    UserVM? Function()? newUSer,
     // List<Widget>?viewsList,
   }) =>
       AppState(
         views: view,
-        currentView: currentViewIndex ?? currentView,
-        currentSeason: choisenSeason ?? currentseason,
-        user: newUSer ?? user,
+        currentView: currentViewIndex != null ? currentViewIndex() : _currentViewIndex,
+        currentSeason: choisenSeason != null ? choisenSeason() : _currentSeason,
+        user: newUSer != null ? newUSer() : _user,
       );
 
   factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
