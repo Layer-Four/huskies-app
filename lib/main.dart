@@ -24,11 +24,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final state = ref.read(appStateNotifierProvider);
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home:
-            // state.user != null && state.user!.isLogIn ?
-            const ViewNavigator()
-        // : const LoginView(),
-        );
+      debugShowCheckedModeBanner: false,
+      home: state.user != null && state.user!.isLogIn ? const ViewNavigator() : const LoginView(),
+    );
   }
 }

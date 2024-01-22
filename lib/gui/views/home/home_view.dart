@@ -35,7 +35,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   UserIconWidget(
                     image: 'da.jpg',
                     onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => UserProfileView())),
+                        .push(MaterialPageRoute(builder: (context) => const UserProfileView())),
                   ),
                   // Container(
                   //   margin: const EdgeInsets.only(top: 25, bottom: 10),
