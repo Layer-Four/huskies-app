@@ -26,6 +26,7 @@ dependencies:
   cloud_firestore: ^4.14.0 # throw a Error and doesent compile emulator multidex
   logger: ^2.0.2+1
   json_annotation: ^4.8.1
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

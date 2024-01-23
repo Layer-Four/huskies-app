@@ -13,7 +13,7 @@ class AuthRepository implements AuthInterface {
   @override
   Stream<User?> userAuthState() => _authService.userChanges().handleError(
         (e) {
-          log('$e a error occurent');
+          log('$e a error occurrence');
           // logger.e(e.toString());
           // throw AppStrings.errorFetchingUserAuthStatus;
         },
@@ -60,15 +60,17 @@ class AuthRepository implements AuthInterface {
       );
       if (response.user != null) {
         return UserVM(
-            uID: response.user!.uid,
-            name: response.user!.displayName,
-            email: response.user!.email ?? 'beispiel@example.etc');
+          email: response.user!.email ?? 'beispiel@example.etc',
+          isLogIn: true,
+          name: response.user!.displayName,
+          uID: response.user!.uid,
+        );
       }
     } on FirebaseAuthException catch (e) {
       reactToFirebaseException(e);
     } catch (e) {
       logger.e(e.toString());
-      throw 'es ist etwas schiefgelaufen';
+      throw 'es ist etwas schief gelaufen';
     }
     return null;
   }
@@ -89,7 +91,7 @@ class AuthRepository implements AuthInterface {
       await _authService.currentUser?.sendEmailVerification();
     } catch (e) {
       logger.e(e.toString());
-      throw "Email can't be sendet";
+      throw "Email can't be sent";
     }
   }
 
@@ -156,7 +158,7 @@ class AuthRepository implements AuthInterface {
       case 'email-already-in-use':
         throw ('email is already used');
       case 'invalid-email':
-        throw 'inavlid email';
+        throw 'invalid email';
       case 'operation-not-allowed':
         throw 'operation is not allowed';
       case 'weak-password':

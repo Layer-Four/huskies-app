@@ -79,7 +79,7 @@ class _SignupState extends State<Signup> {
                           height: 8,
                         ),
                         CustomeTextForm(
-                          hinttext: "Email Eingeben",
+                          hinttext: "Email eingeben",
                           mycontroller: email,
                         ),
 
@@ -136,11 +136,11 @@ class _SignupState extends State<Signup> {
                             leftDotColor: Colors.blueAccent,
                             rightDotColor: Colors.blueGrey,
                             size: 100);
-                        final isfinished = await ref
+                        final isFinished = await ref
                             .watch(appStateNotifierProvider.notifier)
                             .registerUserWithEmailAndPassword(
                                 email: email.text, password: password.text);
-                        if (isfinished) Navigator.of(context).pop();
+                        if (isFinished) Navigator.of(context).pop();
                       },
                     ),
 

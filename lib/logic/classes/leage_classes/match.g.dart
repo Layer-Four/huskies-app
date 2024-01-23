@@ -8,7 +8,7 @@ part of 'match.dart';
 
 PastMatch _$PastMatchFromJson(Map<String, dynamic> json) => PastMatch(
       json['endScore'] as String,
-      (json['gamereports'] as List<dynamic>)
+      (json['gameReports'] as List<dynamic>)
           .map((e) => GameReport.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['goals'] as Map<String, dynamic>,
@@ -19,7 +19,7 @@ PastMatch _$PastMatchFromJson(Map<String, dynamic> json) => PastMatch(
 
 Map<String, dynamic> _$PastMatchToJson(PastMatch instance) => <String, dynamic>{
       'endScore': instance.endScore,
-      'gamereports': instance.gamereports,
+      'gameReports': instance.gameReports,
       'goals': instance.goals,
       'home': instance.home,
       'visitor': instance.visitor,
@@ -28,7 +28,7 @@ Map<String, dynamic> _$PastMatchToJson(PastMatch instance) => <String, dynamic>{
 
 NextMatch _$NextMatchFromJson(Map<String, dynamic> json) => NextMatch(
       json['endScore'] as String?,
-      (json['gamereports'] as List<dynamic>?)
+      (json['gameReports'] as List<dynamic>?)
           ?.map((e) => GameReport.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['goals'] as Map<String, dynamic>?,
@@ -41,7 +41,7 @@ NextMatch _$NextMatchFromJson(Map<String, dynamic> json) => NextMatch(
 
 Map<String, dynamic> _$NextMatchToJson(NextMatch instance) => <String, dynamic>{
       'endScore': instance.endScore,
-      'gamereports': instance.gamereports,
+      'gameReports': instance.gameReports,
       'goals': instance.goals,
       'home': instance.home,
       'visitor': instance.visitor,

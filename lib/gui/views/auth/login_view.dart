@@ -105,12 +105,12 @@ class _LoginViewState extends State<LoginView> {
                           title: "Anmelden",
                           onPress: () {
                             if (ref.watch(appStateNotifierProvider).user == null) {
-                              Helpers.showLoadingView(context, advertising: 'werbung');
+                              Helpers.showLoadingView(context, advertising: 'Werbung');
                               Future(() => ref
                                   .watch(appStateNotifierProvider.notifier)
                                   .signInWithEmailAndPassword(
-                                      email: email.text, password: password.text)).then((isSucces) {
-                                if (!isSucces) {
+                                      email: email.text, password: password.text)).then((bool isSuccess) {
+                                if (!isSuccess) {
                                   Future.delayed(const Duration(seconds: 2))
                                       .then((value) => Navigator.of(context).pop());
                                 } else {

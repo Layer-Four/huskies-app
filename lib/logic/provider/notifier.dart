@@ -4,10 +4,11 @@ import 'package:huskies_app/auth/auth.dart';
 import 'package:huskies_app/gui/views/home/home_view.dart';
 import 'package:huskies_app/gui/views/shop/shop_view.dart';
 import 'package:huskies_app/gui/views/ticket_views/ticket_view.dart';
-import 'package:huskies_app/gui/views/widgets/statistic_view/match_statisctics_view.dart';
 import 'package:huskies_app/logic/classes/appstate.dart';
 import 'package:huskies_app/logic/classes/user_vm/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../gui/views/widgets/statistic_view/match_statisctics_view.dart';
 part 'notifier.g.dart';
 
 //   void sendEmailVerification() {
@@ -56,7 +57,8 @@ class AppStateNotifier extends _$AppStateNotifier {
     );
   }
 
-  void changeView({required int nextView}) => state = state.copyWith(currentViewIndex: nextView);
+  void changeView({required int nextView}) =>
+      state = state.copyWith(currentViewIndex: () => nextView);
   // void login(UserVM? user) => state = state.copyWith(newUSer: user!);
   void reloadUser() {
     try {
@@ -71,7 +73,8 @@ class AppStateNotifier extends _$AppStateNotifier {
     try {
       // await _googleSignIn.signOut();
       _authService.signOut();
-      state = state.copyWith(newUSer: null);
+      state = state.copyWith(newUSer: () => null);
+      log('state is :${state.toJson()}');
     } catch (e) {
       _authService.logger.e(e.toString());
       throw 'error on sign out';
@@ -88,7 +91,7 @@ class AppStateNotifier extends _$AppStateNotifier {
               name: user.displayName ?? '',
               uID: user.uid,
               email: user.email ?? 'beispiel@email.etc');
-          state = state.copyWith(newUSer: newUser);
+          state = state.copyWith(newUSer: () => newUser);
         }
         log('no user to listen');
       },
@@ -98,7 +101,7 @@ class AppStateNotifier extends _$AppStateNotifier {
   Future<bool> signInWithEmailAndPassword({required String email, required String password}) async {
     if (!validInput(email, password)) return false;
     final user = await _authService.signInWithEmailPassword(email: email, password: password);
-    state = state.copyWith(newUSer: user);
+    state = state.copyWith(newUSer: () => user);
 
     return user != null;
   }

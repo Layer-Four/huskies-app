@@ -6,7 +6,7 @@ part 'match.g.dart';
 abstract class Match {
   const Match._(
     endScore,
-    gamereports,
+    gameReport,
     goals,
     home,
     visitor,
@@ -17,21 +17,21 @@ abstract class Match {
 @JsonSerializable()
 class PastMatch extends Match {
   final String endScore;
-  final List<GameReport> gamereports;
+  final List<GameReport> gameReports;
   final Map goals;
   final Team home;
   final Team visitor;
   final Team winner;
   PastMatch(
     this.endScore,
-    this.gamereports,
+    this.gameReports,
     this.goals,
     this.home,
     this.visitor,
     this.winner,
   ) : super._(
           endScore,
-          gamereports,
+          gameReports,
           goals,
           home,
           visitor,
@@ -44,21 +44,21 @@ class PastMatch extends Match {
 @JsonSerializable()
 class NextMatch extends Match {
   final String? endScore;
-  final List<GameReport>? gamereports;
+  final List<GameReport>? gameReports;
   final Map? goals;
   final Team home;
   final Team visitor;
   final Team? winner;
   NextMatch(
     this.endScore,
-    this.gamereports,
+    this.gameReports,
     this.goals,
     this.home,
     this.visitor,
     this.winner,
   ) : super._(
           endScore,
-          gamereports,
+          gameReports,
           goals,
           home,
           visitor,

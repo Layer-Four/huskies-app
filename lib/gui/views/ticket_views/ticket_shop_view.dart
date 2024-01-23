@@ -39,7 +39,7 @@ class TicketShopView extends ConsumerWidget {
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-                              child: Text('hier ist der User'),
+                              child: Text('Hier ist der User'),
                             ),
                           ],
                         ),

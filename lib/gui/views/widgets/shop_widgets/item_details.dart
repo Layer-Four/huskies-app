@@ -28,7 +28,7 @@ class ItemsDetails extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(right: 25),
               width: 45,
-              decoration: BoxDecoration(shape: BoxShape.circle),
+              decoration:const BoxDecoration(shape: BoxShape.circle),
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
                 'assets/da.jpg',

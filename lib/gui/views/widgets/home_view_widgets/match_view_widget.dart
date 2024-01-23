@@ -24,7 +24,7 @@ class MatchViewWidget extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
-                "Eisarena Weiswasser, \n 08.12.2023. 19.30 Uhr",
+                "Eis-arena Weiswasser, \n 08.12.2023. 19.30 Uhr",
                 style: TextStyle(fontSize: 12),
               )
             ],
