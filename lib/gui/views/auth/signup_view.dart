@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/auth/login_view.dart';
 import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/gui/views/widgets/textformfield.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -27,23 +28,14 @@ class _SignupState extends State<Signup> {
           // backgroundColor: Colors.white,
           body: Stack(
             children: [
-              Opacity(
-                opacity: 0.7,
-                child: Image.asset(
-                  "assets/background_image.jpg",
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                  width: double.infinity,
-                  // height: double.infinity,
-                ),
-              ),
-              Container(color: const Color.fromARGB(129, 0, 0, 0)),
+              AppTheme.backgroundImageHomePage,
+              Container(color: AppTheme.container),
               Center(
                 child: Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: AppTheme.hugePadding,
                   child: ListView(children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: AppTheme.crossStart,
                       children: [
                         // const SizedBox(height: 50),
                         Center(
@@ -58,58 +50,37 @@ class _SignupState extends State<Signup> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 40,
-                        ),
+                        AppTheme.sizedBox40,
                         const Text(
                           "Registrieren",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+                          style: AppTheme.textDefault,
                         ),
-                        const SizedBox(
-                          height: 14,
-                        ),
-
+                        AppTheme.sizedBox14,
                         const Text(
                           "E-Mail",
-                          style: TextStyle(
-                              fontSize: 13, color: Colors.white, fontWeight: FontWeight.w300),
+                          style: AppTheme.textDefaultSmallW300,
                         ),
-                        const SizedBox(
-                          height: 8,
-                        ),
+                        AppTheme.sizedBox8,
                         CustomeTextForm(
-                          hinttext: "Email eingeben",
+                          hinttext: "Email Eingeben",
                           mycontroller: email,
                         ),
-
-                        const SizedBox(
-                          height: 11,
-                        ),
+                        AppTheme.sizedBox11,
                         const Text(
                           "Passwort",
-                          style: TextStyle(
-                              fontSize: 13, color: Colors.white, fontWeight: FontWeight.w500),
+                          style: AppTheme.textDefaultSmallW500,
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-
+                        AppTheme.sizedBox4,
                         CustomeTextForm(
                           // hinttext: "Password Eingeben",
                           mycontroller: password, hinttext: 'passwort',
                         ),
-                        const SizedBox(
-                          height: 11,
-                        ),
+                        AppTheme.sizedBox11,
                         const Text(
                           "Passwort bestätigen",
-                          style: TextStyle(
-                              fontSize: 13, color: Colors.white, fontWeight: FontWeight.w500),
+                          style: AppTheme.textDefaultSmallW500,
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
+                        AppTheme.sizedBox4,
 
                         // CustomeTextForm(
                         // hinttext: "Password Eingeben",
@@ -133,14 +104,14 @@ class _SignupState extends State<Signup> {
                         //   }
                         // });
                         LoadingAnimationWidget.flickr(
-                            leftDotColor: Colors.blueAccent,
-                            rightDotColor: Colors.blueGrey,
+                            leftDotColor: AppTheme.blueAccent,
+                            rightDotColor: AppTheme.blueGrey,
                             size: 100);
-                        final isFinished = await ref
+                        final isfinished = await ref
                             .watch(appStateNotifierProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                                email: email.text, password: password.text);
-                        if (isFinished) Navigator.of(context).pop();
+                            email: email.text, password: password.text);
+                        if (isfinished) Navigator.of(context).pop();
                       },
                     ),
 
@@ -179,12 +150,11 @@ class _SignupState extends State<Signup> {
                             children: [
                               TextSpan(
                                 text: "Haben Sie ein Account ? ",
-                                style: TextStyle(color: Colors.white),
+                                style: AppTheme.whiteTextStyle,
                               ),
                               TextSpan(
                                   text: "Anmelden",
-                                  style:
-                                      TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                  style: AppTheme.whiteTextStyleBold),
                             ],
                           ),
                         ),
