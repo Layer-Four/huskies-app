@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/global/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class HeadWidget extends StatelessWidget {
   final Widget? start;

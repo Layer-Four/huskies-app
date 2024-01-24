@@ -169,6 +169,8 @@ class AuthRepository implements AuthInterface {
         throw 'No user found';
       case 'wrong-password':
         throw 'Wrong password';
+      case 'invalid-credential':
+        throw 'The supplied auth credential is incorrect, malformed or has expired.';
       default:
         throw 'es ist etwas schief gelaufen';
     }

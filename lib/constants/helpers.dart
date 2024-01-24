@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/global/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/notifier.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -13,7 +13,6 @@ class Helpers {
       AnimatedSmoothIndicator(
         activeIndex: selectedIndex,
         count: length,
-        // TODO: Need a own Style in AppTheme?
         effect: const SlideEffect(
           dotColor: Colors.grey,
           activeDotColor: Colors.black,

@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/global/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/user/user_view.dart';
 import 'package:huskies_app/views/widgets/home_view_widgets/page_view_widget.dart';
 import 'package:huskies_app/views/widgets/user_icon_widget.dart';

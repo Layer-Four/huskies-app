@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/global/helpers.dart';
+import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/notifier.dart';
 import 'package:huskies_app/views/widgets/navigation/navbar_widget.dart';
 

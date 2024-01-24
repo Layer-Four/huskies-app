@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/global/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/ticket_views/ticket_shop_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_wallet_view.dart';
 import 'package:huskies_app/views/widgets/headline_widget.dart';

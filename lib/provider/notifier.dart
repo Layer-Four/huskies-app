@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:huskies_app/models/appstate.dart';
 import 'package:huskies_app/models/user_vm/user.dart';
+import 'package:huskies_app/provider/appstate.dart';
 import 'package:huskies_app/services/auth.dart';
 import 'package:huskies_app/views/home/home_view.dart';
 import 'package:huskies_app/views/shop/shop_view.dart';
@@ -60,9 +60,10 @@ class AppStateNotifier extends _$AppStateNotifier {
   void changeView({required int nextView}) =>
       state = state.copyWith(currentViewIndex: () => nextView);
   // void login(UserVM? user) => state = state.copyWith(newUSer: user!);
-  void reloadUser() {
+  Stream<User?> reloadUser() async* {
     try {
       _authService.reloadUser();
+      yield* _authService.userAuthState();
     } catch (e) {
       _authService.logger.e(e.toString());
       throw 'Error on reload user';

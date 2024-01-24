@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/global/globals.dart';
+import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/models/leage_classes/season.dart';
 import 'package:huskies_app/models/user_vm/user.dart';
 import 'package:json_annotation/json_annotation.dart';

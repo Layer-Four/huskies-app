@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/global/helpers.dart';
+import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/notifier.dart';
 import 'package:huskies_app/views/auth/signup_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';

@@ -136,11 +136,11 @@ class _SignupState extends State<Signup> {
                             leftDotColor: Colors.blueAccent,
                             rightDotColor: Colors.blueGrey,
                             size: 100);
-                        final isFinished = await ref
+                        await ref
                             .watch(appStateNotifierProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                                email: email.text, password: password.text);
-                        if (isFinished) Navigator.of(context).pop();
+                                email: email.text, password: password.text)
+                            .then((value) => value ? Navigator.of(context).pop() : null);
                       },
                     ),
 
