@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
 @JsonSerializable()
-class UserVM {
+class UserModel {
   final String email;
   final bool hasPaymentData;
   final bool isLogIn;
@@ -11,7 +11,7 @@ class UserVM {
   final String uID;
   final String? profileImage;
   final List<String>? itemTokens;
-  const UserVM({
+  const UserModel({
     required this.email,
     this.hasPaymentData = false,
     this.isLogIn = false,
@@ -22,6 +22,6 @@ class UserVM {
     required this.uID,
   });
 
-  factory UserVM.fromJson(Map<String, dynamic> json) => _$UserVMFromJson(json);
-  Map<String, dynamic> toJson() => _$UserVMToJson(this);
+  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

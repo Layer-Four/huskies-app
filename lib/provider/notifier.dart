@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:huskies_app/models/user_vm/user.dart';
 import 'package:huskies_app/provider/appstate.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/auth.dart';
 import 'package:huskies_app/views/home/home_view.dart';
 import 'package:huskies_app/views/shop/shop_view.dart';
@@ -59,7 +59,8 @@ class AppStateNotifier extends _$AppStateNotifier {
 
   void changeView({required int nextView}) =>
       state = state.copyWith(currentViewIndex: () => nextView);
-  // void login(UserVM? user) => state = state.copyWith(newUSer: user!);
+
+// TODO: do this in AuthNotivier?
   Stream<User?> reloadUser() async* {
     try {
       _authService.reloadUser();
@@ -74,36 +75,41 @@ class AppStateNotifier extends _$AppStateNotifier {
     try {
       // await _googleSignIn.signOut();
       _authService.signOut();
-      state = state.copyWith(newUSer: () => null);
-      log('state is :${state.toJson()}');
+      ref.read(statusProvider.notifier).state = AuthState.loggedOut;
+      // log('state is :${state.toJson()}');
     } catch (e) {
       _authService.logger.e(e.toString());
       throw 'error on sign out';
     }
   }
 
-  void loadUserDM({required User user}) {
-    FirebaseAuth.instance.authStateChanges().listen(
-      (userDB) {
-        if (userDB != null) {
-          log('user found to listen');
-          log(userDB.toString());
-          final newUser = UserVM(
-              name: user.displayName ?? '',
-              uID: user.uid,
-              email: user.email ?? 'beispiel@email.etc');
-          state = state.copyWith(newUSer: () => newUser);
-        }
-        log('no user to listen');
-      },
-    );
-  }
+  // TODO: have owen provider that listen on FirebaseAuth.
+  // void loadUserDM({required User user}) {
+  //   FirebaseAuth.instance.authStateChanges().listen(
+  //     (userDB) {
+  //       if (userDB != null) {
+  //         log('user found to listen');
+  //         log(userDB.toString());
+  //         final newUser = UserModel(
+  //             name: user.displayName ?? '',
+  //             uID: user.uid,
+  //             email: user.email ?? 'beispiel@email.etc');
+  //         // state = state.copyWith(newUSer: );
+  //       }
+  //       log('no user to listen');
+  //     },
+  //   );
+  // }
 
   Future<bool> signInWithEmailAndPassword({required String email, required String password}) async {
     if (!validInput(email, password)) return false;
     final user = await _authService.signInWithEmailPassword(email: email, password: password);
-    state = state.copyWith(newUSer: () => user);
-
+    ref.read(authProvider).maybeMap(
+          orElse: () => null,
+          data: (_) {
+            ref.read(statusProvider.notifier).state = AuthState.loggedIn;
+          },
+        );
     return user != null;
   }
 

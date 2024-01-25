@@ -1,10 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/models/user_vm/user.dart';
 import 'package:huskies_app/provider/notifier.dart';
-import 'package:huskies_app/views/auth/login_view.dart';
+import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/views/widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/widgets/settingsrow_widget.dart';
 
 class UserProfileView extends ConsumerStatefulWidget {
   const UserProfileView({super.key});
@@ -15,9 +20,23 @@ class UserProfileView extends ConsumerStatefulWidget {
 class _UserProfileViewState extends ConsumerState<UserProfileView> {
   bool darkMode = false;
   bool faceID = true;
+  UserModel? userModel;
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(appStateNotifierProvider);
+    final user = ref.watch(authProvider);
+    user.when(
+      error: (error, stackTrace) => log('error on Userview: $error ,  stack trace: $stackTrace'),
+      loading: () {},
+      data: (user) {
+        if (user != null) {
+          userModel = UserModel(
+            email: user.email!,
+            uID: user.uid,
+            name: user.displayName,
+          );
+        }
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -53,14 +72,15 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                     Column(
                       children: [
                         Text(
-                          '${state.user?.firstName ?? ' Username'} ${state.user?.name ?? ''}',
+                          '${userModel?.firstName ?? ' Username'} ${userModel?.name ?? ''}',
                         ),
                         Text(
-                          state.user?.email ?? 'beispiel@email.etc',
+                          userModel?.email ?? 'beispiel@email.etc',
                           style: TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Text(
-                          'Kundennummer: ${state.user?.uID ?? 'KH234332'}',
+                          // TODO: generate a separate KuID!
+                          'Kundennummer: ${userModel?.uID ?? 'KH234332'}',
                           style: TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Container(
@@ -70,21 +90,13 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           decoration: BoxDecoration(
                               color: Color.fromARGB(255, 22, 63, 92),
                               borderRadius: BorderRadius.circular(7)),
-                          child: TextButton(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Profil bearbeiten',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white, fontSize: 10),
-                              ),
-                            ),
-                            onPressed: () {
-                              Helpers.showLoadingView(context, advertising: 'Profil bearbeiten');
-                              Future.delayed(const Duration(seconds: 2))
-                                  .then((value) => Navigator.of(context).pop());
-                            },
-                          ),
+                          child: BlueButton(
+                              text: 'Profil bearbeiten',
+                              onPressed: () {
+                                Helpers.showLoadingView(context, advertising: 'Profil bearbeiten');
+                                Future.delayed(const Duration(seconds: 2))
+                                    .then((value) => Navigator.of(context).pop());
+                              }),
                         ),
                       ],
                     ),
@@ -191,10 +203,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           leadingIcon: Icon(Icons.exit_to_app),
                           onTextPressed: () {
                             ref.watch(appStateNotifierProvider.notifier).signOut();
-                            Navigator.of(context).pop();
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => LoginView(),
-                            ));
+                            // Navigator.of(context).pop();
+                            // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            //   builder: (context) => LoginView(),
+                            // ));
                           },
                           optionText: 'logout',
                         ),
@@ -209,48 +221,4 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       ),
     );
   }
-}
-
-class SettingsRow extends StatelessWidget {
-  final Widget leadingIcon;
-  final void Function()? onTextPressed;
-  final String optionText;
-  final Widget? endingWidget;
-  final Widget endIcon;
-  const SettingsRow({
-    super.key,
-    this.endIcon = const Icon(Icons.arrow_right, size: 40),
-    this.endingWidget,
-    required this.leadingIcon,
-    this.onTextPressed,
-    required this.optionText,
-  });
-  @override
-  Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: onTextPressed,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: leadingIcon),
-                Text(optionText),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: endIcon,
-              ),
-            ],
-          ),
-        ],
-      );
 }

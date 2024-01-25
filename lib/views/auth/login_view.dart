@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/provider/appstate.dart';
 import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth/signup_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';
-import 'package:huskies_app/views/widgets/navigation/nav_layer.dart';
 import 'package:huskies_app/views/widgets/textformfield.dart';
 
 class LoginView extends StatefulWidget {
@@ -104,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                       CustomButtonAuth(
                           title: "Anmelden",
                           onPress: () {
-                            if (ref.watch(appStateNotifierProvider).user == null) {
+                            if (ref.watch(statusProvider) != AuthState.loggedIn) {
                               Helpers.showLoadingView(context, advertising: 'Werbung');
                               Future(() => ref
                                   .watch(appStateNotifierProvider.notifier)
@@ -116,14 +117,8 @@ class _LoginViewState extends State<LoginView> {
                                       .then((value) => Navigator.of(context).pop());
                                 } else {
                                   Navigator.of(context).pop();
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ViewNavigator(),
-                                    ),
-                                  );
+                                  log('user logged in change view');
                                 }
-                                log('user: ${ref.watch(appStateNotifierProvider).user?.toJson()}');
                               });
                             }
                           }),

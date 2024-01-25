@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/constants/sponsors.dart';
+import 'package:huskies_app/provider/appstate.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/firebase_options.dart';
 import 'package:huskies_app/views/auth/login_view.dart';
-import 'package:huskies_app/views/widgets/navigation/nav_layer.dart';
+import 'package:huskies_app/views/widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/navigation/nav_layer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,11 +26,35 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final state = ref.read(appStateNotifierProvider);
-
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: state.user != null && state.user!.isLogIn ? const ViewNavigator() : const LoginView(),
-    );
+        debugShowCheckedModeBanner: false,
+        home: switch (ref.watch(statusProvider)) {
+          AuthState.loggedIn => ref.watch(authProvider).when(
+                loading: () => Material(
+                    child: Helpers.showLoadingView(context,
+                        advertising: sponsors.entries.last.value,
+                        image: sponsors.entries.last.key)),
+                error: (error, stackTrace) {
+                  return MaterialApp(
+                    home: Container(
+                      color: Colors.red,
+                      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                        Text('Error occurent $error'),
+                        const Padding(
+                            padding: EdgeInsets.all(8.0), child: BlueButton(text: 'Do Somthing')),
+                      ]),
+                    ),
+                  );
+                },
+                data: (data) =>
+                    const MaterialApp(debugShowCheckedModeBanner: false, home: ViewNavigator()),
+              ),
+          AuthState.onRegistation => Helpers.showLoadingView(
+              context,
+              advertising: sponsors.entries.last.value,
+              image: sponsors.entries.last.key,
+            ),
+          _ => const LoginView(),
+        });
   }
 }

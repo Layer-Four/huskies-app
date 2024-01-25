@@ -15,9 +15,6 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
       season: (json['season'] as List<dynamic>?)
           ?.map((e) => Season.fromJson(e as Map<String, dynamic>))
           .toList(),
-      user: json['user'] == null
-          ? null
-          : UserVM.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
@@ -25,5 +22,4 @@ Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
       'currentView': instance.currentView,
       'products': instance.products,
       'season': instance.season,
-      'user': instance.user,
     };

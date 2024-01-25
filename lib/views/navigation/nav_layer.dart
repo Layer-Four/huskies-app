@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/notifier.dart';
-import 'package:huskies_app/views/widgets/navigation/navbar_widget.dart';
+import 'package:huskies_app/views/navigation/navbar_widget.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});

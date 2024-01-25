@@ -52,14 +52,15 @@ class AuthRepository implements AuthInterface {
   }
 
   @override
-  Future<UserVM?> signInWithEmailPassword({required String email, required String password}) async {
+  Future<UserModel?> signInWithEmailPassword(
+      {required String email, required String password}) async {
     try {
       final response = await _authService.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (response.user != null) {
-        return UserVM(
+        return UserModel(
           email: response.user!.email ?? 'beispiel@example.etc',
           isLogIn: true,
           name: response.user!.displayName,

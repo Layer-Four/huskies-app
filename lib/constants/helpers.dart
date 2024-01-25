@@ -97,7 +97,7 @@ class Helpers {
     }
   }
 
-  static void showLoadingView(BuildContext context, {String? image, required String advertising}) =>
+  static showLoadingView(BuildContext context, {String? image, required String advertising}) =>
       showDialog(
         context: context,
         builder: (context) => Container(

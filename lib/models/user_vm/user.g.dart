@@ -6,7 +6,7 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserVM _$UserVMFromJson(Map<String, dynamic> json) => UserVM(
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       email: json['email'] as String,
       hasPaymentData: json['hasPaymentData'] as bool? ?? false,
       isLogIn: json['isLogIn'] as bool? ?? false,
@@ -19,7 +19,7 @@ UserVM _$UserVMFromJson(Map<String, dynamic> json) => UserVM(
       uID: json['uID'] as String,
     );
 
-Map<String, dynamic> _$UserVMToJson(UserVM instance) => <String, dynamic>{
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'email': instance.email,
       'hasPaymentData': instance.hasPaymentData,
       'isLogIn': instance.isLogIn,
