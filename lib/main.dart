@@ -25,8 +25,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return Material(
-        child: switch (ref.watch(statusProvider)) {
+    return switch (ref.watch(statusProvider)) {
       AuthState.loggedIn => ref.watch(authProvider).when(
             loading: () => Helpers.showLoadingView(context,
                 advertising: sponsors.entries.last.value, image: sponsors.entries.last.key),
@@ -50,6 +49,6 @@ class MyApp extends ConsumerWidget {
           image: sponsors.entries.last.key,
         ),
       _ => const LoginView(),
-    });
+    };
   }
 }
