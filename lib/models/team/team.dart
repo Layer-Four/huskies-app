@@ -1,14 +1,16 @@
-import 'package:huskies_app/models/team/player.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:huskies_app/models/player_model/player.dart';
+
+part 'team.freezed.dart';
 part 'team.g.dart';
 
-@JsonSerializable()
-class Team {
-  final String name;
-  final int position;
-  final Map statistic;
-  final List<Player> players;
-  const Team(this.name, this.position, this.statistic, this.players);
+@freezed
+class Team with _$Team {
+  const factory Team({
+    required String name,
+    required int tablePosition,
+    required Map statistic,
+    required List<Player> players,
+  }) = _Team;
   factory Team.fromJson(Map<String, dynamic> json) => _$TeamFromJson(json);
-  Map<String, dynamic> toJson() => _$TeamToJson(this);
 }

@@ -6,20 +6,18 @@ part of 'appstate.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
+_$AppStateImpl _$$AppStateImplFromJson(Map<String, dynamic> json) =>
+    _$AppStateImpl(
       currentSeason: json['currentSeason'] == null
           ? null
           : Season.fromJson(json['currentSeason'] as Map<String, dynamic>),
-      currentView: json['currentView'] as int?,
-      products: json['products'],
       season: (json['season'] as List<dynamic>?)
           ?.map((e) => Season.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
+Map<String, dynamic> _$$AppStateImplToJson(_$AppStateImpl instance) =>
+    <String, dynamic>{
       'currentSeason': instance.currentSeason,
-      'currentView': instance.currentView,
-      'products': instance.products,
       'season': instance.season,
     };

@@ -8,7 +8,9 @@ import 'package:huskies_app/views/widgets/user_icon_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends ConsumerStatefulWidget {
-  const HomeView({super.key});
+  static const HomeView _instance = HomeView._internal();
+  factory HomeView() => _instance;
+  const HomeView._internal();
 
   @override
   ConsumerState<HomeView> createState() => _HomeViewState();

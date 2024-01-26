@@ -9,7 +9,7 @@ class NavBarIconWidget extends StatelessWidget {
       {super.key,
       required this.icon,
       required this.name,
-      required this.onPressed,
+      this.onPressed,
       this.isCurrentView = false});
 
   @override
@@ -32,11 +32,7 @@ class NavBarIconWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    size: 25,
-                    color: Colors.white,
-                    icon,
-                  ),
+                  Icon(size: 25, color: Colors.white, icon),
                   Text(
                     name,
                     style: const TextStyle(

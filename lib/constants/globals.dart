@@ -49,3 +49,22 @@ Widget fakeHomeView() {
     ),
   );
 }
+
+enum AuthState {
+  authificated,
+  loggedIn,
+  loggedOut,
+  onError,
+  onRegistation,
+  unAuthificated,
+}
+
+enum ViewPage {
+  forgetpassword,
+  login,
+  home,
+  register,
+  shop,
+  table,
+  ticket,
+}

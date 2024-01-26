@@ -203,7 +203,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           leadingIcon: Icon(Icons.exit_to_app),
                           onTextPressed: () {
                             ref.watch(appStateNotifierProvider.notifier).signOut();
-                            // Navigator.of(context).pop();
+
+                            Navigator.of(context).pop();
                             // Navigator.of(context).pushReplacement(MaterialPageRoute(
                             //   builder: (context) => LoginView(),
                             // ));

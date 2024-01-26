@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/constants/globals.dart';
-import 'package:huskies_app/provider/notifier.dart';
 import 'package:huskies_app/views/widgets/shop_widgets/item_details.dart';
 
 class ShopView extends ConsumerWidget {
@@ -10,7 +9,6 @@ class ShopView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.read(appStateNotifierProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,7 +44,7 @@ class ShopView extends ConsumerWidget {
             crossAxisCount: 2,
             mainAxisExtent: 250,
           ),
-          itemCount: state.products.length,
+          itemCount: productsList.length,
           itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {

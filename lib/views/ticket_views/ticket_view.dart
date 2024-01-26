@@ -9,7 +9,9 @@ import 'package:huskies_app/views/widgets/ticket_widgets/red_text_button.dart';
 import 'package:huskies_app/views/widgets/user_icon_widget.dart';
 
 class TicketView extends ConsumerWidget {
-  const TicketView({super.key});
+  static const TicketView _instance = TicketView._();
+  factory TicketView() => _instance;
+  const TicketView._();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,14 +1,11 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/provider/appstate.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/auth.dart';
-import 'package:huskies_app/views/home/home_view.dart';
-import 'package:huskies_app/views/shop/shop_view.dart';
-import 'package:huskies_app/views/ticket_views/ticket_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../views/widgets/statistic_view/match_statisctics_view.dart';
 part 'notifier.g.dart';
 
 //   void sendEmailVerification() {
@@ -47,18 +44,8 @@ class AppStateNotifier extends _$AppStateNotifier {
   @override
   AppState build() {
     _authService.getAuthProvider;
-    return AppState(
-      views: [
-        const HomeView(),
-        const TicketView(),
-        const MatchStatisticsView(season: 'Saison 23/24'),
-        const ShopView(),
-      ],
-    );
+    return AppState();
   }
-
-  void changeView({required int nextView}) =>
-      state = state.copyWith(currentViewIndex: () => nextView);
 
 // TODO: do this in AuthNotivier?
   Stream<User?> reloadUser() async* {
@@ -101,16 +88,23 @@ class AppStateNotifier extends _$AppStateNotifier {
   //   );
   // }
 
-  Future<bool> signInWithEmailAndPassword({required String email, required String password}) async {
-    if (!validInput(email, password)) return false;
+  Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
+    if (!validInput(email, password)) {
+      Future.delayed(const Duration(seconds: 2)).then((value) {});
+      return;
+    }
     final user = await _authService.signInWithEmailPassword(email: email, password: password);
-    ref.read(authProvider).maybeMap(
-          orElse: () => null,
-          data: (_) {
-            ref.read(statusProvider.notifier).state = AuthState.loggedIn;
-          },
-        );
-    return user != null;
+    if (user != null) {
+      if (user.isLogIn) {
+        ref.read(statusProvider.notifier).state = AuthState.loggedIn;
+        return;
+      }
+      // if (user) {}
+    } // ref.read(authProvider).maybeMap(
+    //       orElse: () => null,
+    //       data: (_) {
+    //       },
+    //     );
   }
 
   //? on Staring app there is a Firebase instance in console with a uid? is this a logged in user?

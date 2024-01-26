@@ -1,12 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/constants/helpers.dart';
-import 'package:huskies_app/provider/appstate.dart';
 import 'package:huskies_app/provider/notifier.dart';
-import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth/signup_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/widgets/textformfield.dart';
@@ -104,24 +99,11 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       CustomButtonAuth(
                           title: "Anmelden",
-                          onPress: () {
-                            if (ref.watch(statusProvider) != AuthState.loggedIn) {
-                              Helpers.showLoadingView(context, advertising: 'Werbung');
-                              Future(() => ref
-                                  .watch(appStateNotifierProvider.notifier)
-                                  .signInWithEmailAndPassword(
-                                      email: email.text,
-                                      password: password.text)).then((bool isSuccess) {
-                                if (!isSuccess) {
-                                  Future.delayed(const Duration(seconds: 2))
-                                      .then((value) => Navigator.of(context).pop());
-                                } else {
-                                  Navigator.of(context).pop();
-                                  log('user logged in change view');
-                                }
-                              });
-                            }
-                          }),
+                          onPress: () => ref
+                              .watch(appStateNotifierProvider.notifier)
+                              .signInWithEmailAndPassword(
+                                  email: email.text, password: password.text)),
+
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: GoogleLogInButtonWidget(),

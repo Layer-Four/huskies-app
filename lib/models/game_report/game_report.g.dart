@@ -6,11 +6,12 @@ part of 'game_report.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GameReport _$GameReportFromJson(Map<String, dynamic> json) => GameReport(
-      json['report'] as Map<String, dynamic>,
+_$GameReportImpl _$$GameReportImplFromJson(Map<String, dynamic> json) =>
+    _$GameReportImpl(
+      report: json['report'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$GameReportToJson(GameReport instance) =>
+Map<String, dynamic> _$$GameReportImplToJson(_$GameReportImpl instance) =>
     <String, dynamic>{
       'report': instance.report,
     };

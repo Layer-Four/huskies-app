@@ -172,6 +172,8 @@ class AuthRepository implements AuthInterface {
         throw 'Wrong password';
       case 'invalid-credential':
         throw 'The supplied auth credential is incorrect, malformed or has expired.';
+      case "channel-error":
+        throw 'Unable to establish connection on channel.';
       default:
         throw 'es ist etwas schief gelaufen';
     }

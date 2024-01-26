@@ -11,10 +11,10 @@ class UserIconWidget extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(45)),
+        decoration: const BoxDecoration(shape: BoxShape.circle),
         child: Image.asset(
           'assets/$image',
-          width: 45,
+          width: 50,
         ),
       ),
     );

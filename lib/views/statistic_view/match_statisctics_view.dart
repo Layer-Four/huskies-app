@@ -1,16 +1,18 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/views/widgets/headline_widget.dart';
 import 'package:huskies_app/views/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/views/widgets/score_board_widgets/scoreboard_footer_widget.dart';
 import 'package:huskies_app/views/widgets/score_board_widgets/scoreboard_widget.dart';
+import 'package:huskies_app/views/widgets/user_icon_widget.dart';
 
 class MatchStatisticsView extends ConsumerWidget {
-  final String season;
-
+  static const MatchStatisticsView _instance = MatchStatisticsView._();
+  factory MatchStatisticsView() {
+    return _instance;
+  }
   // const MatchStatisticsView();
-  const MatchStatisticsView({super.key, required this.season});
+  const MatchStatisticsView._();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,40 +20,33 @@ class MatchStatisticsView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              season,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            const SizedBox(width: 12),
-            Container(
-              width: 50,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(shape: BoxShape.circle),
-              child: Image.asset(
-                'assets/da.jpg',
-                fit: BoxFit.cover,
+        title: const HeadWidget(
+          center: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                season,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-            ),
-          ],
+              UserIconWidget(image: 'da.jpg'),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: const Column(
             children: [
-              const MatchCard(
+              MatchCard(
                 homeScore: 3,
                 visitorScore: 1,
                 homeImage: 'huskies.png',
                 visitorImage: 'fuechse.png',
               ),
-              const SizedBox(height: 12),
-              const ScoreboardViewWidget(),
-              const SizedBox(height: 6),
+              SizedBox(height: 12),
+              ScoreboardViewWidget(),
+              SizedBox(height: 6),
               GameStaticsFooterWidget(season: season)
             ],
           ),

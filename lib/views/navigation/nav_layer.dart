@@ -1,52 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
-import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/views/home/home_view.dart';
 import 'package:huskies_app/views/navigation/navbar_widget.dart';
+import 'package:huskies_app/views/shop/shop_view.dart';
+import 'package:huskies_app/views/ticket_views/ticket_view.dart';
+import 'package:huskies_app/views/statistic_view/match_statisctics_view.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(appStateNotifierProvider);
-    final notifier = ref.read(appStateNotifierProvider.notifier);
+    final view = ref.watch(viewProvider);
+    final viewNotifier = ref.read(viewProvider.notifier);
     return SafeArea(
       child: Scaffold(
-        body: switch (state.currentView) {
-          1 => state.view[1],
-          2 => state.view[2],
-          3 => state.view[3],
-          _ => state.view.first
+        body: switch (view) {
+          ViewPage.ticket => TicketView(),
+          ViewPage.table => MatchStatisticsView(),
+          ViewPage.shop => const ShopView(),
+          _ => HomeView()
         },
         bottomNavigationBar: NavigationBar(
           height: MediaQuery.of(context).size.height / 10,
           backgroundColor: const Color.fromARGB(255, 101, 132, 155),
           destinations: [
             NavBarIconWidget(
-              icon: Icons.home_outlined,
-              name: 'Home',
-              isCurrentView: state.currentView == 0,
-              onPressed: () => notifier.changeView(nextView: 0),
-            ),
+                icon: Icons.home_outlined,
+                name: 'Home',
+                isCurrentView: view == ViewPage.home,
+                onPressed: () => viewNotifier.state = ViewPage.home),
             NavBarIconWidget(
                 icon: Icons.bookmark_border_outlined,
                 name: 'Tickets',
-                isCurrentView: state.currentView == 1,
-                onPressed: () => notifier.changeView(nextView: 1)),
+                isCurrentView: view == ViewPage.ticket,
+                onPressed: () => viewNotifier.state = ViewPage.ticket),
             NavBarIconWidget(
                 icon: Icons.mail_outline,
                 name: 'Ergebnisse',
-                isCurrentView: state.currentView == 2,
-                onPressed: () => notifier.changeView(nextView: 2)),
+                isCurrentView: view == ViewPage.table,
+                onPressed: () => viewNotifier.state = ViewPage.table),
             NavBarIconWidget(
               icon: Icons.card_giftcard,
               name: 'shop',
-              isCurrentView: state.currentView == 3,
+              isCurrentView: view == ViewPage.shop,
               onPressed: () => Helpers.loadAndNavigate(
                   context: context,
                   ref: ref,
-                  nextView: 3,
+                  nextView: ViewPage.shop,
                   advertising: 'Hier könnte Ihre Werbung stehen',
                   image: 'huskies.png'),
             ),

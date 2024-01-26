@@ -6,18 +6,19 @@ part of 'team.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Team _$TeamFromJson(Map<String, dynamic> json) => Team(
-      json['name'] as String,
-      json['position'] as int,
-      json['statistic'] as Map<String, dynamic>,
-      (json['players'] as List<dynamic>)
+_$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
+      name: json['name'] as String,
+      tablePosition: json['tablePosition'] as int,
+      statistic: json['statistic'] as Map<String, dynamic>,
+      players: (json['players'] as List<dynamic>)
           .map((e) => Player.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$TeamToJson(Team instance) => <String, dynamic>{
+Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
-      'position': instance.position,
+      'tablePosition': instance.tablePosition,
       'statistic': instance.statistic,
       'players': instance.players,
     };
