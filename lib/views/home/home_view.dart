@@ -26,7 +26,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 22, 63, 92),
+          backgroundColor: AppTheme.customButton,
           toolbarHeight: 120,
           title: Expanded(
             child: Align(
@@ -51,25 +51,20 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   //   // ),
                   // ),
                   const Text("Hallo David",
-                      style: TextStyle(
-                        letterSpacing: 0.5,
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  const Text("Willkommen zurück!", style: TextStyle(color: Colors.white)),
+                      style: AppTheme.textHeaderHome),
+                  const Text("Willkommon zurück!", style: AppTheme.whiteTextStyle),
                 ],
               ),
             ),
           ),
         ),
         body: Container(
-          color: const Color.fromARGB(255, 22, 63, 92),
+          color: AppTheme.customButton,
           child: Column(
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
+                  padding: AppTheme.hugePaddingBottom,
                   child: CarouselSlider.builder(
                     itemCount: 3,
                     itemBuilder: (context, index, realIndex) {
@@ -93,46 +88,43 @@ class _HomeViewState extends ConsumerState<HomeView> {
               //       index: indexUpperCarousel,
               //       isBackgroundColor: Colors.white),
               // ),
-              /*........Trikots Section...............*/
+              /*........Trikos Section...............*/
 
               Container(
-                color: Colors.white,
+                color: AppTheme.white,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: AppTheme.mainCenter,
                   children: [
                     Container(
                       height: 5,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25),
-                          child: Image.asset(
-                            'assets/second.png',
-                            width: 80,
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: AppTheme.mainCenter,
+                        children: [
+                          Padding(
+                            padding: AppTheme.hugePaddingLeft,
+                            child: Image.asset(
+                              'assets/second.png',
+                              width: 80,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4, right: 4),
-                          child: Image.asset('assets/first.png', width: 80),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 25),
-                          child: Image.asset('assets/first.png', width: 80),
-                        ),
-                      ],
+                          Padding(
+                            padding: AppTheme.smallPaddingLeftRight,
+                            child: Image.asset('assets/first.png', width: 80),
+                          ),
+                          Padding(
+                            padding: AppTheme.hugePaddingRight,
+                            child: Image.asset('assets/first.png', width: 80),
+                          ),
+                        ],
+                      ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(top: 1, bottom: 4),
+                      padding: AppTheme.smallPaddingTopBottom,
                       child: Text(
                         'Unsere neuen Trikots sind da!',
-                        style: TextStyle(
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 22, 63, 92),
-                        ),
+                        style: AppTheme.textTrikots,
                       ),
                     ),
                     TextButton(
@@ -141,14 +133,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         width: 85,
                         height: 30,
                         padding: AppTheme.mediumPadding,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 22, 63, 92),
-                          borderRadius: BorderRadius.circular(7),
-                        ),
+                        decoration: AppTheme.homePageButton,
                         child: const Center(
                           child: Text(
                             "Shop",
-                            style: TextStyle(color: Colors.white, fontSize: 11),
+                            style: AppTheme.textDefaultSmall11,
                           ),
                         ),
                       ),
@@ -160,19 +149,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
               //Puzzle Section===================================
 
               Container(
-                color: const Color.fromARGB(255, 168, 199, 224),
+                color: AppTheme.huskiesPuzzle,
                 child: Stack(
                   children: [
-                    Opacity(
-                      opacity: 0.2,
-                      child: Image.asset(
-                        'assets/puzzle_huskies.png',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        // scale: 0.1,
-                        // height: 200,
-                      ),
-                    ),
+                    AppTheme.puzzleHuskiesImg,
                     // Container(
                     //   color: Color.fromARGB(207, 213, 236, 255),
                     // ),
@@ -181,7 +161,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       left: 0,
                       right: 0,
                       top: 20,
-                      child: SizedBox(
+                      child: Container(
                         // padding: const EdgeInsets.all(15),
                         width: double.infinity,
                         child: Column(
@@ -189,24 +169,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           children: [
                             const Text(
                               "Kassel Huskies",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
+                              style: AppTheme.textHuskiesHeader,
                             ),
                             const Text(
                               "NFT-Puzzle",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
+                              style: AppTheme.textHuskiesHeader,
                             ),
                             const Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: TextStyle(color: Color.fromARGB(255, 14, 31, 15)),
-                              textAlign: TextAlign.center,
+                              style: AppTheme.textHuskies,
+                              textAlign: AppTheme.textCenter,
                             ),
                             TextButton(
                               onPressed: () {},
@@ -214,17 +186,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 width: 85,
                                 height: 30,
                                 padding: AppTheme.mediumPadding,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 22, 63, 92),
-                                    borderRadius: BorderRadius.circular(7)),
+                                decoration: AppTheme.homePageButton,
                                 child: const Center(
                                   child: Text(
                                     "Mehr Infos",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      // fontWeight: FontWeight.bold
-                                    ),
+                                    style: AppTheme.textDefaultSmall11,
                                   ),
                                 ),
                               ),
