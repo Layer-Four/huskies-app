@@ -50,8 +50,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   //   ),
                   //   // ),
                   // ),
-                  const Text("Hallo David",
-                      style: AppTheme.textHeaderHome),
+                  const Text("Hallo David", style: AppTheme.textHeaderHome),
                   const Text("Willkommon zurück!", style: AppTheme.whiteTextStyle),
                 ],
               ),
@@ -98,27 +97,25 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     Container(
                       height: 5,
                     ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: AppTheme.mainCenter,
-                        children: [
-                          Padding(
-                            padding: AppTheme.hugePaddingLeft,
-                            child: Image.asset(
-                              'assets/second.png',
-                              width: 80,
-                            ),
+                    Row(
+                      mainAxisAlignment: AppTheme.mainCenter,
+                      children: [
+                        Padding(
+                          padding: AppTheme.hugePaddingLeft,
+                          child: Image.asset(
+                            'assets/second.png',
+                            width: 80,
                           ),
-                          Padding(
-                            padding: AppTheme.smallPaddingLeftRight,
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                          Padding(
-                            padding: AppTheme.hugePaddingRight,
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: AppTheme.smallPaddingLeftRight,
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                        Padding(
+                          padding: AppTheme.hugePaddingRight,
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                      ],
                     ),
                     const Padding(
                       padding: AppTheme.smallPaddingTopBottom,
@@ -161,7 +158,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       left: 0,
                       right: 0,
                       top: 20,
-                      child: Container(
+                      child: SizedBox(
                         // padding: const EdgeInsets.all(15),
                         width: double.infinity,
                         child: Column(

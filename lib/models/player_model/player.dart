@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:huskies_app/models/team/team.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'player.freezed.dart';
 part 'player.g.dart';
 

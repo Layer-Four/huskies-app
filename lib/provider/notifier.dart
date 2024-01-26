@@ -44,7 +44,7 @@ class AppStateNotifier extends _$AppStateNotifier {
   @override
   AppState build() {
     _authService.getAuthProvider;
-    return AppState();
+    return const AppState();
   }
 
 // TODO: do this in AuthNotivier?
