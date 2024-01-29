@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/constants/sponsors.dart';
+import 'package:huskies_app/provider/season_provider/authstate_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/firebase_options.dart';
 import 'package:huskies_app/views/auth/login_view.dart';
@@ -26,9 +27,10 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return switch (ref.watch(statusProvider)) {
-      AuthState.loggedIn => ref.watch(authProvider).when(
-            loading: () => Helpers.showLoadingView(context,
-                advertising: sponsors.entries.last.value, image: sponsors.entries.last.key),
+      AuthState.loggedIn => ref.watch(authStateProvider).when(
+            loading: () => const CircularProgressIndicator(),
+            // Helpers.showLoadingView(context,
+            //     advertising: sponsors.entries.last.value, image: sponsors.entries.last.key),
             error: (error, stackTrace) {
               return Helpers.showLoadingView(
                 context,
@@ -37,7 +39,7 @@ class MyApp extends ConsumerWidget {
                 button: const BlueButton(text: 'Do Somthing'),
               );
             },
-            data: (data) => const ViewNavigator(),
+            data: (user) => const ViewNavigator(),
           ),
       AuthState.onRegistation => Helpers.showLoadingView(
           context,

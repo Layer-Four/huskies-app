@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/models/user_vm/user.dart';
-import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/provider/season_provider/authstate_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/widgets/blue_button_widget.dart';
 import 'package:huskies_app/views/widgets/settingsrow_widget.dart';
@@ -23,7 +23,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   UserModel? userModel;
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(authProvider);
+    final user = ref.watch(authStateProvider);
     user.when(
       error: (error, stackTrace) => log('error on Userview: $error ,  stack trace: $stackTrace'),
       loading: () {},
@@ -176,7 +176,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               ),
             ),
             Card(
-              elevation: 6,
+              elevation: 7,
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: Container(
                 decoration:
@@ -202,12 +202,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           endIcon: SizedBox(),
                           leadingIcon: Icon(Icons.exit_to_app),
                           onTextPressed: () {
-                            ref.watch(appStateNotifierProvider.notifier).signOut();
-
+                            ref.watch(statusProvider.notifier).signOut();
                             Navigator.of(context).pop();
-                            // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            //   builder: (context) => LoginView(),
-                            // ));
                           },
                           optionText: 'logout',
                         ),

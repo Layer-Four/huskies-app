@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth/signup_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/widgets/textformfield.dart';
@@ -100,7 +100,7 @@ class _LoginViewState extends State<LoginView> {
                       CustomButtonAuth(
                           title: "Anmelden",
                           onPress: () => ref
-                              .watch(appStateNotifierProvider.notifier)
+                              .watch(statusProvider.notifier)
                               .signInWithEmailAndPassword(
                                   email: email.text, password: password.text)),
 

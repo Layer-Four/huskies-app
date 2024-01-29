@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/provider/notifier.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth/login_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/widgets/textformfield.dart';
@@ -137,7 +137,7 @@ class _SignupState extends State<Signup> {
                             rightDotColor: Colors.blueGrey,
                             size: 100);
                         await ref
-                            .watch(appStateNotifierProvider.notifier)
+                            .watch(statusProvider.notifier)
                             .registerUserWithEmailAndPassword(
                                 email: email.text, password: password.text)
                             .then((value) => value ? Navigator.of(context).pop() : null);

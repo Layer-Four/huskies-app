@@ -120,7 +120,7 @@ class AuthRepository implements AuthInterface {
   @override
   Future<void> deleteUser({String? password}) async {
     // try {
-    //   //Before deleting account user needs to login again
+    //Before deleting account user needs to login again
     //   String? userLoginService = getAuthProvider();
     //   if (userLoginService == 'password') {
     //     await signInWithEmailAndPassword(

@@ -1,51 +1,12 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/globals.dart';
-import 'package:huskies_app/provider/appstate.dart';
-import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/auth.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'notifier.g.dart';
-
-//   void sendEmailVerification() {
-//     try {
-//       _auth.sendEmailVerification();
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw "Email can't be sendet";
-//     }
-//   }
-
-//   void resetPassword({required String email}) {
-//     try {
-//       _auth.resetPassword(email: email);
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw 'Error on reset password';
-//     }
-//   }
-
-//   void signOut() {
-//     try {
-//       // await _googleSignIn.signOut();
-//       _auth.signOut();
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw 'error on sign out';
-//     }
-//   }
-
-// }
-@riverpod
-class AppStateNotifier extends _$AppStateNotifier {
-  AppStateNotifier();
+class AuthNotifier extends StateNotifier<AuthState> {
+  AuthNotifier() : super(AuthState.unAuthificated);
   final _authService = AuthRepository();
-  @override
-  AppState build() {
-    _authService.getAuthProvider;
-    return const AppState();
-  }
 
 // TODO: do this in AuthNotivier?
   Stream<User?> reloadUser() async* {
@@ -62,7 +23,7 @@ class AppStateNotifier extends _$AppStateNotifier {
     try {
       // await _googleSignIn.signOut();
       _authService.signOut();
-      ref.read(statusProvider.notifier).state = AuthState.loggedOut;
+      state = AuthState.loggedOut;
       // log('state is :${state.toJson()}');
     } catch (e) {
       _authService.logger.e(e.toString());
@@ -96,7 +57,7 @@ class AppStateNotifier extends _$AppStateNotifier {
     final user = await _authService.signInWithEmailPassword(email: email, password: password);
     if (user != null) {
       if (user.isLogIn) {
-        ref.read(statusProvider.notifier).state = AuthState.loggedIn;
+        state = AuthState.loggedIn;
         return;
       }
       // if (user) {}
@@ -119,6 +80,7 @@ class AppStateNotifier extends _$AppStateNotifier {
   Future<bool> registerUserWithEmailAndPassword(
       {required String email, required String password}) async {
     final isvalidInput = validInput(email, password);
+
     if (isvalidInput) {
       _authService.registerUserWithEmailAndPassword(email: email, password: password);
     }
@@ -140,3 +102,31 @@ class AppStateNotifier extends _$AppStateNotifier {
     return false;
   }
 }
+
+  //   void sendEmailVerification() {
+//     try {
+//       _auth.sendEmailVerification();
+//     } catch (e) {
+//       _auth.logger.e(e.toString());
+//       throw "Email can't be sendet";
+//     }
+//   }
+
+//   void resetPassword({required String email}) {
+//     try {
+//       _auth.resetPassword(email: email);
+//     } catch (e) {
+//       _auth.logger.e(e.toString());
+//       throw 'Error on reset password';
+//     }
+//   }
+
+//   void signOut() {
+//     try {
+//       // await _googleSignIn.signOut();
+//       _auth.signOut();
+//     } catch (e) {
+//       _auth.logger.e(e.toString());
+//       throw 'error on sign out';
+//     }
+//   }

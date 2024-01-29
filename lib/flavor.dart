@@ -5,3 +5,11 @@
 */
 
 enum Flavor { development, production, staging }
+
+class Config {
+  static Flavor? appFlavor;
+
+  // static String get apiUrl{
+
+  // }
+}

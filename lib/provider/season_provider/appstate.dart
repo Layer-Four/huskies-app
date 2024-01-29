@@ -5,11 +5,11 @@ part 'appstate.freezed.dart';
 part 'appstate.g.dart';
 
 @freezed
-class AppState with _$AppState {
-  const factory AppState({
+class SeasonState with _$AppState {
+  const factory SeasonState({
     Season? currentSeason,
     List<Season>? season,
   }) = _AppState;
 
-  factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
+  factory SeasonState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 }

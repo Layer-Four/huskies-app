@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AppState _$AppStateFromJson(Map<String, dynamic> json) {
+SeasonState _$AppStateFromJson(Map<String, dynamic> json) {
   return _AppState.fromJson(json);
 }
 
@@ -25,14 +25,13 @@ mixin _$AppState {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppStateCopyWith<AppState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AppStateCopyWith<SeasonState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppStateCopyWith<$Res> {
-  factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
-      _$AppStateCopyWithImpl<$Res, AppState>;
+  factory $AppStateCopyWith(SeasonState value, $Res Function(SeasonState) then) =
+      _$AppStateCopyWithImpl<$Res, SeasonState>;
   @useResult
   $Res call({Season? currentSeason, List<Season>? season});
 
@@ -40,8 +39,7 @@ abstract class $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
-    implements $AppStateCopyWith<$Res> {
+class _$AppStateCopyWithImpl<$Res, $Val extends SeasonState> implements $AppStateCopyWith<$Res> {
   _$AppStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -81,10 +79,8 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 }
 
 /// @nodoc
-abstract class _$$AppStateImplCopyWith<$Res>
-    implements $AppStateCopyWith<$Res> {
-  factory _$$AppStateImplCopyWith(
-          _$AppStateImpl value, $Res Function(_$AppStateImpl) then) =
+abstract class _$$AppStateImplCopyWith<$Res> implements $AppStateCopyWith<$Res> {
+  factory _$$AppStateImplCopyWith(_$AppStateImpl value, $Res Function(_$AppStateImpl) then) =
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -95,11 +91,9 @@ abstract class _$$AppStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AppStateImplCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$AppStateImpl>
+class __$$AppStateImplCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$AppStateImpl>
     implements _$$AppStateImplCopyWith<$Res> {
-  __$$AppStateImplCopyWithImpl(
-      _$AppStateImpl _value, $Res Function(_$AppStateImpl) _then)
+  __$$AppStateImplCopyWithImpl(_$AppStateImpl _value, $Res Function(_$AppStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -124,11 +118,9 @@ class __$$AppStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppStateImpl with DiagnosticableTreeMixin implements _AppState {
-  const _$AppStateImpl({this.currentSeason, final List<Season>? season})
-      : _season = season;
+  const _$AppStateImpl({this.currentSeason, final List<Season>? season}) : _season = season;
 
-  factory _$AppStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AppStateImplFromJson(json);
+  factory _$AppStateImpl.fromJson(Map<String, dynamic> json) => _$$AppStateImplFromJson(json);
 
   @override
   final Season? currentSeason;
@@ -168,8 +160,8 @@ class _$AppStateImpl with DiagnosticableTreeMixin implements _AppState {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currentSeason, const DeepCollectionEquality().hash(_season));
+  int get hashCode =>
+      Object.hash(runtimeType, currentSeason, const DeepCollectionEquality().hash(_season));
 
   @JsonKey(ignore: true)
   @override
@@ -185,13 +177,11 @@ class _$AppStateImpl with DiagnosticableTreeMixin implements _AppState {
   }
 }
 
-abstract class _AppState implements AppState {
-  const factory _AppState(
-      {final Season? currentSeason,
-      final List<Season>? season}) = _$AppStateImpl;
+abstract class _AppState implements SeasonState {
+  const factory _AppState({final Season? currentSeason, final List<Season>? season}) =
+      _$AppStateImpl;
 
-  factory _AppState.fromJson(Map<String, dynamic> json) =
-      _$AppStateImpl.fromJson;
+  factory _AppState.fromJson(Map<String, dynamic> json) = _$AppStateImpl.fromJson;
 
   @override
   Season? get currentSeason;
@@ -199,6 +189,5 @@ abstract class _AppState implements AppState {
   List<Season>? get season;
   @override
   @JsonKey(ignore: true)
-  _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith => throw _privateConstructorUsedError;
 }
