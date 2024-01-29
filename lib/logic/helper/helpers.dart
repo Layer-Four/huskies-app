@@ -102,7 +102,7 @@ class Helpers {
       showDialog(
         context: context,
         builder: (context) => Container(
-            padding: AppTheme.mediumPadding,
+            padding: AppTheme.paddingM,
             color: Colors.white,
             alignment: Alignment.center,
             child: Column(

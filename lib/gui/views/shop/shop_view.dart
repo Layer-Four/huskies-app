@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/logic/globals.dart';
 import 'package:huskies_app/gui/views/widgets/shop_widgets/item_details.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class ShopView extends ConsumerWidget {
   const ShopView({super.key});
@@ -12,27 +13,23 @@ class ShopView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.read(appStateNotifierProvider);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppTheme.white,
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(
             FontAwesomeIcons.basketShopping,
-            color: Colors.black,
+            color: AppTheme.black,
           ),
         ),
         title: const Text(
           'Shop',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-            fontStyle: FontStyle.normal,
-          ),
+          style: AppTheme.titleBlack,
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.only(right: 18),
+            padding: AppTheme.defaultHorizontalDistance,
             child: CircleAvatar(
               backgroundImage: AssetImage("assets/da.jpg"),
             ),
@@ -40,7 +37,7 @@ class ShopView extends ConsumerWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: AppTheme.paddingL,
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -57,7 +54,7 @@ class ShopView extends ConsumerWidget {
                 );
               },
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: AppTheme.crossStart,
                 children: [
                   // AspectRatio(
                   //   aspectRatio: 1,
@@ -67,25 +64,18 @@ class ShopView extends ConsumerWidget {
                     // ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: AppTheme.paddingM,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: AppTheme.crossStart,
                       children: [
                         Text(
                           productsList[i]['title']!,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: AppTheme.textDefaultSmall10Black,
                         ),
                         const SizedBox(height: 6),
                         Text(
                           productsList[i]['price']!,
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: AppTheme.textDefaultSmallW500Red,
                         ),
                       ],
                     ),

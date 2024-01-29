@@ -32,10 +32,10 @@ class _LoginViewState extends State<LoginView> {
             body: Stack(
               children: [
                 AppTheme.backgroundImageHomePage,
-                Container(color: AppTheme.container),
+                Container(color: AppTheme.containerBlack),
                 Center(
                   child: Container(
-                    padding: AppTheme.hugePadding,
+                    padding: AppTheme.paddingXL,
                     child: ListView(children: [
                       Column(
                         crossAxisAlignment: AppTheme.crossStart,
@@ -59,15 +59,15 @@ class _LoginViewState extends State<LoginView> {
                             style: AppTheme.textDefault,
                           ),
                           AppTheme.sizedBox14,
-                          const Text("E-Mail", style: AppTheme.logInTextSize14),
+                          const Text("E-Mail", style: AppTheme.textDefault),
                           Padding(
-                            padding: AppTheme.bigPadding,
+                            padding: AppTheme.paddingM,
                             child: CustomeTextForm(hinttext: "Email", mycontroller: email),
                           ),
-                          const Text("Passwort", style: AppTheme.logInTextSize14),
+                          const Text("Passwort", style: AppTheme.textDefault),
 
                           Padding(
-                            padding: AppTheme.mediumPadding,
+                            padding: AppTheme.paddingM,
                             child: Column(
                               children: [
                                 CustomeTextForm(
@@ -75,8 +75,9 @@ class _LoginViewState extends State<LoginView> {
                                   mycontroller: password,
                                   isPassword: true,
                                 ),
+                                AppTheme.sizedBox14,
                                 Container(
-                                  margin: AppTheme.bigPaddingTopButton,
+                                  //margin: AppTheme.bigPaddingTopButton,
                                   alignment: Alignment.bottomRight,
                                   child: TextButton(
                                     onPressed: () {
@@ -84,7 +85,7 @@ class _LoginViewState extends State<LoginView> {
                                           MaterialPageRoute(builder: (context) => const Signup()));
                                     },
                                     child: const Text("Passwort vergessen?",
-                                        style: AppTheme.logInTextSize10),
+                                        style: AppTheme.textDefaultSmall10),
                                   ),
                                 ),
                               ],
@@ -118,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
                             }
                           }),
                       const Padding(
-                        padding: AppTheme.hugePadding,
+                        padding: AppTheme.paddingXL,
                         child: GoogleLogInButtonWidget(),
                       ),
                       // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
@@ -131,11 +132,11 @@ class _LoginViewState extends State<LoginView> {
                           child: Text.rich(
                             TextSpan(
                               text: "Sie haben noch kein Account? ",
-                              style: AppTheme.logInTextSize13,
+                              style: AppTheme.textDefaultSmallW500,
                               children: [
                                 TextSpan(
                                     text: "Register",
-                                    style: AppTheme.registerButton),
+                                    style: AppTheme.textDefaultBlue),
                               ],
                             ),
                           ),
@@ -163,7 +164,7 @@ class GoogleLogInButtonWidget extends StatelessWidget {
     return MaterialButton(
       height: 40,
       shape: RoundedRectangleBorder(
-        borderRadius: AppTheme.googleLogInButton,
+        borderRadius: AppTheme.defaultM,
       ),
       color: AppTheme.customButton,
       textColor: Colors.white,

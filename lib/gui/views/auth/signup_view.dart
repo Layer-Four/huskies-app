@@ -29,10 +29,10 @@ class _SignupState extends State<Signup> {
           body: Stack(
             children: [
               AppTheme.backgroundImageHomePage,
-              Container(color: AppTheme.container),
+              Container(color: AppTheme.containerBlack),
               Center(
                 child: Container(
-                  padding: AppTheme.hugePadding,
+                  padding: AppTheme.paddingXL,
                   child: ListView(children: [
                     Column(
                       crossAxisAlignment: AppTheme.crossStart,
@@ -58,29 +58,29 @@ class _SignupState extends State<Signup> {
                         AppTheme.sizedBox14,
                         const Text(
                           "E-Mail",
-                          style: AppTheme.textDefaultSmallW300,
+                          style: AppTheme.textDefault,
                         ),
-                        AppTheme.sizedBox8,
+                        AppTheme.sizedBox14,
                         CustomeTextForm(
                           hinttext: "Email Eingeben",
                           mycontroller: email,
                         ),
-                        AppTheme.sizedBox11,
+                        AppTheme.sizedBox14,
                         const Text(
                           "Passwort",
-                          style: AppTheme.textDefaultSmallW500,
+                          style: AppTheme.textDefault,
                         ),
-                        AppTheme.sizedBox4,
+                        AppTheme.sizedBox14,
                         CustomeTextForm(
                           // hinttext: "Password Eingeben",
                           mycontroller: password, hinttext: 'passwort',
                         ),
-                        AppTheme.sizedBox11,
+                        AppTheme.sizedBox14,
                         const Text(
                           "Passwort bestätigen",
-                          style: AppTheme.textDefaultSmallW500,
+                          style: AppTheme.textDefault,
                         ),
-                        AppTheme.sizedBox4,
+                        AppTheme.sizedBox14,
 
                         // CustomeTextForm(
                         // hinttext: "Password Eingeben",
@@ -150,11 +150,11 @@ class _SignupState extends State<Signup> {
                             children: [
                               TextSpan(
                                 text: "Haben Sie ein Account ? ",
-                                style: AppTheme.whiteTextStyle,
+                                style: AppTheme.textDefaultSmallW500,
                               ),
                               TextSpan(
                                   text: "Anmelden",
-                                  style: AppTheme.whiteTextStyleBold),
+                                  style: AppTheme.textDefaultBlue),
                             ],
                           ),
                         ),
