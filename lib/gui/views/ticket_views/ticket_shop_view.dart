@@ -5,6 +5,7 @@ import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_wid
 import 'package:huskies_app/gui/views/widgets/headline_widget.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/match_item_row_widget.dart';
 import 'package:huskies_app/gui/views/widgets/user_icon_widget.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class TicketShopView extends ConsumerWidget {
   final List gamesInSeason;
@@ -49,13 +50,13 @@ class TicketShopView extends ConsumerWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(12),
+            padding: AppTheme.paddingL,
             child: MatchCard(
               isLastMatch: false,
-              color: Color.fromARGB(255, 215, 234, 249),
+              color: AppTheme.huskiesPuzzle,
             ),
           ),
-          const Padding(padding: EdgeInsets.all(20)),
+          const Padding(padding: AppTheme.paddingXL,),
           SizedBox(
             height: 285,
             child: ListView.builder(
@@ -63,7 +64,7 @@ class TicketShopView extends ConsumerWidget {
               itemBuilder: ((context, index) {
                 Color backgroundColor = Colors.white;
                 if (index.isEven) {
-                  backgroundColor = const Color.fromARGB(255, 215, 234, 249);
+                  backgroundColor = AppTheme.ticketBackground;
                 }
                 return TicketItemRowWidget(
                   image: 'fuechse.png',
@@ -74,7 +75,7 @@ class TicketShopView extends ConsumerWidget {
                       context: context,
                       builder: (context) => Container(
                         width: MediaQuery.of(context).size.width - 40,
-                        color: const Color.fromARGB(225, 255, 255, 255),
+                        color: AppTheme.white,
                         child: TextButton(
                             child: const Text(
                               'Buy Ticket',

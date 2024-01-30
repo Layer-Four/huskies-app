@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 // import 'package:huskies_app/gui/views/ticket_views/ticket_shop_view.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/agb_widget.dart';
@@ -29,7 +30,7 @@ class _TicketWalletViewState extends State<TicketWalletView> {
           centerTitle: true,
           title: const Text(
             'Tickets',
-            style: TextStyle(fontWeight: FontWeight.w700, letterSpacing: 1.5),
+            style: AppTheme.titleBlack,
           ),
         ),
         // drawer: TicketShopView(
@@ -40,7 +41,7 @@ class _TicketWalletViewState extends State<TicketWalletView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                padding: AppTheme.defaultHorizontalDistance,
                 child: CarouselSlider.builder(
                   itemCount: barcodesListFromState.length,
                   itemBuilder: (BuildContext context, int i, _) {
@@ -57,7 +58,7 @@ class _TicketWalletViewState extends State<TicketWalletView> {
                           seats: 'c4',
                           ticketID: '1904566',
                         ),
-                        const Padding(padding: EdgeInsets.only(top: 30)),
+                        const Padding(padding: AppTheme.paddingM),
                         BarcodeView(
                           barcode: Image.asset(
                             barcodesListFromState[i],
