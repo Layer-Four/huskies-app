@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class UserInfoWidget extends StatelessWidget {
   const UserInfoWidget({
@@ -9,45 +10,37 @@ class UserInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
-      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
+      decoration: AppTheme.whiteBox,
+      margin: AppTheme.pointsBoxPadding,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: AppTheme.paddingL,
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
-                    ],
-                  ),
+                  decoration: AppTheme.pointsBoxLayout,
                   child: const ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      Colors.red, // Change the color of the icon here
+                      AppTheme.red, // Change the color of the icon here
                       BlendMode.srcIn,
                     ),
                     child: Icon(
                       FontAwesome5.database,
-                      size: 15,
+                      size: 20,
                     ),
                   ),
                 ),
               ),
               const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: AppTheme.mainCenter,
+                crossAxisAlignment: AppTheme.crossStart,
                 children: [
                   Text('My Points'),
                   Text(
                     '230',
-                    style: TextStyle(color: Colors.teal),
+                    style: AppTheme.textDefaultTeal,
                   ),
                 ],
               ),
@@ -55,7 +48,7 @@ class UserInfoWidget extends StatelessWidget {
           ),
           //middle of white box
           Padding(
-            padding: const EdgeInsets.only(right: 11.0),
+            padding: const EdgeInsets.only(right: 2.0),
             child: Container(
               height: 44,
               width: 1,
@@ -65,25 +58,17 @@ class UserInfoWidget extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 12),
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: const Color.fromARGB(255, 241, 237, 237),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 241, 237, 237),
-                          spreadRadius: 7),
-                    ],
-                  ),
+                  decoration: AppTheme.pointsBoxDesgin,
                   child: const ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      Colors.red, // Change the color of the icon here
+                      AppTheme.red, // Change the color of the icon here
                       BlendMode.srcIn,
                     ),
                     child: Icon(
                       FontAwesome5.medal,
-                      size: 15,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -94,8 +79,8 @@ class UserInfoWidget extends StatelessWidget {
                 children: [
                   Text('Level'),
                   Text(
-                    '230',
-                    style: TextStyle(color: Colors.teal),
+                    'Pro',
+                    style: AppTheme.textDefaultTeal,
                   ),
                 ],
               ),
