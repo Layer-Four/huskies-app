@@ -4,7 +4,6 @@ import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth/login_view.dart';
 import 'package:huskies_app/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/widgets/textformfield.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Signup extends StatefulWidget {
   final bool isPWForget;
@@ -127,19 +126,10 @@ class _SignupState extends State<Signup> {
                     CustomButtonAuth(
                       title: "Registrieren",
                       onPress: () async {
-                        // Timer.periodic(Duration(seconds: 1), (_) {
-                        //   if (ref.watch(appStateNotifierProvider).user != null) {
-                        //     Navigator.of(context).pop();
-                        //   }
-                        // });
-                        LoadingAnimationWidget.flickr(
-                            leftDotColor: Colors.blueAccent,
-                            rightDotColor: Colors.blueGrey,
-                            size: 100);
                         await ref
                             .watch(statusProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                                email: email.text, password: password.text)
+                                email: email.text.trim(), password: password.text.trim())
                             .then((value) => value ? Navigator.of(context).pop() : null);
                       },
                     ),

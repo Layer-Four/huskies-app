@@ -1,6 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 
-String getMessageFromErrorCodeEN(var e) {
+String getMessageFromErrorCodeEN(FirebaseException e) {
   switch (e.code) {
     case "ERROR_EMAIL_ALREADY_IN_USE":
     case "account-exists-with-different-credential":
@@ -65,6 +65,9 @@ String getMessageFromErrorCodeDE(FirebaseException e) {
     case "invalid-email":
       return "E-mail Adresse ist ungültig";
 
+    case "ERROR_INVALID_CREDENTIAL":
+    case "invalid-credential":
+      return 'Ungültige eingabe';
     default:
       return "Fehlgeschlagen, bitte versuche es nochmal";
   }

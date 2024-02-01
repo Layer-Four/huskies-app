@@ -50,15 +50,6 @@ Widget fakeHomeView() {
   );
 }
 
-enum AuthState {
-  authificated,
-  loggedIn,
-  loggedOut,
-  onError,
-  onRegistation,
-  unAuthificated,
-}
-
 enum ViewPage {
   forgetpassword,
   login,

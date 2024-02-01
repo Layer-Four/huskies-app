@@ -102,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                           onPress: () => ref
                               .watch(statusProvider.notifier)
                               .signInWithEmailAndPassword(
-                                  email: email.text, password: password.text)),
+                                  email: email.text.trim(), password: password.text.trim())),
 
                       const Padding(
                         padding: EdgeInsets.all(20.0),

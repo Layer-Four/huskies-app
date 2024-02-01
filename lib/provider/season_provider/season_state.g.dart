@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'appstate.dart';
+part of 'season_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

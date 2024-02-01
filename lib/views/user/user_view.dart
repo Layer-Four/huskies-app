@@ -1,18 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/helpers.dart';
-import 'package:huskies_app/models/user_vm/user.dart';
-import 'package:huskies_app/provider/season_provider/authstate_provider.dart';
+import 'package:huskies_app/models/user_vm/user_model.dart';
+import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/widgets/blue_button_widget.dart';
-import 'package:huskies_app/views/widgets/settingsrow_widget.dart';
+import 'package:huskies_app/views/widgets/user_view_widgets/settingsrow_widget.dart';
 
 class UserProfileView extends ConsumerStatefulWidget {
-  const UserProfileView({super.key});
+  final String? userImage;
+  const UserProfileView({this.userImage, super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileViewState();
 }
@@ -25,14 +22,14 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   Widget build(BuildContext context) {
     final user = ref.watch(authStateProvider);
     user.when(
-      error: (error, stackTrace) => log('error on Userview: $error ,  stack trace: $stackTrace'),
+      error: (error, stackTrace) => throw ('error on Userview: $error ,  stack trace: $stackTrace'),
       loading: () {},
       data: (user) {
         if (user != null) {
           userModel = UserModel(
             email: user.email!,
             uID: user.uid,
-            name: user.displayName,
+            displayedName: user.displayName,
           );
         }
       },
@@ -41,7 +38,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       appBar: AppBar(
         toolbarHeight: 80,
         centerTitle: true,
-        title: Text('Mein Profile'),
+        title: const Text('Mein Profile'),
       ),
       body: Container(
         height: 650,
@@ -67,37 +64,34 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       margin: const EdgeInsets.symmetric(vertical: 30),
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
-                      child: Image.asset('assets/da.jpg', height: 80, width: 80),
+                      child: Image.asset(
+                          widget.userImage != null ? 'assets/${widget.userImage}' : 'assets/da.jpg',
+                          height: 80,
+                          width: 80),
                     ),
                     Column(
                       children: [
                         Text(
-                          '${userModel?.firstName ?? ' Username'} ${userModel?.name ?? ''}',
+                          '${userModel?.displayedName ?? ' Username'} ${userModel?.displayedName!.split(' ').last ?? ''}',
                         ),
                         Text(
                           userModel?.email ?? 'beispiel@email.etc',
-                          style: TextStyle(color: Colors.grey, fontSize: 11),
+                          style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Text(
                           // TODO: generate a separate KuID!
                           'Kundennummer: ${userModel?.uID ?? 'KH234332'}',
-                          style: TextStyle(color: Colors.grey, fontSize: 11),
+                          style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
-                        Container(
-                          alignment: Alignment.topCenter,
-                          height: 28,
-                          margin: EdgeInsets.only(top: 12),
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 22, 63, 92),
-                              borderRadius: BorderRadius.circular(7)),
-                          child: BlueButton(
-                              text: 'Profil bearbeiten',
-                              onPressed: () {
-                                Helpers.showLoadingView(context, advertising: 'Profil bearbeiten');
-                                Future.delayed(const Duration(seconds: 2))
-                                    .then((value) => Navigator.of(context).pop());
-                              }),
-                        ),
+                        BlueButton(
+                            color: const Color.fromARGB(255, 22, 63, 92),
+                            text: 'Profil bearbeiten',
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Helpers.showLoadingView(context)));
+                              Future.delayed(const Duration(seconds: 2))
+                                  .then((value) => Navigator.of(context).pop());
+                            }),
                       ],
                     ),
                   ],
@@ -113,7 +107,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               ),
             ),
             Card(
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               elevation: 7,
               child: Container(
                 decoration:
@@ -125,8 +119,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SettingsRow(
-                          endingWidget: const Text(
+                        const SettingsRow(
+                          endingWidget: Text(
                             'Deutsch',
                             style: TextStyle(color: Colors.grey),
                           ),
@@ -149,7 +143,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             ),
                           ),
                           optionText: 'Dark-mode',
-                          leadingIcon: Icon(Icons.dark_mode_outlined),
+                          leadingIcon: const Icon(Icons.dark_mode_outlined),
                         ),
                         SettingsRow(
                           endIcon: Switch(
@@ -163,9 +157,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             }),
                           ),
                           optionText: 'Face ID',
-                          leadingIcon: Icon(Icons.face_5_outlined),
+                          leadingIcon: const Icon(Icons.face_5_outlined),
                         ),
-                        SettingsRow(
+                        const SettingsRow(
                           leadingIcon: Icon(Icons.notifications_outlined),
                           optionText: 'Push-Benachritung',
                         ),
@@ -177,7 +171,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             ),
             Card(
               elevation: 7,
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
                 decoration:
                     BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
@@ -188,19 +182,19 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SettingsRow(
+                        const SettingsRow(
                           leadingIcon: Icon(
                             Icons.contact_support_sharp,
                           ),
                           optionText: 'Support',
                         ),
-                        SettingsRow(
+                        const SettingsRow(
                           optionText: 'Zahlungsmittel',
                           leadingIcon: Icon(Icons.euro),
                         ),
                         SettingsRow(
-                          endIcon: SizedBox(),
-                          leadingIcon: Icon(Icons.exit_to_app),
+                          endIcon: const SizedBox(),
+                          leadingIcon: const Icon(Icons.exit_to_app),
                           onTextPressed: () {
                             ref.watch(statusProvider.notifier).signOut();
                             Navigator.of(context).pop();

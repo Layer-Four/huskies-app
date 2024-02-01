@@ -5,7 +5,8 @@ abstract class AuthInterface {
 
   String? getAuthProvider();
 
-  Future<void> registerUserWithEmailAndPassword({required String email, required String password});
+  Future<String?> registerUserWithEmailAndPassword(
+      {required String email, required String password});
 
   Future<void> reloadUser();
 

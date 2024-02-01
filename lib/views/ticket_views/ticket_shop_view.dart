@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/views/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/views/widgets/headline_widget.dart';
 import 'package:huskies_app/views/widgets/ticket_widgets/match_item_row_widget.dart';
-import 'package:huskies_app/views/widgets/user_icon_widget.dart';
+import 'package:huskies_app/views/widgets/user_view_widgets/user_icon_widget.dart';
 
 class TicketShopView extends ConsumerWidget {
   final List gamesInSeason;

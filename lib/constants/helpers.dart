@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
+import 'package:huskies_app/constants/sponsors.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Helpers {
@@ -79,51 +81,54 @@ class Helpers {
     );
   }
 
+  /// use this function for  [Helpers.showLoadingView()] method
+  ///   + $1  the  advertising String  from sponsor
+  ///   - $2 the associated asset image name
+  static (String, String) getAdvertising() {
+    final index = Random().nextInt(sponsors.length);
+    final imageString = sponsors[index].values.first;
+    final advertisingString = sponsors[index].keys.first;
+    return (imageString, advertisingString);
+  }
+
   /// ownNavigation function.
-  static loadAndNavigate(
-      {required BuildContext context,
-      required WidgetRef ref,
-      required ViewPage nextView,
-      required String image,
-      required String advertising}) {
-    // ProviderScope(
-    // parent: ProviderScope.containerOf(context),child:
-    showLoadingView(context, image: image, advertising: advertising);
-    //  );
+  static loadAndNavigate({
+    required BuildContext context,
+    required WidgetRef ref,
+    required ViewPage nextView,
+  }) {
+    showLoadingView(context);
     Future.delayed(const Duration(milliseconds: 1500)).then((_) {
-      // Navigator.pop(context);
       ref.read(viewProvider.notifier).state = nextView;
     });
   }
 
-  // TODO: change adverting type with Map for image key and slogan value.
-  static Widget showLoadingView(
-    BuildContext context, {
-    String? image,
-    required String advertising,
-    Widget? button,
-  }) =>
-      Container(
+  static Widget showLoadingView(BuildContext context, {Widget? button}) {
+    final advertising = Helpers.getAdvertising();
+    return Material(
+      child: Container(
         padding: AppTheme.mediumPadding,
         color: Colors.white,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoadingAnimationWidget.discreteCircle(size: 70, color: AppTheme.primary),
+            const CircularProgressIndicator(color: Color.fromARGB(129, 0, 150, 135)),
+            // LoadingAnimationWidget.discreteCircle(size: 70, color: AppTheme.primary),
             // const Color.fromARGB(129, 0, 150, 135), size: 70),
             Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: image != null
-                    ? Image.asset('assets/$image', width: 100)
-                    : const SizedBox(height: 100)),
+              padding: const EdgeInsets.all(20.0),
+              child: Image.asset('assets/${advertising.$2}', width: 100),
+            ),
             Text(
-              advertising,
+              advertising.$1,
               style: const TextStyle(fontSize: 25, color: AppTheme.primary),
               textAlign: TextAlign.center,
             ),
             Padding(padding: AppTheme.bigPadding, child: button),
           ],
         ),
-      );
+      ),
+    );
+  }
 }

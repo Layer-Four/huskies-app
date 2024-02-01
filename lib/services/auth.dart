@@ -1,14 +1,21 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:huskies_app/models/user_vm/user.dart';
+import 'package:huskies_app/services/auth_exceptions.dart';
 import 'package:huskies_app/services/auth_interface.dart';
 import 'package:logger/logger.dart';
 
 class AuthRepository implements AuthInterface {
-  final FirebaseAuth _authService = FirebaseAuth.instance;
-  final CollectionReference _usersDB = FirebaseFirestore.instance.collection('users');
+  final FirebaseAuth _authService;
+  final CollectionReference _usersDB;
+  // final WidgetRef errorStorage;
+  AuthRepository(
+      // this.errorStorage
+      )
+      : _usersDB = FirebaseFirestore.instance.collection('users'),
+        _authService = FirebaseAuth.instance;
 
   @override
   Stream<User?> userAuthState() => _authService.userChanges().handleError(
@@ -23,7 +30,7 @@ class AuthRepository implements AuthInterface {
   String? getAuthProvider() => _authService.currentUser?.providerData.firstOrNull?.providerId;
 
   @override
-  Future<void> registerUserWithEmailAndPassword(
+  Future<String?> registerUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
       UserCredential userCredential =
@@ -34,7 +41,6 @@ class AuthRepository implements AuthInterface {
         log('Firebase found/create a user: ${FirebaseAuth.instance.currentUser?.uid}');
         await userCredential.user?.updatePassword(password);
       }
-
       await _usersDB.doc(userCredential.user?.uid).set({
         'uid': userCredential.user?.uid,
         'email': email,
@@ -44,36 +50,29 @@ class AuthRepository implements AuthInterface {
         // generateUsername(email),
       });
     } on FirebaseAuthException catch (e) {
-      reactToFirebaseException(e);
+      // TODO: implement location vor different languages
+      return getMessageFromErrorCodeDE(e);
     } catch (e) {
       logger.e(e.toString());
-      throw 'es ist etwas schief gelaufen';
+      throw Exception('es ist etwas schief gelaufen');
     }
+    return null;
   }
 
   @override
-  Future<UserModel?> signInWithEmailPassword(
+  Future<(bool?, String?)> signInWithEmailPassword(
       {required String email, required String password}) async {
     try {
-      final response = await _authService.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      if (response.user != null) {
-        return UserModel(
-          email: response.user!.email ?? 'beispiel@example.etc',
-          isLogIn: true,
-          name: response.user!.displayName,
-          uID: response.user!.uid,
-        );
-      }
+      final user = await _authService.signInWithEmailAndPassword(email: email, password: password);
+      if (user.user != null) return (user.user!.emailVerified, null);
     } on FirebaseAuthException catch (e) {
-      reactToFirebaseException(e);
+      // TODO: implement location vor different languages
+      return (null, getMessageFromErrorCodeDE(e));
     } catch (e) {
       logger.e(e.toString());
-      throw 'es ist etwas schief gelaufen';
+      return (null, 'es ist etwas schief gelaufen');
     }
-    return null;
+    return (null, 'NO USER');
   }
 
   @override
@@ -92,7 +91,7 @@ class AuthRepository implements AuthInterface {
       await _authService.currentUser?.sendEmailVerification();
     } catch (e) {
       logger.e(e.toString());
-      throw "Email can't be sent";
+      throw "Email can't be send";
     }
   }
 
@@ -153,124 +152,95 @@ class AuthRepository implements AuthInterface {
     //   logger.e(e.toString());
     //   throw AppStrings.errorTextDeleteUser;
   }
-
-  void reactToFirebaseException(FirebaseAuthException e) {
-    switch (e.code) {
-      case 'email-already-in-use':
-        throw ('email is already used');
-      case 'invalid-email':
-        throw 'invalid email';
-      case 'operation-not-allowed':
-        throw 'operation is not allowed';
-      case 'weak-password':
-        throw 'weak password';
-      case 'user-disabled':
-        throw 'user deaktiviert';
-      case 'user-not-found':
-        throw 'No user found';
-      case 'wrong-password':
-        throw 'Wrong password';
-      case 'invalid-credential':
-        throw 'The supplied auth credential is incorrect, malformed or has expired.';
-      case "channel-error":
-        throw 'Unable to establish connection on channel.';
-      default:
-        throw 'es ist etwas schief gelaufen';
-    }
-  }
 }
 // * ------------------------------------------------------------------------------------------
-  // final GoogleSignIn _googleSignIn = GoogleSignIn(
-  //   scopes: [
-  //     'email',
-  //     'profile',
-  //   ],
-  // );
+// final GoogleSignIn _googleSignIn = GoogleSignIn(
+//   scopes: [
+//     'email',
+//     'profile',
+//   ],
+// );
 
+// *------------------------- signIn with Apple----------------------------------------------
 
-  // *------------------------- signIn with Apple----------------------------------------------
+// Future<void> signInWithApple() async {
+//   try {
+//     final AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
+//       scopes: [
+//         AppleIDAuthorizationScopes.email,
+//         AppleIDAuthorizationScopes.fullName,
+//       ],
+//     );
 
-  // Future<void> signInWithApple() async {
-  //   try {
-  //     final AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
-  //       scopes: [
-  //         AppleIDAuthorizationScopes.email,
-  //         AppleIDAuthorizationScopes.fullName,
-  //       ],
-  //     );
+//     final OAuthCredential authCredential = OAuthProvider('apple.com').credential(
+//       idToken: credential.identityToken,
+//       accessToken: credential.authorizationCode,
+//     );
 
-  //     final OAuthCredential authCredential = OAuthProvider('apple.com').credential(
-  //       idToken: credential.identityToken,
-  //       accessToken: credential.authorizationCode,
-  //     );
+//     UserCredential userCredential = await _auth.signInWithCredential(authCredential);
 
-  //     UserCredential userCredential = await _auth.signInWithCredential(authCredential);
+//     // Check if the Firebase user is not null before accessing UID.
+//     if (userCredential.user == null) {
+//       throw Exception('Failed to obtain Firebase user after Apple sign in.');
+//     }
 
-  //     // Check if the Firebase user is not null before accessing UID.
-  //     if (userCredential.user == null) {
-  //       throw Exception('Failed to obtain Firebase user after Apple sign in.');
-  //     }
+//     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
 
-  //     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
+//     // Get email, if credential.email is null or empty, then fetch from userCredential.user.email
+//     String email = (credential.email != null && credential.email!.isNotEmpty)
+//         ? credential.email!
+//         : (userCredential.user!.email ?? 'no-email@relay.appleid.com');
 
-  //     // Get email, if credential.email is null or empty, then fetch from userCredential.user.email
-  //     String email = (credential.email != null && credential.email!.isNotEmpty)
-  //         ? credential.email!
-  //         : (userCredential.user!.email ?? 'no-email@relay.appleid.com');
+//     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
 
-  //     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
+//     if (!userDocSnap.exists) {
+//       await _users.doc(uid).set({
+//         'uid': uid,
+//         'email': email,
+//         'accountCreationDate': FieldValue.serverTimestamp(),
+//         'profileImageUrl': AppStrings.noImageProfileUrl,
+//         'name': generateUsername(email),
+//       });
+//     }
+//   } catch (e) {
+//     logger.e(e.toString());
+//     throw AppStrings.errorTextAppleSignIn;
+//   }
+// }
 
-  //     if (!userDocSnap.exists) {
-  //       await _users.doc(uid).set({
-  //         'uid': uid,
-  //         'email': email,
-  //         'accountCreationDate': FieldValue.serverTimestamp(),
-  //         'profileImageUrl': AppStrings.noImageProfileUrl,
-  //         'name': generateUsername(email),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     logger.e(e.toString());
-  //     throw AppStrings.errorTextAppleSignIn;
-  //   }
-  // }
+// *------------------------- signIn with Google----------------------------------------------
 
+// Future<void> signInWithGoogle() async {
+//   try {
+//     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+//     if (googleSignInAccount == null) {
+//       throw Exception('Google sign in was aborted or failed.');
+//     }
 
-  // *------------------------- signIn with Google----------------------------------------------
+//     final GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
+//     final OAuthCredential credential = GoogleAuthProvider.credential(
+//       accessToken: googleAuth.accessToken,
+//       idToken: googleAuth.idToken,
+//     );
 
+//     UserCredential userCredential = await _auth.signInWithCredential(credential);
+//     if (userCredential.user == null) {
+//       throw Exception('Failed to obtain Firebase user after sign in.');
+//     }
+//     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
+//     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
 
-
-  // Future<void> signInWithGoogle() async {
-  //   try {
-  //     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-  //     if (googleSignInAccount == null) {
-  //       throw Exception('Google sign in was aborted or failed.');
-  //     }
-
-  //     final GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
-  //     final OAuthCredential credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth.accessToken,
-  //       idToken: googleAuth.idToken,
-  //     );
-
-  //     UserCredential userCredential = await _auth.signInWithCredential(credential);
-  //     if (userCredential.user == null) {
-  //       throw Exception('Failed to obtain Firebase user after sign in.');
-  //     }
-  //     String uid = userCredential.user!.uid; // Using '!' as we've checked it's not null above.
-  //     DocumentSnapshot userDocSnap = await _users.doc(uid).get();
-
-  //     if (!userDocSnap.exists) {
-  //       await _users.doc(uid).set({
-  //         'uid': uid,
-  //         'email': googleSignInAccount.email,
-  //         'accountCreationDate': FieldValue.serverTimestamp(),
-  //         'profileImageUrl': AppStrings.noImageProfileUrl,
-  //         'name': generateUsername(googleSignInAccount.email),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     logger.e(e.toString());
-  //     throw AppStrings.errorTextGoogleSignIn;
-  //   }
-  // }
+//     if (!userDocSnap.exists) {
+//       await _users.doc(uid).set({
+//         'uid': uid,
+//         'email': googleSignInAccount.email,
+//         'accountCreationDate': FieldValue.serverTimestamp(),
+//         'profileImageUrl': AppStrings.noImageProfileUrl,
+//         'name': generateUsername(googleSignInAccount.email),
+//       });
+//     }
+//   } catch (e) {
+//     logger.e(e.toString());
+//     throw AppStrings.errorTextGoogleSignIn;
+//   }
+// }

@@ -1,5 +1,5 @@
-const sponsors = {
-  'assets/da.jpg': 'Wir sind für sie da',
-  'assets/fuechse.png': 'wir sind schlauer',
-  'huskies.png': 'Komm ins Rudel',
-};
+const sponsors = [
+  {'da.jpg': 'Wir sind für sie da\nIhre Sparkasse....'},
+  {'fuechse.png': 'Bei uns wirds Flauschig!'},
+  {'huskies.png': 'Komm ins Rudel!'},
+];
