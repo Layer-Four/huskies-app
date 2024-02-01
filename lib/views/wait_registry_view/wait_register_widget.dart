@@ -36,7 +36,7 @@ class WaitForRegistry extends ConsumerWidget {
           const Card(
             color: Color.fromARGB(210, 79, 74, 74),
             child: Padding(
-              padding: AppTheme.buttonPadding,
+              padding: AppTheme.hugePaddingBottom,
               child: Text(
                 'Bitte schließe zuerst deine Registrirung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
                 textAlign: TextAlign.center,

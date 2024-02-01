@@ -50,8 +50,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   //   ),
                   //   // ),
                   // ),
-                  const Text("Hallo David", style: AppTheme.textHeaderHome),
-                  const Text("Willkommon zurück!", style: AppTheme.whiteTextStyle),
+                  const Text("Hallo David", style: AppTheme.titleWhite),
+                  const Text("Willkommon zurück!", style: AppTheme.textDefault),
                 ],
               ),
             ),
@@ -101,27 +101,27 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       mainAxisAlignment: AppTheme.mainCenter,
                       children: [
                         Padding(
-                          padding: AppTheme.hugePaddingLeft,
+                          padding: AppTheme.paddingS,
                           child: Image.asset(
                             'assets/second.png',
                             width: 80,
                           ),
                         ),
                         Padding(
-                          padding: AppTheme.smallPaddingLeftRight,
+                          padding: AppTheme.paddingS,
                           child: Image.asset('assets/first.png', width: 80),
                         ),
                         Padding(
-                          padding: AppTheme.hugePaddingRight,
+                          padding: AppTheme.paddingS,
                           child: Image.asset('assets/first.png', width: 80),
                         ),
                       ],
                     ),
                     const Padding(
-                      padding: AppTheme.smallPaddingTopBottom,
+                      padding: AppTheme.paddingS,
                       child: Text(
                         'Unsere neuen Trikots sind da!',
-                        style: AppTheme.textTrikots,
+                        style: AppTheme.textDefaultBlue,
                       ),
                     ),
                     TextButton(
@@ -129,12 +129,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       child: Container(
                         width: 85,
                         height: 30,
-                        padding: AppTheme.mediumPadding,
+                        padding: AppTheme.paddingS,
                         decoration: AppTheme.homePageButton,
                         child: const Center(
                           child: Text(
                             "Shop",
-                            style: AppTheme.textDefaultSmall11,
+                            style: AppTheme.textDefaultSmall10,
                           ),
                         ),
                       ),
@@ -166,15 +166,15 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           children: [
                             const Text(
                               "Kassel Huskies",
-                              style: AppTheme.textHuskiesHeader,
+                              style: AppTheme.titleBlue,
                             ),
                             const Text(
                               "NFT-Puzzle",
-                              style: AppTheme.textHuskiesHeader,
+                              style: AppTheme.titleBlue,
                             ),
                             const Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: AppTheme.textHuskies,
+                              style: AppTheme.textDefaultSmall10Black,
                               textAlign: AppTheme.textCenter,
                             ),
                             TextButton(
@@ -182,12 +182,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               child: Container(
                                 width: 85,
                                 height: 30,
-                                padding: AppTheme.mediumPadding,
+                                padding: AppTheme.paddingM,
                                 decoration: AppTheme.homePageButton,
                                 child: const Center(
                                   child: Text(
                                     "Mehr Infos",
-                                    style: AppTheme.textDefaultSmall11,
+                                    style: AppTheme.textDefaultSmall10,
                                   ),
                                 ),
                               ),

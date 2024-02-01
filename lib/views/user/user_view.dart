@@ -20,7 +20,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   UserModel? userModel;
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(authStateProvider);
+    final user = ref.watch(authProvider);
     user.when(
       error: (error, stackTrace) => throw ('error on Userview: $error ,  stack trace: $stackTrace'),
       loading: () {},

@@ -33,7 +33,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return switch (ref.watch(statusProvider)) {
-      AuthState.loggedIn => ref.watch(authStateProvider).when(
+      AuthState.loggedIn => ref.watch(authProvider).when(
             loading: () => Helpers.showLoadingView(context),
             error: (error, stackTrace) {
               log('a Error occurents: ${error.toString()} \n this was the path: $stackTrace');

@@ -10,8 +10,8 @@ import 'package:huskies_app/provider/static_provider.dart';
 /// this provider returns a instance from Firebase authentication services
 /// and give us a everytime updated user instance from DB.
 
-final authStateProvider = StreamProvider<User?>((ref) async* {
-  FirebaseAuth.instance.authStateChanges().map((user) {
+final authProvider = StreamProvider<User?>((ref) {
+  return FirebaseAuth.instance.authStateChanges().map((user) {
     if (user != null) {
       if (!user.emailVerified) {
         ref.read(statusProvider.notifier).waitOnRegistration();
@@ -19,5 +19,6 @@ final authStateProvider = StreamProvider<User?>((ref) async* {
         ref.read(statusProvider.notifier).userLogIn();
       }
     }
+    return null;
   });
 });

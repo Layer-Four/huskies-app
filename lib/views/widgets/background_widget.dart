@@ -22,7 +22,7 @@ class BackgroundWidget extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Color.fromARGB(142, 73, 68, 68),
         ),
-        padding: AppTheme.bigPadding,
+        padding: AppTheme.hugePaddingBottom,
         child: body,
       )
     ]);

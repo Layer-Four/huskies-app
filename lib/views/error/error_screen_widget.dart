@@ -17,7 +17,7 @@ class ShowErrorScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: AppTheme.bigPadding,
+              padding: AppTheme.paddingXL,
               child: Text(error, textAlign: TextAlign.center),
             ),
             Row(
