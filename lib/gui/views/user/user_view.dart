@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/auth/login_view.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
+import 'package:flutter/cupertino.dart';
 
 class UserProfileView extends ConsumerStatefulWidget {
   const UserProfileView({super.key});
@@ -22,30 +24,28 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       appBar: AppBar(
         toolbarHeight: 80,
         centerTitle: true,
-        title: Text('Mein Profile'),
+        titleTextStyle: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w600, fontSize: 25, color: Colors.black),
+        title: Text('Mein Profil'),
       ),
       body: Container(
         height: 650,
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: AppTheme.defaultVerticalDistance,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Card(
               elevation: 7,
               semanticContainer: false,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
+              margin: AppTheme.defaultHorizontalDistance,
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(11),
-                  color: Colors.white,
-                ),
+                decoration: AppTheme.whiteBox,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 30),
+                      margin: AppTheme.defaultVerticalDistanceL,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: Image.asset('assets/da.jpg', height: 80, width: 80),
@@ -54,29 +54,28 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       children: [
                         Text(
                           '${state.user?.firstName ?? ' Username'} ${state.user?.name ?? ''}',
+                          style: AppTheme.textDefaultBlack,
                         ),
                         Text(
                           state.user?.email ?? 'beispiel@email.etc',
-                          style: TextStyle(color: Colors.grey, fontSize: 11),
+                          style: AppTheme.textDefaultSmall10Grey,
                         ),
                         Text(
                           'Kundennummer: ${state.user?.uID ?? 'KH234332'}',
-                          style: TextStyle(color: Colors.grey, fontSize: 11),
+                          style: AppTheme.textDefaultSmall10Grey,
                         ),
                         Container(
                           alignment: Alignment.topCenter,
                           height: 28,
-                          margin: EdgeInsets.only(top: 12),
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 22, 63, 92),
-                              borderRadius: BorderRadius.circular(7)),
+                          margin: AppTheme.paddingS,
+                          decoration: AppTheme.homePageButton,
                           child: TextButton(
                             child: Container(
                               alignment: Alignment.center,
                               child: Text(
                                 'Profil bearbeiten',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white, fontSize: 10),
+                                style: AppTheme.textDefaultSmall10,
                               ),
                             ),
                             onPressed: () {
@@ -93,19 +92,18 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(left: 10),
+              padding: AppTheme.defaultHorizontalDistance,
               width: double.infinity,
               child: const Text(
                 'Einstellungen',
-                style: TextStyle(color: Colors.grey),
+                style: AppTheme.textDefaultGrey,
               ),
             ),
             Card(
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: AppTheme.defaultHorizontalDistance,
               elevation: 7,
               child: Container(
-                decoration:
-                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,15 +114,14 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                         SettingsRow(
                           endingWidget: const Text(
                             'Deutsch',
-                            style: TextStyle(color: Colors.grey),
+                            style: AppTheme.textDefaultGrey,
                           ),
                           leadingIcon: Icon(Icons.flag_outlined),
                           optionText: 'Sprache',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                         ),
                         SettingsRow(
-                          endIcon: Transform.scale(
-                            scale: 0.9,
-                            child: Switch(
+                            /*child: Switch(
                               activeColor: Colors.white,
                               activeTrackColor: Colors.black,
                               inactiveTrackColor: Colors.black,
@@ -134,13 +131,15 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                               onChanged: (_) => setState(() {
                                 darkMode = !darkMode;
                               }),
-                            ),
-                          ),
+                            ),*/
                           optionText: 'Dark-mode',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                           leadingIcon: Icon(Icons.dark_mode_outlined),
+                          switchValue: darkMode,
+                          onSwitchChanged: (value) => setState(() => darkMode = value),
                         ),
                         SettingsRow(
-                          endIcon: Switch(
+                          /*endIcon: Switch(
                             activeColor: Colors.white,
                             activeTrackColor: Colors.black,
                             inactiveTrackColor: Colors.black,
@@ -149,13 +148,17 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             onChanged: (_) => setState(() {
                               faceID = !faceID;
                             }),
-                          ),
+                          ),*/
                           optionText: 'Face ID',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                           leadingIcon: Icon(Icons.face_5_outlined),
+                          switchValue: faceID,
+                          onSwitchChanged: (value) => setState(() => faceID = value),
                         ),
                         SettingsRow(
                           leadingIcon: Icon(Icons.notifications_outlined),
-                          optionText: 'Push-Benachritung',
+                          optionText: 'Push-Benachritigungen',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                         ),
                       ],
                     ),
@@ -164,11 +167,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               ),
             ),
             Card(
-              elevation: 6,
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              elevation: 7,
+              margin: AppTheme.defaultHorizontalDistance,
               child: Container(
-                decoration:
-                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,9 +183,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             Icons.contact_support_sharp,
                           ),
                           optionText: 'Support',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                         ),
                         SettingsRow(
                           optionText: 'Zahlungsmittel',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                           leadingIcon: Icon(Icons.euro),
                         ),
                         SettingsRow(
@@ -197,6 +201,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             ));
                           },
                           optionText: 'logout',
+                          optionTextStyle: AppTheme.textDefaultBlack,
                         ),
                       ],
                     ),
@@ -215,8 +220,12 @@ class SettingsRow extends StatelessWidget {
   final Widget leadingIcon;
   final void Function()? onTextPressed;
   final String optionText;
+  final TextStyle optionTextStyle;
   final Widget? endingWidget;
   final Widget endIcon;
+  final bool? switchValue; // Make switchValue nullable
+  final ValueChanged<bool>? onSwitchChanged; // Make onSwitchChanged nullable
+
   const SettingsRow({
     super.key,
     this.endIcon = const Icon(Icons.arrow_right, size: 40),
@@ -224,33 +233,97 @@ class SettingsRow extends StatelessWidget {
     required this.leadingIcon,
     this.onTextPressed,
     required this.optionText,
+    required this.optionTextStyle,
+    this.switchValue, // Nullable switchValue
+    this.onSwitchChanged, // Nullable onSwitchChanged
   });
+
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: onTextPressed,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: leadingIcon),
-                Text(optionText),
-              ],
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      InkWell(
+        onTap: onTextPressed,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: leadingIcon,
             ),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: endIcon,
+            Text(optionText, style: optionTextStyle),
+          ],
+        ),
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
+          if (switchValue != null && onSwitchChanged != null) // Render switch only if both are provided
+            Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: CupertinoSwitch(
+                activeColor: AppTheme.black,
+                thumbColor: AppTheme.white,
+                trackColor: AppTheme.black,
+                value: switchValue!,
+                onChanged: onSwitchChanged,
               ),
-            ],
-          ),
+            ),
+          if (endIcon != null && (switchValue == null || onSwitchChanged == null))
+            Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: endIcon!,
+            ),
         ],
-      );
+      ),
+    ],
+  );
+}
+
+class CupertinoSwitchApp extends StatelessWidget {
+  const CupertinoSwitchApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const CupertinoApp(
+      theme: CupertinoThemeData(brightness: Brightness.light),
+      home: CupertinoSwitchExample(),
+    );
+  }
+}
+
+class CupertinoSwitchExample extends StatefulWidget {
+  const CupertinoSwitchExample({super.key});
+
+  @override
+  State<CupertinoSwitchExample> createState() => _CupertinoSwitchExampleState();
+}
+
+class _CupertinoSwitchExampleState extends State<CupertinoSwitchExample> {
+  bool switchValue = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('CupertinoSwitch Sample'),
+      ),
+      child: Center(
+        child: CupertinoSwitch(
+          // This bool value toggles the switch.
+          value: switchValue,
+          activeColor: AppTheme.black,
+          thumbColor: AppTheme.white,
+          trackColor: AppTheme.black,
+          onChanged: (bool? value) {
+            // This is called when the user toggles the switch.
+            setState(() {
+              switchValue = value ?? false;
+            });
+          },
+        ),
+      ),
+    );
+  }
 }

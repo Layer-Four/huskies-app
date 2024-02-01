@@ -22,10 +22,10 @@ class TicketView extends ConsumerWidget {
           Column(
             children: [
               const HeadWidget(
-                center: Text('Tickets', style: AppTheme.headStyle),
+                center: Text('Tickets', style: AppTheme.titleBlack),
                 end: UserIconWidget(image: 'da.jpg'),
               ),
-              const Padding(padding: EdgeInsets.all(20)),
+              const Padding(padding: AppTheme.paddingXL),
               SizedBox(
                 height: 330,
                 child: ListView.builder(
@@ -33,7 +33,7 @@ class TicketView extends ConsumerWidget {
                   itemBuilder: ((context, index) {
                     Color backgroundColor = Colors.white;
                     if (index.isEven) {
-                      backgroundColor = const Color.fromARGB(255, 215, 234, 249);
+                      backgroundColor = AppTheme.ticketBackground;
                     }
                     return TicketItemRowWidget(
                       image: 'fuechse.png',
@@ -48,7 +48,7 @@ class TicketView extends ConsumerWidget {
             ],
           ),
           Padding(
-            padding: AppTheme.smallPadding,
+            padding: AppTheme.paddingS,
             child: RedTextButton(
                 onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(

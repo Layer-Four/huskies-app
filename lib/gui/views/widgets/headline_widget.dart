@@ -14,7 +14,7 @@ class HeadWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Padding(
-        padding: AppTheme.mediumPadding,
+        padding: AppTheme.paddingM,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

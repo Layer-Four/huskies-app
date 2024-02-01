@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class CustomButtonAuth extends StatelessWidget {
   final String title;
@@ -10,17 +11,17 @@ class CustomButtonAuth extends StatelessWidget {
     return MaterialButton(
       height: 40,
       shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(13),
+        borderRadius: AppTheme.defaultM,
         borderSide: const BorderSide(
           color: Colors.transparent,
           width: 1,
         ),
       ),
-      color: const Color.fromARGB(255, 22, 63, 92),
+      color: AppTheme.customButton,
       onPressed: onPress,
       child: Text(
         title,
-        style: const TextStyle(color: Colors.white),
+        style: AppTheme.whiteTextStyle,
       ),
     );
   }
