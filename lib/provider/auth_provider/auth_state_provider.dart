@@ -1,7 +1,3 @@
-// * Provider provides immutable objects and give a reference to it self or all providers in the provider scope?.
-// * State provider contains mutable objects that are intended to change during runtime.
-// * define a "Logger" object for Logging and give the access to them
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/provider/static_provider.dart';
