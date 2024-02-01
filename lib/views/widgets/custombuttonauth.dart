@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class CustomButtonAuth extends StatelessWidget {
   final String title;

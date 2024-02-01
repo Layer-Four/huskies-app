@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class UserInfoWidget extends StatelessWidget {
   const UserInfoWidget({
