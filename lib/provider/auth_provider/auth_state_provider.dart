@@ -12,7 +12,7 @@ final authProvider = StreamProvider<User?>((ref) {
       if (!user.emailVerified) {
         ref.read(statusProvider.notifier).waitOnRegistration();
       } else {
-        ref.read(statusProvider.notifier).userLogIn();
+        ref.read(statusProvider.notifier).onLogIn();
       }
     }
     return null;

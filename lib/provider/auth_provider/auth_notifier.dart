@@ -118,7 +118,17 @@ class AuthNotifier extends Notifier<AuthState> {
 
   void waitOnRegistration() async => state = AuthState.onRegistration;
 
-  void userLogIn() => state = AuthState.loggedIn;
+  void onLogIn() => state = AuthState.loggedIn;
+  void onLoading({
+    Duration? duration,
+  }) {
+    state = AuthState.loading;
+    if (duration != null) {
+      Future.delayed(duration).then((_) {
+        state = AuthState.loggedIn;
+      });
+    }
+  }
 }
 
   //   void sendEmailVerification() {

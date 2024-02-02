@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
 import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/views/loading_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Helpers {
@@ -97,45 +97,48 @@ class Helpers {
     required WidgetRef ref,
     required ViewPage nextView,
   }) {
-    showLoadingView(context);
+    LoadingView();
+    // showLoadingView(context);
     Future.delayed(const Duration(milliseconds: 1500)).then((_) {
+      Navigator.of(context).pop();
       ref.read(viewProvider.notifier).state = nextView;
     });
   }
 
-  static Widget showLoadingView(BuildContext context, {Widget? button}) {
-    final advertising = Helpers.getAdvertising();
-    return Material(
-      child: Container(
-        padding: AppTheme.paddingM,
-        color: Colors.white,
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // LoadingAnimationWidget.discreteCircle(size: 70, color: AppTheme.primary),
-            // const Color.fromARGB(129, 0, 150, 135), size: 70),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Image.asset('assets/${advertising.$2}', width: 100),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              padding: AppTheme.hugePaddingBottom,
-              child: const CircularProgressIndicator(
-                color: Color.fromARGB(129, 0, 150, 135),
-              ),
-            ),
-            Text(
-              advertising.$1,
-              style: const TextStyle(fontSize: 25, color: AppTheme.primary),
-              textAlign: TextAlign.center,
-            ),
-            Padding(padding: AppTheme.paddingXL, child: button),
-          ],
-        ),
-      ),
-    );
-  }
+//   static Future<Widget> showLoadingView(BuildContext context, {Widget? button}) async {
+//     final advertising = Helpers.getAdvertising();
+//     return await showDialog(
+//       context: context,
+//       builder: (context) => Material(
+//         child: Container(
+//           padding: AppTheme.paddingM,
+//           color: Colors.white,
+//           alignment: Alignment.center,
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(20.0),
+//                 child: Image.asset('assets/${advertising.$2}', width: 100),
+//               ),
+//               Container(
+//                 height: 100,
+//                 width: 100,
+//                 padding: AppTheme.hugePaddingBottom,
+//                 child: const CircularProgressIndicator(
+//                   color: Color.fromARGB(129, 0, 150, 135),
+//                 ),
+//               ),
+//               Text(
+//                 advertising.$1,
+//                 style: const TextStyle(fontSize: 25, color: AppTheme.primary),
+//                 textAlign: TextAlign.center,
+//               ),
+//               Padding(padding: AppTheme.paddingXL, child: button),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
 }

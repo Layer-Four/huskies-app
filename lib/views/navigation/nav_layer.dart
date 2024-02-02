@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/globals.dart';
-import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/home/home_view.dart';
 import 'package:huskies_app/views/navigation/navbar_widget.dart';
@@ -47,15 +46,24 @@ class ViewNavigator extends ConsumerWidget {
               onPressed: () => viewNotifier.state = ViewPage.table,
             ),
             NavBarIconWidget(
-              icon: Icons.card_giftcard,
-              name: 'shop',
-              isCurrentView: view == ViewPage.shop,
-              onPressed: () => Helpers.loadAndNavigate(
-                context: context,
-                ref: ref,
-                nextView: ViewPage.shop,
-              ),
-            ),
+                icon: Icons.card_giftcard,
+                name: 'shop',
+                isCurrentView: view == ViewPage.shop,
+                onPressed: () {
+                  if (view != ViewPage.shop) {
+                    ref.read(statusProvider.notifier).onLoading(
+                          duration: const Duration(seconds: 2),
+                        );
+
+                    viewNotifier.state = ViewPage.shop;
+                  }
+                }
+                // Helpers.loadAndNavigate(
+                //   context: context,
+                //   ref: ref,
+                //   nextView: ViewPage.shop,
+                // ),
+                ),
           ],
         ),
       ),

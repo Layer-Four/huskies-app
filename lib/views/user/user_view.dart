@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/widgets/blue_button_widget.dart';
 import 'package:huskies_app/views/widgets/user_view_widgets/settingsrow_widget.dart';
 
@@ -87,8 +87,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             color: const Color.fromARGB(255, 22, 63, 92),
                             text: 'Profil bearbeiten',
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Helpers.showLoadingView(context)));
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => const LoadingView()));
                               Future.delayed(const Duration(seconds: 2))
                                   .then((value) => Navigator.of(context).pop());
                             }),
