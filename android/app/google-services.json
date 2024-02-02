@@ -12,7 +12,12 @@
           "package_name": "com.example.huskies_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "873020037397-759emp561s9d8pq6ru7efpuklub35ggs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA2t8xII8RPQNwHPt3P9OMTszxcKQ-UTA8"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873020037397-759emp561s9d8pq6ru7efpuklub35ggs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "873020037397-9o34ea7akj8lg56qa1pmjqai689j6eb0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.huskiesApp"
+              }
+            }
+          ]
         }
       }
     }

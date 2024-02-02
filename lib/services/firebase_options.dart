@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '873020037397',
     projectId: 'huskies-app-dev',
     storageBucket: 'huskies-app-dev.appspot.com',
+    iosClientId: '873020037397-9o34ea7akj8lg56qa1pmjqai689j6eb0.apps.googleusercontent.com',
     iosBundleId: 'com.example.huskiesApp',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '873020037397',
     projectId: 'huskies-app-dev',
     storageBucket: 'huskies-app-dev.appspot.com',
+    iosClientId: '873020037397-omvo70ikb4adkoh12h0nkpbc4j975h85.apps.googleusercontent.com',
     iosBundleId: 'com.example.huskiesApp.RunnerTests',
   );
 }
