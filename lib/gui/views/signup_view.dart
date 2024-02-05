@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:huskies_app/auth/components/custombuttonauth.dart';
 import 'package:huskies_app/auth/components/textformfield.dart';
-import 'package:huskies_app/gui/views/login_view.dart';
+// import 'package:huskies_app/gui/views/login_view.dart';
 
 class Signup extends StatefulWidget {
   final bool isPWForget;
@@ -14,6 +16,10 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
   TextEditingController username = TextEditingController();
 
   @override
@@ -78,9 +84,12 @@ class _SignupState extends State<Signup> {
                       const SizedBox(
                         height: 8,
                       ),
-                      CustomeTextForm(
-                        hinttext: "Email Eingeben",
-                        mycontroller: email,
+                      SizedBox(
+                        height: 40,
+                        child: CustomeTextForm(
+                          hinttext: "Email Eingeben",
+                          mycontroller: email,
+                        ),
                       ),
 
                       const SizedBox(
@@ -129,7 +138,23 @@ class _SignupState extends State<Signup> {
                   ),
                   CustomButtonAuth(
                     title: "Registrieren",
-                    onPress: () {},
+                    onPress: () {
+                      if (email.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            duration: Duration(seconds: 3),
+                            content: Text("bitte gib ein Email ein"),
+                          ),
+                        );
+                      } else if (email.text.length < 5) {
+                        log('Email muss mehr als 5 sein');
+                      }
+                      // if (password.text.isEmpty) {
+
+                      // }
+                    },
+                    formKey: formKey,
+                    key: scaffoldKey,
                   ),
 
                   // Container(height: 20),
@@ -154,12 +179,7 @@ class _SignupState extends State<Signup> {
                   // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginView(),
-                        ),
-                      );
+                      Navigator.of(context).pop();
                     },
                     child: const Center(
                       child: Text.rich(

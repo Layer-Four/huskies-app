@@ -7,11 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  runApp(const ProviderScope(child: MyApp()));
-
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -22,7 +22,9 @@ class MyApp extends ConsumerWidget {
     final state = ref.watch(provider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: state.user != null && state.user!.isLogIn ? const ViewNavigator() : const LoginView(),
+      home: state.user != null && state.user!.isLogIn
+          ? const ViewNavigator()
+          : const LoginView(),
     );
   }
 }

@@ -19,6 +19,7 @@ class HomeView extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeView> {
   int indexUpperCarousel = 0;
   int indexLowerCarousel = 0;
+
   @override
   Widget build(BuildContext context) {
     // final state = ref.read(provider);
@@ -27,62 +28,57 @@ class _HomeViewState extends ConsumerState<HomeView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 22, 63, 92),
-          toolbarHeight: 120,
-          title: Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 25, bottom: 10),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Image.asset(
-                      'assets/da.jpg',
-                      width: 35,
-                    ),
-                    // ),
+          toolbarHeight: 110,
+          title: Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 25, bottom: 10),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
                   ),
-                  const Text("Hallo David",
-                      style: TextStyle(
-                        letterSpacing: 0.5,
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  const Text(
-                    "Willkommon zurück!",
-                    style: TextStyle(color: Colors.white),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset(
+                    'assets/da.jpg',
+                    width: 35,
                   ),
-                ],
-              ),
+                  // ),
+                ),
+                const Text("Hallo David",
+                    style: TextStyle(
+                      letterSpacing: 1,
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    )),
+                const Text(
+                  "Willkommon zurück!",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 13, letterSpacing: 1),
+                ),
+              ],
             ),
           ),
         ),
         body: Container(
           color: const Color.fromARGB(255, 22, 63, 92),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: CarouselSlider.builder(
-                    itemCount: 3,
-                    itemBuilder: (context, index, realIndex) {
-                      return const UserInfoWidget();
-                    },
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      height: 110,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          indexUpperCarousel = index;
-                        });
-                      },
-                    ),
-                  ),
+              CarouselSlider.builder(
+                itemCount: 3,
+                itemBuilder: (context, index, realIndex) {
+                  return const UserInfoWidget();
+                },
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  height: 100,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      indexUpperCarousel = index;
+                    });
+                  },
                 ),
               ),
               // SizedBox(
@@ -153,84 +149,92 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-
-              //Puzzle Section===================================
-
-              Container(
-                color: const Color.fromARGB(255, 168, 199, 224),
-                child: Stack(
-                  children: [
-                    Opacity(
-                      opacity: 0.2,
-                      child: Image.asset(
-                        'assets/puzzle_huskies.png',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        // scale: 0.1,
-                        // height: 200,
-                      ),
-                    ),
-                    // Container(
-                    //   color: Color.fromARGB(207, 213, 236, 255),
+                    //     ],
+                    //   ),
                     // ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      top: 20,
-                      child: Container(
-                        // padding: const EdgeInsets.all(15),
-                        width: double.infinity,
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Kassel Huskies",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
+
+                    //Puzzle Section===================================
+
+                    Container(
+                      color: Color.fromARGB(238, 228, 228, 238),
+                      child: Stack(
+                        children: [
+                          Opacity(
+                            opacity: 0.2,
+                            child: Image.asset(
+                              'assets/puzzle_huskies.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              // scale: 0.1,
+                              // height: 200,
                             ),
-                            const Text(
-                              "NFT-Puzzle",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color.fromARGB(255, 22, 63, 92),
-                              ),
-                            ),
-                            const Text(
-                              "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: TextStyle(color: Color.fromARGB(255, 14, 31, 15)),
-                              textAlign: TextAlign.center,
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Container(
-                                width: 85,
-                                height: 30,
-                                padding: AppTheme.mediumPadding,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 22, 63, 92),
-                                    borderRadius: BorderRadius.circular(7)),
-                                child: const Center(
-                                  child: Text(
-                                    "Mehr Infos",
+                          ),
+                          // Container(
+                          //   color: Color.fromARGB(207, 213, 236, 255),
+                          // ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            top: 30,
+                            child: Container(
+                              // padding: const EdgeInsets.all(15),
+                              width: double.infinity,
+                              child: Column(
+                                // crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Kassel Huskies",
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      // fontWeight: FontWeight.bold
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 21,
+                                      letterSpacing: 1,
+                                      color: Color.fromARGB(255, 22, 63, 92),
                                     ),
                                   ),
-                                ),
+                                  const Text(
+                                    "NFT-Puzzle",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 21,
+                                      letterSpacing: 1,
+                                      color: Color.fromARGB(255, 22, 63, 92),
+                                    ),
+                                  ),
+                                  const Text(
+                                    "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 14, 31, 15)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Container(
+                                      width: 85,
+                                      height: 30,
+                                      padding: AppTheme.mediumPadding,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 22, 63, 92),
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      child: const Center(
+                                        child: Text(
+                                          "Mehr Infos",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 11,
+                                            // fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -243,10 +247,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
     );
   }
 
-  Widget buildIndicator({required int index, required Color isBackgroundColor}) =>
+  Widget buildIndicator(
+          {required int index, required Color isBackgroundColor}) =>
       AnimatedSmoothIndicator(
         activeIndex: index,
         count: 3,
-        effect: SlideEffect(dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
+        effect: SlideEffect(
+            dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
       );
 }
