@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/models/user_vm/user_model.dart';
-import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/views/loading_view.dart';
-import 'package:huskies_app/views/widgets/blue_button_widget.dart';
-import 'package:huskies_app/views/widgets/user_view_widgets/settingsrow_widget.dart';
+import 'package:huskies_app/views/user_views/user_edit_view.dart';
+import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
 
 class UserProfileView extends ConsumerStatefulWidget {
-  final String? userImage;
-  const UserProfileView({this.userImage, super.key});
+  const UserProfileView({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileViewState();
 }
@@ -17,23 +14,9 @@ class UserProfileView extends ConsumerStatefulWidget {
 class _UserProfileViewState extends ConsumerState<UserProfileView> {
   bool darkMode = false;
   bool faceID = true;
-  UserModel? userModel;
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(authProvider);
-    user.when(
-      error: (error, stackTrace) => throw ('error on Userview: $error ,  stack trace: $stackTrace'),
-      loading: () {},
-      data: (user) {
-        if (user != null) {
-          userModel = UserModel(
-            email: user.email!,
-            uID: user.uid,
-            displayedName: user.displayName,
-          );
-        }
-      },
-    );
+    final user = ref.watch(userProvider);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -64,23 +47,27 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       margin: const EdgeInsets.symmetric(vertical: 30),
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
-                      child: Image.asset(
-                          widget.userImage != null ? 'assets/${widget.userImage}' : 'assets/da.jpg',
-                          height: 80,
-                          width: 80),
+                      child: user != null
+                          ? Image.asset(
+                              user.userImage != null
+                                  ? 'assets/${user.userImage}'
+                                  : 'assets/user.png',
+                              height: 90,
+                              width: 90)
+                          : const Icon(Icons.account_circle_rounded, size: 90),
                     ),
                     Column(
                       children: [
                         Text(
-                          '${userModel?.displayedName ?? ' Username'} ${userModel?.displayedName!.split(' ').last ?? ''}',
+                          '${user?.displayedName ?? ' Username'} ${user?.displayedName?.split(' ').last ?? ''}',
                         ),
                         Text(
-                          userModel?.email ?? 'beispiel@email.etc',
+                          user?.email ?? 'beispiel@email.etc',
                           style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Text(
                           // TODO: generate a separate KuID!
-                          'Kundennummer: ${userModel?.uID ?? 'KH234332'}',
+                          'Kundennummer: ${user?.uID ?? 'KH234332'}',
                           style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         BlueButton(
@@ -88,9 +75,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             text: 'Profil bearbeiten',
                             onPressed: () {
                               Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => const LoadingView()));
-                              Future.delayed(const Duration(seconds: 2))
-                                  .then((value) => Navigator.of(context).pop());
+                                  MaterialPageRoute(builder: (context) => const UpdateUserView()));
+                              // Future.delayed(const Duration(seconds: 2))
+                              //     .then((value) => Navigator.of(context).pop());
                             }),
                       ],
                     ),

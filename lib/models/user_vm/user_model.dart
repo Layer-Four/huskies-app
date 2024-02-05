@@ -7,7 +7,7 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   factory UserModel({
     String? displayedName,
-    required String email,
+    String? email,
     @Default(false) emailVerified,
     int? phoneNumber,
     String? tenantID,

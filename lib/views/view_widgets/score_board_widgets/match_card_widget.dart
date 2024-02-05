@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:huskies_app/constants/helpers.dart';
-import 'package:huskies_app/views/widgets/home_view_widgets/match_view_widget.dart';
-import 'package:huskies_app/views/widgets/score_board_widgets/match_result_widget.dart';
+import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
+import 'package:huskies_app/views/view_widgets/score_board_widgets/match_result_widget.dart';
 
 class MatchCard extends StatefulWidget {
   final int? homeScore;

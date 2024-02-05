@@ -21,7 +21,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModel {
   String? get displayedName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   dynamic get emailVerified => throw _privateConstructorUsedError;
   int? get phoneNumber => throw _privateConstructorUsedError;
   String? get tenantID => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? displayedName,
-      String email,
+      String? email,
       dynamic emailVerified,
       int? phoneNumber,
       String? tenantID,
@@ -63,7 +63,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? displayedName = freezed,
-    Object? email = null,
+    Object? email = freezed,
     Object? emailVerified = freezed,
     Object? phoneNumber = freezed,
     Object? tenantID = freezed,
@@ -75,10 +75,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerified: freezed == emailVerified
           ? _value.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? displayedName,
-      String email,
+      String? email,
       dynamic emailVerified,
       int? phoneNumber,
       String? tenantID,
@@ -133,7 +133,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? displayedName = freezed,
-    Object? email = null,
+    Object? email = freezed,
     Object? emailVerified = freezed,
     Object? phoneNumber = freezed,
     Object? tenantID = freezed,
@@ -145,10 +145,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerified:
           freezed == emailVerified ? _value.emailVerified! : emailVerified,
       phoneNumber: freezed == phoneNumber
@@ -176,7 +176,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 class _$UserModelImpl implements _UserModel {
   _$UserModelImpl(
       {this.displayedName,
-      required this.email,
+      this.email,
       this.emailVerified = false,
       this.phoneNumber,
       this.tenantID,
@@ -189,7 +189,7 @@ class _$UserModelImpl implements _UserModel {
   @override
   final String? displayedName;
   @override
-  final String email;
+  final String? email;
   @override
   @JsonKey()
   final dynamic emailVerified;
@@ -255,7 +255,7 @@ class _$UserModelImpl implements _UserModel {
 abstract class _UserModel implements UserModel {
   factory _UserModel(
       {final String? displayedName,
-      required final String email,
+      final String? email,
       final dynamic emailVerified,
       final int? phoneNumber,
       final String? tenantID,
@@ -268,7 +268,7 @@ abstract class _UserModel implements UserModel {
   @override
   String? get displayedName;
   @override
-  String get email;
+  String? get email;
   @override
   dynamic get emailVerified;
   @override

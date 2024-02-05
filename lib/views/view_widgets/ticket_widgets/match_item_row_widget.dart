@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/views/widgets/ticket_widgets/red_text_button.dart';
+import 'package:huskies_app/views/view_widgets/ticket_widgets/red_text_button.dart';
 
 class TicketItemRowWidget extends StatelessWidget {
   const TicketItemRowWidget({

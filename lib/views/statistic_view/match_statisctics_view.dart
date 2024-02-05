@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/views/widgets/headline_widget.dart';
-import 'package:huskies_app/views/widgets/score_board_widgets/match_card_widget.dart';
-import 'package:huskies_app/views/widgets/score_board_widgets/scoreboard_footer_widget.dart';
-import 'package:huskies_app/views/widgets/score_board_widgets/scoreboard_widget.dart';
-import 'package:huskies_app/views/widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:huskies_app/views/view_widgets/headline_widget.dart';
+import 'package:huskies_app/views/view_widgets/score_board_widgets/match_card_widget.dart';
+import 'package:huskies_app/views/view_widgets/score_board_widgets/scoreboard_footer_widget.dart';
+import 'package:huskies_app/views/view_widgets/score_board_widgets/scoreboard_widget.dart';
+import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 
 class MatchStatisticsView extends ConsumerWidget {
   static const MatchStatisticsView _instance = MatchStatisticsView._();

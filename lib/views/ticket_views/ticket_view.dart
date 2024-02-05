@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/ticket_views/ticket_shop_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_wallet_view.dart';
-import 'package:huskies_app/views/widgets/headline_widget.dart';
-import 'package:huskies_app/views/widgets/ticket_widgets/match_item_row_widget.dart';
-import 'package:huskies_app/views/widgets/ticket_widgets/red_text_button.dart';
-import 'package:huskies_app/views/widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:huskies_app/views/view_widgets/headline_widget.dart';
+import 'package:huskies_app/views/view_widgets/ticket_widgets/match_item_row_widget.dart';
+import 'package:huskies_app/views/view_widgets/ticket_widgets/red_text_button.dart';
+import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 
 class TicketView extends ConsumerWidget {
   static const TicketView _instance = TicketView._();

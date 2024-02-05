@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/views/home/home_view.dart';
-import 'package:huskies_app/views/navigation/navbar_widget.dart';
-import 'package:huskies_app/views/shop/shop_view.dart';
+import 'package:huskies_app/views/home_view/home_view.dart';
+import 'package:huskies_app/views/navigation_view/navbar_widget.dart';
+import 'package:huskies_app/views/shop_view/shop_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_view.dart';
 import 'package:huskies_app/views/statistic_view/match_statisctics_view.dart';
 
