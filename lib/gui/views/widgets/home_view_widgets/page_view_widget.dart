@@ -13,7 +13,7 @@ class UserInfoWidget extends StatelessWidget {
       decoration: AppTheme.whiteBox,
       margin: AppTheme.pointsBoxPadding,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: AppTheme.mainAround,
         children: [
           Row(
             children: [
@@ -74,8 +74,8 @@ class UserInfoWidget extends StatelessWidget {
                 ),
               ),
               const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: AppTheme.mainCenter,
+                crossAxisAlignment: AppTheme.crossStart,
                 children: [
                   Text('Level'),
                   Text(

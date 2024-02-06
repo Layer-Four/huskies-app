@@ -15,9 +15,9 @@ class TicketView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List gamesInSeason = List.generate(8, (index) => index++);
     return Container(
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: AppTheme.white),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: AppTheme.mainBetween,
         children: [
           Column(
             children: [

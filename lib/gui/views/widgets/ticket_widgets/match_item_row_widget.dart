@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/gui/views/widgets/ticket_widgets/red_text_button.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class TicketItemRowWidget extends StatelessWidget {
   const TicketItemRowWidget({
@@ -21,15 +22,15 @@ class TicketItemRowWidget extends StatelessWidget {
       height: 55,
       color: backgroundColor,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: AppTheme.mainBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: AppTheme.paddingM,
             child: Image.asset('assets/$image', width: 60),
           ),
           Text(
             gameDate,
-            style: const TextStyle(fontSize: 13, inherit: false, color: Colors.black),
+            style: AppTheme.textDefaultSmallBlack,
           ),
           RedTextButton(onPressed: onPressed, title: 'Ticket'),
         ],

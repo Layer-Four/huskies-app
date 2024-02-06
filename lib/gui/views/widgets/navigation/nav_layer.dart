@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/navbar_widget.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
 
@@ -21,7 +22,7 @@ class ViewNavigator extends ConsumerWidget {
         },
         bottomNavigationBar: NavigationBar(
           height: MediaQuery.of(context).size.height / 10,
-          backgroundColor: const Color.fromARGB(255, 101, 132, 155),
+          backgroundColor: AppTheme.primary,
           destinations: [
             NavBarIconWidget(
               icon: Icons.home_outlined,

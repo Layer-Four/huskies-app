@@ -16,7 +16,7 @@ class HeadWidget extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: AppTheme.paddingM,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: AppTheme.mainBetween,
           children: [
             SizedBox(width: start == null ? 40 : null, child: start),
             center,

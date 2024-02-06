@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class LastMatchResultWidget extends StatelessWidget {
   final int? homeScore;
@@ -17,7 +18,7 @@ class LastMatchResultWidget extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
         width: 250,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainEvenly,
           children: [
             Image.asset(
               'assets/$homeImage',

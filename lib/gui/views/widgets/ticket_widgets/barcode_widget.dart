@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class BarcodeView extends StatelessWidget {
   final Image barcode;
@@ -6,7 +7,7 @@ class BarcodeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: const EdgeInsets.only(bottom: 6),
+        margin: AppTheme.paddingS,
         height: 90,
         width: double.infinity,
         child: Card(
@@ -17,9 +18,9 @@ class BarcodeView extends StatelessWidget {
           )),
           semanticContainer: false,
           elevation: 3,
-          color: const Color.fromARGB(255, 215, 234, 249),
+          color: AppTheme.ticketBackground,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+            padding: AppTheme.boxPadding,
             child: barcode,
           ),
         ),

@@ -24,7 +24,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       appBar: AppBar(
         toolbarHeight: 80,
         centerTitle: true,
-        titleTextStyle: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w600, fontSize: 25, color: Colors.black),
+        titleTextStyle: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w600, fontSize: 25, color: AppTheme.black),
         title: Text('Mein Profil'),
       ),
       body: Container(
@@ -33,7 +33,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
         padding: AppTheme.defaultVerticalDistance,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainEvenly,
           children: [
             Card(
               elevation: 7,
@@ -42,7 +42,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               child: Container(
                 decoration: AppTheme.whiteBox,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainEvenly,
                   children: [
                     Container(
                       margin: AppTheme.defaultVerticalDistanceL,
@@ -71,10 +71,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           decoration: AppTheme.homePageButton,
                           child: TextButton(
                             child: Container(
-                              alignment: Alignment.center,
+                              alignment: AppTheme.alignCenter,
                               child: Text(
                                 'Profil bearbeiten',
-                                textAlign: TextAlign.center,
+                                textAlign: AppTheme.textCenter,
                                 style: AppTheme.textDefaultSmall10,
                               ),
                             ),
@@ -106,10 +106,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: AppTheme.mainBetween,
                       children: [
                         SettingsRow(
                           endingWidget: const Text(
@@ -173,10 +173,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: AppTheme.mainBetween,
                       children: [
                         SettingsRow(
                           leadingIcon: Icon(

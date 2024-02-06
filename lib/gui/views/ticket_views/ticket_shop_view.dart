@@ -14,7 +14,7 @@ class TicketShopView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: AppTheme.white),
       child: Column(
         children: [
           HeadWidget(
@@ -23,7 +23,7 @@ class TicketShopView extends ConsumerWidget {
               icon: const Icon(Icons.arrow_back),
             ),
             center: const Text('Tickets',
-                style: TextStyle(fontSize: 29, color: Colors.black, inherit: false)),
+                style: TextStyle(fontSize: 29, color: AppTheme.black, inherit: false)),
             end: UserIconWidget(
               image: 'da.jpg',
               onPressed: () => Navigator.push(
@@ -56,7 +56,7 @@ class TicketShopView extends ConsumerWidget {
               color: AppTheme.huskiesPuzzle,
             ),
           ),
-          const Padding(padding: AppTheme.paddingXL,),
+          const Padding(padding: AppTheme.paddingXL),
           SizedBox(
             height: 285,
             child: ListView.builder(

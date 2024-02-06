@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_footer_widget.dart';
 import 'package:huskies_app/gui/views/widgets/score_board_widgets/scoreboard_widget.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class MatchStatisticsView extends ConsumerWidget {
   final String season;
@@ -19,11 +20,11 @@ class MatchStatisticsView extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: AppTheme.mainCenter,
           children: [
             Text(
               season,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              style: AppTheme.titleBlack,
             ),
             const SizedBox(width: 12),
             Container(
@@ -40,7 +41,7 @@ class MatchStatisticsView extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: AppTheme.defaultHorizontalDistance,
           child: Column(
             children: [
               const MatchCard(
@@ -49,9 +50,9 @@ class MatchStatisticsView extends ConsumerWidget {
                 homeImage: 'huskies.png',
                 visitorImage: 'fuechse.png',
               ),
-              const SizedBox(height: 12),
+              AppTheme.sizedBox14,
               const ScoreboardViewWidget(),
-              const SizedBox(height: 6),
+              AppTheme.sizedBox14,
               GameStaticsFooterWidget(season: season)
             ],
           ),

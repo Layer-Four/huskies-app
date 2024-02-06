@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class NavBarIconWidget extends StatelessWidget {
   final void Function()? onPressed;
@@ -16,34 +17,30 @@ class NavBarIconWidget extends StatelessWidget {
   Widget build(BuildContext context) => InkWell(
         onTap: onPressed,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainEvenly,
           children: [
             isCurrentView
                 ? Container(
                     width: 20,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
-                      border: Border.all(width: 1.5, color: Colors.white),
+                      border: Border.all(width: 1.5, color: AppTheme.white),
                     ),
                   )
                 : const SizedBox(),
             SizedBox(
               height: 45,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: AppTheme.mainCenter,
                 children: [
                   Icon(
                     size: 25,
-                    color: Colors.white,
+                    color: AppTheme.white,
                     icon,
                   ),
                   Text(
                     name,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w200,
-                      color: Colors.white,
-                    ),
+                    style: AppTheme.textDefaultSmall10,
                   )
                 ],
               ),

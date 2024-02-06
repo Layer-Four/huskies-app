@@ -167,7 +167,7 @@ class GoogleLogInButtonWidget extends StatelessWidget {
         borderRadius: AppTheme.defaultM,
       ),
       color: AppTheme.customButton,
-      textColor: Colors.white,
+      textColor: AppTheme.white,
       onPressed: () {},
       child: const Row(
         mainAxisAlignment: AppTheme.mainCenter,

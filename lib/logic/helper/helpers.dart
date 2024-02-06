@@ -15,8 +15,8 @@ class Helpers {
         count: length,
         // TODO: Need a own Style in AppTheme?
         effect: const SlideEffect(
-          dotColor: Colors.grey,
-          activeDotColor: Colors.black,
+          dotColor: AppTheme.grey,
+          activeDotColor: AppTheme.black,
           dotHeight: 8,
           dotWidth: 8,
         ),
@@ -35,19 +35,19 @@ class Helpers {
         height: 35,
         margin: const EdgeInsets.only(bottom: 1),
         decoration: BoxDecoration(
-            color: place != 1 ? Colors.white : const Color.fromARGB(255, 235, 231, 231)),
+            color: place != 1 ? AppTheme.white : const Color.fromARGB(255, 235, 231, 231)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainEvenly,
           children: [
-            Text('$place.', style: const TextStyle(color: Colors.black)),
+            Text('$place.', style: const TextStyle(color: AppTheme.black)),
             SizedBox(
               height: 30,
               child: Center(child: Image.asset('assets/$imageSource', width: 20, height: 20)),
             ),
-            Center(child: Text('$games', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$points', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$goals', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$difference', style: const TextStyle(color: Colors.black))),
+            Center(child: Text('$games', style: const TextStyle(color: AppTheme.black))),
+            Center(child: Text('$points', style: const TextStyle(color: AppTheme.black))),
+            Center(child: Text('$goals', style: const TextStyle(color: AppTheme.black))),
+            Center(child: Text('$difference', style: const TextStyle(color: AppTheme.black))),
           ],
         ),
       );
@@ -64,17 +64,17 @@ class Helpers {
     return Container(
       height: 35,
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 101, 132, 155),
+        color: AppTheme.scoreBoardColor,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: AppTheme.mainEvenly,
         children: [
-          Text(position, style: const TextStyle(color: Colors.white)),
-          Text(team, style: const TextStyle(color: Colors.white)),
-          Text(games, style: const TextStyle(color: Colors.white)),
-          Text(points, style: const TextStyle(color: Colors.white)),
-          Text(goals, style: const TextStyle(color: Colors.white)),
-          Text(difference, style: const TextStyle(color: Colors.white)),
+          Text(position, style: const TextStyle(color: AppTheme.white)),
+          Text(team, style: const TextStyle(color: AppTheme.white)),
+          Text(games, style: const TextStyle(color: AppTheme.white)),
+          Text(points, style: const TextStyle(color: AppTheme.white)),
+          Text(goals, style: const TextStyle(color: AppTheme.white)),
+          Text(difference, style: const TextStyle(color: AppTheme.white)),
         ],
       ),
     );
@@ -104,14 +104,14 @@ class Helpers {
         builder: (context) => Container(
             padding: AppTheme.paddingM,
             color: Colors.white,
-            alignment: Alignment.center,
+            alignment: AppTheme.alignCenter,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: AppTheme.mainCenter,
               children: [
                 LoadingAnimationWidget.discreteCircle(size: 70, color: AppTheme.primary),
                 // const Color.fromARGB(129, 0, 150, 135), size: 70),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: AppTheme.paddingXL,
                   child: image != null
                       ? Image.asset(
                           'assets/$image',
@@ -122,7 +122,7 @@ class Helpers {
                 Text(
                   advertising,
                   style: const TextStyle(fontSize: 25, color: AppTheme.primary),
-                  textAlign: TextAlign.center,
+                  textAlign: AppTheme.textCenter,
                 ),
               ],
             )),
