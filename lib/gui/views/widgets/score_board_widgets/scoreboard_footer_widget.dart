@@ -27,7 +27,7 @@ class GameStaticsFooterWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
             color: const Color.fromARGB(255, 101, 132, 155),
             child: const Text(
-              'Gesamte Tabelle aneigen',
+              'Gesamte Tabelle anzeigen',
               style: TextStyle(color: Colors.white, fontSize: 11),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class MatchViewWidget extends StatelessWidget {
   const MatchViewWidget({
@@ -21,11 +22,11 @@ class MatchViewWidget extends StatelessWidget {
             children: [
               Text(
                 "VS",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: AppTheme.textDefaultBlack,
               ),
               Text(
-                "Eisarena Weiswasser, \n 08.12.2023. 19.30 Uhr",
-                style: TextStyle(fontSize: 12),
+                "Eis-arena Weiswasser, \n 08.12.2023. 19.30 Uhr",
+                style: AppTheme.textDefaultSmallBlack,
               )
             ],
           ),
