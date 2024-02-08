@@ -4,7 +4,13 @@ import 'package:huskies_app/logic/helper/app_theme.dart';
 class CustomButtonAuth extends StatelessWidget {
   final String title;
   final void Function()? onPress;
-  const CustomButtonAuth({super.key, required this.title, this.onPress});
+  // final GlobalKey<FormState> formKey;
+  const CustomButtonAuth({
+    super.key,
+    required this.title,
+    this.onPress,
+    required GlobalKey<FormState> formKey,
+  });
 
   @override
   Widget build(BuildContext context) {

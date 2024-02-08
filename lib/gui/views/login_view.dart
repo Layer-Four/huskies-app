@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:huskies_app/auth/components/custombuttonauth.dart';
-import 'package:huskies_app/auth/components/textformfield.dart';
+
 import 'package:huskies_app/gui/views/signup_view.dart';
+import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/nav_layer.dart';
+import 'package:huskies_app/gui/views/widgets/textformfield.dart';
 // import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class LoginView extends StatefulWidget {
@@ -144,6 +145,7 @@ class _LoginViewState extends State<LoginView> {
                           hinttext: "Email",
                           mycontroller: email,
                           validator: emailValidator,
+                          onSaved: () => print('onsaved'),
                         ),
                       ),
                       Container(
@@ -160,6 +162,7 @@ class _LoginViewState extends State<LoginView> {
                           mycontroller: password,
                           isPassword: true,
                           validator: passwordValidator,
+                          onSaved: null,
                         ),
                       ),
                       Container(

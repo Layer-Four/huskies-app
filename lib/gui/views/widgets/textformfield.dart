@@ -13,6 +13,7 @@ class CustomeTextForm extends StatefulWidget {
     required this.mycontroller,
     this.isPassword = false,
     this.validator,
+    required onSaved,
   });
 
   @override

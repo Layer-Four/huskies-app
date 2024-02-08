@@ -97,27 +97,25 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     Container(
                       height: 5,
                     ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: AppTheme.mainCenter,
-                        children: [
-                          Padding(
-                            padding: AppTheme.paddingS,
-                            child: Image.asset(
-                              'assets/second.png',
-                              width: 80,
-                            ),
+                    Row(
+                      mainAxisAlignment: AppTheme.mainCenter,
+                      children: [
+                        Padding(
+                          padding: AppTheme.paddingS,
+                          child: Image.asset(
+                            'assets/second.png',
+                            width: 80,
                           ),
-                          Padding(
-                            padding: AppTheme.paddingS,
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                          Padding(
-                            padding: AppTheme.paddingS,
-                            child: Image.asset('assets/first.png', width: 80),
-                          ),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: AppTheme.paddingS,
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                        Padding(
+                          padding: AppTheme.paddingS,
+                          child: Image.asset('assets/first.png', width: 80),
+                        ),
+                      ],
                     ),
                     const Padding(
                       padding: AppTheme.paddingS,
@@ -160,7 +158,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       left: 0,
                       right: 0,
                       top: 20,
-                      child: Container(
+                      child: SizedBox(
                         // padding: const EdgeInsets.all(15),
                         width: double.infinity,
                         child: Column(

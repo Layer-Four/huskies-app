@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/auth/login_view.dart';
+import 'package:huskies_app/gui/views/login_view.dart';
 import 'package:huskies_app/gui/views/widgets/navigation/nav_layer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
 import 'firebase/firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

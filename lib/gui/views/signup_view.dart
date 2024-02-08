@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:huskies_app/auth/components/custombuttonauth.dart';
-import 'package:huskies_app/auth/components/textformfield.dart';
+
+import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
+import 'package:huskies_app/gui/views/widgets/textformfield.dart';
 // import 'package:huskies_app/gui/views/login_view.dart';
 
 class Signup extends StatefulWidget {
@@ -16,11 +17,8 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-
   TextEditingController username = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +87,7 @@ class _SignupState extends State<Signup> {
                         child: CustomeTextForm(
                           hinttext: "Email Eingeben",
                           mycontroller: email,
+                          onSaved: null,
                         ),
                       ),
 
@@ -153,8 +152,8 @@ class _SignupState extends State<Signup> {
 
                       // }
                     },
+                    // formKey: formKey,
                     formKey: formKey,
-                    key: scaffoldKey,
                   ),
 
                   // Container(height: 20),

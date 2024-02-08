@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/gui/views/auth/login_view.dart';
 import 'package:huskies_app/gui/views/widgets/custombuttonauth.dart';
 import 'package:huskies_app/gui/views/widgets/textformfield.dart';
 import 'package:huskies_app/logic/helper/app_theme.dart';
@@ -19,6 +18,7 @@ class _SignupState extends State<Signup> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController username = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,8 @@ class _SignupState extends State<Signup> {
                     Column(
                       crossAxisAlignment: AppTheme.crossStart,
                       children: [
-                        // const SizedBox(height: 50),
                         Center(
                           child: SizedBox(
-                            // alignment: Alignment.center,
                             width: 180,
                             height: 180,
                             child: Image.asset(
@@ -64,6 +62,7 @@ class _SignupState extends State<Signup> {
                         CustomeTextForm(
                           hinttext: "Email Eingeben",
                           mycontroller: email,
+                          onSaved: null,
                         ),
                         AppTheme.sizedBox14,
                         const Text(
@@ -74,6 +73,7 @@ class _SignupState extends State<Signup> {
                         CustomeTextForm(
                           // hinttext: "Password Eingeben",
                           mycontroller: password, hinttext: 'passwort',
+                          onSaved: null,
                         ),
                         AppTheme.sizedBox14,
                         const Text(
@@ -96,6 +96,7 @@ class _SignupState extends State<Signup> {
                       ],
                     ),
                     CustomButtonAuth(
+                      formKey: formKey,
                       title: "Registrieren",
                       onPress: () async {
                         // Timer.periodic(Duration(seconds: 1), (_) {
@@ -110,7 +111,8 @@ class _SignupState extends State<Signup> {
                         final isfinished = await ref
                             .watch(appStateNotifierProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                            email: email.text, password: password.text);
+                                email: email.text, password: password.text);
+                        // ignore: use_build_context_synchronously
                         if (isfinished) Navigator.of(context).pop();
                       },
                     ),
@@ -137,12 +139,7 @@ class _SignupState extends State<Signup> {
                     // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
                     InkWell(
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginView(),
-                          ),
-                        );
+                        Navigator.of(context).pop();
                       },
                       child: const Center(
                         child: Text.rich(

@@ -11,7 +11,8 @@ import 'package:flutter/cupertino.dart';
 class UserProfileView extends ConsumerStatefulWidget {
   const UserProfileView({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserProfileViewState();
 }
 
 class _UserProfileViewState extends ConsumerState<UserProfileView> {
@@ -24,7 +25,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       appBar: AppBar(
         toolbarHeight: 80,
         centerTitle: true,
-        titleTextStyle: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w600, fontSize: 25, color: Colors.black),
+        titleTextStyle: TextStyle(
+            letterSpacing: 1,
+            fontWeight: FontWeight.w600,
+            fontSize: 25,
+            color: Colors.black),
         title: Text('Mein Profil'),
       ),
       body: Container(
@@ -48,7 +53,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       margin: AppTheme.defaultVerticalDistanceL,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
-                      child: Image.asset('assets/da.jpg', height: 80, width: 80),
+                      child:
+                          Image.asset('assets/da.jpg', height: 80, width: 80),
                     ),
                     Column(
                       children: [
@@ -79,7 +85,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                               ),
                             ),
                             onPressed: () {
-                              Helpers.showLoadingView(context, advertising: 'Profil bearbeiten');
+                              Helpers.showLoadingView(context,
+                                  advertising: 'Profil bearbeiten');
                               Future.delayed(const Duration(seconds: 2))
                                   .then((value) => Navigator.of(context).pop());
                             },
@@ -121,7 +128,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           optionTextStyle: AppTheme.textDefaultBlack,
                         ),
                         SettingsRow(
-                            /*child: Switch(
+                          /*child: Switch(
                               activeColor: Colors.white,
                               activeTrackColor: Colors.black,
                               inactiveTrackColor: Colors.black,
@@ -136,7 +143,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           optionTextStyle: AppTheme.textDefaultBlack,
                           leadingIcon: Icon(Icons.dark_mode_outlined),
                           switchValue: darkMode,
-                          onSwitchChanged: (value) => setState(() => darkMode = value),
+                          onSwitchChanged: (value) =>
+                              setState(() => darkMode = value),
                         ),
                         SettingsRow(
                           /*endIcon: Switch(
@@ -153,7 +161,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           optionTextStyle: AppTheme.textDefaultBlack,
                           leadingIcon: Icon(Icons.face_5_outlined),
                           switchValue: faceID,
-                          onSwitchChanged: (value) => setState(() => faceID = value),
+                          onSwitchChanged: (value) =>
+                              setState(() => faceID = value),
                         ),
                         SettingsRow(
                           leadingIcon: Icon(Icons.notifications_outlined),
@@ -194,9 +203,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           endIcon: SizedBox(),
                           leadingIcon: Icon(Icons.exit_to_app),
                           onTextPressed: () {
-                            ref.watch(appStateNotifierProvider.notifier).signOut();
+                            ref
+                                .watch(appStateNotifierProvider.notifier)
+                                .signOut();
                             Navigator.of(context).pop();
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginView(),
                             ));
                           },
@@ -240,45 +252,50 @@ class SettingsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      InkWell(
-        onTap: onTextPressed,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: leadingIcon,
-            ),
-            Text(optionText, style: optionTextStyle),
-          ],
-        ),
-      ),
-      Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
-          if (switchValue != null && onSwitchChanged != null) // Render switch only if both are provided
-            Padding(
-              padding: const EdgeInsets.only(right: 24),
-              child: CupertinoSwitch(
-                activeColor: AppTheme.black,
-                thumbColor: AppTheme.white,
-                trackColor: AppTheme.black,
-                value: switchValue!,
-                onChanged: onSwitchChanged,
-              ),
+          InkWell(
+            onTap: onTextPressed,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: leadingIcon,
+                ),
+                Text(optionText, style: optionTextStyle),
+              ],
             ),
-          if (endIcon != null && (switchValue == null || onSwitchChanged == null))
-            Padding(
-              padding: const EdgeInsets.only(right: 24),
-              child: endIcon!,
-            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: endingWidget),
+              if (switchValue != null &&
+                  onSwitchChanged !=
+                      null) // Render switch only if both are provided
+                Padding(
+                  padding: const EdgeInsets.only(right: 24),
+                  child: CupertinoSwitch(
+                    activeColor: AppTheme.black,
+                    thumbColor: AppTheme.white,
+                    trackColor: AppTheme.black,
+                    value: switchValue!,
+                    onChanged: onSwitchChanged,
+                  ),
+                ),
+              if ((switchValue == null || onSwitchChanged == null))
+                Padding(
+                  padding: const EdgeInsets.only(right: 24),
+                  child: endIcon,
+                ),
+            ],
+          ),
         ],
-      ),
-    ],
-  );
+      );
 }
 
 class CupertinoSwitchApp extends StatelessWidget {

@@ -11,145 +11,199 @@ import 'package:huskies_app/logic/helper/app_theme.dart';
 import 'package:huskies_app/logic/helper/helpers.dart';
 import 'package:huskies_app/logic/provider/notifier.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  ConsumerState<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends ConsumerState<LoginView> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  bool registerClicked = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    email.dispose();
+    password.dispose();
+  }
+
+  String? emailValidator(value) {
+    bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}")
+        .hasMatch(value!);
+
+    if (value.isEmpty) {
+      return "Enter Email";
+    } else if (!emailValid) {
+      return "Enter Valid Email";
+    }
+    return null;
+  }
+
+  String? passwordValidator(value) {
+    if (value!.isEmpty) {
+      return "Enter Password";
+    } else if (password.text.length < 6) {
+      return "Password Length Should be more than 6 charachters";
+    }
+    return null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    registerClicked = false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        return SafeArea(
-          child: Scaffold(
-            // backgroundColor: Colors.white,
-            body: Stack(
-              children: [
-                AppTheme.backgroundImageHomePage,
-                Container(color: AppTheme.containerBlack),
-                Center(
-                  child: Container(
-                    padding: AppTheme.paddingXL,
-                    child: ListView(children: [
-                      Column(
-                        crossAxisAlignment: AppTheme.crossStart,
-                        children: [
-                          // const SizedBox(height: 50),
-                          Center(
-                            child: SizedBox(
-                              // alignment: Alignment.center,
-                              width: 180,
-                              height: 180,
-                              child: Image.asset(
-                                "assets/huskies.png",
-                                width: 100,
-                                height: 100,
-                              ),
-                            ),
-                          ),
-                          AppTheme.sizedBox40,
-                          const Text(
-                            "Anmelden",
-                            style: AppTheme.textDefault,
-                          ),
-                          AppTheme.sizedBox14,
-                          const Text("E-Mail", style: AppTheme.textDefault),
-                          Padding(
-                            padding: AppTheme.paddingM,
-                            child: CustomeTextForm(hinttext: "Email", mycontroller: email),
-                          ),
-                          const Text("Passwort", style: AppTheme.textDefault),
-
-                          Padding(
-                            padding: AppTheme.paddingM,
-                            child: Column(
-                              children: [
-                                CustomeTextForm(
-                                  hinttext: "Passwort",
-                                  mycontroller: password,
-                                  isPassword: true,
-                                ),
-                                AppTheme.sizedBox14,
-                                Container(
-                                  //margin: AppTheme.bigPaddingTopButton,
-                                  alignment: Alignment.bottomRight,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => const Signup()));
-                                    },
-                                    child: const Text("Passwort vergessen?",
-                                        style: AppTheme.textDefaultSmall10),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      CustomButtonAuth(
-                          title: "Anmelden",
-                          onPress: () {
-                            if (ref.watch(appStateNotifierProvider).user == null) {
-                              Helpers.showLoadingView(context, advertising: 'werbung');
-                              Future(() => ref
-                                  .watch(appStateNotifierProvider.notifier)
-                                  .signInWithEmailAndPassword(
-                                  email: email.text, password: password.text)).then((isSucces) {
-                                if (!isSucces) {
-                                  Future.delayed(const Duration(seconds: 2))
-                                      .then((value) => Navigator.of(context).pop());
-                                } else {
-                                  Navigator.of(context).pop();
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ViewNavigator(),
-                                    ),
-                                  );
-                                }
-                                log('user: ${ref.watch(appStateNotifierProvider).user?.toJson()}');
-                              });
-                            }
-                          }),
-                      const Padding(
-                        padding: AppTheme.paddingXL,
-                        child: GoogleLogInButtonWidget(),
-                      ),
-                      // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => const Signup()));
-                        },
-                        child: const Center(
-                          child: Text.rich(
-                            TextSpan(
-                              text: "Sie haben noch kein Account? ",
-                              style: AppTheme.textDefaultSmallW500,
-                              children: [
-                                TextSpan(
-                                    text: "Register",
-                                    style: AppTheme.textDefaultBlue),
-                              ],
+    return SafeArea(
+      child: Scaffold(
+        // backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            AppTheme.backgroundImageHomePage,
+            Container(color: AppTheme.containerBlack),
+            Center(
+              child: Container(
+                padding: AppTheme.paddingXL,
+                child: ListView(children: [
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: AppTheme.crossStart,
+                      children: [
+                        // const SizedBox(height: 50),
+                        Center(
+                          child: SizedBox(
+                            // alignment: Alignment.center,
+                            width: 180,
+                            height: 180,
+                            child: Image.asset(
+                              "assets/huskies.png",
+                              width: 100,
+                              height: 100,
                             ),
                           ),
                         ),
-                      ),
-                    ]),
+                        AppTheme.sizedBox40,
+                        const Text(
+                          "Anmelden",
+                          style: AppTheme.textDefault,
+                        ),
+                        AppTheme.sizedBox14,
+                        const Text("E-Mail", style: AppTheme.textDefault),
+                        Padding(
+                          padding: AppTheme.paddingM,
+                          child: CustomeTextForm(
+                            hinttext: "Email",
+                            mycontroller: email,
+                            validator: emailValidator,
+                            onSaved: null,
+                          ),
+                        ),
+                        const Text("Passwort", style: AppTheme.textDefault),
+
+                        Padding(
+                          padding: AppTheme.paddingM,
+                          child: Column(
+                            children: [
+                              CustomeTextForm(
+                                hinttext: "Passwort",
+                                mycontroller: password,
+                                isPassword: true,
+                                onSaved: null,
+                              ),
+                              AppTheme.sizedBox14,
+                              Container(
+                                //margin: AppTheme.bigPaddingTopButton,
+                                alignment: Alignment.bottomRight,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Signup()));
+                                  },
+                                  child: const Text("Passwort vergessen?",
+                                      style: AppTheme.textDefaultSmall10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  CustomButtonAuth(
+                    title: "Anmelden",
+                    onPress: () {
+                      if (ref.watch(appStateNotifierProvider).user == null) {
+                        Helpers.showLoadingView(context,
+                            advertising: 'werbung');
+                        Future(() => ref
+                            .watch(appStateNotifierProvider.notifier)
+                            .signInWithEmailAndPassword(
+                                email: email.text,
+                                password: password.text)).then((isSucces) {
+                          if (!isSucces) {
+                            Future.delayed(const Duration(seconds: 2))
+                                .then((value) => Navigator.of(context).pop());
+                          } else {
+                            Navigator.of(context).pop();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ViewNavigator(),
+                              ),
+                            );
+                          }
+                          log('user: ${ref.watch(appStateNotifierProvider).user?.toJson()}');
+                        });
+                      }
+                    },
+                    formKey: formKey,
+                  ),
+                  const Padding(
+                    padding: AppTheme.paddingXL,
+                    child: GoogleLogInButtonWidget(),
+                  ),
+                  // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Signup(),
+                        ),
+                      );
+                    },
+                    child: const Center(
+                      child: Text.rich(
+                        TextSpan(
+                          text: "Sie haben noch kein Account? ",
+                          style: AppTheme.textDefaultSmallW500,
+                          children: [
+                            TextSpan(
+                                text: "Register",
+                                style: AppTheme.textDefaultBlue),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }
