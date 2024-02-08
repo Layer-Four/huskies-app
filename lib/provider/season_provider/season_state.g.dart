@@ -6,8 +6,8 @@ part of 'season_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AppStateImpl _$$AppStateImplFromJson(Map<String, dynamic> json) =>
-    _$AppStateImpl(
+_$SeasonStateImpl _$$SeasonStateImplFromJson(Map<String, dynamic> json) =>
+    _$SeasonStateImpl(
       currentSeason: json['currentSeason'] == null
           ? null
           : Season.fromJson(json['currentSeason'] as Map<String, dynamic>),
@@ -16,7 +16,7 @@ _$AppStateImpl _$$AppStateImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$AppStateImplToJson(_$AppStateImpl instance) =>
+Map<String, dynamic> _$$SeasonStateImplToJson(_$SeasonStateImpl instance) =>
     <String, dynamic>{
       'currentSeason': instance.currentSeason,
       'season': instance.season,

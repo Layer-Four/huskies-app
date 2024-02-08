@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/services/auth.dart';
 
 enum AuthState {
@@ -61,8 +61,8 @@ class AuthNotifier extends Notifier<AuthState> {
     }
     final response = await _authService.signInWithEmailPassword(email: email, password: password);
     if (response.$1 != null && response.$2 != null) {
-      throw Exception('''dont return two values!
-      be shure just return a UserModel || String  ''');
+      ref.read(errorProvider.notifier).catchError(throw Exception('''dont return two values!
+      be shure just return a UserModel || String  '''));
     }
     if (response.$2 != null) {
       if (response.$2 == 'NO USER') {
@@ -119,9 +119,7 @@ class AuthNotifier extends Notifier<AuthState> {
   void waitOnRegistration() async => state = AuthState.onRegistration;
 
   void onLogIn() => state = AuthState.loggedIn;
-  void onLoading({
-    Duration? duration,
-  }) {
+  void onLoading({Duration? duration}) {
     state = AuthState.loading;
     if (duration != null) {
       Future.delayed(duration).then((_) {
