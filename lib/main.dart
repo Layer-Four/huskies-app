@@ -53,12 +53,3 @@ class MyApp extends ConsumerWidget {
     };
   }
 }
-
-
-// Helpers.showLoadingView(
-        //   context,
-        //   advertising: ''' Bitte schau in dein Email Postfach
-        //           \nveriifiziere dein Account 
-        //           \n
-        //           \n${werbung.$1}''',
-        // ),
