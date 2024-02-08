@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/services/auth_exceptions.dart';
 import 'package:huskies_app/services/auth_interface.dart';
 import 'package:logger/logger.dart';
@@ -41,14 +42,12 @@ class AuthRepository implements AuthInterface {
         log('Firebase found/create a user: ${FirebaseAuth.instance.currentUser?.uid}');
         await userCredential.user?.updatePassword(password);
       }
-      await _usersDB.doc(userCredential.user?.uid).set({
-        'uid': userCredential.user?.uid,
-        'email': email,
-        'accountCreationDate': FieldValue.serverTimestamp(),
-        'profileImageUrl': '',
-        'name': email.split('@').first,
-        // generateUsername(email),
-      });
+      final fbUser = UserModel(uID: userCredential.user!.uid, email: email);
+      final json = fbUser.toJson();
+      json.removeWhere((key, value) => key == 'uID');
+      log('${json.toString()}');
+
+      await _usersDB.doc(userCredential.user?.uid).set(fbUser.toJson());
     } on FirebaseAuthException catch (e) {
       // TODO: implement location vor different languages
       return getMessageFromErrorCodeDE(e);

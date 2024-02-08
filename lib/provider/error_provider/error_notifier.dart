@@ -9,6 +9,6 @@ class ErrorNotifier extends Notifier<List<String>> {
     final oldErrors = state;
     state = [...oldErrors, error];
     ref.read(statusProvider.notifier).onError();
-    return;
+    throw 'a error occuret -> $error';
   }
 }

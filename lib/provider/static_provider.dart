@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
-import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/provider/auth_provider/auth_notifier.dart';
-import 'package:huskies_app/provider/error_provider/error_notifier.dart';
+export 'package:huskies_app/provider/error_provider/error_notifier.dart';
+export 'package:huskies_app/provider/user_provider/user_notifer.dart';
 import 'package:logger/logger.dart';
 
 // * Provider provides inmutable objectes and give a reference to it self or all providers in the providerscope?.
@@ -17,11 +17,6 @@ final themeProvider = Provider<AppTheme>((ref) => AppTheme());
 final loggerProvider = Provider<Logger>((ref) => Logger());
 // TODO: implement a language object
 // final languageProvider = Provider<Language>((ref)=> LanguageObjekt());
-
-final userProvider = StateProvider<UserModel?>((ref) => null);
-
-/// provider to pass a error and react on it.
-final errorProvider = NotifierProvider<ErrorNotifier, List<String>>(() => ErrorNotifier());
 
 /// listen on the userprovider that is, possible to react to Firebase and the updates of the user.
 final statusProvider = NotifierProvider<AuthNotifier, AuthState>(() => AuthNotifier());
