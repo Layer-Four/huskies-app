@@ -45,24 +45,22 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                        margin: const EdgeInsets.symmetric(vertical: 30),
-                        decoration: const BoxDecoration(shape: BoxShape.circle),
-                        clipBehavior: Clip.antiAlias,
-                        child:
-                            //  user != null                          ?
-                            Image.asset(
-                                user.userImageUrl != null
-                                    ? 'assets/${user.userImageUrl}'
-                                    : 'assets/user.png',
-                                height: 90,
-                                width: 90)
-                        // : const Icon(Icons.account_circle_rounded, size: 90),
-                        ),
+                      margin: const EdgeInsets.symmetric(vertical: 30),
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      clipBehavior: Clip.antiAlias,
+                      child: user.userImageUrl == null
+                          ? Image.asset('assets/user.png', height: 90, width: 90)
+                          : Image.network(
+                              user.userImageUrl!,
+                              height: 90,
+                              width: 90,
+                            ),
+                    ),
                     Column(
                       children: [
-                        Text(
-                          '${user.displayedName ?? ' Username'} ${user.displayedName?.split(' ').last ?? ''}',
-                        ),
+                        Text(user.displayedName != null
+                            ? user.displayedName!.split(',').first
+                            : 'Username'),
                         Text(
                           user.email ?? 'beispiel@email.etc',
                           style: const TextStyle(color: Colors.grey, fontSize: 11),

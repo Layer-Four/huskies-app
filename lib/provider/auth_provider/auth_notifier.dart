@@ -25,10 +25,8 @@ class AuthNotifier extends Notifier<AuthState> {
   void reRouteToLogin() => state = AuthState.loggedOut;
 
   /// register a user request and listen to Backend service.
-  Future<bool> registerUserWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  Future<bool> registerUserWithEmailAndPassword(
+      {required String email, required String password}) async {
     final isvalidInput = validInput(email, password);
     if (isvalidInput) {
       state = AuthState.loggedOut;
@@ -36,6 +34,7 @@ class AuthNotifier extends Notifier<AuthState> {
           await _authService.registerUserWithEmailAndPassword(email: email, password: password);
       if (errorMessage != null) {
         ref.read(errorProvider.notifier).catchError(errorMessage);
+        return false;
       }
     }
     return isvalidInput;

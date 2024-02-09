@@ -21,24 +21,37 @@ class UserNotifier extends Notifier<UserModel> {
 
   //TODO: change user to the FireStore API and load userData from firestore
   Future<void> initUser(String uID) async {
+    UserModel? dbUser;
     try {
       final user = await _usersDB.doc(uID).get();
-      final json = user.data();
-      log(json.toString());
+      final Map<String, dynamic>? json = user.data() as Map<String, dynamic>?;
+      log('loaded FB User-> $json');
       // final x = UserModel(uID: json ,email: user.);
-
-      final dbUser = UserModel.fromJson(user.data() as Map<String, dynamic>);
-      UserModel userWithKuNr = dbUser;
-      if (dbUser.appUserID == null) {
-        userWithKuNr = dbUser.copyWith(appUserID: math.Random().nextInt(89999999999) + 1000000000);
-        final Map<String, dynamic> json = userWithKuNr.toJson().remove('uID');
-        if (json.containsKey('uID')) {
-          throw 'remove uID from json because, we don`t need it twice in Database';
-        }
-        _usersDB.doc(uID).set(json);
-        state = dbUser;
+      if (json != null) {
+        dbUser = UserModel(
+          displayedName: json['displayedName'],
+          email: json['email'],
+          phoneNumber: json['phoneNumber'],
+          uID: uID,
+          userImageUrl: json['userImageUrl'],
+          appUserID: json['appUserID'],
+        );
       }
-      if (userWithKuNr.appUserID != null) state = userWithKuNr;
+      if (dbUser != null) {
+        UserModel userWithKuNr = dbUser;
+        if (dbUser.appUserID == null) {
+          userWithKuNr = dbUser.copyWith(appUserID: math.Random().nextInt(899999999) + 100000000);
+          final json = userWithKuNr.toJson();
+          json.remove('uID');
+          if (json.containsKey('uID')) {
+            throw 'remove uID from json because, we don`t need it twice in Database';
+          }
+          _usersDB.doc(uID).set(json);
+          state = dbUser;
+          return;
+        }
+        if (userWithKuNr.appUserID != null) state = userWithKuNr;
+      }
       return;
     } catch (e) {
       ref.read(errorProvider.notifier).catchError('initUser is failed-> $e');
@@ -50,21 +63,28 @@ class UserNotifier extends Notifier<UserModel> {
     if (user.uID == 'fake') {
       ref.read(errorProvider.notifier).catchError('No user created before edit user');
     }
-    String imageURL = '';
     try {
-      if (image != null) {
-        final dbRef = _storageRef.child('users').child(user.uID).child('profileImageUrl');
-        await dbRef.putFile(image);
-        imageURL = await dbRef.getDownloadURL();
-
+      if (image == null) {
         final newUser = user.copyWith(
-          displayedName: displayName,
-          email: newEmail,
-          phoneNumber: newPhoneNumber,
-          userImageUrl: imageURL,
+          displayedName: displayName ?? user.displayedName,
+          email: newEmail ?? user.email,
+          phoneNumber: newPhoneNumber ?? user.phoneNumber,
+          userImageUrl: user.userImageUrl,
         );
         saveUserProfile(user: newUser);
+        return;
       }
+      String imageURL = '';
+      final dbRef = _storageRef.child('users').child(user.uID).child('profileImageUrl');
+      await dbRef.putFile(image);
+      imageURL = await dbRef.getDownloadURL();
+      final newUser = user.copyWith(
+        displayedName: displayName ?? user.displayedName,
+        email: newEmail ?? user.email,
+        phoneNumber: newPhoneNumber ?? user.phoneNumber,
+        userImageUrl: imageURL,
+      );
+      saveUserProfile(user: newUser);
       return;
     } catch (e) {
       ref.read(errorProvider.notifier).catchError(e.toString());
@@ -110,7 +130,7 @@ class UserNotifier extends Notifier<UserModel> {
             .read(errorProvider.notifier)
             .catchError('remove uID from json because, we don`t need it twice in Database');
       }
-      await _usersDB.doc(user.uID).set(json, SetOptions(merge: true));
+      await _usersDB.doc(user.uID).set(json);
     } catch (e) {
       log(e.toString());
       ref.read(errorProvider.notifier).catchError('errorSavingUserProfile');
