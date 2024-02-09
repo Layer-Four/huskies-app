@@ -62,7 +62,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             ? user.displayedName!.split(',').first
                             : 'Username'),
                         Text(
-                          user.email ?? 'beispiel@email.etc',
+                          user.email == null || user.email!.isEmpty
+                              ? 'beispiel@email.etc'
+                              : user.email!,
                           style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Text(
