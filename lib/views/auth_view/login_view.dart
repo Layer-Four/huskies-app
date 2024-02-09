@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/auth_view/signup_view.dart';
 import 'package:huskies_app/views/view_widgets/custombuttonauth.dart';
@@ -26,28 +27,17 @@ class _LoginViewState extends State<LoginView> {
             // backgroundColor: Colors.white,
             body: Stack(
               children: [
-                Opacity(
-                  opacity: 0.7,
-                  child: Image.asset(
-                    "assets/background_image.jpg",
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                    width: double.infinity,
-                    // height: double.infinity,
-                  ),
-                ),
-                Container(color: const Color.fromARGB(129, 0, 0, 0)),
+                AppTheme.backgroundImageHomePage,
+                Container(color: AppTheme.containerBlack),
                 Center(
                   child: Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: AppTheme.paddingXL,
                     child: ListView(children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: AppTheme.crossAlignStart,
                         children: [
-                          // const SizedBox(height: 50),
                           Center(
                             child: SizedBox(
-                              // alignment: Alignment.center,
                               width: 180,
                               height: 180,
                               child: Image.asset(
@@ -57,22 +47,21 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 40),
+                          AppTheme.sizedBox40,
                           const Text(
                             "Anmelden",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
                           ),
-                          const SizedBox(height: 14),
-                          const Text("E-Mail", style: TextStyle(fontSize: 14)),
+                          AppTheme.sizedBox14,
+                          const Text("E-Mail", style: AppTheme.textDefault),
                           Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: AppTheme.paddingM,
                             child: CustomeTextForm(hinttext: "Email", mycontroller: email),
                           ),
                           const Text("Passwort", style: TextStyle(fontSize: 14)),
-
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: AppTheme.paddingM,
                             child: Column(
                               children: [
                                 CustomeTextForm(
@@ -81,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                                   isPassword: true,
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top: 10, bottom: 20),
+                                  margin: AppTheme.bigPaddingTopButtom,
                                   alignment: Alignment.bottomRight,
                                   child: TextButton(
                                     onPressed: () {
@@ -89,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
                                           MaterialPageRoute(builder: (context) => const Signup()));
                                     },
                                     child: const Text("Passwort vergessen?",
-                                        style: TextStyle(fontSize: 10)),
+                                        style: AppTheme.textDefaultSmall10),
                                   ),
                                 ),
                               ],
@@ -105,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
                                   email: email.text.trim(), password: password.text.trim())),
 
                       const Padding(
-                        padding: EdgeInsets.all(20.0),
+                        padding: AppTheme.paddingXL,
                         child: GoogleLogInButtonWidget(),
                       ),
                       // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
@@ -118,14 +107,9 @@ class _LoginViewState extends State<LoginView> {
                           child: Text.rich(
                             TextSpan(
                               text: "Sie haben noch kein Account? ",
-                              style: TextStyle(fontSize: 13),
+                              style: AppTheme.textDefaultSmallW500,
                               children: [
-                                TextSpan(
-                                    text: "Register",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 22, 63, 92),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15)),
+                                TextSpan(text: "Register", style: AppTheme.textDefaultBlue),
                               ],
                             ),
                           ),
@@ -153,13 +137,13 @@ class GoogleLogInButtonWidget extends StatelessWidget {
     return MaterialButton(
       height: 40,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(13),
+        borderRadius: AppTheme.defaultM,
       ),
-      color: const Color.fromARGB(255, 22, 63, 92),
-      textColor: Colors.white,
+      color: AppTheme.customButton,
+      textColor: AppTheme.white,
       onPressed: () {},
       child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: AppTheme.mainAlignCenter,
         children: [
           Text("Login With Google  "),
           Icon(FontAwesome5.google),
