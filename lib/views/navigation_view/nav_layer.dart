@@ -22,7 +22,7 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.ticket => TicketView(),
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
-          ViewPage.NewsFeed => NewsFeed(),
+          ViewPage.newsFeed => const NewsFeed(),
           _ => HomeView()
         },
         bottomNavigationBar: NavigationBar(
@@ -38,8 +38,8 @@ class ViewNavigator extends ConsumerWidget {
             NavBarIconWidget(
               icon: Icons.newspaper,
               name: 'News',
-              isCurrentView: view == ViewPage.NewsFeed,
-              onPressed: () => viewNotifier.state = ViewPage.NewsFeed,
+              isCurrentView: view == ViewPage.newsFeed,
+              onPressed: () => viewNotifier.state = ViewPage.newsFeed,
             ),
             NavBarIconWidget(
               icon: Icons.bookmark_border_outlined,

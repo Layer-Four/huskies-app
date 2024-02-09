@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsFeed extends StatefulWidget {
-  NewsFeed({Key? key}) : super(key: key);
+  const NewsFeed({super.key});
 
   @override
   State<NewsFeed> createState() => _NewsFeedState();
@@ -18,7 +18,8 @@ class _NewsFeedState extends State<NewsFeed> {
     super.initState();
     _controller = WebViewController();
     _controller.setJavaScriptMode(JavaScriptMode.disabled);
-    _controller.loadRequest(Uri.parse('https://www.kassel-huskies.de/news'));
+    _controller.loadRequest(
+        Uri.parse('https://www.kassel-huskies.de/saison/spielplan'));
   }
 
   @override
