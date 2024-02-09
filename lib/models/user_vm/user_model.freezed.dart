@@ -26,8 +26,6 @@ mixin _$UserModel {
   String get uID => throw _privateConstructorUsedError;
   String? get userImageUrl => throw _privateConstructorUsedError;
   int? get appUserID => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  FieldValue? get accountCreationDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +44,7 @@ abstract class $UserModelCopyWith<$Res> {
       int? phoneNumber,
       String uID,
       String? userImageUrl,
-      int? appUserID,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      FieldValue? accountCreationDate});
+      int? appUserID});
 }
 
 /// @nodoc
@@ -70,7 +66,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? uID = null,
     Object? userImageUrl = freezed,
     Object? appUserID = freezed,
-    Object? accountCreationDate = freezed,
   }) {
     return _then(_value.copyWith(
       displayedName: freezed == displayedName
@@ -97,10 +92,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.appUserID
           : appUserID // ignore: cast_nullable_to_non_nullable
               as int?,
-      accountCreationDate: freezed == accountCreationDate
-          ? _value.accountCreationDate
-          : accountCreationDate // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
     ) as $Val);
   }
 }
@@ -119,9 +110,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int? phoneNumber,
       String uID,
       String? userImageUrl,
-      int? appUserID,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      FieldValue? accountCreationDate});
+      int? appUserID});
 }
 
 /// @nodoc
@@ -141,7 +130,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? uID = null,
     Object? userImageUrl = freezed,
     Object? appUserID = freezed,
-    Object? accountCreationDate = freezed,
   }) {
     return _then(_$UserModelImpl(
       displayedName: freezed == displayedName
@@ -168,10 +156,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.appUserID
           : appUserID // ignore: cast_nullable_to_non_nullable
               as int?,
-      accountCreationDate: freezed == accountCreationDate
-          ? _value.accountCreationDate
-          : accountCreationDate // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
     ));
   }
 }
@@ -185,9 +169,7 @@ class _$UserModelImpl implements _UserModel {
       this.phoneNumber,
       required this.uID,
       this.userImageUrl,
-      this.appUserID,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      this.accountCreationDate});
+      this.appUserID});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -204,13 +186,10 @@ class _$UserModelImpl implements _UserModel {
   final String? userImageUrl;
   @override
   final int? appUserID;
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final FieldValue? accountCreationDate;
 
   @override
   String toString() {
-    return 'UserModel(displayedName: $displayedName, email: $email, phoneNumber: $phoneNumber, uID: $uID, userImageUrl: $userImageUrl, appUserID: $appUserID, accountCreationDate: $accountCreationDate)';
+    return 'UserModel(displayedName: $displayedName, email: $email, phoneNumber: $phoneNumber, uID: $uID, userImageUrl: $userImageUrl, appUserID: $appUserID)';
   }
 
   @override
@@ -227,15 +206,13 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.userImageUrl, userImageUrl) ||
                 other.userImageUrl == userImageUrl) &&
             (identical(other.appUserID, appUserID) ||
-                other.appUserID == appUserID) &&
-            (identical(other.accountCreationDate, accountCreationDate) ||
-                other.accountCreationDate == accountCreationDate));
+                other.appUserID == appUserID));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, displayedName, email,
-      phoneNumber, uID, userImageUrl, appUserID, accountCreationDate);
+      phoneNumber, uID, userImageUrl, appUserID);
 
   @JsonKey(ignore: true)
   @override
@@ -258,9 +235,7 @@ abstract class _UserModel implements UserModel {
       final int? phoneNumber,
       required final String uID,
       final String? userImageUrl,
-      final int? appUserID,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      final FieldValue? accountCreationDate}) = _$UserModelImpl;
+      final int? appUserID}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -277,9 +252,6 @@ abstract class _UserModel implements UserModel {
   String? get userImageUrl;
   @override
   int? get appUserID;
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  FieldValue? get accountCreationDate;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

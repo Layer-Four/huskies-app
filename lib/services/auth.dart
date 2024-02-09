@@ -42,12 +42,12 @@ class AuthRepository implements AuthInterface {
         log('Firebase found/create a user: ${FirebaseAuth.instance.currentUser?.uid}');
         await userCredential.user?.updatePassword(password);
       }
-      final fbUser = UserModel(uID: userCredential.user!.uid, email: email);
-      final json = fbUser.toJson();
+      final firebasebUser = UserModel(uID: userCredential.user!.uid, email: email);
+      final json = firebasebUser.toJson();
       json.removeWhere((key, value) => key == 'uID');
-      log('${json.toString()}');
+      log('the formated USer for DB-> ${json.toString()}');
 
-      await _usersDB.doc(userCredential.user?.uid).set(fbUser.toJson());
+      await _usersDB.doc(userCredential.user?.uid).set(firebasebUser.toJson());
     } on FirebaseAuthException catch (e) {
       // TODO: implement location vor different languages
       return getMessageFromErrorCodeDE(e);

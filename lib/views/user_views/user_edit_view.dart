@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -23,11 +22,13 @@ class UpdateUserView extends ConsumerStatefulWidget {
 class _UpdateUserState extends ConsumerState<UpdateUserView> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     File? userImage;
-    UserModel? currentUser = ref.watch(userProvider);
+    UserModel currentUser = ref.watch(userProvider);
     return SafeArea(
       child: Material(
         child: Column(
@@ -45,13 +46,9 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                         shape: BoxShape.circle,
                       ),
                       clipBehavior: Clip.antiAlias,
-                      child: currentUser != null
-                          ? Image.asset(
-                              currentUser.userImageUrl != null
-                                  ? currentUser.userImageUrl!
-                                  : 'assets/user.png',
-                              width: 90)
-                          : const Icon(Icons.account_circle_rounded, size: 90),
+                      child: currentUser.userImageUrl != null
+                          ? Image.network(currentUser.userImageUrl!, height: 90, width: 90)
+                          : Image.asset('assets/user.png', width: 90),
                     ),
                     SymetricButton(
                         color: Colors.blueGrey,
@@ -91,6 +88,34 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                   textAlign: TextAlign.center,
                 ),
               ),
+              if (currentUser.email == null)
+                const Padding(
+                  padding: AppTheme.paddingM,
+                  child: Text('email'),
+                ),
+              if (currentUser.email == null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  child: TextFormField(
+                    controller: emailController,
+                    decoration: AppTheme.textInputDecoration,
+                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              const Padding(
+                padding: AppTheme.paddingM,
+                child: Text('phone number'),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 70),
+                child: TextFormField(
+                  controller: phoneController,
+                  decoration: AppTheme.textInputDecoration,
+                  keyboardType: TextInputType.phone,
+                  textAlign: TextAlign.center,
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.only(top: 20),
                 width: 100,
@@ -98,15 +123,23 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                   color: Colors.green,
                   text: 'Ändern',
                   onPressed: () {
-                    log('firstname ${firstNameController.text}');
-                    log('lastname ${lastNameController.text}');
-
+                    if (firstNameController.text.isEmpty &&
+                        lastNameController.text.isEmpty &&
+                        userImage == null) {
+                      showSnackBar(context, 'keine änderungen übernommen');
+                      Navigator.of(context).pop();
+                      return;
+                    }
                     ref.read(userProvider.notifier).updateUser(
                           displayName: '${firstNameController.text},${lastNameController.text}',
+                          newPhoneNumber: int.tryParse(phoneController.text),
+                          newEmail: emailController.text,
                           image: userImage,
                         );
+                    emailController.clear();
                     firstNameController.clear();
                     lastNameController.clear();
+                    phoneController.clear();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -116,7 +149,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
     );
   }
 
-  FutureOr<File?> asktForImage() async {
+  Future<File?> asktForImage() async {
     showDialog(
         context: context,
         builder: (context) => Card(
@@ -160,7 +193,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                               showSnackBar(context, 'Bild ausgewählt!');
                               ref.read(userProvider.notifier).updateUser(image: image);
                               Navigator.of(context).pop();
-                              return;
+                              return image;
                             }
                             showSnackBar(context, 'kein Bild ausgewählt');
                             Navigator.of(context).pop();
