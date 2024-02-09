@@ -92,13 +92,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
               Container(
                 color: AppTheme.white,
                 child: Column(
-                  mainAxisAlignment: AppTheme.mainCenter,
+                  mainAxisAlignment: AppTheme.mainAlignCenter,
                   children: [
                     Container(
                       height: 5,
                     ),
                     Row(
-                      mainAxisAlignment: AppTheme.mainCenter,
+                      mainAxisAlignment: AppTheme.mainAlignCenter,
                       children: [
                         Padding(
                           padding: AppTheme.paddingS,

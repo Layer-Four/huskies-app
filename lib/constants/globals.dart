@@ -1,5 +1,6 @@
 //? example list for productsinfo in ShopView
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 const List<Map<String, String>> productsList = [
   {
@@ -36,13 +37,13 @@ const List<Map<String, String>> productsList = [
 
 Widget fakeHomeView() {
   return Container(
-    color: const Color.fromARGB(255, 187, 219, 235),
+    color: AppTheme.fakeHomeViewColor,
     child: const Center(
       child: Text(
         'Fake-Home-View',
         style: TextStyle(
           fontSize: 35,
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: AppTheme.black,
           fontWeight: FontWeight.bold,
         ),
       ),
