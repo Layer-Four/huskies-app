@@ -170,6 +170,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                           if (storeStatus.isGranted || storeStatus.isDenied) {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
+                              ref.read(userProvider.notifier).updateUser(image: image);
                               showSnackBar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
