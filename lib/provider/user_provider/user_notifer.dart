@@ -23,10 +23,8 @@ class UserNotifier extends Notifier<UserModel> {
   Future<void> initUser(String uID) async {
     UserModel? dbUser;
     try {
-      final user = await _usersDB.doc(uID).get();
-      final Map<String, dynamic>? json = user.data() as Map<String, dynamic>?;
-      log('loaded FB User-> $json');
-      // final x = UserModel(uID: json ,email: user.);
+      final userSnapshot = await _usersDB.doc(uID).get();
+      final Map<String, dynamic>? json = userSnapshot.data() as Map<String, dynamic>?;
       if (json != null) {
         dbUser = UserModel(
           displayedName: json['displayedName'],
@@ -38,19 +36,20 @@ class UserNotifier extends Notifier<UserModel> {
         );
       }
       if (dbUser != null) {
-        UserModel userWithKuNr = dbUser;
         if (dbUser.appUserID == null) {
-          userWithKuNr = dbUser.copyWith(appUserID: math.Random().nextInt(899999999) + 100000000);
+          final userWithKuNr =
+              dbUser.copyWith(appUserID: math.Random().nextInt(899999999) + 100000000);
           final json = userWithKuNr.toJson();
           json.remove('uID');
-          if (json.containsKey('uID')) {
-            throw 'remove uID from json because, we don`t need it twice in Database';
+          if (!json.containsKey('uID')) {
+            _usersDB.doc(uID).set(json);
+            state = userWithKuNr;
+            return;
           }
-          _usersDB.doc(uID).set(json);
-          state = dbUser;
-          return;
+          ref.read(errorProvider.notifier).catchError(
+                throw 'remove uID from json because, we don`t need it twice in Database',
+              );
         }
-        if (userWithKuNr.appUserID != null) state = userWithKuNr;
       }
       return;
     } catch (e) {
@@ -58,82 +57,53 @@ class UserNotifier extends Notifier<UserModel> {
     }
   }
 
-  void updateUser({String? displayName, String? newEmail, int? newPhoneNumber, File? image}) async {
-    final user = state;
-    if (user.uID == 'fake') {
-      ref.read(errorProvider.notifier).catchError('No user created before edit user');
+  void updateUserProfile({
+    String? displayName,
+    String? newEmail,
+    int? newPhoneNumber,
+    File? image,
+  }) async {
+    if (state.uID == 'fake') {
+      ref.read(errorProvider.notifier).catchError(
+            throw ('No user created before edit user'),
+          );
     }
     try {
-      if (image == null) {
-        final newUser = user.copyWith(
-          displayedName: displayName ?? user.displayedName,
-          email: newEmail ?? user.email,
-          phoneNumber: newPhoneNumber ?? user.phoneNumber,
-          userImageUrl: user.userImageUrl,
-        );
-        saveUserProfile(user: newUser);
-        return;
+      String? imageURL;
+      if (image != null) {
+        final dbRef = _storageRef.child('users').child(state.uID).child('profileImageUrl');
+        await dbRef.putFile(image);
+        imageURL = await dbRef.getDownloadURL();
       }
-      String imageURL = '';
-      final dbRef = _storageRef.child('users').child(user.uID).child('profileImageUrl');
-      await dbRef.putFile(image);
-      imageURL = await dbRef.getDownloadURL();
-      final newUser = user.copyWith(
-        displayedName: displayName ?? user.displayedName,
-        email: newEmail ?? user.email,
-        phoneNumber: newPhoneNumber ?? user.phoneNumber,
-        userImageUrl: imageURL,
+      final newUser = UserModel(
+        appUserID: state.appUserID ?? math.Random().nextInt(899999999) + 100000000,
+        uID: state.uID,
+        displayedName: displayName ?? state.displayedName,
+        email: newEmail ?? state.email,
+        phoneNumber: newPhoneNumber ?? state.phoneNumber,
+        userImageUrl: imageURL ?? state.userImageUrl,
       );
       saveUserProfile(user: newUser);
+      state = newUser;
       return;
     } catch (e) {
       ref.read(errorProvider.notifier).catchError(e.toString());
     }
   }
 
-  Future<void> editUserProfile({
-    required String userUid,
-    required String name,
-    required File? profileImageFile,
-  }) async {
-    String? profileImageUrl;
-    final user = state;
-    if (user.uID == 'fake') {
-      ref.read(errorProvider.notifier).catchError('No user created before edit user');
-    }
-    try {
-      // ! Check this function.
-      final ref = _storageRef.child('users').child(userUid).child('profileImageUrl');
-      if (profileImageFile != null) {
-        await ref.putFile(profileImageFile);
-        profileImageUrl = await ref.getDownloadURL();
-      }
-      final updatedUser = user.copyWith(displayedName: name, userImageUrl: profileImageUrl);
-      saveUserProfile(user: updatedUser);
-    } catch (e) {
-      rethrow;
-    }
-    //  (
-    //   userUid: userUid,
-    //   name: name,
-    //   profileImageUrl: profileImageUrl,
-    // );
-  }
-
-  Future<void> saveUserProfile({required UserModel user}) async {
+  void saveUserProfile({required UserModel user}) {
     try {
       final json = user.toJson();
       json.remove('uID');
       if (json.containsKey('uID')) {
         log('$json');
-        ref
-            .read(errorProvider.notifier)
-            .catchError('remove uID from json because, we don`t need it twice in Database');
+        ref.read(errorProvider.notifier).catchError(
+            throw Exception('remove uID from json because, we don`t need it twice in Database'));
       }
-      await _usersDB.doc(user.uID).set(json);
+      _usersDB.doc(user.uID).set(json);
     } catch (e) {
       log(e.toString());
-      ref.read(errorProvider.notifier).catchError('errorSavingUserProfile');
+      ref.read(errorProvider.notifier).catchError(throw Exception('errorSavingUserProfile'));
     }
   }
 }
