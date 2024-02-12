@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 
 class ItemsDetails extends StatelessWidget {
   final Map item;
@@ -26,15 +27,11 @@ class ItemsDetails extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(right: 25),
-              width: 45,
-              decoration:const BoxDecoration(shape: BoxShape.circle),
-              clipBehavior: Clip.antiAlias,
-              child: Image.asset(
-                'assets/da.jpg',
-                width: 35,
-              ),
-            ),
+                margin: const EdgeInsets.only(right: 25),
+                width: 45,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                clipBehavior: Clip.antiAlias,
+                child: const UserIconWidget()),
           ],
         ),
       ),
