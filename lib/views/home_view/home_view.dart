@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/views/user_views/user_view.dart';
+import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/page_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,8 +21,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) {
-    // final state = ref.read(provider);
-    // final notifier = ref.read(provider.notifier);
+    final user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -33,25 +32,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  UserIconWidget(
-                    image: 'da.jpg',
-                    onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => const UserProfileView())),
-                  ),
-                  // Container(
-                  //   margin: const EdgeInsets.only(top: 25, bottom: 10),
-                  //   decoration: const BoxDecoration(
-                  //     shape: BoxShape.circle,
-                  //   ),
-                  //   clipBehavior: Clip.antiAlias,
-                  //   child: Image.asset(
-                  //     'assets/da.jpg',
-                  //     width: 35,
-                  //   ),
-                  //   // ),
-                  // ),
-                  const Text("Hallo David", style: AppTheme.titleWhite),
-                  const Text("Willkommon zurück!", style: AppTheme.textDefault),
+                  const UserIconWidget(),
+                  Text("Hallo ${user.displayedName?.split(',').first ?? ''}",
+                      style: AppTheme.titleWhite),
+                  user.displayedName != null
+                      ? const Text("Willkommon zurück!", style: AppTheme.textDefault)
+                      : const SizedBox(),
                 ],
               ),
             ),
@@ -81,24 +67,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   ),
                 ),
               ),
-              // SizedBox(
-              //   height: 20,
-              //   child: buildIndicator(
-              //       index: indexUpperCarousel,
-              //       isBackgroundColor: Colors.white),
-              // ),
-              /*........Trikos Section...............*/
-
               Container(
                 color: AppTheme.white,
+                padding: AppTheme.paddingS,
                 child: Column(
-                  mainAxisAlignment: AppTheme.mainCenter,
+                  mainAxisAlignment: AppTheme.mainAlignCenter,
                   children: [
-                    Container(
-                      height: 5,
-                    ),
                     Row(
-                      mainAxisAlignment: AppTheme.mainCenter,
+                      mainAxisAlignment: AppTheme.mainAlignCenter,
                       children: [
                         Padding(
                           padding: AppTheme.paddingS,
@@ -150,31 +126,20 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 child: Stack(
                   children: [
                     AppTheme.puzzleHuskiesImg,
-                    // Container(
-                    //   color: Color.fromARGB(207, 213, 236, 255),
-                    // ),
                     Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
                       top: 20,
                       child: SizedBox(
-                        // padding: const EdgeInsets.all(15),
                         width: double.infinity,
                         child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text(
-                              "Kassel Huskies",
-                              style: AppTheme.titleBlue,
-                            ),
-                            const Text(
-                              "NFT-Puzzle",
-                              style: AppTheme.titleBlue,
-                            ),
+                            const Text("Kassel Huskies", style: AppTheme.titleBlue),
+                            const Text("NFT-Puzzle", style: AppTheme.titleBlue),
                             const Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: AppTheme.textDefaultSmall10Black,
+                              style: AppTheme.textDefaultSmallBlack,
                               textAlign: AppTheme.textCenter,
                             ),
                             TextButton(

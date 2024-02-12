@@ -1,11 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
 import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Helpers {
@@ -97,7 +106,7 @@ class Helpers {
     required WidgetRef ref,
     required ViewPage nextView,
   }) {
-    LoadingView();
+    const LoadingView();
     // showLoadingView(context);
     Future.delayed(const Duration(milliseconds: 1500)).then((_) {
       Navigator.of(context).pop();
@@ -105,40 +114,81 @@ class Helpers {
     });
   }
 
-//   static Future<Widget> showLoadingView(BuildContext context, {Widget? button}) async {
-//     final advertising = Helpers.getAdvertising();
-//     return await showDialog(
-//       context: context,
-//       builder: (context) => Material(
-//         child: Container(
-//           padding: AppTheme.paddingM,
-//           color: Colors.white,
-//           alignment: Alignment.center,
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Padding(
-//                 padding: const EdgeInsets.all(20.0),
-//                 child: Image.asset('assets/${advertising.$2}', width: 100),
-//               ),
-//               Container(
-//                 height: 100,
-//                 width: 100,
-//                 padding: AppTheme.hugePaddingBottom,
-//                 child: const CircularProgressIndicator(
-//                   color: Color.fromARGB(129, 0, 150, 135),
-//                 ),
-//               ),
-//               Text(
-//                 advertising.$1,
-//                 style: const TextStyle(fontSize: 25, color: AppTheme.primary),
-//                 textAlign: TextAlign.center,
-//               ),
-//               Padding(padding: AppTheme.paddingXL, child: button),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
+  static Future<File?> pickImageFromGalery() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? file;
+    file = await picker.pickImage(source: ImageSource.gallery);
+    if (file != null) return File(file.path);
+    return null;
+  }
+
+  static Future<File?> pickImageFromCamera() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? file;
+    file = await picker.pickImage(source: ImageSource.camera);
+    if (file != null) return File(file.path);
+    return null;
+  }
+
+  static Future<File?> asktForImage(BuildContext context, WidgetRef ref) async {
+    showDialog(
+        context: context,
+        builder: (context) => Card(
+              margin: AppTheme.regtangelCard,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SymetricButton(
+                        color: Colors.green,
+                        text: 'Wähle ein Bild aus \ndeiner Galerie',
+                        onPressed: () async {
+                          PermissionStatus storeStatus = await Permission.storage.request();
+                          if (!storeStatus.isGranted) {
+                            await Permission.storage.request();
+                          }
+                          if (storeStatus.isGranted || storeStatus.isDenied) {
+                            final image = await Helpers.pickImageFromGalery();
+                            if (image != null) {
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              showSnackbar(context, ' Bild ausgewählt');
+                              Navigator.of(context).pop();
+                              return image;
+                            } else {
+                              showSnackbar(context, 'kein Bild ausgewählt');
+                              Navigator.of(context).pop();
+                            }
+                          }
+                        }),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SymetricButton(
+                        color: Colors.green,
+                        text: 'Erstelle ein neues \nProfile von dir',
+                        onPressed: () async {
+                          final cameraPermission = await Permission.camera.request();
+                          if (cameraPermission.isGranted || cameraPermission.isDenied) {
+                            final image = await Helpers.pickImageFromCamera();
+                            if (image != null) {
+                              showSnackbar(context, 'Bild ausgewählt!');
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              Navigator.of(context).pop();
+                              return image;
+                            }
+                            showSnackbar(context, 'kein Bild ausgewählt');
+                            Navigator.of(context).pop();
+                          }
+                        }),
+                  ),
+                ],
+              ),
+            ));
+    return null;
+  }
+
+  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
+          context, String message) =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }

@@ -18,17 +18,19 @@ class ShowErrorScreen extends ConsumerWidget {
           children: [
             Container(
               padding: AppTheme.paddingXL,
-              child: Text(error, textAlign: TextAlign.center),
+              child: Text(error,
+                  style: TextStyle(fontSize: 25, color: Colors.yellow),
+                  textAlign: TextAlign.center),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                BlueButton(
+                SymetricButton(
                   color: Colors.blue,
                   text: 'Geh zurück',
                   onPressed: () => ref.read(statusProvider.notifier).reRouteToLogin(),
                 ),
-                const BlueButton(
+                const SymetricButton(
                   color: Colors.red,
                   text: 'Geh Weiter',
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
