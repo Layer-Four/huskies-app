@@ -15,60 +15,57 @@ class TicketView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List gamesInSeason = List.generate(8, (index) => index++);
-    return Container(
-      decoration: const BoxDecoration(color: Colors.white),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              const HeadWidget(
-                center: Text('Tickets', style: AppTheme.titleBlack),
-                end: UserIconWidget(image: 'da.jpg'),
+    final List gamesInSeason = List.generate(4, (index) => index++);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            const HeadWidget(
+              center: Text('Tickets', style: AppTheme.titleBlack),
+              end: UserIconWidget(),
+            ),
+            const Padding(padding: AppTheme.paddingXL),
+            SizedBox(
+              height: 330,
+              child: ListView.builder(
+                itemCount: gamesInSeason.length,
+                itemBuilder: ((context, index) {
+                  Color backgroundColor = AppTheme.white;
+                  if (index.isEven) {
+                    backgroundColor = AppTheme.ticketBackground;
+                  }
+                  return TicketItemRowWidget(
+                    image: 'fuechse.png',
+                    backgroundColor: backgroundColor,
+                    gameDate: 'Freitag, 01.03.24 19:30 Uhr',
+                    onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
+                  );
+                }),
               ),
-              const Padding(padding: AppTheme.paddingXL),
-              SizedBox(
-                height: 330,
-                child: ListView.builder(
-                  itemCount: gamesInSeason.length,
-                  itemBuilder: ((context, index) {
-                    Color backgroundColor = Colors.white;
-                    if (index.isEven) {
-                      backgroundColor = AppTheme.ticketBackground;
-                    }
-                    return TicketItemRowWidget(
-                      image: 'fuechse.png',
-                      backgroundColor: backgroundColor,
-                      gameDate: 'Freitag, 01.03.24 19:30 Uhr',
-                      onPressed: () => Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
-                    );
-                  }),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: AppTheme.paddingS,
-            child: RedTextButton(
-                onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => TicketShopView(
-                                gamesInSeason: List.generate(5, (index) => null),
-                              )),
-                    ),
-                title: 'Weiter Tickets'),
-            //  Helpers.loadAndNavigate(
-            //       context: context,
-            //       ref: ref,
-            //       nextView: 1,
-            //       image: 'profile.jpg',
-            //       advertising: 'gegen Langeweile',
-            //     ),
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: AppTheme.paddingS,
+          child: RedTextButton(
+              onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => TicketShopView(
+                              gamesInSeason: List.generate(5, (index) => null),
+                            )),
+                  ),
+              title: 'Weiter Tickets'),
+          //  Helpers.loadAndNavigate(
+          //       context: context,
+          //       ref: ref,
+          //       nextView: 1,
+          //       image: 'profile.jpg',
+          //       advertising: 'gegen Langeweile',
+          //     ),
+        ),
+      ],
     );
   }
 }

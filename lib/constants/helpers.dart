@@ -152,11 +152,11 @@ class Helpers {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
                               ref.read(userProvider.notifier).updateUserProfile(image: image);
-                              showSnackBar(context, ' Bild ausgewählt');
+                              showSnackbar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
                             } else {
-                              showSnackBar(context, 'kein Bild ausgewählt');
+                              showSnackbar(context, 'kein Bild ausgewählt');
                               Navigator.of(context).pop();
                             }
                           }
@@ -172,12 +172,12 @@ class Helpers {
                           if (cameraPermission.isGranted || cameraPermission.isDenied) {
                             final image = await Helpers.pickImageFromCamera();
                             if (image != null) {
-                              showSnackBar(context, 'Bild ausgewählt!');
+                              showSnackbar(context, 'Bild ausgewählt!');
                               ref.read(userProvider.notifier).updateUserProfile(image: image);
                               Navigator.of(context).pop();
                               return image;
                             }
-                            showSnackBar(context, 'kein Bild ausgewählt');
+                            showSnackbar(context, 'kein Bild ausgewählt');
                             Navigator.of(context).pop();
                           }
                         }),
@@ -188,7 +188,7 @@ class Helpers {
     return null;
   }
 
-  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
+  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }
