@@ -119,7 +119,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                       if (firstNameController.text.isEmpty &&
                           lastNameController.text.isEmpty &&
                           userImage == null) {
-                        Helpers.showSnackBar(context, 'keine änderungen übernommen');
+                        Helpers.showSnackbar(context, 'keine änderungen übernommen');
                         Navigator.of(context).pop();
                         return;
                       }
