@@ -21,7 +21,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Product {
   String get imageUrl => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   String get shopUrl => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
-  $Res call({String imageUrl, int price, String shopUrl, String title});
+  $Res call({String imageUrl, double price, String shopUrl, String title});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       shopUrl: null == shopUrl
           ? _value.shopUrl
           : shopUrl // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$$ProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String imageUrl, int price, String shopUrl, String title});
+  $Res call({String imageUrl, double price, String shopUrl, String title});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       shopUrl: null == shopUrl
           ? _value.shopUrl
           : shopUrl // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$ProductImpl implements _Product {
   @override
   final String imageUrl;
   @override
-  final int price;
+  final double price;
   @override
   final String shopUrl;
   @override
@@ -183,7 +183,7 @@ class _$ProductImpl implements _Product {
 abstract class _Product implements Product {
   const factory _Product(
       {required final String imageUrl,
-      required final int price,
+      required final double price,
       required final String shopUrl,
       required final String title}) = _$ProductImpl;
 
@@ -192,7 +192,7 @@ abstract class _Product implements Product {
   @override
   String get imageUrl;
   @override
-  int get price;
+  double get price;
   @override
   String get shopUrl;
   @override

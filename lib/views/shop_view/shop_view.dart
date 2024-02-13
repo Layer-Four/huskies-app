@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
+
 import 'package:huskies_app/views/view_widgets/shop_widgets/item_details.dart';
 
 class ShopView extends ConsumerWidget {

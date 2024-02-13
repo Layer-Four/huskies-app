@@ -9,7 +9,7 @@ part of 'product.dart';
 _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
       imageUrl: json['imageUrl'] as String,
-      price: json['price'] as int,
+      price: (json['price'] as num).toDouble(),
       shopUrl: json['shopUrl'] as String,
       title: json['title'] as String,
     );
