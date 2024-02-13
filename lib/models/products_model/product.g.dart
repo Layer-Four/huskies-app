@@ -20,8 +20,4 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'price': instance.price,
       'shopUrl': instance.shopUrl,
       'title': instance.title,
-<<<<<<< HEAD
     };
-=======
-    };
->>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
