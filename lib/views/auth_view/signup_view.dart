@@ -1,112 +1,183 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/view_widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/view_widgets/textformfield.dart';
+import 'package:huskies_app/views/auth_view/login_view.dart';
 
-class Signup extends StatefulWidget {
+class Signup extends ConsumerStatefulWidget {
   final bool isPWForget;
   const Signup({super.key, this.isPWForget = false});
 
   @override
-  State<Signup> createState() => _SignupState();
+  ConsumerState<Signup> createState() => _SignupState();
 }
 
-class _SignupState extends State<Signup> {
+class _SignupState extends ConsumerState<Signup> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController username = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) => SafeArea(
-        child: Scaffold(
-          // backgroundColor: Colors.white,
-          body: Stack(
-            children: [
-              AppTheme.backgroundImageHomePage,
-              Container(color: AppTheme.containerBlack),
-              Center(
-                child: Container(
-                  padding: AppTheme.paddingXL,
-                  child: ListView(
+    return SafeArea(
+      child: Scaffold(
+        // backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            AppTheme.backgroundImageHomePage,
+            Container(color: AppTheme.containerBlack),
+            Center(
+              child: Container(
+                padding: AppTheme.paddingXL,
+                child: ListView(children: [
+                  Column(
+                    crossAxisAlignment: AppTheme.crossAlignStart,
                     children: [
-                      Column(
-                        crossAxisAlignment: AppTheme.crossAlignStart,
-                        children: [
-                          // const SizedBox(height: 50),
-                          Center(
-                            child: SizedBox(
-                              // alignment: Alignment.center,
-                              width: 180,
-                              height: 180,
-                              child: Image.asset(
-                                "assets/huskies.png",
-                                width: 100,
-                                height: 100,
-                              ),
-                            ),
+                      Center(
+                        child: SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: Image.asset(
+                            "assets/huskies.png",
+                            width: 100,
+                            height: 100,
                           ),
-                          AppTheme.sizedBox40,
-                          const Text("Registrieren", style: AppTheme.textDefault),
-                          AppTheme.sizedBox14,
-                          const Text("E-Mail", style: AppTheme.textDefault),
-                          AppTheme.sizedBox14,
-                          CustomeTextForm(
-                            hinttext: "Email Eingeben",
-                            mycontroller: email,
-                          ),
-                          AppTheme.sizedBox14,
-                          const Text("Passwort", style: AppTheme.textDefault),
-                          AppTheme.sizedBox14,
-                          CustomeTextForm(
-                            mycontroller: password,
-                            hinttext: 'passwort',
-                          ),
-                          AppTheme.sizedBox14,
-                          const Text("Passwort bestätigen", style: AppTheme.textDefault),
-                        ],
-                      ),
-                      Padding(
-                        padding: AppTheme.paddingL,
-                        child: CustomButtonAuth(
-                          title: "Registrieren",
-                          onPress: () async {
-                            await ref
-                                .watch(statusProvider.notifier)
-                                .registerUserWithEmailAndPassword(
-                                    email: email.text.trim(), password: password.text.trim())
-                                .then(
-                                  (value) => value
-                                      ? Navigator.of(context).pop()
-                                      : Helpers.showSnackbar(
-                                          context, 'Bitte geben sie gültige anmeldedaten ein'),
-                                );
-                          },
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: AppTheme.mainAlignCenter,
-                        children: [
-                          const Text(
-                            "Haben Sie ein Account ? ",
-                            style: AppTheme.textDefaultSmall10,
-                          ),
-                          InkWell(
-                            onTap: () => Navigator.of(context).pop(),
-                            child: const Text("Anmelden", style: AppTheme.textDefault),
-                          ),
-                        ],
+                      AppTheme.sizedBox40,
+                      const Text(
+                        "Registrieren",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
+                      AppTheme.sizedBox14,
+                      const Text(
+                        "E-Mail",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: AppTheme.white,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      CustomeTextForm(
+                        hinttext: "Email eingeben",
+                        mycontroller: email,
+                        onSaved: null,
+                      ),
+                      const SizedBox(
+                        height: 11,
+                      ),
+                      const Text(
+                        "Passwort",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      CustomeTextForm(
+                        // hinttext: "Password Eingeben",
+                        mycontroller: password, hinttext: 'passwort',
+                        onSaved: null,
+                      ),
+                      const SizedBox(
+                        height: 11,
+                      ),
+                      const Text(
+                        "Passwort bestätigen",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 4,
                       ),
                     ],
                   ),
-                ),
+                  CustomButtonAuth(
+                    title: "Registrieren",
+                    onPress: () {
+                      if (email.text.isNotEmpty) {
+                        ref
+                            .watch(statusProvider.notifier)
+                            .registerUserWithEmailAndPassword(
+                                email: email.text.trim(),
+                                password: password.text.trim())
+                            .then((value) =>
+                                value ? Navigator.of(context).pop() : null);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            duration: Duration(seconds: 3),
+                            content: Text("bitte gib ein Email ein"),
+                          ),
+                        );
+                      }
+                    },
+                    formKey: formKey,
+                  ),
+
+                  // Container(height: 20),
+
+                  // MaterialButton(
+                  //   height: 40,
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(13),
+                  //   ),
+                  //   color: const Color.fromARGB(255, 22, 63, 92),
+                  //   textColor: Colors.white,
+                  //   onPressed: () {},
+                  //   child: const Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     children: [
+                  //       Text("Login With Google  "),
+                  //       Icon(FontAwesome5.google)
+                  //     ],
+                  //   ),
+                  // ),
+                  Container(height: 20),
+                  // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ),
+                      );
+                    },
+                    child: const Center(
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Haben Sie ein Account ? ",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            TextSpan(
+                                text: "Anmelden",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class TicketBodyViewWidget extends StatelessWidget {
   final DateTime? date;
@@ -43,20 +44,20 @@ class TicketBodyViewWidget extends StatelessWidget {
     required String valueRight,
   }) =>
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: AppTheme.paddingM,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: AppTheme.mainAround,
           children: [
             SizedBox(
               width: 100,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: AppTheme.crossStart,
+                mainAxisAlignment: AppTheme.mainAround,
                 children: [
                   Text(
                     headleft,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Color.fromARGB(255, 155, 151, 151)),
+                        fontWeight: FontWeight.bold, color: AppTheme.ticketViewBody),
                   ),
                   Text(
                     valueLeft,
@@ -68,14 +69,14 @@ class TicketBodyViewWidget extends StatelessWidget {
             SizedBox(
               width: 80,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: AppTheme.mainAround,
+                crossAxisAlignment: AppTheme.crossStart,
                 children: [
                   Text(
                     headright,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 155, 151, 151),
+                      color: AppTheme.ticketViewBody,
                     ),
                   ),
                   Text(
