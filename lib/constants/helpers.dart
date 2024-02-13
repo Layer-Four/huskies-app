@@ -192,9 +192,11 @@ class Helpers {
 
   static void launchToWebsite(Product product) async {
     final url = Uri.parse(product.shopUrl);
-    if (await canLaunchUrl(url)) {
-      launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
+    try {
+      if (await canLaunchUrl(url)) {
+        launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
       throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
