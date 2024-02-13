@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class AGBViewWidget extends StatelessWidget {
   const AGBViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) => const Padding(
-        padding: EdgeInsets.all(8),
+        padding: AppTheme.paddingM,
         child: Text.rich(
           TextSpan(
             style: TextStyle(fontSize: 9),
