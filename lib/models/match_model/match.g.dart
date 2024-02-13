@@ -6,8 +6,7 @@ part of 'match.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MatchesImpl _$$MatchesImplFromJson(Map<String, dynamic> json) =>
-    _$MatchesImpl(
+_$MatchesImpl _$$MatchesImplFromJson(Map<String, dynamic> json) => _$MatchesImpl(
       endScore: json['endScore'] as String?,
       gameReport: (json['gameReport'] as List<dynamic>)
           .map((e) => _$recordConvertNullable(
@@ -19,27 +18,21 @@ _$MatchesImpl _$$MatchesImplFromJson(Map<String, dynamic> json) =>
               ))
           .toList(),
       goals: json['goals'] as Map<String, dynamic>?,
-      home: json['home'] == null
-          ? null
-          : Team.fromJson(json['home'] as Map<String, dynamic>),
-      visitor: json['visitor'] == null
-          ? null
-          : Team.fromJson(json['visitor'] as Map<String, dynamic>),
-      winner: json['winner'] == null
-          ? null
-          : Team.fromJson(json['winner'] as Map<String, dynamic>),
+      home: json['home'] == null ? null : Team.fromJson(json['home'] as Map<String, dynamic>),
+      visitor:
+          json['visitor'] == null ? null : Team.fromJson(json['visitor'] as Map<String, dynamic>),
+      winner: json['winner'] == null ? null : Team.fromJson(json['winner'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$MatchesImplToJson(_$MatchesImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$MatchesImplToJson(_$MatchesImpl instance) => <String, dynamic>{
       'endScore': instance.endScore,
       'gameReport': instance.gameReport
           .map((e) => e == null
               ? null
               : {
-                  r'$1': e!.$1,
-                  r'$2': e!.$2,
+                  r'$1': e.$1,
+                  r'$2': e.$2,
                 })
           .toList(),
       'goals': instance.goals,
@@ -55,8 +48,7 @@ $Rec? _$recordConvertNullable<$Rec>(
 ) =>
     value == null ? null : convert(value as Map<String, dynamic>);
 
-_$PastMatchImpl _$$PastMatchImplFromJson(Map<String, dynamic> json) =>
-    _$PastMatchImpl(
+_$PastMatchImpl _$$PastMatchImplFromJson(Map<String, dynamic> json) => _$PastMatchImpl(
       endScore: json['endScore'] as String,
       gameReports: (json['gameReports'] as List<dynamic>)
           .map((e) => _$recordConvert(
@@ -74,8 +66,7 @@ _$PastMatchImpl _$$PastMatchImplFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PastMatchImplToJson(_$PastMatchImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$PastMatchImplToJson(_$PastMatchImpl instance) => <String, dynamic>{
       'endScore': instance.endScore,
       'gameReports': instance.gameReports
           .map((e) => {
@@ -96,15 +87,13 @@ $Rec _$recordConvert<$Rec>(
 ) =>
     convert(value as Map<String, dynamic>);
 
-_$NextMatchImpl _$$NextMatchImplFromJson(Map<String, dynamic> json) =>
-    _$NextMatchImpl(
+_$NextMatchImpl _$$NextMatchImplFromJson(Map<String, dynamic> json) => _$NextMatchImpl(
       home: Team.fromJson(json['home'] as Map<String, dynamic>),
       visitor: Team.fromJson(json['visitor'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$NextMatchImplToJson(_$NextMatchImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$NextMatchImplToJson(_$NextMatchImpl instance) => <String, dynamic>{
       'home': instance.home,
       'visitor': instance.visitor,
       'runtimeType': instance.$type,
