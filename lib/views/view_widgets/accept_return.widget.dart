@@ -13,7 +13,7 @@ class AcceptOrReturnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: AppTheme.mainAround,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20.0),

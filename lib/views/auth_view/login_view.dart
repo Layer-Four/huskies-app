@@ -37,7 +37,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
 
   String? emailValidator(value) {
     bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value!);
 
     if (value.isEmpty) {
@@ -78,10 +78,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       AppTheme.sizedBox40,
                       const Text(
                         "Anmelden",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                        style: AppTheme.textDefault,
                       ),
                       AppTheme.sizedBox14,
                       const Text("E-Mail", style: AppTheme.textDefault),
@@ -94,7 +91,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           onSaved: null,
                         ),
                       ),
-                      const Text("Passwort", style: TextStyle(fontSize: 14)),
+                      const Text("Passwort", style: AppTheme.textDefault),
                       Padding(
                         padding: AppTheme.paddingM,
                         child: Column(
@@ -115,7 +112,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Signup()));
+                                          const Signup()));
                                 },
                                 child: const Text("Passwort vergessen?",
                                     style: AppTheme.textDefaultSmall10),
@@ -132,8 +129,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                   onPress: () => ref
                       .watch(statusProvider.notifier)
                       .signInWithEmailAndPassword(
-                          email: email.text.trim(),
-                          password: password.text.trim()),
+                      email: email.text.trim(),
+                      password: password.text.trim()),
                   formKey: formKey,
                 ),
 

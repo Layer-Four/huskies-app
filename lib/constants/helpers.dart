@@ -49,12 +49,12 @@ class Helpers {
         margin: const EdgeInsets.only(bottom: 1),
         decoration: BoxDecoration(
             color: place != 1
-                ? Colors.white
+                ? AppTheme.white
                 : const Color.fromARGB(255, 235, 231, 231)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
-            Text('$place.', style: const TextStyle(color: Colors.black)),
+            Text('$place.', style: const TextStyle(color: AppTheme.black)),
             SizedBox(
               height: 30,
               child: Center(
@@ -63,16 +63,16 @@ class Helpers {
             ),
             Center(
                 child: Text('$games',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$points',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$goals',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$difference',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
           ],
         ),
       );
@@ -89,17 +89,17 @@ class Helpers {
     return Container(
       height: 35,
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 101, 132, 155),
+        color: AppTheme.primary,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
-          Text(position, style: const TextStyle(color: Colors.white)),
-          Text(team, style: const TextStyle(color: Colors.white)),
-          Text(games, style: const TextStyle(color: Colors.white)),
-          Text(points, style: const TextStyle(color: Colors.white)),
-          Text(goals, style: const TextStyle(color: Colors.white)),
-          Text(difference, style: const TextStyle(color: Colors.white)),
+          Text(position, style: const TextStyle(color: AppTheme.white)),
+          Text(team, style: const TextStyle(color: AppTheme.white)),
+          Text(games, style: const TextStyle(color: AppTheme.white)),
+          Text(points, style: const TextStyle(color: AppTheme.white)),
+          Text(goals, style: const TextStyle(color: AppTheme.white)),
+          Text(difference, style: const TextStyle(color: AppTheme.white)),
         ],
       ),
     );
@@ -151,10 +151,10 @@ class Helpers {
         builder: (context) => Card(
               margin: AppTheme.regtangelCard,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: AppTheme.paddingM,
                     child: SymetricButton(
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
@@ -178,7 +178,7 @@ class Helpers {
                         }),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: AppTheme.paddingM,
                     child: SymetricButton(
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
@@ -206,9 +206,7 @@ class Helpers {
   static void launchToWebsite(Product product) async {
     final url = Uri.parse(product.shopUrl);
     try {
-      if (await canLaunchUrl(url)) {
-        launchUrl(url, mode: LaunchMode.externalApplication);
-      }
+      launchUrl(url, mode: LaunchMode.externalApplication);
     } catch (e) {
       throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }

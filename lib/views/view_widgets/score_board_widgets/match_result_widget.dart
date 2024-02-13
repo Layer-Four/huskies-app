@@ -31,7 +31,7 @@ class LastMatchResultWidget extends StatelessWidget {
                   homeScore != null && visitiorScore != null
                       ? '$homeScore : $visitiorScore'
                       : '- : -',
-                  style: AppTheme.titleBlack,
+                  style: AppTheme.textDefaultBlack,
                 ),
                 Text(
                   homeScore != null && visitiorScore != null

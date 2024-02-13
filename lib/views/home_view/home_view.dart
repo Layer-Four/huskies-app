@@ -29,7 +29,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
           toolbarHeight: 120,
           title: Expanded(
             child: Align(
-              alignment: AppTheme.alignCenter,
+              alignment: Alignment.center,
               child: Column(
                 children: [
                   const UserIconWidget(),
@@ -37,7 +37,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       style: AppTheme.titleWhite),
                   user.displayedName != null
                       ? const Text("Willkommon zurück!",
-                          style: AppTheme.textDefault)
+                      style: AppTheme.textDefault)
                       : const SizedBox(),
                 ],
               ),
@@ -174,7 +174,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   }
 
   Widget buildIndicator(
-          {required int index, required Color isBackgroundColor}) =>
+      {required int index, required Color isBackgroundColor}) =>
       AnimatedSmoothIndicator(
         activeIndex: index,
         count: 3,
