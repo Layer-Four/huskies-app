@@ -7,6 +7,7 @@ import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/view_widgets/shop_widgets/item_details.dart';
+import 'package:huskies_app/constants/helpers.dart';
 
 class ShopView extends ConsumerWidget {
   const ShopView({super.key});
@@ -62,11 +63,13 @@ class ShopView extends ConsumerWidget {
           itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ItemsDetails(item: productsList[i]),
-                  ),
-                );
+                if (products != null) Helpers.launchToWebsite(products[i]);
+
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) => ItemsDetails(item: productsList[i]),
+                //   ),
+                // );
               },
               child: Column(
                 children: [

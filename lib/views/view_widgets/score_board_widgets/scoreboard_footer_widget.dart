@@ -25,11 +25,11 @@ class GameStaticsFooterWidget extends StatelessWidget {
             ),
           ),
           child: Container(
-            padding: AppTheme.paddingM,
-            color: AppTheme.scoreBoardColor,
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+            color: AppTheme.primary,
             child: const Text(
               'Gesamte Tabelle anzeigen',
-              style: AppTheme.textDefaultSmall10,
+              style: TextStyle(color: AppTheme.white, fontSize: 11),
             ),
           ),
         ),

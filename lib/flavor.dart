@@ -12,10 +12,10 @@ class Config {
   static Flavor? appFlavor;
 
   static String get apiUrl => switch (appFlavor) {
-        Flavor.development => 'Api link zu dev flavor einfügen',
-        Flavor.production => 'Api link zu prod flavor einfügen',
-        _ => 'Api link zu staging flavor einfügen'
-      };
+    Flavor.development => 'Api link zu dev flavor einfügen',
+    Flavor.production => 'Api link zu prod flavor einfügen',
+    _ => 'Api link zu staging flavor einfügen'
+  };
 
   static String get plattform => Platform.isAndroid ? 'ANDROID' : 'IOS';
 }

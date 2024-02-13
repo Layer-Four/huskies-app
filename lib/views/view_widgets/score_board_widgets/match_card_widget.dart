@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/score_board_widgets/match_result_widget.dart';
@@ -36,10 +37,10 @@ class _MatchCardState extends State<MatchCard> {
           // height: MediaQuery.of(context).size.height / 3.563,
           // height: 195,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: AppTheme.mainStart,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: AppTheme.paddingM,
                 child: Text(
                   widget.isLastMatch ? 'Letztes Match' : 'Nächstes Match',
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
@@ -56,7 +57,7 @@ class _MatchCardState extends State<MatchCard> {
                 itemBuilder: (BuildContext context, int i, _) => widget.isLastMatch
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: AppTheme.mainStart,
                         children: [
                           LastMatchResultWidget(
                             homeScore: widget.homeScore,
@@ -65,23 +66,23 @@ class _MatchCardState extends State<MatchCard> {
                             visitorImage: widget.visitorImage,
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: AppTheme.paddingM,
                             child: TextButton(
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+                                  margin: AppTheme.popUpMargin,
                                   color: Colors.white70,
-                                  alignment: Alignment.center,
+                                  alignment: AppTheme.alignCenter,
                                   child: const Text('Spielbericht'),
                                 ),
                               ),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                color: const Color.fromARGB(255, 39, 62, 73),
+                                padding: AppTheme.paddingS,
+                                color: AppTheme.buttonBackgroundColor,
                                 child: const Text(
                                   'Spielbericht',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(color: AppTheme.white),
                                 ),
                               ),
                             ),

@@ -33,7 +33,11 @@ mixin _$Product {
 /// @nodoc
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
+<<<<<<< HEAD
       _$ProductCopyWithImpl<$Res, Product>;
+=======
+  _$ProductCopyWithImpl<$Res, Product>;
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
   @useResult
   $Res call({String imageUrl, double price, String shopUrl, String title});
 }
@@ -60,6 +64,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
+<<<<<<< HEAD
               as String,
       price: null == price
           ? _value.price
@@ -73,6 +78,21 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+=======
+      as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+      as double,
+      shopUrl: null == shopUrl
+          ? _value.shopUrl
+          : shopUrl // ignore: cast_nullable_to_non_nullable
+      as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+      as String,
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
     ) as $Val);
   }
 }
@@ -80,8 +100,13 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 /// @nodoc
 abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$$ProductImplCopyWith(
+<<<<<<< HEAD
           _$ProductImpl value, $Res Function(_$ProductImpl) then) =
       __$$ProductImplCopyWithImpl<$Res>;
+=======
+      _$ProductImpl value, $Res Function(_$ProductImpl) then) =
+  __$$ProductImplCopyWithImpl<$Res>;
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
   @override
   @useResult
   $Res call({String imageUrl, double price, String shopUrl, String title});
@@ -107,6 +132,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
+<<<<<<< HEAD
               as String,
       price: null == price
           ? _value.price
@@ -120,6 +146,21 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+=======
+      as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+      as double,
+      shopUrl: null == shopUrl
+          ? _value.shopUrl
+          : shopUrl // ignore: cast_nullable_to_non_nullable
+      as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+      as String,
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
     ));
   }
 }
@@ -129,9 +170,15 @@ class __$$ProductImplCopyWithImpl<$Res>
 class _$ProductImpl implements _Product {
   const _$ProductImpl(
       {required this.imageUrl,
+<<<<<<< HEAD
       required this.price,
       required this.shopUrl,
       required this.title});
+=======
+        required this.price,
+        required this.shopUrl,
+        required this.title});
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -183,9 +230,15 @@ class _$ProductImpl implements _Product {
 abstract class _Product implements Product {
   const factory _Product(
       {required final String imageUrl,
+<<<<<<< HEAD
       required final double price,
       required final String shopUrl,
       required final String title}) = _$ProductImpl;
+=======
+        required final double price,
+        required final String shopUrl,
+        required final String title}) = _$ProductImpl;
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -201,4 +254,8 @@ abstract class _Product implements Product {
   @JsonKey(ignore: true)
   _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f6e1fa916c6b71409172c6becdaf74fe5f346f23

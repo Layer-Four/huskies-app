@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const EdgeInsets bigPaddingTopButtom =
-      EdgeInsets.only(top: 10, bottom: 20);
+  static const EdgeInsets bigPaddingTopButtom = EdgeInsets.only(top: 10, bottom: 20);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color red = Color(0xFFD32F2F);
@@ -18,46 +17,27 @@ class AppTheme {
   static const Color containerBlack = Color.fromARGB(129, 0, 0, 0);
   static const Color primary = Color.fromARGB(255, 101, 132, 155);
   static const Color buttonBackgroundColor = Color.fromARGB(255, 39, 62, 73);
-  static const TextStyle titleWhite =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 25, color: Colors.white);
-  static const TextStyle titleBlue = TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 25,
-      color: Color.fromARGB(255, 22, 63, 92));
-  static const TextStyle titleBlack =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 25);
-  static const TextStyle textDefault =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white);
-  static const TextStyle textDefaultGrey =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey);
-  static const TextStyle textDefaultTeal =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.teal);
-  static const TextStyle textDefaultBlack =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 16);
-  static const TextStyle textDefaultBlue = TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 16,
-      color: Color.fromARGB(255, 22, 63, 92));
-  static const TextStyle textDefaultSmallW500 =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Colors.white);
-  static const TextStyle textDefaultSmallW500Red =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Colors.red);
+  static const TextStyle titleWhite = TextStyle(fontWeight: FontWeight.w500, fontSize: 25, color: Colors.white);
+  static const TextStyle titleBlue = TextStyle(fontWeight: FontWeight.w500, fontSize: 25, color: Color.fromARGB(255, 22, 63, 92));
+  static const TextStyle titleBlack = TextStyle(fontWeight: FontWeight.w500, fontSize: 25);
+  static const TextStyle textDefault = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white);
+  static const TextStyle textDefaultGrey = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey);
+  static const TextStyle textDefaultTeal = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.teal);
+  static const TextStyle textDefaultBlack = TextStyle(fontWeight: FontWeight.w500, fontSize: 16);
+  static const TextStyle textDefaultBlue = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Color.fromARGB(255, 22, 63, 92));
+  static const TextStyle textDefaultSmallW500 = TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Colors.white);
+  static const TextStyle textDefaultSmallW500Red = TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Colors.red);
   static const TextStyle textDefaultSmallBlack = TextStyle(fontSize: 13);
-  static const TextStyle textDefaultSmall10 =
-      TextStyle(color: Colors.white, fontSize: 10);
-  static const TextStyle textDefaultSmall10Grey =
-      TextStyle(color: Colors.grey, fontSize: 10);
-  static const TextStyle textDefaultSmall10Black =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 9.5);
+  static const TextStyle textDefaultSmall10 = TextStyle(color: Colors.white, fontSize: 10);
+  static const TextStyle textDefaultSmall10Grey = TextStyle(color: Colors.grey, fontSize: 10);
+  static const TextStyle textDefaultSmall10Black = TextStyle(fontWeight: FontWeight.w500, fontSize: 9);
   static const double smallTextSize = 9.5;
-  static const EdgeInsets regtangelCard =
-      EdgeInsets.symmetric(horizontal: 70, vertical: 270);
+  static const EdgeInsets regtangelCard = EdgeInsets.symmetric(horizontal: 70, vertical: 270);
   static const Color scoreBoardColor = Color.fromARGB(255, 101, 132, 155);
   static const Color ticketViewBody = Color.fromARGB(255, 155, 151, 151);
   static const Color ticketViewHead = Color.fromARGB(255, 54, 66, 100);
   static const Color fakeHomeViewColor = Color.fromARGB(255, 187, 219, 235);
-  static const TextStyle textDefaultRed =
-      TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.red);
+  static const TextStyle textDefaultRed = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.red);
   // static const TextStyle headStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 19);
   // static const TextStyle textTrikots = TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 15, color: Color.fromARGB(255, 22, 63, 92));
   // static const TextStyle textHuskies = TextStyle(color: Color.fromARGB(255, 14, 31, 15));
@@ -83,19 +63,13 @@ class AppTheme {
   static const EdgeInsets paddingL = EdgeInsets.all(16);
   static const EdgeInsets paddingM = EdgeInsets.all(8.0);
   static const EdgeInsets paddingS = EdgeInsets.all(4.0);
-  static const EdgeInsets boxPadding =
-      EdgeInsets.symmetric(horizontal: 12, vertical: 12);
-  static const EdgeInsets pointsBoxPadding =
-      EdgeInsets.symmetric(horizontal: 40, vertical: 5);
-  static const EdgeInsets defaultHorizontalDistance =
-      EdgeInsets.symmetric(horizontal: 15);
-  static const EdgeInsets defaultVerticalDistance =
-      EdgeInsets.symmetric(vertical: 15);
+  static const EdgeInsets boxPadding = EdgeInsets.symmetric(horizontal: 12, vertical: 12);
+  static const EdgeInsets pointsBoxPadding = EdgeInsets.symmetric(horizontal: 40, vertical: 5);
+  static const EdgeInsets defaultHorizontalDistance = EdgeInsets.symmetric(horizontal: 15);
+  static const EdgeInsets defaultVerticalDistance = EdgeInsets.symmetric(vertical: 15);
   //static const EdgeInsets defaultHorizontalDistanceL = EdgeInsets.symmetric(horizontal: 30);
-  static const EdgeInsets defaultVerticalDistanceL =
-      EdgeInsets.symmetric(vertical: 30);
-  static const EdgeInsets popUpMargin =
-      EdgeInsets.symmetric(horizontal: 40, vertical: 100);
+  static const EdgeInsets defaultVerticalDistanceL = EdgeInsets.symmetric(vertical: 30);
+  static const EdgeInsets popUpMargin = EdgeInsets.symmetric(horizontal: 40, vertical: 100);
   static const SizedBox sizedBox14 = SizedBox(height: 14);
   static const SizedBox sizedBox40 = SizedBox(height: 40);
   // static const EdgeInsets hugePaddingLeft = EdgeInsets.only(left: 25.0);
@@ -115,8 +89,7 @@ class AppTheme {
   static const double lowDistance = 6;
   static const double avatarSize = 50.0;
   static const TextStyle whiteTextStyle = TextStyle(color: Colors.white);
-  static const TextStyle whiteTextStyleBold =
-      TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
+  static const TextStyle whiteTextStyleBold = TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
   static const Color cardHighlightedColor = Color.fromARGB(255, 215, 234, 249);
   static final Decoration homePageButton = BoxDecoration(
     color: const Color.fromARGB(255, 22, 63, 92),

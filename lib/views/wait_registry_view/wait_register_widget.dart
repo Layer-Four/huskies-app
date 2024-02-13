@@ -16,11 +16,11 @@ class WaitForRegistry extends ConsumerWidget {
     final adversiting = Helpers.getAdvertising();
 
     const localTextStyle =
-        TextStyle(fontSize: 21, color: Colors.white, decoration: TextDecoration.none);
+        TextStyle(fontSize: 21, color: AppTheme.white, decoration: TextDecoration.none);
     return BackgroundWidget(
       image: 'background_image.jpg',
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
           Container(
             clipBehavior: Clip.antiAlias,
@@ -39,7 +39,7 @@ class WaitForRegistry extends ConsumerWidget {
               padding: AppTheme.hugePaddingBottom,
               child: Text(
                 'Bitte schließe zuerst deine Registrierung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
-                textAlign: TextAlign.center,
+                textAlign: AppTheme.textCenter,
                 style: localTextStyle,
               ),
             ),

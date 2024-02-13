@@ -8,7 +8,7 @@ class TicketHeadViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: AppTheme.boxPadding,
+        padding: const EdgeInsets.only(top: 12.0, bottom: 12),
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignCenter,
           children: [
@@ -23,7 +23,7 @@ class TicketHeadViewWidget extends StatelessWidget {
             ),
             const Text(
               ' VS ',
-              style: AppTheme.textDefaultRed,
+              style: TextStyle(color: AppTheme.red, fontWeight: FontWeight.w900, fontSize: 14),
             ),
             // Visitor
             Text(

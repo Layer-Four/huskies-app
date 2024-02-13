@@ -15,7 +15,7 @@ class RedTextButton extends StatelessWidget {
         decoration: BoxDecoration(color: AppTheme.red, borderRadius: BorderRadius.circular(6)),
         child: Text(
           title,
-          style: AppTheme.textDefaultSmallW500,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ),
     );

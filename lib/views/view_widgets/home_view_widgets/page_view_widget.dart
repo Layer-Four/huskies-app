@@ -13,7 +13,7 @@ class UserInfoWidget extends StatelessWidget {
       decoration: AppTheme.whiteBox,
       margin: AppTheme.pointsBoxPadding,
       child: Row(
-        mainAxisAlignment: AppTheme.mainAround,
+        mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
           Row(
             children: [
