@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
+import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
@@ -16,6 +17,7 @@ import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Helpers {
   const Helpers();
@@ -187,6 +189,31 @@ class Helpers {
             ));
     return null;
   }
+
+  static void launchToWebsite(Product product) async {
+    final url = Uri.parse(product.shopUrl);
+    try {
+      if (await canLaunchUrl(url)) {
+        launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
+    }
+  }
+//   ProductNotifier._();
+//   factory ProductNotifier({
+//     required List<Product> products,
+//   });
+//   // Future<List<Product>> _fetchProducts() async {
+//   //   final dbData = await productsDB.then((value) {
+//   //     print(value.toString());
+//   //   });
+//   //   final json = dbData.data();
+
+//   //   for (var element in json) {}
+//   // }
+
+// }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
