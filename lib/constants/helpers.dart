@@ -22,7 +22,8 @@ import 'package:url_launcher/url_launcher.dart';
 class Helpers {
   const Helpers();
 
-  static Widget buildIndicator({required int selectedIndex, required int length}) =>
+  static Widget buildIndicator(
+          {required int selectedIndex, required int length}) =>
       AnimatedSmoothIndicator(
         activeIndex: selectedIndex,
         count: length,
@@ -47,19 +48,31 @@ class Helpers {
         height: 35,
         margin: const EdgeInsets.only(bottom: 1),
         decoration: BoxDecoration(
-            color: place != 1 ? Colors.white : const Color.fromARGB(255, 235, 231, 231)),
+            color: place != 1
+                ? Colors.white
+                : const Color.fromARGB(255, 235, 231, 231)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text('$place.', style: const TextStyle(color: Colors.black)),
             SizedBox(
               height: 30,
-              child: Center(child: Image.asset('assets/$imageSource', width: 20, height: 20)),
+              child: Center(
+                  child: Image.asset('assets/$imageSource',
+                      width: 20, height: 20)),
             ),
-            Center(child: Text('$games', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$points', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$goals', style: const TextStyle(color: Colors.black))),
-            Center(child: Text('$difference', style: const TextStyle(color: Colors.black))),
+            Center(
+                child: Text('$games',
+                    style: const TextStyle(color: Colors.black))),
+            Center(
+                child: Text('$points',
+                    style: const TextStyle(color: Colors.black))),
+            Center(
+                child: Text('$goals',
+                    style: const TextStyle(color: Colors.black))),
+            Center(
+                child: Text('$difference',
+                    style: const TextStyle(color: Colors.black))),
           ],
         ),
       );

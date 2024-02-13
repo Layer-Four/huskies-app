@@ -8,6 +8,7 @@ import 'package:huskies_app/views/navigation_view/navbar_widget.dart';
 import 'package:huskies_app/views/shop_view/shop_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_view.dart';
 import 'package:huskies_app/views/statistic_view/match_statisctics_view.dart';
+import 'package:huskies_app/views/view_widgets/newsfeed/newsfeed.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
@@ -22,6 +23,7 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.ticket => TicketView(),
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
+          ViewPage.newsFeed => const NewsFeed(),
           _ => HomeView()
         },
         bottomNavigationBar: NavigationBar(
@@ -33,6 +35,12 @@ class ViewNavigator extends ConsumerWidget {
               name: 'Home',
               isCurrentView: view == ViewPage.home,
               onPressed: () => viewNotifier.state = ViewPage.home,
+            ),
+            NavBarIconWidget(
+              icon: Icons.newspaper,
+              name: 'News',
+              isCurrentView: view == ViewPage.newsFeed,
+              onPressed: () => viewNotifier.state = ViewPage.newsFeed,
             ),
             NavBarIconWidget(
               icon: Icons.bookmark_border_outlined,

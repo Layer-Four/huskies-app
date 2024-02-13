@@ -65,4 +65,5 @@ enum ViewPage {
   shop,
   table,
   ticket,
+  newsFeed,
 }
