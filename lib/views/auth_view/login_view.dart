@@ -60,71 +60,82 @@ class _LoginViewState extends ConsumerState<LoginView> {
             padding: AppTheme.paddingXL,
             child: ListView(
               children: [
-                Column(
-                  crossAxisAlignment: AppTheme.crossAlignStart,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: Image.asset(
-                          "assets/huskies.png",
-                          width: 100,
-                          height: 100,
+                Form(
+                  child: Column(
+                    crossAxisAlignment: AppTheme.crossAlignStart,
+                    children: [
+                      Center(
+                        child: SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: Image.asset(
+                            "assets/huskies.png",
+                            width: 100,
+                            height: 100,
+                          ),
                         ),
                       ),
-                    ),
-                    AppTheme.sizedBox40,
-                    const Text(
-                      "Anmelden",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
-                    ),
-                    AppTheme.sizedBox14,
-                    const Text("E-Mail", style: AppTheme.textDefault),
-                    Padding(
-                      padding: AppTheme.paddingM,
-                      child: CustomeTextForm(
-                          hinttext: "Email", mycontroller: email),
-                    ),
-                    const Text("Passwort", style: TextStyle(fontSize: 14)),
-                    Padding(
-                      padding: AppTheme.paddingM,
-                      child: Column(
-                        children: [
-                          CustomeTextForm(
-                            hinttext: "Passwort",
-                            mycontroller: password,
-                            isPassword: true,
-                          ),
-                          Container(
-                            margin: AppTheme.bigPaddingTopButtom,
-                            alignment: Alignment.bottomRight,
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Signup()));
-                              },
-                              child: const Text("Passwort vergessen?",
-                                  style: AppTheme.textDefaultSmall10),
-                            ),
-                          ),
-                        ],
+                      AppTheme.sizedBox40,
+                      const Text(
+                        "Anmelden",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
                       ),
-                    ),
-                  ],
+                      AppTheme.sizedBox14,
+                      const Text("E-Mail", style: AppTheme.textDefault),
+                      Padding(
+                        padding: AppTheme.paddingM,
+                        child: CustomeTextForm(
+                          hinttext: "Email",
+                          mycontroller: email,
+                          validator: emailValidator,
+                          onSaved: null,
+                        ),
+                      ),
+                      const Text("Passwort", style: TextStyle(fontSize: 14)),
+                      Padding(
+                        padding: AppTheme.paddingM,
+                        child: Column(
+                          children: [
+                            CustomeTextForm(
+                              hinttext: "Passwort",
+                              mycontroller: password,
+                              validator: passwordValidator,
+                              isPassword: true,
+                              onSaved: null,
+                            ),
+                            Container(
+                              margin: AppTheme.bigPaddingTopButtom,
+                              alignment: Alignment.bottomRight,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Signup()));
+                                },
+                                child: const Text("Passwort vergessen?",
+                                    style: AppTheme.textDefaultSmall10),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 CustomButtonAuth(
-                    title: "Anmelden",
-                    onPress: () => ref
-                        .watch(statusProvider.notifier)
-                        .signInWithEmailAndPassword(
-                            email: email.text.trim(),
-                            password: password.text.trim())),
+                  title: "Anmelden",
+                  onPress: () => ref
+                      .watch(statusProvider.notifier)
+                      .signInWithEmailAndPassword(
+                          email: email.text.trim(),
+                          password: password.text.trim()),
+                  formKey: formKey,
+                ),
 
                 const Padding(
                   padding: AppTheme.paddingXL,

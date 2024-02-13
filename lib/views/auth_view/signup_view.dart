@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/view_widgets/custombuttonauth.dart';
 import 'package:huskies_app/views/view_widgets/textformfield.dart';
+import 'package:huskies_app/views/auth_view/login_view.dart';
 
 class Signup extends ConsumerStatefulWidget {
   final bool isPWForget;
@@ -27,28 +27,17 @@ class _SignupState extends ConsumerState<Signup> {
         // backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Opacity(
-              opacity: 0.7,
-              child: Image.asset(
-                "assets/background_image.jpg",
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
-                width: double.infinity,
-                // height: double.infinity,
-              ),
-            ),
-            Container(color: const Color.fromARGB(129, 0, 0, 0)),
+            AppTheme.backgroundImageHomePage,
+            Container(color: AppTheme.containerBlack),
             Center(
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: AppTheme.paddingXL,
                 child: ListView(children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: AppTheme.crossAlignStart,
                     children: [
-                      // const SizedBox(height: 50),
                       Center(
                         child: SizedBox(
-                          // alignment: Alignment.center,
                           width: 180,
                           height: 180,
                           child: Image.asset(
@@ -58,9 +47,7 @@ class _SignupState extends ConsumerState<Signup> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 40,
-                      ),
+                      AppTheme.sizedBox40,
                       const Text(
                         "Registrieren",
                         style: TextStyle(
@@ -68,15 +55,12 @@ class _SignupState extends ConsumerState<Signup> {
                             fontWeight: FontWeight.w500,
                             color: Colors.white),
                       ),
-                      const SizedBox(
-                        height: 14,
-                      ),
-
+                      AppTheme.sizedBox14,
                       const Text(
                         "E-Mail",
                         style: TextStyle(
                             fontSize: 13,
-                            color: Colors.white,
+                            color: AppTheme.white,
                             fontWeight: FontWeight.w300),
                       ),
                       const SizedBox(
@@ -87,7 +71,6 @@ class _SignupState extends ConsumerState<Signup> {
                         mycontroller: email,
                         onSaved: null,
                       ),
-
                       const SizedBox(
                         height: 11,
                       ),
@@ -101,7 +84,6 @@ class _SignupState extends ConsumerState<Signup> {
                       const SizedBox(
                         height: 4,
                       ),
-
                       CustomeTextForm(
                         // hinttext: "Password Eingeben",
                         mycontroller: password, hinttext: 'passwort',
