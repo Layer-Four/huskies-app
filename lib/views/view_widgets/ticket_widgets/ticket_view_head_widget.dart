@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class TicketHeadViewWidget extends StatelessWidget {
   final String? homeTeam;
@@ -10,7 +10,7 @@ class TicketHeadViewWidget extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: AppTheme.boxPadding,
         child: Row(
-          mainAxisAlignment: AppTheme.mainCenter,
+          mainAxisAlignment: AppTheme.mainAlignCenter,
           children: [
             Text(
               homeTeam ?? 'Home Team',

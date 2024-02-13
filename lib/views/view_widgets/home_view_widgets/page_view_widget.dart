@@ -74,8 +74,8 @@ class UserInfoWidget extends StatelessWidget {
                 ),
               ),
               const Column(
-                mainAxisAlignment: AppTheme.mainCenter,
-                crossAxisAlignment: AppTheme.crossStart,
+                mainAxisAlignment: AppTheme.mainAlignCenter,
+                crossAxisAlignment: AppTheme.crossAlignStart,
                 children: [
                   Text('Level'),
                   Text(
