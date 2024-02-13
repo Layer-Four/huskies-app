@@ -9,7 +9,7 @@ class SeasonState with _$SeasonState {
   const factory SeasonState({
     Season? currentSeason,
     List<Season>? season,
-  }) = _AppState;
+  }) = _SeasonState;
 
   factory SeasonState.fromJson(Map<String, dynamic> json) => _$SeasonStateFromJson(json);
 }

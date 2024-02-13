@@ -38,7 +38,7 @@ class WaitForRegistry extends ConsumerWidget {
             child: Padding(
               padding: AppTheme.hugePaddingBottom,
               child: Text(
-                'Bitte schließe zuerst deine Registrirung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
+                'Bitte schließe zuerst deine Registrierung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
                 textAlign: TextAlign.center,
                 style: localTextStyle,
               ),

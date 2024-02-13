@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:huskies_app/provider/auth_provider/auth_notifier.dart';
 import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/firebase_options.dart';
 import 'package:huskies_app/views/auth_view/login_view.dart';

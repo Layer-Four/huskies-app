@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  static const EdgeInsets bigPaddingTopButtom =
+      EdgeInsets.only(top: 10, bottom: 20);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color red = Color(0xFFD32F2F);
@@ -50,6 +52,12 @@ class AppTheme {
   static const double smallTextSize = 9.5;
   static const EdgeInsets regtangelCard =
       EdgeInsets.symmetric(horizontal: 70, vertical: 270);
+  static const Color scoreBoardColor = Color.fromARGB(255, 101, 132, 155);
+  static const Color ticketViewBody = Color.fromARGB(255, 155, 151, 151);
+  static const Color ticketViewHead = Color.fromARGB(255, 54, 66, 100);
+  static const Color fakeHomeViewColor = Color.fromARGB(255, 187, 219, 235);
+  static const TextStyle textDefaultRed =
+      TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.red);
   // static const TextStyle headStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 19);
   // static const TextStyle textTrikots = TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 15, color: Color.fromARGB(255, 22, 63, 92));
   // static const TextStyle textHuskies = TextStyle(color: Color.fromARGB(255, 14, 31, 15));
@@ -58,6 +66,13 @@ class AppTheme {
   // static const TextStyle logInTextSize14 = TextStyle(fontSize: 14);
   // static const TextStyle logInTextSize13 = TextStyle(fontSize: 13);
   // static const TextStyle logInTextSize10 = TextStyle(fontSize: 10);
+  static const MainAxisAlignment mainAlignEvenly =
+      MainAxisAlignment.spaceEvenly;
+  static const MainAxisAlignment mainBetween = MainAxisAlignment.spaceBetween;
+  static const MainAxisAlignment mainAround = MainAxisAlignment.spaceAround;
+  static const MainAxisAlignment mainStart = MainAxisAlignment.start;
+  static const SizedBox widthOnlySizedBox = SizedBox(width: 10);
+  static const EdgeInsets hugePaddingTop = EdgeInsets.only(top: 20.0);
   static const FontWeight headWeight = FontWeight.w700;
   static const Color whiteBackground = Colors.white;
   static const double cardElevetion = 7.0;
@@ -93,8 +108,8 @@ class AppTheme {
   // static const SizedBox sizedBox11 = SizedBox(height: 11);
   static const Alignment alignCenter = Alignment.center;
   static const TextAlign textCenter = TextAlign.center;
-  static const MainAxisAlignment mainCenter = MainAxisAlignment.center;
-  static const CrossAxisAlignment crossStart = CrossAxisAlignment.start;
+  static const MainAxisAlignment mainAlignCenter = MainAxisAlignment.center;
+  static const CrossAxisAlignment crossAlignStart = CrossAxisAlignment.start;
   static const double mediumDistance = 12;
   static const double largeDistance = 18;
   static const double lowDistance = 6;
@@ -107,6 +122,11 @@ class AppTheme {
     color: const Color.fromARGB(255, 22, 63, 92),
     borderRadius: BorderRadius.circular(7),
   );
+  static final Decoration itemColorSelection = BoxDecoration(
+    color: Colors.grey,
+    borderRadius: BorderRadius.circular(30),
+    border: Border.all(color: Colors.orange),
+  );
   static final Decoration whiteBox = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(10),
@@ -116,6 +136,10 @@ class AppTheme {
     boxShadow: const [
       BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
     ],
+  );
+  static final Decoration itemColorSelection2 = BoxDecoration(
+    color: Colors.black,
+    borderRadius: BorderRadius.circular(30),
   );
   static final Decoration pointsBoxDesgin = BoxDecoration(
     borderRadius: BorderRadius.circular(50),

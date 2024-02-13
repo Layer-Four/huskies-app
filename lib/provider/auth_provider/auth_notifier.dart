@@ -3,16 +3,8 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/services/auth.dart';
-
-enum AuthState {
-  loading,
-  loggedIn,
-  loggedOut,
-  onError,
-  onRegistration,
-}
 
 class AuthNotifier extends Notifier<AuthState> {
   final _authService = AuthRepository();
@@ -22,13 +14,29 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   void onError() => state = AuthState.onError;
-  void reRouteToLogin() => state = AuthState.loggedOut;
+  void onLoading({Duration? duration}) {
+    state = AuthState.loading;
+    if (duration != null) {
+      Future.delayed(duration).then((_) {
+        state = AuthState.loggedIn;
+      });
+    }
+  }
+
+  void deleteUser(String password) async {
+    final errorMessage = await _authService.deleteUser(password: password);
+    if (errorMessage == null) {
+      state = AuthState.loggedOut;
+      return;
+    }
+    ref.read(errorProvider.notifier).catchError(errorMessage);
+  }
+
+  void onLogIn() => state = AuthState.loggedIn;
 
   /// register a user request and listen to Backend service.
-  Future<bool> registerUserWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  Future<bool> registerUserWithEmailAndPassword(
+      {required String email, required String password}) async {
     final isvalidInput = validInput(email, password);
     if (isvalidInput) {
       state = AuthState.loggedOut;
@@ -36,6 +44,7 @@ class AuthNotifier extends Notifier<AuthState> {
           await _authService.registerUserWithEmailAndPassword(email: email, password: password);
       if (errorMessage != null) {
         ref.read(errorProvider.notifier).catchError(errorMessage);
+        return false;
       }
     }
     return isvalidInput;
@@ -51,26 +60,30 @@ class AuthNotifier extends Notifier<AuthState> {
     }
   }
 
-  Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
+  void reRouteToLogin() => state = AuthState.loggedOut;
+
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     state = AuthState.loading;
     if (!validInput(email, password)) {
       Future.delayed(const Duration(seconds: 2)).then((value) {
         state = AuthState.loggedOut;
+        return;
       });
-      return;
     }
     final response = await _authService.signInWithEmailPassword(email: email, password: password);
     if (response.$1 != null && response.$2 != null) {
-      throw Exception('''dont return two values!
-      be shure just return a UserModel || String  ''');
+      ref.read(errorProvider.notifier).catchError(throw Exception('''dont return two values!
+      be shure just return a UserModel || String  '''));
     }
     if (response.$2 != null) {
       if (response.$2 == 'NO USER') {
         ref.read(errorProvider.notifier).catchError(
             'Es wurde kein Nutzer mit dieser Email gefunde\n Bitte kontrollier deine Email-Adresse oder Registriere dich');
       }
-      ref.read(errorProvider.notifier).catchError(response.$2!);
-      return;
+      ref.read(errorProvider.notifier).catchError(throw response.$2!);
     }
     if (response.$1 != null && response.$1 == false) {
       state = AuthState.onRegistration;
@@ -118,17 +131,22 @@ class AuthNotifier extends Notifier<AuthState> {
 
   void waitOnRegistration() async => state = AuthState.onRegistration;
 
-  void onLogIn() => state = AuthState.loggedIn;
-  void onLoading({
-    Duration? duration,
-  }) {
-    state = AuthState.loading;
-    if (duration != null) {
-      Future.delayed(duration).then((_) {
-        state = AuthState.loggedIn;
-      });
+  void resetPassword({required String email}) {
+    try {
+      _authService.resetPassword(email: email);
+    } catch (e) {
+      _authService.logger.e(e.toString());
+      ref.read(errorProvider.notifier).catchError(throw 'Error on reset password');
     }
   }
+}
+
+enum AuthState {
+  loading,
+  loggedIn,
+  loggedOut,
+  onError,
+  onRegistration,
 }
 
   //   void sendEmailVerification() {
@@ -140,21 +158,5 @@ class AuthNotifier extends Notifier<AuthState> {
 //     }
 //   }
 
-//   void resetPassword({required String email}) {
-//     try {
-//       _auth.resetPassword(email: email);
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw 'Error on reset password';
-//     }
-//   }
 
-//   void signOut() {
-//     try {
-//        await _googleSignIn.signOut();
-//       _auth.signOut();
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw 'error on sign out';
-//     }
-//   }
+

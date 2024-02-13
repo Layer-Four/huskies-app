@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/constants/app_theme.dart';
+import 'package:huskies_app/provider/user_provider/user_provider.dart';
+import 'package:huskies_app/views/user_views/user_view.dart';
 
-class UserIconWidget extends StatelessWidget {
-  final String image;
+class UserIconWidget extends ConsumerWidget {
   final void Function()? onPressed;
-  const UserIconWidget({super.key, required this.image, this.onPressed});
+  const UserIconWidget({super.key, this.onPressed});
 
   @override
-  Widget build(context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: const BoxDecoration(shape: BoxShape.circle),
-        child: Image.asset(
-          'assets/$image',
-          width: 50,
+  Widget build(context, ref) {
+    final user = ref.watch(userProvider);
+    return Padding(
+      padding: AppTheme.paddingM,
+      child: InkWell(
+        onTap: onPressed ??
+            () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const UserProfileView()),
+                ),
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: const BoxDecoration(shape: BoxShape.circle),
+          child: user.userImageUrl == null
+              ? Image.asset('assets/user.png', width: 50, height: 50)
+              : Image.network(user.userImageUrl!, width: 50, height: 50),
         ),
       ),
     );

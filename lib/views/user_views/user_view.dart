@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
 import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
@@ -47,37 +48,36 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       margin: const EdgeInsets.symmetric(vertical: 30),
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
-                      child: user != null
-                          ? Image.asset(
-                              user.userImage != null
-                                  ? 'assets/${user.userImage}'
-                                  : 'assets/user.png',
+                      child: user.userImageUrl == null
+                          ? Image.asset('assets/user.png', height: 90, width: 90)
+                          : Image.network(
+                              user.userImageUrl!,
                               height: 90,
-                              width: 90)
-                          : const Icon(Icons.account_circle_rounded, size: 90),
+                              width: 90,
+                            ),
                     ),
                     Column(
                       children: [
+                        Text(user.displayedName != null
+                            ? user.displayedName!.split(',').first
+                            : 'Username'),
                         Text(
-                          '${user?.displayedName ?? ' Username'} ${user?.displayedName?.split(' ').last ?? ''}',
-                        ),
-                        Text(
-                          user?.email ?? 'beispiel@email.etc',
+                          user.email == null || user.email!.isEmpty
+                              ? 'beispiel@email.etc'
+                              : user.email!,
                           style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
                         Text(
                           // TODO: generate a separate KuID!
-                          'Kundennummer: ${user?.uID ?? 'KH234332'}',
+                          'Kundennummer: ${user.appUserID}',
                           style: const TextStyle(color: Colors.grey, fontSize: 11),
                         ),
-                        BlueButton(
+                        SymetricButton(
                             color: const Color.fromARGB(255, 22, 63, 92),
                             text: 'Profil bearbeiten',
                             onPressed: () {
                               Navigator.of(context).push(
                                   MaterialPageRoute(builder: (context) => const UpdateUserView()));
-                              // Future.delayed(const Duration(seconds: 2))
-                              //     .then((value) => Navigator.of(context).pop());
                             }),
                       ],
                     ),
