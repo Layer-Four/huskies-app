@@ -9,7 +9,7 @@ class MatchViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: AppTheme.mainEvenly,
+      mainAxisAlignment: AppTheme.mainAlignEvenly,
       children: [
         Image.asset(
           'assets/fuechse.png',

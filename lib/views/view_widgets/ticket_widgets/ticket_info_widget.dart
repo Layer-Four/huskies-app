@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/view_widgets/ticket_widgets/ticket_view_body.widget.dart';
 import 'package:huskies_app/views/view_widgets/ticket_widgets/ticket_view_head_widget.dart';
 
@@ -24,7 +25,7 @@ class TicketInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
         elevation: 3,
-        color: const Color.fromARGB(255, 215, 234, 249),
+        color: AppTheme.ticketBackground,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12),
@@ -42,7 +43,7 @@ class TicketInfoWidget extends StatelessWidget {
               child: Text(
                 'e-ticket',
                 style: TextStyle(
-                  color: Colors.red,
+                  color: AppTheme.red,
                   fontWeight: FontWeight.bold,
                   fontSize: 17,
                 ),
@@ -56,7 +57,7 @@ class TicketInfoWidget extends StatelessWidget {
               ticketID: ticketID,
             ),
             const Padding(
-              padding: EdgeInsets.all(8),
+              padding: AppTheme.paddingM,
             ),
           ],
         ),

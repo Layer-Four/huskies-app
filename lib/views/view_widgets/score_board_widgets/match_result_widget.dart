@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class LastMatchResultWidget extends StatelessWidget {
   final int? homeScore;
@@ -18,7 +18,7 @@ class LastMatchResultWidget extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
         width: 250,
         child: Row(
-          mainAxisAlignment: AppTheme.mainEvenly,
+          mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
             Image.asset(
               'assets/$homeImage',
@@ -31,7 +31,7 @@ class LastMatchResultWidget extends StatelessWidget {
                   homeScore != null && visitiorScore != null
                       ? '$homeScore : $visitiorScore'
                       : '- : -',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: AppTheme.titleBlack,
                 ),
                 Text(
                   homeScore != null && visitiorScore != null

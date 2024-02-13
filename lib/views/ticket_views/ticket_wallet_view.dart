@@ -40,7 +40,7 @@ class _TicketWalletViewState extends State<TicketWalletView> {
                   itemBuilder: (BuildContext context, int i, _) {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: AppTheme.mainStart,
                       children: [
                         TicketInfoWidget(
                           paid: true,

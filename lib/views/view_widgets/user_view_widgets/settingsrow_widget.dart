@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class SettingsRow extends StatelessWidget {
   final Widget leadingIcon;
@@ -16,7 +17,7 @@ class SettingsRow extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: AppTheme.mainBetween,
         children: [
           InkWell(
             onTap: onTextPressed,
@@ -24,7 +25,7 @@ class SettingsRow extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: AppTheme.boxPadding,
                     child: leadingIcon),
                 Text(optionText),
               ],

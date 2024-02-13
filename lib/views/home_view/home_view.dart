@@ -29,7 +29,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
           toolbarHeight: 120,
           title: Expanded(
             child: Align(
-              alignment: Alignment.center,
+              alignment: AppTheme.alignCenter,
               child: Column(
                 children: [
                   const UserIconWidget(),

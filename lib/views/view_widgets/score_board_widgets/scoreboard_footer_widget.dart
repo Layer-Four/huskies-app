@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class GameStaticsFooterWidget extends StatelessWidget {
   final String season;
@@ -11,25 +10,25 @@ class GameStaticsFooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: AppTheme.crossStart,
-      mainAxisAlignment: AppTheme.mainBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextButton(
           onPressed: () => showDialog(
             context: context,
             builder: (context) => Container(
-              margin: AppTheme.popUpMargin,
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
               color: Colors.white70,
-              alignment: AppTheme.alignCenter,
+              alignment: Alignment.center,
               child: const Text('Gesamte Tabelle'),
             ),
           ),
           child: Container(
-            padding: AppTheme.paddingM,
-            color: AppTheme.scoreBoardColor,
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+            color: const Color.fromARGB(255, 101, 132, 155),
             child: const Text(
               'Gesamte Tabelle anzeigen',
-              style: AppTheme.textDefaultSmall10,
+              style: TextStyle(color: Colors.white, fontSize: 11),
             ),
           ),
         ),

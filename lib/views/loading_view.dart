@@ -14,13 +14,13 @@ class LoadingView extends StatelessWidget {
     return Material(
       child: Container(
         padding: AppTheme.paddingM,
-        color: Colors.white,
-        alignment: Alignment.center,
+        color: AppTheme.white,
+        alignment: AppTheme.alignCenter,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: AppTheme.mainAlignCenter,
           children: [
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: AppTheme.paddingXL,
               child: Image.asset('assets/${advertising.$2}', width: 100),
             ),
             Container(
@@ -34,7 +34,7 @@ class LoadingView extends StatelessWidget {
             Text(
               advertising.$1,
               style: const TextStyle(fontSize: 25, color: AppTheme.primary),
-              textAlign: TextAlign.center,
+              textAlign: AppTheme.textCenter,
             ),
             Padding(padding: AppTheme.paddingXL, child: button),
           ],
