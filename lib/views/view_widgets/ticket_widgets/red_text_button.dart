@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
 
 class RedTextButton extends StatelessWidget {
   const RedTextButton({super.key, required this.onPressed, required this.title});
@@ -13,10 +12,10 @@ class RedTextButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
         decoration: BoxDecoration(
-            color: AppTheme.red, borderRadius: BorderRadius.circular(6)),
+            color: const Color.fromARGB(255, 255, 0, 0), borderRadius: BorderRadius.circular(6)),
         child: Text(
           title,
-          style: AppTheme.textDefaultSmallW500,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class SymetricButton extends StatelessWidget {
   final String text;
@@ -8,7 +9,7 @@ class SymetricButton extends StatelessWidget {
   const SymetricButton({
     super.key,
     this.onPressed,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    this.padding = AppTheme.boxPadding,
     required this.color,
     required this.text,
   });
@@ -26,11 +27,11 @@ class SymetricButton extends StatelessWidget {
           widthFactor: 1.5,
           heightFactor: 1.2,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: AppTheme.paddingM,
             child: Text(
               text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 10),
+              textAlign: AppTheme.textCenter,
+              style: const TextStyle(color: AppTheme.white, fontSize: 10),
             ),
           ),
         ),

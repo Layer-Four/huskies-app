@@ -61,8 +61,8 @@ class ViewNavigator extends ConsumerWidget {
               onPressed: () {
                 if (view != ViewPage.shop) {
                   ref.read(statusProvider.notifier).onLoading(
-                        duration: const Duration(seconds: 2),
-                      );
+                    duration: const Duration(seconds: 2),
+                  );
 
                   viewNotifier.state = ViewPage.shop;
                 }

@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
+import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
@@ -16,6 +17,7 @@ import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Helpers {
   const Helpers();
@@ -47,12 +49,12 @@ class Helpers {
         margin: const EdgeInsets.only(bottom: 1),
         decoration: BoxDecoration(
             color: place != 1
-                ? Colors.white
+                ? AppTheme.white
                 : const Color.fromARGB(255, 235, 231, 231)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
-            Text('$place.', style: const TextStyle(color: Colors.black)),
+            Text('$place.', style: const TextStyle(color: AppTheme.black)),
             SizedBox(
               height: 30,
               child: Center(
@@ -61,16 +63,16 @@ class Helpers {
             ),
             Center(
                 child: Text('$games',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$points',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$goals',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
             Center(
                 child: Text('$difference',
-                    style: const TextStyle(color: Colors.black))),
+                    style: const TextStyle(color: AppTheme.black))),
           ],
         ),
       );
@@ -87,17 +89,17 @@ class Helpers {
     return Container(
       height: 35,
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 101, 132, 155),
+        color: AppTheme.primary,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
-          Text(position, style: const TextStyle(color: Colors.white)),
-          Text(team, style: const TextStyle(color: Colors.white)),
-          Text(games, style: const TextStyle(color: Colors.white)),
-          Text(points, style: const TextStyle(color: Colors.white)),
-          Text(goals, style: const TextStyle(color: Colors.white)),
-          Text(difference, style: const TextStyle(color: Colors.white)),
+          Text(position, style: const TextStyle(color: AppTheme.white)),
+          Text(team, style: const TextStyle(color: AppTheme.white)),
+          Text(games, style: const TextStyle(color: AppTheme.white)),
+          Text(points, style: const TextStyle(color: AppTheme.white)),
+          Text(goals, style: const TextStyle(color: AppTheme.white)),
+          Text(difference, style: const TextStyle(color: AppTheme.white)),
         ],
       ),
     );
@@ -149,10 +151,10 @@ class Helpers {
         builder: (context) => Card(
               margin: AppTheme.regtangelCard,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: AppTheme.paddingM,
                     child: SymetricButton(
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
@@ -176,7 +178,7 @@ class Helpers {
                         }),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: AppTheme.paddingM,
                     child: SymetricButton(
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
@@ -200,6 +202,29 @@ class Helpers {
             ));
     return null;
   }
+
+  static void launchToWebsite(Product product) async {
+    final url = Uri.parse(product.shopUrl);
+    try {
+      launchUrl(url, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
+    }
+  }
+//   ProductNotifier._();
+//   factory ProductNotifier({
+//     required List<Product> products,
+//   });
+//   // Future<List<Product>> _fetchProducts() async {
+//   //   final dbData = await productsDB.then((value) {
+//   //     print(value.toString());
+//   //   });
+//   //   final json = dbData.data();
+
+//   //   for (var element in json) {}
+//   // }
+
+// }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>

@@ -39,16 +39,16 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
       child: Material(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: AppTheme.mainBetween,
           children: [
             Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 100, bottom: 50),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: AppTheme.mainAlignEvenly,
                       children: [
                         Container(
                           margin: AppTheme.boxPadding,
@@ -61,7 +61,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                               : Image.asset('assets/user.png', width: 90),
                         ),
                         SymetricButton(
-                            color: Colors.blueGrey,
+                            color: AppTheme.blueGrey,
                             text: 'Profilbild ändern',
                             onPressed: () async {
                               userImage = await Helpers.asktForImage(context, ref);
@@ -79,7 +79,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                       controller: firstNameController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.name,
-                      textAlign: TextAlign.center,
+                      textAlign: AppTheme.textCenter,
                     ),
                   ),
                   const Padding(padding: AppTheme.paddingM, child: Text('Nachname')),
@@ -89,7 +89,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                       controller: lastNameController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.name,
-                      textAlign: TextAlign.center,
+                      textAlign: AppTheme.textCenter,
                     ),
                   ),
                   if (currentUser.email == null || currentUser.email!.isEmpty)
@@ -101,7 +101,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                         controller: emailController,
                         decoration: AppTheme.textInputDecoration,
                         keyboardType: TextInputType.emailAddress,
-                        textAlign: TextAlign.center,
+                        textAlign: AppTheme.textCenter,
                       ),
                     ),
                   const Padding(padding: AppTheme.paddingM, child: Text('phone number')),
@@ -111,7 +111,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                       controller: phoneController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.phone,
-                      textAlign: TextAlign.center,
+                      textAlign: AppTheme.textCenter,
                     ),
                   ),
                   AcceptOrReturnWidget(

@@ -16,7 +16,7 @@ class DeleteUserCard extends ConsumerWidget {
       padding:
           EdgeInsets.only(left: MediaQuery.of(context).size.width / 1.4, right: 12, bottom: 12),
       child: SymetricButton(
-        color: Colors.red,
+        color: AppTheme.red,
         text: 'Nutzer Löschen',
         onPressed: () {
           final passwordController = TextEditingController();
@@ -26,14 +26,14 @@ class DeleteUserCard extends ConsumerWidget {
                     color: const Color.fromARGB(255, 213, 211, 211),
                     margin: AppTheme.regtangelCard,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: AppTheme.mainAlignCenter,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Padding(
                           padding: AppTheme.paddingM,
                           child: Text(
                             'Bitte bestätige mit deinem\nPasswort:',
-                            textAlign: TextAlign.center,
+                            textAlign: AppTheme.textCenter,
                           ),
                         ),
                         Padding(
@@ -43,11 +43,11 @@ class DeleteUserCard extends ConsumerWidget {
                             controller: passwordController,
                             decoration: AppTheme.textInputDecoration,
                             keyboardType: TextInputType.visiblePassword,
-                            textAlign: TextAlign.center,
+                            textAlign: AppTheme.textCenter,
                           ),
                         ),
                         SymetricButton(
-                            color: Colors.red,
+                            color: AppTheme.red,
                             text: 'Konto löschen?',
                             onPressed: () {
                               ref

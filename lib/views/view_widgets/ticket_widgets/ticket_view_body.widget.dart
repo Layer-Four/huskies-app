@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/logic/helper/app_theme.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 
 class TicketBodyViewWidget extends StatelessWidget {
   final DateTime? date;
@@ -51,7 +51,7 @@ class TicketBodyViewWidget extends StatelessWidget {
             SizedBox(
               width: 100,
               child: Column(
-                crossAxisAlignment: AppTheme.crossStart,
+                crossAxisAlignment: AppTheme.crossAlignStart,
                 mainAxisAlignment: AppTheme.mainAround,
                 children: [
                   Text(
@@ -70,7 +70,7 @@ class TicketBodyViewWidget extends StatelessWidget {
               width: 80,
               child: Column(
                 mainAxisAlignment: AppTheme.mainAround,
-                crossAxisAlignment: AppTheme.crossStart,
+                crossAxisAlignment: AppTheme.crossAlignStart,
                 children: [
                   Text(
                     headright,

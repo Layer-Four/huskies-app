@@ -50,18 +50,12 @@ class _SignupState extends ConsumerState<Signup> {
                       AppTheme.sizedBox40,
                       const Text(
                         "Registrieren",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                        style: AppTheme.textDefault,
                       ),
                       AppTheme.sizedBox14,
                       const Text(
                         "E-Mail",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: AppTheme.white,
-                            fontWeight: FontWeight.w300),
+                        style: AppTheme.textDefaultSmallW500,
                       ),
                       const SizedBox(
                         height: 8,
@@ -76,10 +70,7 @@ class _SignupState extends ConsumerState<Signup> {
                       ),
                       const Text(
                         "Passwort",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
+                        style: AppTheme.textDefaultSmallW500,
                       ),
                       const SizedBox(
                         height: 4,
@@ -94,10 +85,7 @@ class _SignupState extends ConsumerState<Signup> {
                       ),
                       const Text(
                         "Passwort bestätigen",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
+                        style: AppTheme.textDefaultSmallW500,
                       ),
                       const SizedBox(
                         height: 4,
@@ -111,10 +99,10 @@ class _SignupState extends ConsumerState<Signup> {
                         ref
                             .watch(statusProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                                email: email.text.trim(),
-                                password: password.text.trim())
+                            email: email.text.trim(),
+                            password: password.text.trim())
                             .then((value) =>
-                                value ? Navigator.of(context).pop() : null);
+                        value ? Navigator.of(context).pop() : null);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -162,12 +150,12 @@ class _SignupState extends ConsumerState<Signup> {
                           children: [
                             TextSpan(
                               text: "Haben Sie ein Account ? ",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: AppTheme.white),
                             ),
                             TextSpan(
                                 text: "Anmelden",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppTheme.white,
                                     fontWeight: FontWeight.bold)),
                           ],
                         ),

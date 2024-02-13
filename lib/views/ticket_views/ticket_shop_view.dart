@@ -30,10 +30,10 @@ class TicketShopView extends ConsumerWidget {
                 padding: EdgeInsets.all(12),
                 child: MatchCard(
                   isLastMatch: false,
-                  color: Color.fromARGB(255, 215, 234, 249),
+                  color: AppTheme.ticketBackground,
                 ),
               ),
-              const Padding(padding: EdgeInsets.all(20)),
+              const Padding(padding: AppTheme.paddingXL),
               SizedBox(
                 height: 285,
                 child: ListView.builder(
@@ -52,7 +52,7 @@ class TicketShopView extends ConsumerWidget {
                           context: context,
                           builder: (context) => Container(
                             width: MediaQuery.of(context).size.width - 40,
-                            color: const Color.fromARGB(225, 255, 255, 255),
+                            color: AppTheme.white,
                             child: TextButton(
                                 child: const Text(
                                   'Buy Ticket',

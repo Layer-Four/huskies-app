@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
@@ -27,10 +28,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       body: Container(
         height: 650,
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: AppTheme.defaultVerticalDistance,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: AppTheme.mainBetween,
           children: [
             Card(
               elevation: 7,
@@ -39,13 +40,13 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
-                  color: Colors.white,
+                  color: AppTheme.white,
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 30),
+                      margin: AppTheme.defaultVerticalDistanceL,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: user.userImageUrl == null
@@ -65,15 +66,15 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           user.email == null || user.email!.isEmpty
                               ? 'beispiel@email.etc'
                               : user.email!,
-                          style: const TextStyle(color: Colors.grey, fontSize: 11),
+                          style: AppTheme.textDefaultSmall10Grey,
                         ),
                         Text(
                           // TODO: generate a separate KuID!
                           'Kundennummer: ${user.appUserID}',
-                          style: const TextStyle(color: Colors.grey, fontSize: 11),
+                          style: AppTheme.textDefaultSmall10Grey,
                         ),
                         SymetricButton(
-                            color: const Color.fromARGB(255, 22, 63, 92),
+                            color: AppTheme.customButton,
                             text: 'Profil bearbeiten',
                             onPressed: () {
                               Navigator.of(context).push(
@@ -90,7 +91,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               width: double.infinity,
               child: const Text(
                 'Einstellungen',
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: AppTheme.grey),
               ),
             ),
             Card(
@@ -98,18 +99,18 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               elevation: 7,
               child: Container(
                 decoration:
-                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                    BoxDecoration(color: AppTheme.white, borderRadius: BorderRadius.circular(11)),
                 width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: AppTheme.mainBetween,
                       children: [
                         const SettingsRow(
                           endingWidget: Text(
                             'Deutsch',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(color: AppTheme.grey),
                           ),
                           leadingIcon: Icon(Icons.flag_outlined),
                           optionText: 'Sprache',
@@ -118,10 +119,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           endIcon: Transform.scale(
                             scale: 0.9,
                             child: Switch(
-                              activeColor: Colors.white,
-                              activeTrackColor: Colors.black,
-                              inactiveTrackColor: Colors.black,
-                              inactiveThumbColor: Colors.white,
+                              activeColor: AppTheme.white,
+                              activeTrackColor: AppTheme.black,
+                              inactiveTrackColor: AppTheme.black,
+                              inactiveThumbColor: AppTheme.white,
                               materialTapTargetSize: MaterialTapTargetSize.padded,
                               value: darkMode,
                               onChanged: (_) => setState(() {
@@ -134,10 +135,10 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                         ),
                         SettingsRow(
                           endIcon: Switch(
-                            activeColor: Colors.white,
-                            activeTrackColor: Colors.black,
-                            inactiveTrackColor: Colors.black,
-                            inactiveThumbColor: Colors.white,
+                            activeColor: AppTheme.white,
+                            activeTrackColor: AppTheme.black,
+                            inactiveTrackColor: AppTheme.black,
+                            inactiveThumbColor: AppTheme.white,
                             value: faceID,
                             onChanged: (_) => setState(() {
                               faceID = !faceID;
@@ -161,13 +162,13 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
                 decoration:
-                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                    BoxDecoration(color: AppTheme.white, borderRadius: BorderRadius.circular(11)),
                 width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: AppTheme.mainBetween,
                       children: [
                         const SettingsRow(
                           leadingIcon: Icon(
