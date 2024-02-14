@@ -17,42 +17,46 @@ class WaitForRegistry extends ConsumerWidget {
 
     const localTextStyle =
         TextStyle(fontSize: 21, color: AppTheme.white, decoration: TextDecoration.none);
-    return BackgroundWidget(
-      image: 'background_image.jpg',
-      body: Column(
-        mainAxisAlignment: AppTheme.mainAlignEvenly,
-        children: [
-          Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(45),
-            ),
-            child: Image.asset(
-              'assets/${adversiting.$2}',
-              width: MediaQuery.of(context).size.width / 1.7,
-            ),
-          ),
-          Text(adversiting.$1, textAlign: TextAlign.center, style: localTextStyle),
-          const Card(
-            color: Color.fromARGB(210, 79, 74, 74),
-            child: Padding(
-              padding: AppTheme.hugePaddingBottom,
-              child: Text(
-                'Bitte schließe zuerst deine Registrierung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
-                textAlign: AppTheme.textCenter,
-                style: localTextStyle,
+    return SafeArea(
+      child: Scaffold(
+        body: BackgroundWidget(
+          image: 'background_image.jpg',
+          body: Column(
+            mainAxisAlignment: AppTheme.mainAlignEvenly,
+            children: [
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(45),
+                ),
+                child: Image.asset(
+                  adversiting.$2,
+                  width: MediaQuery.of(context).size.width / 1.7,
+                ),
               ),
-            ),
+              Text(adversiting.$1, textAlign: TextAlign.center, style: localTextStyle),
+              const Card(
+                color: Color.fromARGB(210, 79, 74, 74),
+                child: Padding(
+                  padding: AppTheme.hugePaddingBottom,
+                  child: Text(
+                    'Bitte schließe zuerst deine Registrierung ab. \nKontrolliere dein \nEmail und Spam Postfach!',
+                    textAlign: AppTheme.textCenter,
+                    style: localTextStyle,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: circuleSize,
+                width: circuleSize,
+                child: const CircularProgressIndicator(
+                  strokeWidth: 6,
+                  color: AppTheme.cardHighlightedColor,
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            height: circuleSize,
-            width: circuleSize,
-            child: const CircularProgressIndicator(
-              strokeWidth: 6,
-              color: AppTheme.cardHighlightedColor,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -13,7 +13,7 @@ class BackgroundWidget extends StatelessWidget {
       Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/$image'),
+            image: AssetImage('assets/images/$image'),
             fit: BoxFit.cover,
           ),
         ),
