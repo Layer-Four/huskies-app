@@ -9,7 +9,7 @@ void main() {
     email: 'example@email.mail',
     phoneNumber: 08151234567,
     userImageUrl: 'https://testImage.com',
-    appUserID: null,
+    appUserID: 100000000000,
   );
   final testUserToJson = testUser.toJson();
   final testUserFromJson = UserModel.fromJson(testUserToJson);
@@ -22,24 +22,23 @@ void main() {
     appUserID: testUserToJson['appUserID'],
   );
   test('create UserModel', () {
-    expect(testUser.appUserID, null);
+    expect(testUser.appUserID, 100000000000);
     expect(testUser.displayedName, 'test,Nutzer');
     expect(testUser.email, 'example@email.mail');
     expect(testUser.phoneNumber, 08151234567);
     expect(testUser.uID, '08151234567');
     expect(testUser.userImageUrl, 'https://testImage.com');
   });
+  test('user -> toJson()-> fromJson(->UserModel)', () {
+    expect(testUserFromJson, testUser);
+    expect(testUserToJson.length, 6);
+    expect(testUserFromJson, ownFromJsonUser);
+  });
   test('create user Without uID and create user with uID', () {
     final testUserToJsonWithoutUID = testUserToJson;
     testUserToJsonWithoutUID.remove('uID');
-    // final testUserFromJson= tesUserFromJson;
-    expect(testUserToJsonWithoutUID.entries.length, 5);
-    expect(testUserToJsonWithoutUID.entries.contains('uID'), false);
-    expect(testUserFromJson, ownFromJsonUser);
-  });
-  test('user -> toJson()-> fromJson(->UserModel)', () {
-    expect(testUserFromJson, testUser);
-    expect(testUserToJson.entries.length, 6);
+    expect(testUserToJsonWithoutUID.length, 5);
+    expect(testUserToJsonWithoutUID.containsKey('uID'), false);
     expect(testUserFromJson, ownFromJsonUser);
   });
 }

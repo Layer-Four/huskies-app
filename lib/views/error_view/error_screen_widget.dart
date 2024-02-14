@@ -19,7 +19,7 @@ class ShowErrorScreen extends ConsumerWidget {
             Container(
               padding: AppTheme.paddingXL,
               child: Text(error,
-                  style: TextStyle(fontSize: 25, color: Colors.yellow),
+                  style: const TextStyle(fontSize: 25, color: Colors.yellow),
                   textAlign: AppTheme.textCenter),
             ),
             Row(

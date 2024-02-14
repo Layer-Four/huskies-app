@@ -19,7 +19,6 @@ class UserNotifier extends Notifier<UserModel> {
     return UserModel(uID: 'fake');
   }
 
-  //TODO: change user to the FireStore API and load userData from firestore
   Future<void> initUser(String uID) async {
     UserModel? dbUser;
     try {
