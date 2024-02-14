@@ -1,5 +1,5 @@
 const sponsors = [
-  {'da.jpg': 'Wir sind für sie da\nIhre Sparkasse....'},
-  {'fuechse.png': 'Bei uns wirds Flauschig!'},
-  {'huskies.png': 'Komm ins Rudel!'},
+  {'assets/images/da.jpg': 'Wir sind für sie da\nIhre Sparkasse....'},
+  {'assets/images/fuechse.png': 'Bei uns wirds Flauschig!'},
+  {'assets/images/huskies.png': 'Komm ins Rudel!'},
 ];

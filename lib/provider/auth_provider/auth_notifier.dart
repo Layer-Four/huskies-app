@@ -148,15 +148,3 @@ enum AuthState {
   onError,
   onRegistration,
 }
-
-  //   void sendEmailVerification() {
-//     try {
-//       _auth.sendEmailVerification();
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw "Email can't be send";
-//     }
-//   }
-
-
-
