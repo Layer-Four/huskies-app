@@ -24,7 +24,7 @@ final statusProvider = NotifierProvider<AuthNotifier, AuthState>(() => AuthNotif
 /// provide the current mainview and allow to navigate on itself to children views.
 /// the Stateprovider was used here because the ref object must be mutable,
 ///  to change the view, the used Type is a enum so the views are scaleable and all values are known.
-final viewProvider = StateProvider<ViewPage>((ref) => ViewPage.login);
+final viewProvider = StateProvider<ViewPage>((ref) => ViewPage.home);
 
 // * Future Provider are powerfull on
 // * re-fetch and refresh data (useful for pull-to-refresh operations)

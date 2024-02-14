@@ -17,16 +17,14 @@ class SettingsRow extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: AppTheme.mainBetween,
+        mainAxisAlignment: AppTheme.mainAlignBetween,
         children: [
           InkWell(
             onTap: onTextPressed,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                    padding: AppTheme.boxPadding,
-                    child: leadingIcon),
+                Padding(padding: AppTheme.boxPadding, child: leadingIcon),
                 Text(optionText),
               ],
             ),

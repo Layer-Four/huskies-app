@@ -22,7 +22,7 @@ class TicketItemRowWidget extends StatelessWidget {
       height: 55,
       color: backgroundColor,
       child: Row(
-        mainAxisAlignment: AppTheme.mainBetween,
+        mainAxisAlignment: AppTheme.mainAlignBetween,
         children: [
           Padding(
             padding: AppTheme.paddingM,

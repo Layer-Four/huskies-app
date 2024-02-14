@@ -58,12 +58,10 @@ Widget fakeHomeView() {
 }
 
 enum ViewPage {
-  forgetpassword,
-  login,
   home,
-  register,
   shop,
   table,
   ticket,
   newsFeed,
+  error,
 }

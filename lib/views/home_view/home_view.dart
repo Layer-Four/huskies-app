@@ -33,12 +33,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
               child: Column(
                 children: [
                   const UserIconWidget(),
-                  Text("Hallo ${user.displayedName?.split(',').first ?? ''}",
-                      style: AppTheme.titleWhite),
-                  user.displayedName != null
-                      ? const Text("Willkommon zurück!",
-                      style: AppTheme.textDefault)
-                      : const SizedBox(),
+                  user != null
+                      ? Text(
+                          "Hallo ${user.displayedName?.split(',').first ?? ''}\nWillkommon zurück!",
+                          style: AppTheme.titleWhite)
+                      : const Text("Hallo", style: AppTheme.textDefault)
                 ],
               ),
             ),
@@ -136,8 +135,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         width: double.infinity,
                         child: Column(
                           children: [
-                            const Text("Kassel Huskies",
-                                style: AppTheme.titleBlue),
+                            const Text("Kassel Huskies", style: AppTheme.titleBlue),
                             const Text("NFT-Puzzle", style: AppTheme.titleBlue),
                             const Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
@@ -173,12 +171,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
     );
   }
 
-  Widget buildIndicator(
-      {required int index, required Color isBackgroundColor}) =>
+  Widget buildIndicator({required int index, required Color isBackgroundColor}) =>
       AnimatedSmoothIndicator(
         activeIndex: index,
         count: 3,
-        effect: SlideEffect(
-            dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
+        effect: SlideEffect(dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
       );
 }

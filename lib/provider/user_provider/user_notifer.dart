@@ -10,13 +10,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/provider/error_provider/error_provider.dart';
 
-class UserNotifier extends Notifier<UserModel> {
+class UserNotifier extends Notifier<UserModel?> {
   final CollectionReference _usersDB = FirebaseFirestore.instance.collection('users');
   final Reference _storageRef = FirebaseStorage.instance.ref();
 
   @override
-  UserModel build() {
-    return UserModel(uID: 'fake');
+  UserModel? build() {
+    return null;
   }
 
   Future<void> initUser(String uID) async {
@@ -62,31 +62,32 @@ class UserNotifier extends Notifier<UserModel> {
     int? newPhoneNumber,
     File? image,
   }) async {
-    if (state.uID == 'fake') {
+    if (state == null) {
       ref.read(errorProvider.notifier).catchError(
             throw ('No user created before edit user'),
           );
-    }
-    try {
-      String? imageURL;
-      if (image != null) {
-        final dbRef = _storageRef.child('users').child(state.uID).child('profileImageUrl');
-        await dbRef.putFile(image);
-        imageURL = await dbRef.getDownloadURL();
+    } else {
+      try {
+        String? imageURL;
+        if (image != null) {
+          final dbRef = _storageRef.child('users').child(state!.uID).child('profileImageUrl');
+          await dbRef.putFile(image);
+          imageURL = await dbRef.getDownloadURL();
+        }
+        final newUser = UserModel(
+          appUserID: state!.appUserID ?? math.Random().nextInt(899999999) + 100000000,
+          uID: state!.uID,
+          displayedName: displayName ?? state!.displayedName,
+          email: newEmail ?? state!.email,
+          phoneNumber: newPhoneNumber ?? state!.phoneNumber,
+          userImageUrl: imageURL ?? state!.userImageUrl,
+        );
+        saveUserProfile(user: newUser);
+        state = newUser;
+        return;
+      } catch (e) {
+        ref.read(errorProvider.notifier).catchError(e.toString());
       }
-      final newUser = UserModel(
-        appUserID: state.appUserID ?? math.Random().nextInt(899999999) + 100000000,
-        uID: state.uID,
-        displayedName: displayName ?? state.displayedName,
-        email: newEmail ?? state.email,
-        phoneNumber: newPhoneNumber ?? state.phoneNumber,
-        userImageUrl: imageURL ?? state.userImageUrl,
-      );
-      saveUserProfile(user: newUser);
-      state = newUser;
-      return;
-    } catch (e) {
-      ref.read(errorProvider.notifier).catchError(e.toString());
     }
   }
 
@@ -99,7 +100,7 @@ class UserNotifier extends Notifier<UserModel> {
         ref.read(errorProvider.notifier).catchError(
             throw Exception('remove uID from json because, we don`t need it twice in Database'));
       }
-      _usersDB.doc(user.uID).set(json);
+      _usersDB.doc(user.uID).set(json, SetOptions(merge: true));
     } catch (e) {
       log(e.toString());
       ref.read(errorProvider.notifier).catchError(throw Exception('errorSavingUserProfile'));

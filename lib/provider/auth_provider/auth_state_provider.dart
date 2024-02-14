@@ -11,7 +11,6 @@ final authProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges().map((user) {
     if (user != null) {
       log(user.toString());
-
       ref.read(userProvider.notifier).initUser(user.uid);
       if (!user.emailVerified) {
         ref.read(statusProvider.notifier).waitOnRegistration();
