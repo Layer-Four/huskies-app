@@ -5,8 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 
-// TODO: refacor this! I didnt understand streams and yield :'(
-
 /// this provider returns a instance from Firebase authentication services
 /// and give us a everytime updated user instance from DB.
 final authProvider = StreamProvider<User?>((ref) {
