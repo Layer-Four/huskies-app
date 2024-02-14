@@ -9,22 +9,26 @@ class BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(fit: StackFit.expand, children: [
-      Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/$image'),
-            fit: BoxFit.cover,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/$image'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
-      Container(
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(142, 73, 68, 68),
-        ),
-        padding: AppTheme.hugePaddingBottom,
-        child: body,
-      )
-    ]);
+        Container(
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(142, 73, 68, 68),
+          ),
+          padding: AppTheme.hugePaddingBottom,
+          child: body,
+        )
+      ],
+    );
   }
 }

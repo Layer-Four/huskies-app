@@ -12,7 +12,7 @@ class GameStaticsFooterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: AppTheme.crossAlignStart,
-      mainAxisAlignment: AppTheme.mainBetween,
+      mainAxisAlignment: AppTheme.mainAlignBetween,
       children: [
         TextButton(
           onPressed: () => showDialog(

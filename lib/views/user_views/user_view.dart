@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
@@ -19,6 +20,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider);
+    if (user == null) {
+      ref.read(errorProvider.notifier).catchError(throw ('call a non nullable User with null'));
+    }
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -26,12 +30,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
         title: const Text('Mein Profile'),
       ),
       body: Container(
-        height: 650,
+        // height: 650,
         width: double.infinity,
         padding: AppTheme.defaultVerticalDistance,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: AppTheme.mainBetween,
+          mainAxisAlignment: AppTheme.mainAlignBetween,
           children: [
             Card(
               elevation: 7,
@@ -81,7 +85,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                                   MaterialPageRoute(builder: (context) => const UpdateUserView()));
                             }),
                       ],
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -105,7 +109,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: AppTheme.mainBetween,
+                      mainAxisAlignment: AppTheme.mainAlignBetween,
                       children: [
                         const SettingsRow(
                           endingWidget: Text(
@@ -168,7 +172,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                   mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: AppTheme.mainBetween,
+                      mainAxisAlignment: AppTheme.mainAlignBetween,
                       children: [
                         const SettingsRow(
                           leadingIcon: Icon(

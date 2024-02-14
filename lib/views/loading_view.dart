@@ -13,39 +13,32 @@ class LoadingView extends ConsumerWidget {
     final advertising = Helpers.getAdvertising();
     return SafeArea(
       child: Scaffold(
-        body: Material(
-          child: BackgroundWidget(
-            image: 'profile.jpg',
-            body: Container(
-              padding: AppTheme.paddingM,
-              color: AppTheme.white,
-              alignment: AppTheme.alignCenter,
-              child: Column(
-                mainAxisAlignment: AppTheme.mainAlignCenter,
-                children: [
-                  Padding(
-                    padding: AppTheme.paddingXL,
-                    // advertising.$2
+        body: BackgroundWidget(
+          image: 'background_image.jpg',
+          body: Column(
+            mainAxisAlignment: AppTheme.mainAlignCenter,
+            children: [
+              Padding(
+                padding: AppTheme.paddingXL,
+                //
 
-                    child: Image.asset('assets/images/da.jpg', width: 100),
-                  ),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    padding: AppTheme.hugePaddingBottom,
-                    child: const CircularProgressIndicator(
-                      color: Color.fromARGB(129, 0, 150, 135),
-                    ),
-                  ),
-                  Text(
-                    advertising.$1,
-                    style: const TextStyle(fontSize: 25, color: AppTheme.primary),
-                    textAlign: AppTheme.textCenter,
-                  ),
-                  Padding(padding: AppTheme.paddingXL, child: button),
-                ],
+                child: Image.asset(advertising.$2, width: 100),
               ),
-            ),
+              Container(
+                height: 100,
+                width: 100,
+                padding: AppTheme.hugePaddingBottom,
+                child: const CircularProgressIndicator(
+                  color: AppTheme.teal,
+                ),
+              ),
+              Text(
+                advertising.$1,
+                style: const TextStyle(fontSize: 25, color: AppTheme.white),
+                textAlign: AppTheme.textCenter,
+              ),
+              Padding(padding: AppTheme.paddingXL, child: button),
+            ],
           ),
         ),
       ),

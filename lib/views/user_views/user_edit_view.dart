@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
@@ -33,13 +31,20 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
 
   @override
   Widget build(BuildContext context) {
-    File? userImage;
-    UserModel currentUser = ref.watch(userProvider);
+    UserModel? currentUser = ref.watch(userProvider);
+    if (mounted && currentUser != null) {
+      if (currentUser.displayedName != null) {
+        firstNameController.text = currentUser.displayedName!.split(',').first;
+        lastNameController.text = currentUser.displayedName!.split(',').last;
+      }
+      emailController.text = currentUser.email ?? '';
+      phoneController.text = currentUser.phoneNumber?.toString() ?? '';
+    }
     return SafeArea(
       child: Material(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: AppTheme.mainBetween,
+          mainAxisAlignment: AppTheme.mainAlignBetween,
           children: [
             Column(
                 mainAxisSize: MainAxisSize.min,
@@ -56,15 +61,15 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                             shape: BoxShape.circle,
                           ),
                           clipBehavior: Clip.antiAlias,
-                          child: currentUser.userImageUrl != null
-                              ? Image.network(currentUser.userImageUrl!, height: 90, width: 90)
+                          child: currentUser?.userImageUrl != null
+                              ? Image.network(currentUser!.userImageUrl!, height: 90, width: 90)
                               : Image.asset('assets/user.png', width: 90),
                         ),
                         SymetricButton(
                             color: AppTheme.blueGrey,
                             text: 'Profilbild ändern',
                             onPressed: () async {
-                              userImage = await Helpers.asktForImage(context, ref);
+                              await Helpers.asktForImage(context, ref);
                             }),
                       ],
                     ),
@@ -76,6 +81,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
+                      initialValue: firstNameController.text,
                       controller: firstNameController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.name,
@@ -86,28 +92,28 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
+                      initialValue: lastNameController.text,
                       controller: lastNameController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.name,
                       textAlign: AppTheme.textCenter,
                     ),
                   ),
-                  if (currentUser.email == null || currentUser.email!.isEmpty)
-                    const Padding(padding: AppTheme.paddingM, child: Text('email')),
-                  if (currentUser.email == null || currentUser.email!.isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: AppTheme.textInputDecoration,
-                        keyboardType: TextInputType.emailAddress,
-                        textAlign: AppTheme.textCenter,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
+                    child: TextFormField(
+                      initialValue: emailController.text,
+                      controller: emailController,
+                      decoration: AppTheme.textInputDecoration,
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: AppTheme.textCenter,
                     ),
+                  ),
                   const Padding(padding: AppTheme.paddingM, child: Text('phone number')),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
+                      initialValue: phoneController.text,
                       controller: phoneController,
                       decoration: AppTheme.textInputDecoration,
                       keyboardType: TextInputType.phone,
@@ -118,7 +124,8 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                     onPressed: () {
                       if (firstNameController.text.isEmpty &&
                           lastNameController.text.isEmpty &&
-                          userImage == null) {
+                          emailController.text.isEmpty &&
+                          phoneController.text.isEmpty) {
                         Helpers.showSnackbar(context, 'keine änderungen übernommen');
                         Navigator.of(context).pop();
                         return;
@@ -129,13 +136,12 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                             displayName: displayName.length > 1 ? displayName : null,
                             newEmail: emailController.text.isNotEmpty ? emailController.text : null,
                             newPhoneNumber: int.tryParse(phoneController.text),
-                            image: userImage,
                           );
                       Navigator.of(context).pop();
                     },
                   ),
                 ]),
-            const DeleteUserCard(),
+            if (currentUser != null) const DeleteUserCard(),
           ],
         ),
       ),

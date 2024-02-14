@@ -59,19 +59,22 @@ class AuthRepository implements AuthInterface {
   String? getAuthProvider() => _authService.currentUser?.providerData.firstOrNull?.providerId;
 
   @override
-  Future<String?> registerUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<String?> registerUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       UserCredential userCredential =
           await _authService.createUserWithEmailAndPassword(email: email, password: password);
       await _authService.currentUser?.sendEmailVerification();
 
       await userCredential.user?.updatePassword(password);
-      final firebasebUser = UserModel(uID: userCredential.user!.uid, email: email);
-      final json = firebasebUser.toJson();
+
+      final newUser = UserModel(uID: userCredential.user!.uid, email: email);
+
+      final json = newUser.toJson();
       json.remove('uID');
       log('the formated User for DB-> ${json.toString()}');
-
       await _usersDB.doc(userCredential.user?.uid).set(json);
     } on FirebaseAuthException catch (e) {
       // TODO: implement location vor different languages

@@ -12,7 +12,7 @@ class ItemsDetails extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Row(
-          mainAxisAlignment: AppTheme.mainBetween,
+          mainAxisAlignment: AppTheme.mainAlignBetween,
           children: [
             const SizedBox(),
             const Row(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
