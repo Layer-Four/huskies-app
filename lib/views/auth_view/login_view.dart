@@ -36,8 +36,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
   }
 
   String? emailValidator(value) {
-    bool emailValid = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value!);
 
     if (value.isEmpty) {
@@ -108,11 +107,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               alignment: Alignment.bottomRight,
                               child: TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const Signup()));
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => const Signup()));
                                 },
                                 child: const Text("Passwort vergessen?",
                                     style: AppTheme.textDefaultSmall10),
@@ -126,11 +122,11 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 ),
                 CustomButtonAuth(
                   title: "Anmelden",
-                  onPress: () => ref
-                      .watch(statusProvider.notifier)
-                      .signInWithEmailAndPassword(
-                      email: email.text.trim(),
-                      password: password.text.trim()),
+                  onPress: () {
+                    ref.watch(statusProvider.notifier).signInWithEmailAndPassword(
+                        email: email.text.trim(), password: password.text.trim());
+                    Navigator.of(context).pop();
+                  },
                   formKey: formKey,
                 ),
 
@@ -152,8 +148,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         context,
                         MaterialPageRoute(builder: (context) => const Signup()),
                       ),
-                      child: const Text(" Registieren",
-                          style: AppTheme.textDefault),
+                      child: const Text(" Registieren", style: AppTheme.textDefault),
                     ),
                   ],
                 ),
