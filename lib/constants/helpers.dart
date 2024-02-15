@@ -13,7 +13,7 @@ import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -45,26 +45,29 @@ class Helpers {
   }) =>
       Container(
         height: 35,
-        margin: const EdgeInsets.only(bottom: 1),
-        decoration: BoxDecoration(
-            color: place != 1 ? AppTheme.white : const Color.fromARGB(255, 235, 231, 231)),
+        margin: const EdgeInsets.only(bottom: 2),
+        decoration:
+            // TODO: get FeedBack Color White-grey / blue
+            BoxDecoration(color: place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor),
+        //  const Color.fromARGB(255, 235, 231, 231)),
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
-            Text('$place.', style: const TextStyle(color: AppTheme.black)),
+            Text('$place.'),
             SizedBox(
               height: 30,
+              //TODO: when Statistic API change to network
               child: Center(child: Image.asset('assets/$imageSource', width: 20, height: 20)),
             ),
-            Center(child: Text('$games', style: const TextStyle(color: AppTheme.black))),
-            Center(child: Text('$points', style: const TextStyle(color: AppTheme.black))),
-            Center(child: Text('$goals', style: const TextStyle(color: AppTheme.black))),
-            Center(child: Text('$difference', style: const TextStyle(color: AppTheme.black))),
+            Center(child: Text('$games')),
+            Center(child: Text('$points')),
+            Center(child: Text('$goals')),
+            Center(child: Text('$difference')),
           ],
         ),
       );
 
-  static Container buildTableHead({
+  static Container buildScoreboardHead({
     required BuildContext context,
     required String position,
     required String team,
@@ -76,7 +79,7 @@ class Helpers {
     return Container(
       height: 35,
       decoration: const BoxDecoration(
-        color: AppTheme.primary,
+        color: AppTheme.highlightedBackground,
       ),
       child: Row(
         mainAxisAlignment: AppTheme.mainAlignEvenly,

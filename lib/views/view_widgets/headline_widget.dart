@@ -18,9 +18,9 @@ class HeadWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignBetween,
           children: [
-            SizedBox(width: start == null ? 40 : null, child: start),
+            SizedBox(width: start == null ? AppTheme.big50 : null, child: start),
             center,
-            SizedBox(width: end == null ? 40 : null, child: end),
+            SizedBox(width: end == null ? AppTheme.big50 : null, child: end),
           ],
         ),
       );

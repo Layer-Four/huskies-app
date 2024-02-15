@@ -33,7 +33,7 @@ class ViewNavigator extends ConsumerWidget {
         },
         bottomNavigationBar: NavigationBar(
           height: MediaQuery.of(context).size.height / 10,
-          backgroundColor: AppTheme.primary,
+          backgroundColor: AppTheme.highlightedBackground,
           destinations: [
             NavBarIconWidget(
               icon: Icons.home_outlined,

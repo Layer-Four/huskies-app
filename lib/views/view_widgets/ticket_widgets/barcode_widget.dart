@@ -20,7 +20,7 @@ class BarcodeView extends StatelessWidget {
           elevation: 3,
           color: AppTheme.ticketBackground,
           child: Padding(
-            padding: AppTheme.boxPadding,
+            padding: AppTheme.padding12_8,
             child: barcode,
           ),
         ),

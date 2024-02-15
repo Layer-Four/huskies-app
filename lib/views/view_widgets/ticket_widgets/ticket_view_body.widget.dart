@@ -8,18 +8,24 @@ class TicketBodyViewWidget extends StatelessWidget {
   final String? seats;
   final String? ticketID;
 
-  const TicketBodyViewWidget(
-      {super.key, this.date, this.destination, this.paid = false, this.seats, this.ticketID});
+  const TicketBodyViewWidget({
+    super.key,
+    this.date,
+    this.destination,
+    this.paid = false,
+    this.seats,
+    this.ticketID,
+  });
 
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          builfInfoSection(
+          buildfInfoRow(
               headleft: 'Datum',
               valueLeft: date == null ? 'Keine Datum' : '${date!.day}/${date!.month}/${date!.year}',
               headright: 'Plätze',
               valueRight: seats ?? 'Keine Sitzplätze'),
-          builfInfoSection(
+          buildfInfoRow(
             headleft: 'Ort',
             valueLeft: destination ?? 'Playgground',
             headright: 'Uhrzeit',
@@ -29,7 +35,7 @@ class TicketBodyViewWidget extends StatelessWidget {
                     ? '${date!.hour}:${date!.minute}0 Uhr'
                     : '${date!.hour}:${date!.minute} Uhr',
           ),
-          builfInfoSection(
+          buildfInfoRow(
               headleft: 'Bezahlt',
               valueLeft: paid ? 'Bezahlt' : 'Noch Austehend',
               headright: 'Auftrag',
@@ -37,7 +43,7 @@ class TicketBodyViewWidget extends StatelessWidget {
         ],
       );
 
-  Widget builfInfoSection({
+  Widget buildfInfoRow({
     required String headleft,
     required String valueLeft,
     required String headright,
@@ -46,13 +52,13 @@ class TicketBodyViewWidget extends StatelessWidget {
       Padding(
         padding: AppTheme.paddingM,
         child: Row(
-          mainAxisAlignment: AppTheme.mainAround,
+          mainAxisAlignment: AppTheme.mainAlignAround,
           children: [
             SizedBox(
               width: 100,
               child: Column(
                 crossAxisAlignment: AppTheme.crossAlignStart,
-                mainAxisAlignment: AppTheme.mainAround,
+                mainAxisAlignment: AppTheme.mainAlignAround,
                 children: [
                   Text(
                     headleft,
@@ -69,7 +75,7 @@ class TicketBodyViewWidget extends StatelessWidget {
             SizedBox(
               width: 80,
               child: Column(
-                mainAxisAlignment: AppTheme.mainAround,
+                mainAxisAlignment: AppTheme.mainAlignAround,
                 crossAxisAlignment: AppTheme.crossAlignStart,
                 children: [
                   Text(

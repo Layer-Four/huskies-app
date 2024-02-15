@@ -62,9 +62,9 @@ class ShopView extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: AppTheme.crossAlignStart,
                         children: [
-                          Text(products[i].title, style: AppTheme.textDefaultSmall10Black),
+                          Text(products[i].title, style: AppTheme.smallText),
                           const SizedBox(height: 6),
-                          Text('${products[i].price}€', style: AppTheme.textDefaultSmallW500Red),
+                          Text('${products[i].price}€', style: AppTheme.defaultTextSmallRed),
                         ],
                       ),
                     ),

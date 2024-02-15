@@ -12,10 +12,13 @@ class RedTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-        decoration: BoxDecoration(color: AppTheme.red, borderRadius: BorderRadius.circular(6)),
+        decoration: BoxDecoration(
+          color: AppTheme.red,
+          borderRadius: BorderRadius.circular(6),
+        ),
         child: Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 12),
+          style: AppTheme.textWhiteMid,
         ),
       ),
     );

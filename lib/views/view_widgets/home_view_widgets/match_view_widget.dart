@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 
 class MatchViewWidget extends StatelessWidget {
+  final String? imageHome;
+  final String? imageVisitor;
   const MatchViewWidget({
     super.key,
+    this.imageHome,
+    this.imageVisitor,
   });
 
   @override
@@ -11,10 +15,17 @@ class MatchViewWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: AppTheme.mainAlignEvenly,
       children: [
-        Image.asset(
-          'assets/fuechse.png',
-          height: 90,
-        ),
+        imageHome == null
+            ? Image.asset(
+                'assets/fuechse.png',
+                height: 90,
+                width: 90,
+              )
+            : Image.network(
+                imageHome!,
+                height: 90,
+                width: 90,
+              ),
         Container(
           margin: const EdgeInsets.only(right: 12),
           height: 90,
@@ -22,16 +33,26 @@ class MatchViewWidget extends StatelessWidget {
             children: [
               Text(
                 "VS",
-                style: AppTheme.textDefaultBlack,
+                style: AppTheme.defaultText,
               ),
               Text(
                 "Eis-arena Weiswasser, \n 08.12.2023. 19.30 Uhr",
-                style: AppTheme.textDefaultSmallBlack,
+                style: AppTheme.textMedium,
               )
             ],
           ),
         ),
-        Image.asset(width: 70, 'assets/huskies.png'),
+        imageVisitor == null
+            ? Image.asset(
+                'assets/huskies.png',
+                height: 90,
+                width: 90,
+              )
+            : Image.network(
+                imageVisitor!,
+                height: 90,
+                width: 90,
+              ),
       ],
     );
   }

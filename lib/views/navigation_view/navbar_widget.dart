@@ -21,9 +21,9 @@ class NavBarIconWidget extends StatelessWidget {
           children: [
             isCurrentView
                 ? Container(
-                    width: 20,
+                    width: 25,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
+                      borderRadius: AppTheme.lowRoundedCorner,
                       border: Border.all(width: 1.5, color: AppTheme.white),
                     ),
                   )
@@ -34,7 +34,7 @@ class NavBarIconWidget extends StatelessWidget {
                 mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Icon(size: 25, color: AppTheme.white, icon),
-                  Text(name, style: AppTheme.textDefaultSmall10)
+                  Text(name, style: AppTheme.textWhiteMid)
                 ],
               ),
             ),
