@@ -20,18 +20,24 @@ class LastMatchResultWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
-            Image.asset(
-              'assets/$homeImage',
-              width: 45,
-              height: 45,
-            ),
+            homeImage != null
+                ? Image.network(
+                    homeImage!,
+                    width: 60,
+                    height: 60,
+                  )
+                : Image.asset(
+                    'assets/images/huskies.png',
+                    width: 60,
+                    height: 60,
+                  ),
             Center(
               child: Column(children: [
                 Text(
                   homeScore != null && visitiorScore != null
                       ? '$homeScore : $visitiorScore'
                       : '- : -',
-                  style: AppTheme.textDefaultBlack,
+                  style: AppTheme.defaultText,
                 ),
                 Text(
                   homeScore != null && visitiorScore != null
@@ -42,11 +48,17 @@ class LastMatchResultWidget extends StatelessWidget {
                 )
               ]),
             ),
-            Image.asset(
-              'assets/$visitorImage',
-              width: 45,
-              height: 45,
-            )
+            visitorImage != null
+                ? Image.network(
+                    visitorImage!,
+                    width: 60,
+                    height: 60,
+                  )
+                : Image.asset(
+                    'assets/images/fuechse.png',
+                    width: 60,
+                    height: 60,
+                  )
           ],
         ),
       );

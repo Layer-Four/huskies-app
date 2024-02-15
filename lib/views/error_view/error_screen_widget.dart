@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/view_widgets/background_widget.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 
 class ShowErrorScreen extends ConsumerWidget {
   final String error;
@@ -33,7 +33,7 @@ class ShowErrorScreen extends ConsumerWidget {
                 const SymetricButton(
                   color: AppTheme.red,
                   text: 'Geh Weiter',
-                  padding: AppTheme.boxPadding,
+                  padding: AppTheme.padding12_8,
                 ),
               ],
             )

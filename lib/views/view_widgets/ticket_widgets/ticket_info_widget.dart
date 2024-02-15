@@ -23,15 +23,18 @@ class TicketInfoWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Card(
-        elevation: 3,
-        color: AppTheme.ticketBackground,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12),
-          ),
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      color: AppTheme.ticketBackground,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
         ),
+      ),
+      child: Padding(
+        padding: AppTheme.paddingTb8_16,
         child: Column(
           children: [
             TicketHeadViewWidget(
@@ -39,14 +42,10 @@ class TicketInfoWidget extends StatelessWidget {
               visitorTeam: visitorTeam,
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
+              padding: AppTheme.paddingM,
               child: Text(
                 'e-ticket',
-                style: TextStyle(
-                  color: AppTheme.red,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                ),
+                style: AppTheme.redBoldTextStyle,
               ),
             ),
             TicketBodyViewWidget(
@@ -56,10 +55,9 @@ class TicketInfoWidget extends StatelessWidget {
               seats: seats,
               ticketID: ticketID,
             ),
-            const Padding(
-              padding: AppTheme.paddingM,
-            ),
           ],
         ),
-      );
+      ),
+    );
+  }
 }

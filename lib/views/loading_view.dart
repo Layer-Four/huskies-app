@@ -27,7 +27,7 @@ class LoadingView extends ConsumerWidget {
               Container(
                 height: 100,
                 width: 100,
-                padding: AppTheme.hugePaddingBottom,
+                padding: AppTheme.paddingBottom20,
                 child: const CircularProgressIndicator(
                   color: AppTheme.teal,
                 ),

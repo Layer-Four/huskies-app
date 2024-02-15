@@ -23,9 +23,10 @@ class BackgroundWidget extends StatelessWidget {
         Container(
           height: double.infinity,
           decoration: const BoxDecoration(
-            color: Color.fromARGB(142, 73, 68, 68),
+            //TODO: Ask for FeedBack
+            color: Color.fromARGB(188, 66, 64, 64),
           ),
-          padding: AppTheme.hugePaddingBottom,
+          padding: AppTheme.paddingBottom20,
           child: body,
         )
       ],

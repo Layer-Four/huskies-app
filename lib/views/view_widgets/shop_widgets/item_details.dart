@@ -89,7 +89,7 @@ class ItemsDetails extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
             child: MaterialButton(
-              padding: AppTheme.defaultVerticalDistance,
+              padding: AppTheme.padding0_16,
               onPressed: () {},
               color: AppTheme.black,
               textColor: AppTheme.white,

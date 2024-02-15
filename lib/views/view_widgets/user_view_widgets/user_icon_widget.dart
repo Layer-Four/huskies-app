@@ -27,8 +27,16 @@ class UserIconWidget extends ConsumerWidget {
           clipBehavior: Clip.antiAlias,
           decoration: const BoxDecoration(shape: BoxShape.circle),
           child: user?.userImageUrl == null
-              ? Image.asset('assets/user.png', width: 50, height: 50)
-              : Image.network(user!.userImageUrl!, width: 50, height: 50),
+              ? Image.asset(
+                  'assets/user.png',
+                  width: AppTheme.big50,
+                  height: AppTheme.big50,
+                )
+              : Image.network(
+                  user!.userImageUrl!,
+                  width: AppTheme.big50,
+                  height: AppTheme.big50,
+                ),
         ),
       ),
     );

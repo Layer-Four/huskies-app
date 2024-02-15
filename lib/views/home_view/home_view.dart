@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/page_view_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   static const HomeView _instance = HomeView._internal();
@@ -25,31 +25,26 @@ class _HomeViewState extends ConsumerState<HomeView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppTheme.customButton,
+          backgroundColor: AppTheme.primary,
           toolbarHeight: 120,
-          title: Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  const UserIconWidget(),
-                  user != null
-                      ? Text(
-                          "Hallo ${user.displayedName?.split(',').first ?? ''}\nWillkommon zurück!",
-                          style: AppTheme.titleWhite)
-                      : const Text("Hallo", style: AppTheme.textDefault)
-                ],
-              ),
-            ),
+          centerTitle: true,
+          title: Column(
+            children: [
+              const UserIconWidget(),
+              user != null
+                  ? Text("Hallo ${user.displayedName?.split(',').first ?? ''}\nWillkommon zurück!",
+                      style: AppTheme.titleWhite)
+                  : const Text("Hallo", style: AppTheme.whiteDefaultText)
+            ],
           ),
         ),
         body: Container(
-          color: AppTheme.customButton,
+          color: AppTheme.primary,
           child: Column(
             children: [
               Expanded(
                 child: Padding(
-                  padding: AppTheme.hugePaddingBottom,
+                  padding: AppTheme.paddingBottom20,
                   child: CarouselSlider.builder(
                     itemCount: 3,
                     itemBuilder: (context, index, realIndex) {
@@ -100,21 +95,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         style: AppTheme.textDefaultBlue,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 85,
-                        height: 30,
-                        padding: AppTheme.paddingS,
-                        decoration: AppTheme.homePageButton,
-                        child: const Center(
-                          child: Text(
-                            "Shop",
-                            style: AppTheme.textDefaultSmall10,
-                          ),
-                        ),
-                      ),
-                    ),
+                    const SymetricButton(color: AppTheme.primary, text: 'Mehr Infos')
                   ],
                 ),
               ),
@@ -126,7 +107,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 child: Stack(
                   children: [
                     AppTheme.puzzleHuskiesImg,
-                    Positioned(
+                    const Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
@@ -135,28 +116,17 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         width: double.infinity,
                         child: Column(
                           children: [
-                            const Text("Kassel Huskies", style: AppTheme.titleBlue),
-                            const Text("NFT-Puzzle", style: AppTheme.titleBlue),
-                            const Text(
+                            Text("Kassel Huskies", style: AppTheme.titleBlue),
+                            Text("NFT-Puzzle", style: AppTheme.titleBlue),
+                            Text(
                               "Sichere dir jetzt dein exklusives,\n limitiertes Kassel Huskies \n Puzzlestück und zeige deine \n Unterschtützung für das Team.",
-                              style: AppTheme.textDefaultSmallBlack,
+                              style: AppTheme.textMedium,
                               textAlign: AppTheme.textCenter,
                             ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Container(
-                                width: 85,
-                                height: 30,
-                                padding: AppTheme.paddingM,
-                                decoration: AppTheme.homePageButton,
-                                child: const Center(
-                                  child: Text(
-                                    "Mehr Infos",
-                                    style: AppTheme.textDefaultSmall10,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            Padding(
+                              padding: AppTheme.paddingTop20,
+                              child: SymetricButton(color: AppTheme.primary, text: 'Mehr Infos'),
+                            )
                           ],
                         ),
                       ),
@@ -170,11 +140,4 @@ class _HomeViewState extends ConsumerState<HomeView> {
       ),
     );
   }
-
-  Widget buildIndicator({required int index, required Color isBackgroundColor}) =>
-      AnimatedSmoothIndicator(
-        activeIndex: index,
-        count: 3,
-        effect: SlideEffect(dotHeight: 8, dotWidth: 8, activeDotColor: isBackgroundColor),
-      );
 }

@@ -13,7 +13,7 @@ class ScoreboardViewWidget extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Helpers.buildTableHead(
+          Helpers.buildScoreboardHead(
             context: context,
             position: 'PLATZ',
             team: 'TEAM',

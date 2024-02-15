@@ -18,7 +18,7 @@ class GameStaticsFooterWidget extends StatelessWidget {
           onPressed: () => showDialog(
             context: context,
             builder: (context) => Container(
-              margin: AppTheme.popUpMargin,
+              margin: AppTheme.padding40_100,
               color: Colors.white70,
               alignment: AppTheme.alignCenter,
               child: const Text('Gesamte Tabelle'),
@@ -26,7 +26,7 @@ class GameStaticsFooterWidget extends StatelessWidget {
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-            color: AppTheme.primary,
+            color: AppTheme.highlightedBackground,
             child: const Text(
               'Gesamte Tabelle anzeigen',
               style: TextStyle(color: AppTheme.white, fontSize: 11),

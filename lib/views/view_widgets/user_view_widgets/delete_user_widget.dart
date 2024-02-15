@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 
 class DeleteUserCard extends ConsumerWidget {
   const DeleteUserCard({

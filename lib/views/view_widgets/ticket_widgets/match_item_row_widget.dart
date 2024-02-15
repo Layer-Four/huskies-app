@@ -28,31 +28,10 @@ class TicketItemRowWidget extends StatelessWidget {
             padding: AppTheme.paddingM,
             child: Image.asset('assets/$image', width: 60),
           ),
-          Text(
-            gameDate,
-            style: const TextStyle(fontSize: 13, inherit: false, color: AppTheme.black),
-          ),
+          Text(gameDate, style: AppTheme.textMedium),
           RedTextButton(onPressed: onPressed, title: 'Ticket'),
         ],
       ),
     );
   }
 }
-
-
-
-
-      // showDialog(
-      //   context: context,
-      //   builder: (context) => Container(
-      //     width: MediaQuery.of(context).size.width - 40,
-      //     color: const Color.fromARGB(225, 255, 255, 255),
-      //     child: TextButton(
-      //       child: const Text(
-      //         'Buy Ticket',
-      //         style: AppTheme.headStyle,
-      //       ),
-      //       onPressed: () => Navigator.of(context).pop(),
-      //     ),
-      //   ),
-      // );

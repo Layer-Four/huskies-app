@@ -9,7 +9,7 @@ class SettingsRow extends StatelessWidget {
   final Widget endIcon;
   const SettingsRow({
     super.key,
-    this.endIcon = const Icon(Icons.arrow_right, size: 40),
+    this.endIcon = const Icon(Icons.arrow_right, size: AppTheme.big50),
     this.endingWidget,
     required this.leadingIcon,
     this.onTextPressed,
@@ -24,7 +24,7 @@ class SettingsRow extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(padding: AppTheme.boxPadding, child: leadingIcon),
+                Padding(padding: AppTheme.padding12_8, child: leadingIcon),
                 Text(optionText),
               ],
             ),
@@ -32,7 +32,10 @@ class SettingsRow extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: endingWidget),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: endingWidget,
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 24),
                 child: endIcon,
