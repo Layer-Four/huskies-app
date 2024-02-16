@@ -36,14 +36,14 @@ class MatchStatisticsView extends ConsumerWidget {
           padding: AppTheme.padding16_0,
           child: const Column(
             children: [
-              Padding(
-                padding: AppTheme.paddingM,
-                child: MatchCard(
-                  homeScore: 3,
-                  visitorScore: 1,
-                ),
+              MatchCard(
+                homeScore: 3,
+                visitorScore: 1,
               ),
-              ScoreboardViewWidget(),
+              Padding(
+                padding: AppTheme.paddinVerticalSmall,
+                child: ScoreboardViewWidget(),
+              ),
               GameStaticsFooterWidget(season: season)
             ],
           ),
