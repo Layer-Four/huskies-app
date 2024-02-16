@@ -4,10 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
-// import 'package:huskies_app/views/view_widgets/home_view_widgets/page_view_widget.dart';
-// import 'package:huskies_app/views/view_widgets/score_board_widgets/match_card_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -32,7 +29,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
         drawer: const Drawer(),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: AppTheme.customButton,
+          backgroundColor: AppTheme.primary,
           toolbarHeight: 70,
           title: Align(
             alignment: Alignment.centerLeft,
@@ -43,13 +40,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   width: 6,
                 ),
                 Text(
-                  "Hallo ${user.displayedName?.split(',').first ?? ''}",
+                  "Hallo ${user?.displayedName?.split(',').first ?? ''}",
                   style: AppTheme.titleWhite,
                 ),
-                user.displayedName != null
+                user?.displayedName != null
                     ? const Text(
                         "Willkommon zurück!",
-                        style: AppTheme.textDefault,
+                        style: AppTheme.whiteDefaultText,
                       )
                     : const SizedBox(),
               ],
@@ -58,29 +55,25 @@ class _HomeViewState extends ConsumerState<HomeView> {
         ),
         body: Container(
           padding: AppTheme.paddingXL,
-          color: AppTheme.customButton,
+          color: AppTheme.primary,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Card(
                   child: Container(
-                    height: 120,
-                    color: AppTheme.white,
-                    // padding: AppTheme.paddingXL,
-                    child: const MatchViewWidget(),
+                    decoration: AppTheme.whiteBox,
+                    height: 130,
+                    child: const Column(
+                      children: [
+                        Padding(
+                          padding: AppTheme.padding8_4,
+                          child: Text('Nachstes Match', style: AppTheme.defaultText),
+                        ),
+                        MatchViewWidget(),
+                      ],
+                    ),
                   ),
                 ),
-                //   child: const MatchCard(
-                //     isLastMatch: false,
-                //     homeScore: 3,
-                //     visitorScore: 1,
-                //     homeImage: 'huskies.png',
-                //     visitorImage: 'fuechse.png',
-                //   ),
-                // ),
-                // News Section
-                // AppTheme.sizedBox14,
-                // Display the most recent news image
                 Card(
                   child: Column(
                     children: [
@@ -88,8 +81,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         onTap: () {
                           Helpers.launchToWebsite(
                               'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
-                          // const url = 'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung';
-                          // launchURL(url);
                         },
                         child: Stack(
                           children: [
@@ -99,7 +90,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 BlendMode.srcOver,
                               ),
                               child: SizedBox(
-                                height: 220,
+                                height: 200,
                                 child: Image.network(
                                   'https://www.kassel-huskies.de/fileadmin/_processed_/b/5/csm_Huskies_MacAulay_ce60d17c73.jpg',
                                   width: MediaQuery.of(context).size.width * 1,
@@ -143,64 +134,45 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         ),
                       ),
 
-//--------- Mehr News -----------------------//
+                      //--------- Mehr News -----------------------//
                       SymetricButton(
-                        padding: AppTheme.pointsBoxPadding,
-                        color: Color.fromARGB(255, 97, 80, 158),
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 90),
+                        color: AppTheme.white,
+                        style: AppTheme.textMedium,
                         onPressed: () {
                           Helpers.launchToWebsite(
                               'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
                           //     // const url = 'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung';
                           //     // launchURL(url);
                         },
-                        text:
-                            // Container(
-                            //   decoration: BoxDecoration(
-                            //     color: AppTheme.white,
-                            //     border: Border.all(
-                            //       color: Colors.black,
-                            //       width: 1.0,
-                            //     ),
-                            //     // borderRadius: BorderRadius.circular(8.0),
-                            //     // Adjust the radius as needed
-                            //   ),
-                            //   padding: AppTheme.paddingS,
-                            //   alignment: Alignment.center,
-                            //   child: const Text(
-                            'Mehr News',
-                        // style: TextStyle(
-                        //   // color: Colors.white,
-                        //   fontSize: 16,
-                        // ),
+                        text: 'Mehr News',
                       ),
-                      // ),
-                      // ),
                     ],
                   ),
                 ),
                 Card(
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: AppTheme.white,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0), // Adjust the radius as needed
-                    ),
-                    // color: AppTheme.white,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    decoration: AppTheme.whiteBox,
+                    child: Row(
                       children: [
-                        Text('New Fanartikel'),
-                        Row(
+                        Image.asset('assets/first.png'),
+                        const Column(
                           children: [
-                            Image(
-                              image: AssetImage('assets/first.png'),
+                            Padding(
+                              padding: AppTheme.padding0_30,
+                              child: Text(
+                                'Neue Fanartikel',
+                                style: AppTheme.largBoldText,
+                              ),
                             ),
-                            Text('ZUM \n SHOP'),
-                            Icon(Icons.arrow_forward)
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: SymetricButton(
+                                text: 'ZUM SHOP',
+                                color: AppTheme.buttonBackgroundColor,
+                              ),
+                            ),
+                            // Icon(Icons.arrow_forward)
                           ],
                         )
                       ],
