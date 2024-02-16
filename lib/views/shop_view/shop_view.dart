@@ -52,7 +52,7 @@ class ShopView extends ConsumerWidget {
             itemBuilder: (BuildContext context, int i) {
               return InkWell(
                 onTap: () {
-                  Helpers.launchToWebsite(products[i]);
+                  Helpers.launchToWebsite(products[i].shopUrl);
                 },
                 child: Column(
                   children: [
