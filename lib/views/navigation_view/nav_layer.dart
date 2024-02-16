@@ -27,9 +27,7 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
           // ViewPage.newsFeed => const NewsFeed(),
-          ViewPage.error => ShowErrorScreen(
-              error: ref.watch(errorProvider).last,
-            ),
+          ViewPage.error => ShowErrorScreen(error: ref.watch(errorProvider).last),
           ViewPage.myTabBar => const MyTabBar(),
           _ => HomeView()
         },

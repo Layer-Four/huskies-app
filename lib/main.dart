@@ -8,7 +8,7 @@ import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
 import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/firebase_options.dart';
-// import 'package:huskies_app/views/error_view/error_screen_widget.dart';
+import 'package:huskies_app/views/error_view/error_screen_widget.dart';
 import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/navigation_view/nav_layer.dart';
 import 'package:huskies_app/views/wait_registry_view/wait_register_widget.dart';

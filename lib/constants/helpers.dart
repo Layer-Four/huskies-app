@@ -149,17 +149,14 @@ class Helpers {
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
                         onPressed: () async {
-                          PermissionStatus storeStatus =
-                              await Permission.storage.request();
+                          PermissionStatus storeStatus = await Permission.storage.request();
                           if (!storeStatus.isGranted) {
                             await Permission.storage.request();
                           }
                           if (storeStatus.isGranted || storeStatus.isDenied) {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
-                              ref
-                                  .read(userProvider.notifier)
-                                  .updateUserProfile(image: image);
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
                               showSnackbar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
@@ -176,16 +173,12 @@ class Helpers {
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
                         onPressed: () async {
-                          final cameraPermission =
-                              await Permission.camera.request();
-                          if (cameraPermission.isGranted ||
-                              cameraPermission.isDenied) {
+                          final cameraPermission = await Permission.camera.request();
+                          if (cameraPermission.isGranted || cameraPermission.isDenied) {
                             final image = await Helpers.pickImageFromCamera();
                             if (image != null) {
                               showSnackbar(context, 'Bild ausgewählt!');
-                              ref
-                                  .read(userProvider.notifier)
-                                  .updateUserProfile(image: image);
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
                               Navigator.of(context).pop();
                               return image;
                             }
@@ -202,19 +195,15 @@ class Helpers {
 
   static void launchToWebsite(String url) async {
     final uri = Uri.parse(url);
-  static void launchToWebsite(String url) async {
-    final uri = Uri.parse(url);
     try {
       launchUrl(uri, mode: LaunchMode.externalApplication);
       launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
-      throw Exception(
-          'its a trap \ncheck launchToWebsite and refactor error handling');
+      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }
