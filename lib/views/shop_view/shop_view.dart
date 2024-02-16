@@ -6,7 +6,7 @@ import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/views/view_widgets/shop_widgets/item_details.dart';
+// import 'package:huskies_app/views/view_widgets/shop_widgets/item_details.dart';
 import 'package:huskies_app/constants/helpers.dart';
 
 class ShopView extends ConsumerWidget {
@@ -63,7 +63,8 @@ class ShopView extends ConsumerWidget {
           itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {
-                if (products != null) Helpers.launchToWebsite(products[i]);
+                if (products != null)
+                  Helpers.launchToWebsite(products[i].shopUrl);
 
                 // Navigator.of(context).push(
                 //   MaterialPageRoute(
@@ -79,9 +80,11 @@ class ShopView extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: AppTheme.crossAlignStart,
                       children: [
-                        Text(productsList[i]['title']!, style: AppTheme.textDefaultSmall10Black),
+                        Text(productsList[i]['title']!,
+                            style: AppTheme.textDefaultSmall10Black),
                         const SizedBox(height: 6),
-                        Text(productsList[i]['price']!, style: AppTheme.textDefaultSmallW500Red),
+                        Text(productsList[i]['price']!,
+                            style: AppTheme.textDefaultSmallW500Red),
                       ],
                     ),
                   ),

@@ -27,7 +27,7 @@ class SymetricButton extends StatelessWidget {
           widthFactor: 1.5,
           heightFactor: 1.2,
           child: Padding(
-            padding: AppTheme.paddingM,
+            padding: padding,
             child: Text(
               text,
               textAlign: AppTheme.textCenter,

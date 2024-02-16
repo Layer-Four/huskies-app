@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
-import 'package:huskies_app/models/products_model/product.dart';
+// import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
@@ -159,14 +159,17 @@ class Helpers {
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
                         onPressed: () async {
-                          PermissionStatus storeStatus = await Permission.storage.request();
+                          PermissionStatus storeStatus =
+                              await Permission.storage.request();
                           if (!storeStatus.isGranted) {
                             await Permission.storage.request();
                           }
                           if (storeStatus.isGranted || storeStatus.isDenied) {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
-                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              ref
+                                  .read(userProvider.notifier)
+                                  .updateUserProfile(image: image);
                               showSnackbar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
@@ -183,12 +186,16 @@ class Helpers {
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
                         onPressed: () async {
-                          final cameraPermission = await Permission.camera.request();
-                          if (cameraPermission.isGranted || cameraPermission.isDenied) {
+                          final cameraPermission =
+                              await Permission.camera.request();
+                          if (cameraPermission.isGranted ||
+                              cameraPermission.isDenied) {
                             final image = await Helpers.pickImageFromCamera();
                             if (image != null) {
                               showSnackbar(context, 'Bild ausgewählt!');
-                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              ref
+                                  .read(userProvider.notifier)
+                                  .updateUserProfile(image: image);
                               Navigator.of(context).pop();
                               return image;
                             }
@@ -203,12 +210,13 @@ class Helpers {
     return null;
   }
 
-  static void launchToWebsite(Product product) async {
-    final url = Uri.parse(product.shopUrl);
+  static void launchToWebsite(String url) async {
+    final uri = Uri.parse(url);
     try {
-      launchUrl(url, mode: LaunchMode.externalApplication);
+      launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
-      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
+      throw Exception(
+          'its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
 //   ProductNotifier._();
@@ -228,5 +236,6 @@ class Helpers {
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
 }
