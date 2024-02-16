@@ -57,11 +57,4 @@ Widget fakeHomeView() {
   );
 }
 
-enum ViewPage {
-  home,
-  shop,
-  table,
-  ticket,
-  newsFeed,
-  error,
-}
+enum ViewPage { home, shop, table, ticket, newsFeed, myTabBar }
