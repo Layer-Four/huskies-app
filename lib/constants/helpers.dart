@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
-import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
@@ -47,9 +46,10 @@ class Helpers {
         height: 35,
         margin: const EdgeInsets.only(bottom: 2),
         decoration:
-            // TODO: get FeedBack Color White-grey / blue
-            BoxDecoration(color: place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor),
-        //  const Color.fromARGB(255, 235, 231, 231)),
+            //
+            BoxDecoration(color: place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor
+                //  const Color.fromARGB(255, 235, 231, 231)),
+                ),
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignEvenly,
           children: [
@@ -193,28 +193,14 @@ class Helpers {
     return null;
   }
 
-  static void launchToWebsite(Product product) async {
-    final url = Uri.parse(product.shopUrl);
+  static void launchToWebsite(String url) async {
+    final uri = Uri.parse(url);
     try {
-      launchUrl(url, mode: LaunchMode.externalApplication);
+      launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
       throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
-//   ProductNotifier._();
-//   factory ProductNotifier({
-//     required List<Product> products,
-//   });
-//   // Future<List<Product>> _fetchProducts() async {
-//   //   final dbData = await productsDB.then((value) {
-//   //     print(value.toString());
-//   //   });
-//   //   final json = dbData.data();
-
-//   //   for (var element in json) {}
-//   // }
-
-// }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>

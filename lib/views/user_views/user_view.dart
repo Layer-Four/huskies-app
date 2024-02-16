@@ -69,11 +69,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           user.email == null || user.email!.isEmpty
                               ? 'beispiel@email.etc'
                               : user.email!,
-                          style: AppTheme.textDefaultSmall10Grey,
+                          style: AppTheme.textSmallGrey,
                         ),
                         Text(
                           'Kundennummer: ${user.appUserID}',
-                          style: AppTheme.textDefaultSmall10Grey,
+                          style: AppTheme.textSmallGrey,
                         ),
                         SymetricButton(
                             color: AppTheme.primary,

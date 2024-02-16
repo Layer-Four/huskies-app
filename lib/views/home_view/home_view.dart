@@ -124,7 +124,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               textAlign: AppTheme.textCenter,
                             ),
                             Padding(
-                              padding: AppTheme.paddingTop20,
+                              padding: AppTheme.paddingTopMedium,
                               child: SymetricButton(color: AppTheme.primary, text: 'Mehr Infos'),
                             )
                           ],

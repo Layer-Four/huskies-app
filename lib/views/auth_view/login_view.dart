@@ -74,7 +74,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       ),
                       const Padding(
                         padding: AppTheme.paddingM,
-                        child: const Text("Anmelden", style: AppTheme.whiteDefaultText),
+                        child: Text("Anmelden", style: AppTheme.whiteDefaultText),
                       ),
                       const Text("E-Mail", style: AppTheme.whiteDefaultText),
                       Padding(
