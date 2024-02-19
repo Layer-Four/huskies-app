@@ -194,11 +194,16 @@ class Helpers {
     return null;
   }
 
-  static void launchToWebsite(String url) async {
+  static void launchToWebsite(String url, {LaunchMode? mode}) async {
     final uri = Uri.parse(url);
     try {
-      launchUrl(uri, mode: LaunchMode.externalApplication);
-      launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (mode == LaunchMode.inAppBrowserView) {
+        launchUrl(uri, mode: LaunchMode.inAppBrowserView);
+      } else if (mode == LaunchMode.inAppWebView) {
+        launchUrl(uri, mode: LaunchMode.inAppWebView);
+      } else {
+        launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
     } catch (e) {
       throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }

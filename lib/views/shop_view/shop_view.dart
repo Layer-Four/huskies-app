@@ -7,6 +7,7 @@ import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShopView extends ConsumerWidget {
   const ShopView({super.key});
@@ -49,7 +50,7 @@ class ShopView extends ConsumerWidget {
           itemBuilder: (BuildContext context, int i) {
             return InkWell(
               onTap: () {
-                Helpers.launchToWebsite(products[i].shopUrl);
+                Helpers.launchToWebsite(products[i].shopUrl, mode: LaunchMode.inAppBrowserView);
               },
               child: Card(
                 child: Container(
