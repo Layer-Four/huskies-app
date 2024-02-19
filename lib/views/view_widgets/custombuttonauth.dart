@@ -15,19 +15,19 @@ class CustomButtonAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 40,
+      height: AppTheme.big50,
       shape: OutlineInputBorder(
         borderRadius: AppTheme.defaultM,
         borderSide: const BorderSide(
-          color: Colors.transparent,
+          color: AppTheme.transparent,
           width: 1,
         ),
       ),
-      color: AppTheme.customButton,
+      color: AppTheme.primary,
       onPressed: onPress,
       child: Text(
         title,
-        style: AppTheme.whiteTextStyle,
+        style: AppTheme.whiteDefaultText,
       ),
     );
   }

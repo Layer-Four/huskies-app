@@ -11,7 +11,7 @@ class UserInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: AppTheme.whiteBox,
-      margin: AppTheme.pointsBoxPadding,
+      margin: AppTheme.padding40_6,
       child: Row(
         mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
@@ -47,20 +47,17 @@ class UserInfoWidget extends StatelessWidget {
             ],
           ),
           //middle of white box
-          Padding(
-            padding: const EdgeInsets.only(right: 2.0),
-            child: Container(
-              height: 44,
-              width: 1,
-              color: Colors.red.withOpacity(0.4),
-            ),
+          Container(
+            height: 44,
+            width: 1,
+            color: Colors.red.withOpacity(0.4),
           ),
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 12),
+                padding: AppTheme.paddingL,
                 child: Container(
-                  decoration: AppTheme.pointsBoxDesgin,
+                  decoration: AppTheme.pointsBoxLayout,
                   child: const ColorFiltered(
                     colorFilter: ColorFilter.mode(
                       AppTheme.red, // Change the color of the icon here

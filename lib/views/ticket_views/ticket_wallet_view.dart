@@ -34,13 +34,13 @@ class _TicketWalletViewState extends State<TicketWalletView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: AppTheme.defaultHorizontalDistance,
+                padding: AppTheme.padding16_0,
                 child: CarouselSlider.builder(
                   itemCount: barcodesListFromState.length,
                   itemBuilder: (BuildContext context, int i, _) {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: AppTheme.mainStart,
+                      mainAxisAlignment: AppTheme.mainAlignStart,
                       children: [
                         TicketInfoWidget(
                           paid: true,

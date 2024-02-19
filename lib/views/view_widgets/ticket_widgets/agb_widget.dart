@@ -9,8 +9,9 @@ class AGBViewWidget extends StatelessWidget {
         padding: AppTheme.paddingM,
         child: Text.rich(
           TextSpan(
-            style: TextStyle(fontSize: 9),
+            style: AppTheme.smallText,
             children: [
+              // TODO: change Lorum Ypsum with real ABG's
               TextSpan(
                 text:
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy\neirmod tempor invidunt ut labore',

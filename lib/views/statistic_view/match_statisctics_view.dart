@@ -33,18 +33,17 @@ class MatchStatisticsView extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: AppTheme.defaultHorizontalDistance,
+          padding: AppTheme.padding16_0,
           child: const Column(
             children: [
               MatchCard(
                 homeScore: 3,
                 visitorScore: 1,
-                homeImage: 'huskies.png',
-                visitorImage: 'fuechse.png',
               ),
-              AppTheme.sizedBox14,
-              ScoreboardViewWidget(),
-              AppTheme.sizedBox14,
+              Padding(
+                padding: AppTheme.paddinVerticalSmall,
+                child: ScoreboardViewWidget(),
+              ),
               GameStaticsFooterWidget(season: season)
             ],
           ),

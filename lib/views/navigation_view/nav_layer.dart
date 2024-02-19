@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
+import 'package:huskies_app/views/error_view/error_screen_widget.dart';
 import 'package:huskies_app/views/home_view/home_view.dart';
 import 'package:huskies_app/views/navigation_view/navbar_widget.dart';
 import 'package:huskies_app/views/shop_view/shop_view.dart';
@@ -25,12 +27,13 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
           // ViewPage.newsFeed => const NewsFeed(),
+          ViewPage.error => ShowErrorScreen(error: ref.watch(errorProvider).last),
           ViewPage.myTabBar => const MyTabBar(),
           _ => HomeView()
         },
         bottomNavigationBar: NavigationBar(
           height: MediaQuery.of(context).size.height / 10,
-          backgroundColor: AppTheme.primary,
+          backgroundColor: AppTheme.highlightedBackground,
           destinations: [
             NavBarIconWidget(
               icon: Icons.home_outlined,

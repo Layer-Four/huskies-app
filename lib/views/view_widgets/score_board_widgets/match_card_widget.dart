@@ -4,6 +4,7 @@ import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/score_board_widgets/match_result_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 
 class MatchCard extends StatefulWidget {
   final int? homeScore;
@@ -27,37 +28,38 @@ class MatchCard extends StatefulWidget {
 }
 
 class _MatchCardState extends State<MatchCard> {
-  final matches = List.generate(13, (index) => index++);
+  final matches = List.generate(5, (index) => index++);
   int currentMatch = 0;
   @override
   Widget build(BuildContext context) => Card(
         elevation: 7,
         child: Container(
-          decoration: BoxDecoration(color: widget.color, borderRadius: BorderRadius.circular(8)),
-          // height: MediaQuery.of(context).size.height / 3.563,
-          // height: 195,
+          decoration: BoxDecoration(
+            color: widget.color,
+            borderRadius: AppTheme.lowRoundedCorner,
+          ),
           child: Column(
-            mainAxisAlignment: AppTheme.mainStart,
+            mainAxisAlignment: AppTheme.mainAlignStart,
             children: [
               Padding(
-                padding: AppTheme.paddingM,
+                padding: AppTheme.paddingS,
                 child: Text(
                   widget.isLastMatch ? 'Letztes Match' : 'Nächstes Match',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                  style: AppTheme.largBoldText,
                 ),
               ),
               CarouselSlider.builder(
-                itemCount: 15,
+                itemCount: matches.length,
                 options: CarouselOptions(
                   enableInfiniteScroll: false,
                   viewportFraction: 1,
-                  height: 120,
+                  height: 130,
                   onPageChanged: (index, _) => setState(() => currentMatch = index),
                 ),
                 itemBuilder: (BuildContext context, int i, _) => widget.isLastMatch
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: AppTheme.mainStart,
+                        mainAxisAlignment: AppTheme.mainAlignStart,
                         children: [
                           LastMatchResultWidget(
                             homeScore: widget.homeScore,
@@ -66,27 +68,20 @@ class _MatchCardState extends State<MatchCard> {
                             visitorImage: widget.visitorImage,
                           ),
                           Padding(
-                            padding: AppTheme.paddingM,
-                            child: TextButton(
-                              onPressed: () => showDialog(
-                                context: context,
-                                builder: (context) => Container(
-                                  margin: AppTheme.popUpMargin,
-                                  color: Colors.white70,
-                                  alignment: AppTheme.alignCenter,
-                                  child: const Text('Spielbericht'),
+                              padding: AppTheme.paddingM,
+                              child: SymetricButton(
+                                color: AppTheme.primary,
+                                text: 'Spielbericht',
+                                onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (context) => Container(
+                                    margin: AppTheme.padding40_100,
+                                    color: Colors.white70,
+                                    alignment: AppTheme.alignCenter,
+                                    child: const Text('Spielbericht'),
+                                  ),
                                 ),
-                              ),
-                              child: Container(
-                                padding: AppTheme.paddingS,
-                                color: AppTheme.buttonBackgroundColor,
-                                child: const Text(
-                                  'Spielbericht',
-                                  style: TextStyle(color: AppTheme.white),
-                                ),
-                              ),
-                            ),
-                          ),
+                              )),
                         ],
                       )
                     : const MatchViewWidget(),

@@ -47,15 +47,15 @@ class _SignupState extends ConsumerState<Signup> {
                           ),
                         ),
                       ),
-                      AppTheme.sizedBox40,
+                      AppTheme.bigPlaceholder,
                       const Text(
                         "Registrieren",
-                        style: AppTheme.textDefault,
+                        style: AppTheme.whiteDefaultText,
                       ),
-                      AppTheme.sizedBox14,
+                      AppTheme.mediumPlaceholder,
                       const Text(
                         "E-Mail",
-                        style: AppTheme.textDefaultSmallW500,
+                        style: AppTheme.textWhiteMid,
                       ),
                       const SizedBox(
                         height: 8,
@@ -70,7 +70,7 @@ class _SignupState extends ConsumerState<Signup> {
                       ),
                       const Text(
                         "Passwort",
-                        style: AppTheme.textDefaultSmallW500,
+                        style: AppTheme.textWhiteMid,
                       ),
                       const SizedBox(
                         height: 4,
@@ -85,7 +85,7 @@ class _SignupState extends ConsumerState<Signup> {
                       ),
                       const Text(
                         "Passwort bestätigen",
-                        style: AppTheme.textDefaultSmallW500,
+                        style: AppTheme.textWhiteMid,
                       ),
                       const SizedBox(
                         height: 4,
@@ -99,10 +99,8 @@ class _SignupState extends ConsumerState<Signup> {
                         ref
                             .watch(statusProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                            email: email.text.trim(),
-                            password: password.text.trim())
-                            .then((value) =>
-                        value ? Navigator.of(context).pop() : null);
+                                email: email.text.trim(), password: password.text.trim())
+                            .then((value) => value ? Navigator.of(context).pop() : null);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -154,9 +152,8 @@ class _SignupState extends ConsumerState<Signup> {
                             ),
                             TextSpan(
                                 text: "Anmelden",
-                                style: TextStyle(
-                                    color: AppTheme.white,
-                                    fontWeight: FontWeight.bold)),
+                                style:
+                                    TextStyle(color: AppTheme.white, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),

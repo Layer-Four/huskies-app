@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 
 class AcceptOrReturnWidget extends StatelessWidget {
   const AcceptOrReturnWidget({
@@ -12,27 +12,23 @@ class AcceptOrReturnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: AppTheme.mainAround,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: SymetricButton(
+    return Padding(
+      padding: AppTheme.paddingTb12_20,
+      child: Row(
+        mainAxisAlignment: AppTheme.mainAlignAround,
+        children: [
+          SymetricButton(
             color: AppTheme.red,
-            text: 'Abbruch',
+            text: 'Zurück',
             onPressed: () => Navigator.of(context).pop(),
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(top: 20),
-          width: 100,
-          child: SymetricButton(
-            color: Colors.green,
+          SymetricButton(
+            color: AppTheme.green,
             text: 'Ändern',
             onPressed: onPressed,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

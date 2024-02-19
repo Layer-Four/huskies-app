@@ -21,20 +21,20 @@ class NavBarIconWidget extends StatelessWidget {
           children: [
             isCurrentView
                 ? Container(
-                    width: 20,
+                    width: 30,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
+                      borderRadius: AppTheme.lowRoundedCorner,
                       border: Border.all(width: 1.5, color: AppTheme.white),
                     ),
                   )
                 : const SizedBox(),
             SizedBox(
-              height: 45,
+              height: 40,
               child: Column(
                 mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Icon(size: 25, color: AppTheme.white, icon),
-                  Text(name, style: AppTheme.textDefaultSmall10)
+                  Text(name, style: AppTheme.textSmallWhite)
                 ],
               ),
             ),

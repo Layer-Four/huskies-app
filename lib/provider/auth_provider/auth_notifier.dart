@@ -35,8 +35,13 @@ class AuthNotifier extends Notifier<AuthState> {
   void onLogIn() => state = AuthState.loggedIn;
 
   /// register a user request and listen to Backend service.
-  Future<bool> registerUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<bool> registerUserWithEmailAndPassword({
+    required String email,
+    required String password,
+    String? displayName,
+    int? phone,
+    String? imageUrl,
+  }) async {
     final isvalidInput = validInput(email, password);
     if (isvalidInput) {
       state = AuthState.loggedOut;
@@ -148,15 +153,3 @@ enum AuthState {
   onError,
   onRegistration,
 }
-
-  //   void sendEmailVerification() {
-//     try {
-//       _auth.sendEmailVerification();
-//     } catch (e) {
-//       _auth.logger.e(e.toString());
-//       throw "Email can't be send";
-//     }
-//   }
-
-
-

@@ -8,31 +8,26 @@ class TicketHeadViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 12.0, bottom: 12),
+        padding: AppTheme.padding12_8,
         child: Row(
           mainAxisAlignment: AppTheme.mainAlignCenter,
           children: [
             Text(
               homeTeam ?? 'Home Team',
               style: const TextStyle(
-                letterSpacing: 0.4,
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
-                color: AppTheme.ticketViewHead,
+                color: AppTheme.primary,
               ),
             ),
-            const Text(
-              ' VS ',
-              style: TextStyle(color: AppTheme.red, fontWeight: FontWeight.w900, fontSize: 14),
-            ),
+            const Text(' VS ', style: AppTheme.redBoldTextStyle),
             // Visitor
             Text(
               visitorTeam ?? 'Visitor Team',
               style: const TextStyle(
-                letterSpacing: 0.4,
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
-                color: AppTheme.ticketViewHead,
+                color: AppTheme.primary,
               ),
             ),
           ],

@@ -33,7 +33,7 @@ mixin _$Product {
 /// @nodoc
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-  _$ProductCopyWithImpl<$Res, Product>;
+      _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call({String imageUrl, double price, String shopUrl, String title});
 }
@@ -60,19 +60,19 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-      as double,
+              as double,
       shopUrl: null == shopUrl
           ? _value.shopUrl
           : shopUrl // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
     ) as $Val);
   }
 }
@@ -80,8 +80,8 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 /// @nodoc
 abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$$ProductImplCopyWith(
-      _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-  __$$ProductImplCopyWithImpl<$Res>;
+          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
+      __$$ProductImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String imageUrl, double price, String shopUrl, String title});
@@ -107,19 +107,19 @@ class __$$ProductImplCopyWithImpl<$Res>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-      as double,
+              as double,
       shopUrl: null == shopUrl
           ? _value.shopUrl
           : shopUrl // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-      as String,
+              as String,
     ));
   }
 }
@@ -129,9 +129,9 @@ class __$$ProductImplCopyWithImpl<$Res>
 class _$ProductImpl implements _Product {
   const _$ProductImpl(
       {required this.imageUrl,
-        required this.price,
-        required this.shopUrl,
-        required this.title});
+      required this.price,
+      required this.shopUrl,
+      required this.title});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -183,9 +183,9 @@ class _$ProductImpl implements _Product {
 abstract class _Product implements Product {
   const factory _Product(
       {required final String imageUrl,
-        required final double price,
-        required final String shopUrl,
-        required final String title}) = _$ProductImpl;
+      required final double price,
+      required final String shopUrl,
+      required final String title}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 

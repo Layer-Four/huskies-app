@@ -6,10 +6,12 @@ class SymetricButton extends StatelessWidget {
   final Function()? onPressed;
   final Color color;
   final EdgeInsets padding;
+  final TextStyle style;
   const SymetricButton({
     super.key,
     this.onPressed,
-    this.padding = AppTheme.boxPadding,
+    this.padding = AppTheme.padding12_8,
+    this.style = AppTheme.textWhiteMid,
     required this.color,
     required this.text,
   });
@@ -31,7 +33,7 @@ class SymetricButton extends StatelessWidget {
             child: Text(
               text,
               textAlign: AppTheme.textCenter,
-              style: const TextStyle(color: AppTheme.white, fontSize: 10),
+              style: style,
             ),
           ),
         ),

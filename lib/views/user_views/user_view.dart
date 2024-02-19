@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
+import 'package:huskies_app/models/user_vm/user_model.dart';
+import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
-import 'package:huskies_app/views/view_widgets/blue_button_widget.dart';
+import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
 
 class UserProfileView extends ConsumerStatefulWidget {
@@ -18,35 +19,37 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
   bool faceID = true;
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
+    final user = UserModel(
+      uID: '1111111111111',
+      email: 'marten.layer4@gmail.com',
+      appUserID: 132155135,
+    );
+    // final user = ref.watch(userProvider);
+    if (user == null) {
+      ref.read(errorProvider.notifier).catchError(throw ('call a non nullable User with null'));
+    }
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
         centerTitle: true,
         title: const Text('Mein Profile'),
       ),
-      body: Container(
-        height: 650,
-        width: double.infinity,
-        padding: AppTheme.defaultVerticalDistance,
+      body: Padding(
+        padding: AppTheme.paddingL,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: AppTheme.mainBetween,
+          mainAxisAlignment: AppTheme.mainAlignBetween,
+          crossAxisAlignment: AppTheme.crossAlignStart,
           children: [
             Card(
               elevation: 7,
               semanticContainer: false,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(11),
-                  color: AppTheme.white,
-                ),
+                decoration: AppTheme.whiteBox,
                 child: Row(
                   mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Container(
-                      margin: AppTheme.defaultVerticalDistanceL,
+                      margin: AppTheme.padding0_30,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: user.userImageUrl == null
@@ -66,46 +69,39 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           user.email == null || user.email!.isEmpty
                               ? 'beispiel@email.etc'
                               : user.email!,
-                          style: AppTheme.textDefaultSmall10Grey,
+                          style: AppTheme.textSmallGrey,
                         ),
                         Text(
-                          // TODO: generate a separate KuID!
                           'Kundennummer: ${user.appUserID}',
-                          style: AppTheme.textDefaultSmall10Grey,
+                          style: AppTheme.textSmallGrey,
                         ),
                         SymetricButton(
-                            color: AppTheme.customButton,
+                            color: AppTheme.primary,
                             text: 'Profil bearbeiten',
                             onPressed: () {
                               Navigator.of(context).push(
                                   MaterialPageRoute(builder: (context) => const UpdateUserView()));
                             }),
                       ],
-                    ),
+                    )
                   ],
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 10),
-              width: double.infinity,
-              child: const Text(
-                'Einstellungen',
-                style: TextStyle(color: AppTheme.grey),
-              ),
+            const Padding(
+              padding: AppTheme.paddingL,
+              child: Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
             ),
             Card(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
               elevation: 7,
               child: Container(
-                decoration:
-                    BoxDecoration(color: AppTheme.white, borderRadius: BorderRadius.circular(11)),
+                decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: AppTheme.mainBetween,
+                      mainAxisAlignment: AppTheme.mainAlignBetween,
                       children: [
                         const SettingsRow(
                           endingWidget: Text(
@@ -159,16 +155,14 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             ),
             Card(
               elevation: 7,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                decoration:
-                    BoxDecoration(color: AppTheme.white, borderRadius: BorderRadius.circular(11)),
+                decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: AppTheme.mainAlignEvenly,
                   children: [
                     Column(
-                      mainAxisAlignment: AppTheme.mainBetween,
+                      mainAxisAlignment: AppTheme.mainAlignBetween,
                       children: [
                         const SettingsRow(
                           leadingIcon: Icon(
