@@ -63,5 +63,6 @@ enum ViewPage {
   table,
   ticket,
   newsFeed,
+  myTabBar,
   error,
 }

@@ -8,9 +8,10 @@ import 'package:huskies_app/views/error_view/error_screen_widget.dart';
 import 'package:huskies_app/views/home_view/home_view.dart';
 import 'package:huskies_app/views/navigation_view/navbar_widget.dart';
 import 'package:huskies_app/views/shop_view/shop_view.dart';
+import 'package:huskies_app/views/tab_bar_view/tab_bar_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_view.dart';
 import 'package:huskies_app/views/statistic_view/match_statisctics_view.dart';
-import 'package:huskies_app/views/view_widgets/newsfeed/newsfeed.dart';
+// import 'package:huskies_app/views/view_widgets/newsfeed/newsfeed.dart';
 
 class ViewNavigator extends ConsumerWidget {
   const ViewNavigator({super.key});
@@ -25,10 +26,9 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.ticket => TicketView(),
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
-          ViewPage.newsFeed => const NewsFeed(),
-          ViewPage.error => ShowErrorScreen(
-              error: ref.watch(errorProvider).last,
-            ),
+        // ViewPage.newsFeed => const NewsFeed(),
+          ViewPage.error => ShowErrorScreen(error: ref.watch(errorProvider).last),
+          ViewPage.myTabBar => const MyTabBar(),
           _ => HomeView()
         },
         bottomNavigationBar: NavigationBar(
@@ -41,11 +41,17 @@ class ViewNavigator extends ConsumerWidget {
               isCurrentView: view == ViewPage.home,
               onPressed: () => viewNotifier.state = ViewPage.home,
             ),
+            // NavBarIconWidget(
+            //   icon: Icons.newspaper,
+            //   name: 'News',
+            //   isCurrentView: view == ViewPage.newsFeed,
+            //   onPressed: () => viewNotifier.state = ViewPage.newsFeed,
+            // ),
             NavBarIconWidget(
               icon: Icons.newspaper,
-              name: 'News',
-              isCurrentView: view == ViewPage.newsFeed,
-              onPressed: () => viewNotifier.state = ViewPage.newsFeed,
+              name: 'Team',
+              isCurrentView: view == ViewPage.myTabBar,
+              onPressed: () => viewNotifier.state = ViewPage.myTabBar,
             ),
             NavBarIconWidget(
               icon: Icons.bookmark_border_outlined,
@@ -66,8 +72,8 @@ class ViewNavigator extends ConsumerWidget {
               onPressed: () {
                 if (view != ViewPage.shop) {
                   ref.read(statusProvider.notifier).onLoading(
-                        duration: const Duration(seconds: 2),
-                      );
+                    duration: const Duration(seconds: 2),
+                  );
 
                   viewNotifier.state = ViewPage.shop;
                 }
