@@ -64,7 +64,9 @@ class AppTheme {
   static const TextStyle textDefaultBlue = TextStyle(fontSize: 16, color: primary);
   static const TextStyle textWhiteMid = TextStyle(fontSize: 13, color: Colors.white);
   static const TextStyle defaultTextSmallRed = TextStyle(fontSize: 13, color: Colors.red);
-  static const TextStyle textMedium = TextStyle(fontSize: 13);
+  static const TextStyle textMedium = TextStyle(
+    fontSize: 13,
+  );
   static const TextStyle textSmallWhite = TextStyle(color: white, fontSize: 10);
   static const TextStyle textSmallGrey = TextStyle(color: Colors.grey, fontSize: 10);
   static const TextStyle smallText = TextStyle(fontSize: 9);

@@ -41,38 +41,48 @@ class ShopView extends ConsumerWidget {
             end: UserIconWidget(),
           ),
         ),
-        body: Padding(
-          padding: AppTheme.paddingL,
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: 250,
-            ),
-            itemCount: products.length,
-            itemBuilder: (BuildContext context, int i) {
-              return InkWell(
-                onTap: () {
-                  Helpers.launchToWebsite(products[i].shopUrl);
-                },
-                child: Column(
-                  children: [
-                    Image.network(products[i].imageUrl, height: 80, width: 80),
-                    Padding(
-                      padding: AppTheme.paddingM,
-                      child: Column(
-                        crossAxisAlignment: AppTheme.crossAlignStart,
-                        children: [
-                          Text(products[i].title, style: AppTheme.smallText),
-                          const SizedBox(height: 6),
-                          Text('${products[i].price}€', style: AppTheme.defaultTextSmallRed),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
           ),
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int i) {
+            return InkWell(
+              onTap: () {
+                Helpers.launchToWebsite(products[i].shopUrl);
+              },
+              child: Card(
+                child: Container(
+                  height: 120,
+                  decoration: AppTheme.whiteBox,
+                  child: Column(
+                    children: [
+                      Image.network(products[i].imageUrl, height: 95, width: 95),
+                      Padding(
+                        padding: AppTheme.paddingM,
+                        child: Column(
+                          mainAxisAlignment: AppTheme.mainAlignEvenly,
+                          crossAxisAlignment: AppTheme.crossAlignStart,
+                          children: [
+                            Padding(
+                              padding: AppTheme.paddingM,
+                              child: Text(
+                                products[i].title,
+                                maxLines: 2,
+                                style: AppTheme.textMedium,
+                              ),
+                            ),
+                            Text('${products[i].price.toStringAsFixed(2)}€',
+                                style: AppTheme.textDefaultRed),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         ),
         // ],
         // ),
