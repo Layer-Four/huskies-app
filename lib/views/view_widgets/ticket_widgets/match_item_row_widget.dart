@@ -26,7 +26,7 @@ class TicketItemRowWidget extends StatelessWidget {
         children: [
           Padding(
             padding: AppTheme.paddingM,
-            child: Image.asset('assets/$image', width: 60),
+            child: Image.asset('assets/images/$image', width: 60),
           ),
           Text(gameDate, style: AppTheme.textMedium),
           RedTextButton(onPressed: onPressed, title: 'Ticket'),

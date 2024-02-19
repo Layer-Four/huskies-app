@@ -61,7 +61,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                         clipBehavior: Clip.antiAlias,
                         child: currentUser?.userImageUrl != null
                             ? Image.network(currentUser!.userImageUrl!, height: 90, width: 90)
-                            : Image.asset('assets/user.png', width: 90),
+                            : Image.asset('assets/images/user.png', width: 90),
                       ),
                       SymetricButton(
                           color: AppTheme.blueGrey,

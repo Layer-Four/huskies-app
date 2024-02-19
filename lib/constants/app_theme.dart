@@ -36,6 +36,7 @@ class AppTheme {
   static const EdgeInsets regtangelCard = EdgeInsets.symmetric(horizontal: 70, vertical: 270);
   static const EdgeInsets paddingTb12_20 = EdgeInsets.only(top: 12, bottom: 20);
   static const EdgeInsets paddingTb8_16 = EdgeInsets.only(top: 8, bottom: 16);
+  static const EdgeInsets paddingUserProfile = EdgeInsets.only(left: 4.0, right: 12);
   static const EdgeInsets paddingTopSmall = EdgeInsets.only(top: 8);
   static const EdgeInsets paddingTopMedium = EdgeInsets.only(top: 20);
   static const EdgeInsets paddingBottom20 = EdgeInsets.only(bottom: 20);
@@ -96,14 +97,14 @@ class AppTheme {
   static final Opacity puzzleHuskiesImg = Opacity(
       opacity: 0.2,
       child: Image.asset(
-        'assets/puzzle_huskies.png',
+        'assets/images/puzzle_huskies.png',
         fit: BoxFit.cover,
         width: double.infinity,
       ));
   static final Opacity backgroundImageHomePage = Opacity(
       opacity: 0.7,
       child: Image.asset(
-        "assets/background_image.jpg",
+        "assets/images/background_image.jpg",
         fit: BoxFit.cover,
         alignment: Alignment.topCenter,
         width: double.infinity,

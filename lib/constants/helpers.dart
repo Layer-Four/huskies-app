@@ -58,7 +58,7 @@ class Helpers {
             SizedBox(
               height: 30,
               //TODO: when Statistic API change to network
-              child: Center(child: Image.asset('assets/$imageSource', width: 20, height: 20)),
+              child: Center(child: Image.asset('assets/images/$imageSource', width: 20, height: 20)),
             ),
             Center(child: Text('$games')),
             Center(child: Text('$points')),

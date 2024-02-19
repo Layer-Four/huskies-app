@@ -41,7 +41,7 @@ class _SignupState extends ConsumerState<Signup> {
                           width: 180,
                           height: 180,
                           child: Image.asset(
-                            "assets/huskies.png",
+                            "assets/images/huskies.png",
                             width: 100,
                             height: 100,
                           ),

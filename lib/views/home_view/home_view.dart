@@ -155,7 +155,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     decoration: AppTheme.whiteBox,
                     child: Row(
                       children: [
-                        Image.asset('assets/first.png'),
+                        Image.asset('assets/images/first.png'),
                         const Column(
                           children: [
                             Padding(

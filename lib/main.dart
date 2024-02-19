@@ -12,6 +12,7 @@ import 'package:huskies_app/views/error_view/error_screen_widget.dart';
 import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/navigation_view/nav_layer.dart';
 import 'package:huskies_app/views/wait_registry_view/wait_register_widget.dart';
+import 'package:huskies_app/views/user_views/user_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,8 +51,8 @@ class MyApp extends ConsumerWidget {
       AuthState.loading => const LoadingView(),
       AuthState.onRegistration => const WaitForRegistry(),
       AuthState.onError => ShowErrorScreen(error: ref.watch(errorProvider).last),
-      // _ => const UserProfileView(),
-      _ => const ViewNavigator(),
+       _ => const UserProfileView(),
+      // _ => const ViewNavigator(),
     };
   }
 }

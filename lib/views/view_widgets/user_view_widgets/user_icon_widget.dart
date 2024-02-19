@@ -28,7 +28,7 @@ class UserIconWidget extends ConsumerWidget {
           decoration: const BoxDecoration(shape: BoxShape.circle),
           child: user?.userImageUrl == null
               ? Image.asset(
-                  'assets/user.png',
+                  'assets/images/user.png',
                   width: AppTheme.big50,
                   height: AppTheme.big50,
                 )
