@@ -26,7 +26,7 @@ class ViewNavigator extends ConsumerWidget {
           ViewPage.ticket => TicketView(),
           ViewPage.table => MatchStatisticsView(),
           ViewPage.shop => const ShopView(),
-          // ViewPage.newsFeed => const NewsFeed(),
+        // ViewPage.newsFeed => const NewsFeed(),
           ViewPage.error => ShowErrorScreen(error: ref.watch(errorProvider).last),
           ViewPage.myTabBar => const MyTabBar(),
           _ => HomeView()
@@ -72,8 +72,8 @@ class ViewNavigator extends ConsumerWidget {
               onPressed: () {
                 if (view != ViewPage.shop) {
                   ref.read(statusProvider.notifier).onLoading(
-                        duration: const Duration(seconds: 2),
-                      );
+                    duration: const Duration(seconds: 2),
+                  );
 
                   viewNotifier.state = ViewPage.shop;
                 }

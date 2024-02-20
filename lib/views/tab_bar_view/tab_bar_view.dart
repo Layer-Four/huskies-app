@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/tab_bar_view/team_huskies.dart';
 
 class MyTabBar extends StatelessWidget {
@@ -10,7 +11,7 @@ class MyTabBar extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: AppTheme.blueAccent,
           title: const Text('Huskies Team'),
           bottom: const TabBar(
             tabs: [

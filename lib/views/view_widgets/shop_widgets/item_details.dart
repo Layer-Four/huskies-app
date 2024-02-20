@@ -80,7 +80,7 @@ class ItemsDetails extends StatelessWidget {
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 20),
+            margin: AppTheme.paddingTopMedium,
             child: const Text(
               'Size: 34 35 40 41',
               textAlign: AppTheme.textCenter,
