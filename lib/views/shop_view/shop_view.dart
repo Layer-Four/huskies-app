@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
-import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,9 +23,8 @@ class ShopView extends ConsumerWidget {
         return list;
       },
       loading: () {
-        ref.read(statusProvider.notifier).onLoading();
-        return;
-        // ref.watch(productProvider as ProviderListenable<List<Product>>);
+        const LoadingView();
+        return null;
       },
       error: (error, stackTrace) {
         throw Exception('error ->$error ,this was the callstack\n$stackTrace');
@@ -89,8 +88,6 @@ class ShopView extends ConsumerWidget {
         // ),
       );
     }
-    return const SizedBox(
-      child: Center(child: Text('No Data found')),
-    );
+    return const LoadingView();
   }
 }

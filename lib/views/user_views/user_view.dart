@@ -138,9 +138,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             inactiveTrackColor: AppTheme.black,
                             inactiveThumbColor: AppTheme.white,
                             value: faceID,
-                            onChanged: (_) => setState(() {
-                              faceID = !faceID;
-                            }),
+                            onChanged: (_) => setState(() => faceID = !faceID),
                           ),
                           optionText: 'Face ID',
                           leadingIcon: const Icon(Icons.face_5_outlined),

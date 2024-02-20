@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
+import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
@@ -156,9 +158,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     child: Row(
                       children: [
                         Image.asset('assets/first.png'),
-                        const Column(
+                        Column(
                           children: [
-                            Padding(
+                            const Padding(
                               padding: AppTheme.padding0_30,
                               child: Text(
                                 'Neue Fanartikel',
@@ -166,11 +168,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: AppTheme.paddingM,
                               child: SymetricButton(
-                                text: 'ZUM SHOP',
-                                color: AppTheme.buttonBackgroundColor,
-                              ),
+                                  text: 'ZUM SHOP',
+                                  color: AppTheme.buttonBackgroundColor,
+                                  onPressed: () {
+                                    ref.read(viewProvider.notifier).state = ViewPage.shop;
+                                  }),
                             ),
                             // Icon(Icons.arrow_forward)
                           ],
