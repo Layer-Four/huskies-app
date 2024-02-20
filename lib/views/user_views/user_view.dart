@@ -1,24 +1,23 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
-import 'package:huskies_app/provider/error_provider/error_provider.dart';
-import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
 
-class UserProfileView extends ConsumerStatefulWidget {
-  const UserProfileView({super.key});
+class UserProfileView extends StatefulWidget {
+  const UserProfileView({Key? key}) : super(key: key);
+
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileViewState();
+  _UserProfileViewState createState() => _UserProfileViewState();
 }
 
-class _UserProfileViewState extends ConsumerState<UserProfileView> {
+class _UserProfileViewState extends State<UserProfileView> {
   bool darkMode = false;
   bool faceID = true;
+
   @override
   Widget build(BuildContext context) {
     final user = UserModel(
@@ -26,10 +25,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       email: 'marten.layer4@gmail.com',
       appUserID: 132155135,
     );
-    // final user = ref.watch(userProvider);
-    if (user == null) {
-      ref.read(errorProvider.notifier).catchError(throw ('call a non nullable User with null'));
-    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -38,8 +34,6 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       body: Padding(
         padding: AppTheme.paddingL,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: AppTheme.mainAlignBetween,
           crossAxisAlignment: AppTheme.crossAlignStart,
           children: [
             Card(
@@ -48,14 +42,14 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
               child: Container(
                 decoration: AppTheme.whiteBox,
                 child: Row(
-                  mainAxisAlignment: AppTheme.mainAlignEvenly,
+                  mainAxisAlignment: AppTheme.mainAlignBetween,
                   children: [
                     Container(
                       margin: AppTheme.padding0_30,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: user.userImageUrl == null
-                          ? Image.asset('assets/user.png', height: 90, width: 90)
+                          ? Image.asset('assets/images/user.png', height: 90, width: 90)
                           : Image.network(
                               user.userImageUrl!,
                               height: 90,
@@ -63,6 +57,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             ),
                     ),
                     Column(
+                      crossAxisAlignment: AppTheme.crossAlignStart,
                       children: [
                         Text(user.displayedName != null
                             ? user.displayedName!.split(',').first
@@ -78,74 +73,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           style: AppTheme.textSmallGrey,
                         ),
                         SymetricButton(
-                            color: AppTheme.primary,
-                            text: 'Profil bearbeiten',
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => const UpdateUserView()));
-                            }),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const Padding(
-              padding: AppTheme.paddingL,
-              child: Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
-            ),
-            Card(
-              elevation: 7,
-              child: Container(
-                decoration: AppTheme.whiteBox,
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: AppTheme.mainAlignEvenly,
-                  children: [
-                    Column(
-                      mainAxisAlignment: AppTheme.mainAlignBetween,
-                      children: [
-                        const SettingsRow(
-                          endingWidget: Text(
-                            'Deutsch',
-                            style: TextStyle(color: AppTheme.grey),
-                          ),
-                          leadingIcon: Icon(Icons.flag_outlined),
-                          optionText: 'Sprache',
-                        ),
-                        SettingsRow(
-                          endIcon: Transform.scale(
-                            scale: 0.9,
-                            child: Switch(
-                              activeColor: AppTheme.white,
-                              activeTrackColor: AppTheme.black,
-                              inactiveTrackColor: AppTheme.black,
-                              inactiveThumbColor: AppTheme.white,
-                              materialTapTargetSize: MaterialTapTargetSize.padded,
-                              value: darkMode,
-                              onChanged: (_) => setState(() {
-                                darkMode = !darkMode;
-                              }),
-                            ),
-                          ),
-                          optionText: 'Dark-mode',
-                          leadingIcon: const Icon(Icons.dark_mode_outlined),
-                        ),
-                        SettingsRow(
-                          endIcon: Switch(
-                            activeColor: AppTheme.white,
-                            activeTrackColor: AppTheme.black,
-                            inactiveTrackColor: AppTheme.black,
-                            inactiveThumbColor: AppTheme.white,
-                            value: faceID,
-                            onChanged: (_) => setState(() => faceID = !faceID),
-                          ),
-                          optionText: 'Face ID',
-                          leadingIcon: const Icon(Icons.face_5_outlined),
-                        ),
-                        const SettingsRow(
-                          leadingIcon: Icon(Icons.notifications_outlined),
-                          optionText: 'Push-Benachritung',
+                          color: AppTheme.primary,
+                          text: 'Profil bearbeiten',
+                          onPressed: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const UpdateUserView()));
+                          },
                         ),
                       ],
                     ),
@@ -153,37 +86,84 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                 ),
               ),
             ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.only(left: 8),
+              child: Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
+            ),
             Card(
               elevation: 7,
               child: Container(
+                padding: EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: AppTheme.mainAlignEvenly,
+                  crossAxisAlignment: AppTheme.crossAlignStart,
                   children: [
-                    Column(
-                      mainAxisAlignment: AppTheme.mainAlignBetween,
-                      children: [
-                        const SettingsRow(
-                          leadingIcon: Icon(
-                            Icons.contact_support_sharp,
-                          ),
-                          optionText: 'Support',
-                        ),
-                        const SettingsRow(
-                          optionText: 'Zahlungsmittel',
-                          leadingIcon: Icon(Icons.euro),
-                        ),
-                        SettingsRow(
-                          endIcon: const SizedBox(),
-                          leadingIcon: const Icon(Icons.exit_to_app),
-                          onTextPressed: () {
-                            ref.watch(statusProvider.notifier).signOut();
-                            Navigator.of(context).pop();
-                          },
-                          optionText: 'logout',
-                        ),
-                      ],
+                    SettingsRow(
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: darkMode,
+                          onChanged: (newValue) {
+                            setState(() {
+                              darkMode = newValue;
+                            });
+                          }),
+                      optionText: 'Dark-mode',
+                      leadingIcon: const Icon(Icons.dark_mode_outlined),
+                    ),
+                    SettingsRow(
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: faceID,
+                          onChanged: (newValue) {
+                            setState(() {
+                              faceID = newValue;
+                            });
+                          }),
+                      optionText: 'Face ID',
+                      leadingIcon: const Icon(Icons.face_5_outlined),
+                    ),
+                    const SettingsRow(
+                      leadingIcon: Icon(Icons.flag_outlined),
+                      optionText: 'Sprache',
+                      endingWidget: Icon(Icons.arrow_right), // Icon as endingWidget
+                    ),
+                    // Push-Benachrichtigung
+                    const SettingsRow(
+                      leadingIcon: Icon(Icons.notifications_outlined),
+                      optionText: 'Push-Benachrichtigung',
+                      endingWidget: Icon(Icons.arrow_right), // Icon as endingWidget
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Card(
+              elevation: 7,
+              child: Container(
+                padding: AppTheme.paddingUserProfile,
+                decoration: AppTheme.whiteBox,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: AppTheme.crossAlignStart,
+                  children: [
+                    const SettingsRow(
+                      leadingIcon: Icon(Icons.contact_support_sharp),
+                      optionText: 'Support',
+                      endingWidget: Icon(Icons.arrow_right),
+                    ),
+                    const SettingsRow(
+                      optionText: 'Zahlungsmittel',
+                      leadingIcon: Icon(Icons.euro),
+                      endingWidget: Icon(Icons.arrow_right),
+                    ),
+                    SettingsRow(
+                      leadingIcon: const Icon(Icons.exit_to_app),
+                      onTextPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      optionText: 'Logout',
+                      endingWidget: const Icon(Icons.logout),
                     ),
                   ],
                 ),

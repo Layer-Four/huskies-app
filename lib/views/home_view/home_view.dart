@@ -30,11 +30,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
       child: Scaffold(
         drawer: const Drawer(),
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: AppTheme.white),
           backgroundColor: AppTheme.primary,
           toolbarHeight: 70,
           title: Align(
-            alignment: Alignment.centerLeft,
+            alignment: AppTheme.alignCenterLeft,
             child: Row(
               children: [
                 const UserIconWidget(),
@@ -88,7 +88,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           children: [
                             ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.3), // Set opacity level here
+                                AppTheme.black.withOpacity(0.3), // Set opacity level here
                                 BlendMode.srcOver,
                               ),
                               child: SizedBox(
@@ -111,22 +111,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     padding: EdgeInsets.only(left: 8),
                                     child: Text(
                                       '15.02.2024 . TEAMUPDATE',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTheme.whiteDefaultTextBold,
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 8, bottom: 17, top: 5),
                                     child: Text(
                                       'STEPHEN MACAULAY WIRD EIN HUSKY',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTheme.whiteDefaultTextBold,
                                     ),
                                   ),
                                 ],
@@ -157,7 +149,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     decoration: AppTheme.whiteBox,
                     child: Row(
                       children: [
-                        Image.asset('assets/first.png'),
+                        Image.asset('assets/images/first.png'),
                         Column(
                           children: [
                             const Padding(
@@ -169,12 +161,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ),
                             Padding(
                               padding: AppTheme.paddingM,
+                              padding: AppTheme.paddingM,
                               child: SymetricButton(
-                                  text: 'ZUM SHOP',
-                                  color: AppTheme.buttonBackgroundColor,
-                                  onPressed: () {
-                                    ref.read(viewProvider.notifier).state = ViewPage.shop;
-                                  }),
+                                text: 'ZUM SHOP',
+                                color: AppTheme.buttonBackgroundColor,
+                                onPressed: () {
+                                  ref.read(viewProvider.notifier).state = ViewPage.shop;
+                                },
+                              ),
                             ),
                             // Icon(Icons.arrow_forward)
                           ],

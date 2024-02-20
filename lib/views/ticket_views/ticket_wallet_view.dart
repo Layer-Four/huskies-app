@@ -20,8 +20,8 @@ class _TicketWalletViewState extends State<TicketWalletView> {
   int currentIndex = 0;
   final List seasonGames = List.generate(8, (index) => index++);
   final barcodesListFromState = [
-    'assets/barcode.png',
-    'assets/barcode.png',
+    'assets/images/barcode.png',
+    'assets/images/barcode.png',
   ];
   @override
   Widget build(BuildContext context) => Scaffold(

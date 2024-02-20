@@ -5,12 +5,16 @@ import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:huskies_app/models/products_model/product.dart';
+import 'package:huskies_app/provider/product_provider/product_provider.dart'; // Import the productProvider
+import 'package:huskies_app/provider/product_provider/product_notifier.dart'; // Import ProductNotifier
 
 class ShopView extends ConsumerWidget {
-  const ShopView({super.key});
+  const ShopView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
