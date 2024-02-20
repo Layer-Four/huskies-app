@@ -37,7 +37,6 @@ class ShopView extends ConsumerWidget {
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: AppTheme.xtraSmall - 4,
             mainAxisExtent: 182,
           ),
           itemCount: products.length,
