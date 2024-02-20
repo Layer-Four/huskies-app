@@ -32,7 +32,7 @@ class _UserProfileViewState extends State<UserProfileView> {
       body: Padding(
         padding: AppTheme.paddingL,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: AppTheme.crossAlignStart,
           children: [
             Card(
               elevation: 7,
@@ -40,7 +40,7 @@ class _UserProfileViewState extends State<UserProfileView> {
               child: Container(
                 decoration: AppTheme.whiteBox,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: AppTheme.mainAlignBetween,
                   children: [
                     Container(
                       margin: AppTheme.padding0_30,
@@ -55,7 +55,7 @@ class _UserProfileViewState extends State<UserProfileView> {
                       ),
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: AppTheme.crossAlignStart,
                       children: [
                         Text(user.displayedName != null
                             ? user.displayedName!.split(',').first
@@ -93,7 +93,7 @@ class _UserProfileViewState extends State<UserProfileView> {
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: AppTheme.crossAlignStart,
                   children: [
                     SettingsRow(
                       customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(value: darkMode, onChanged: (newValue) {
@@ -136,7 +136,7 @@ class _UserProfileViewState extends State<UserProfileView> {
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: AppTheme.crossAlignStart,
                   children: [
                     const SettingsRow(
                       leadingIcon: Icon(Icons.contact_support_sharp),

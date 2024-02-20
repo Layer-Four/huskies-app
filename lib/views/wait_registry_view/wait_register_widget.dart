@@ -35,7 +35,7 @@ class WaitForRegistry extends ConsumerWidget {
                   height: MediaQuery.of(context).size.width / 1.7,
                 ),
               ),
-              Text(adversiting.$1, textAlign: TextAlign.center, style: AppTheme.titleWhite),
+              Text(adversiting.$1, textAlign: AppTheme.textCenter, style: AppTheme.titleWhite),
               const Card(
                 color: AppTheme.buttonBackgroundColor,
                 child: Padding(

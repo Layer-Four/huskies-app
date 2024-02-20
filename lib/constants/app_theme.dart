@@ -22,7 +22,7 @@ class AppTheme {
   static const Color ticketViewBody = Color.fromARGB(255, 155, 151, 151);
   static const Color fakeHomeViewColor = Color.fromARGB(255, 187, 219, 235);
   static const Color cardHighlightedColor = Color.fromARGB(255, 215, 234, 249);
-  // numbers
+  // Numbers
   static const double xtraSmall = 6;
   static const double small = 8;
   static const double elevetion = 7.0;
@@ -59,6 +59,7 @@ class AppTheme {
   static const TextStyle titleBlue = TextStyle(fontSize: 25, color: primary);
   static const TextStyle titleBlack = TextStyle(fontWeight: FontWeight.w500, fontSize: 25);
   static const TextStyle whiteDefaultText = TextStyle(fontSize: 16, color: Colors.white);
+  static const TextStyle whiteDefaultTextBold = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);
   static const TextStyle textDefaultGrey = TextStyle(fontSize: 16, color: Colors.grey);
   static const TextStyle textDefaultTeal = TextStyle(fontSize: 16, color: Colors.teal);
   static const TextStyle defaultText = TextStyle(fontSize: 16);
@@ -71,11 +72,11 @@ class AppTheme {
   static const TextStyle smallText = TextStyle(fontSize: 9);
   static const TextStyle largBoldText = TextStyle(fontSize: 19, fontWeight: FontWeight.bold);
   static const TextStyle textDefaultRed = TextStyle(fontSize: 16, color: Colors.red);
-  static const TextStyle whiteBoldText =
-      TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
+  static const TextStyle whiteBoldText = TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
   static const redBoldTextStyle = TextStyle(color: red, fontWeight: FontWeight.bold, fontSize: 17);
   // Orientation
   static const Alignment alignCenter = Alignment.center;
+  static const Alignment alignCenterLeft = Alignment.centerLeft;
   static const CrossAxisAlignment crossAlignStart = CrossAxisAlignment.start;
   static const MainAxisAlignment mainAlignEvenly = MainAxisAlignment.spaceEvenly;
   static const MainAxisAlignment mainAlignBetween = MainAxisAlignment.spaceBetween;
@@ -83,32 +84,13 @@ class AppTheme {
   static const MainAxisAlignment mainAlignCenter = MainAxisAlignment.center;
   static const MainAxisAlignment mainAlignStart = MainAxisAlignment.start;
   static const TextAlign textCenter = TextAlign.center;
-
 // Borders
   static final BorderRadius lowRoundedCorner = BorderRadius.circular(8);
   static final BorderRadius defaultM = BorderRadius.circular(12);
   static final Decoration whiteBox = BoxDecoration(color: white, borderRadius: defaultM);
-
-  static final Decoration pointsBoxLayout =
-      BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: const [
-    BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),
-  ]);
-
-  static final Opacity puzzleHuskiesImg = Opacity(
-      opacity: 0.2,
-      child: Image.asset(
-        'assets/images/puzzle_huskies.png',
-        fit: BoxFit.cover,
-        width: double.infinity,
-      ));
-  static final Opacity backgroundImageHomePage = Opacity(
-      opacity: 0.7,
-      child: Image.asset(
-        "assets/images/background_image.jpg",
-        fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
-        width: double.infinity,
-      ));
+  static final Decoration pointsBoxLayout = BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: const [BoxShadow(color: Color.fromARGB(255, 241, 237, 237), spreadRadius: 7),]);
+  static final Opacity puzzleHuskiesImg = Opacity(opacity: 0.2, child: Image.asset('assets/images/puzzle_huskies.png', fit: BoxFit.cover, width: double.infinity,));
+  static final Opacity backgroundImageHomePage = Opacity(opacity: 0.7, child: Image.asset("assets/images/background_image.jpg", fit: BoxFit.cover, alignment: Alignment.topCenter, width: double.infinity,));
   static final InputDecoration textInputDecoration = InputDecoration(
     contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
     filled: true,

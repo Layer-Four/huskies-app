@@ -51,8 +51,8 @@ class MyApp extends ConsumerWidget {
       AuthState.loading => const LoadingView(),
       AuthState.onRegistration => const WaitForRegistry(),
       AuthState.onError => ShowErrorScreen(error: ref.watch(errorProvider).last),
-       _ => const UserProfileView(),
-      // _ => const ViewNavigator(),
+      //_ => const UserProfileView(),
+      _ => const ViewNavigator(),
     };
   }
 }

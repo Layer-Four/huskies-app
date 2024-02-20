@@ -27,8 +27,8 @@ class Helpers {
         activeIndex: selectedIndex,
         count: length,
         effect: const SlideEffect(
-          dotColor: Colors.grey,
-          activeDotColor: Colors.black,
+          dotColor: AppTheme.grey,
+          activeDotColor: AppTheme.black,
           dotHeight: 8,
           dotWidth: 8,
         ),

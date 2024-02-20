@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/models/products_model/product.dart';
 
+
 class ProductNotifier extends AsyncNotifier<List<Product>> {
   final productsDB = FirebaseFirestore.instance.collection('products').get();
   Future<List<Product>> _build() async {
