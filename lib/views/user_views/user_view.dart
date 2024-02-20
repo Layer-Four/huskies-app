@@ -1,20 +1,21 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
 
-class UserProfileView extends StatefulWidget {
-  const UserProfileView({Key? key}) : super(key: key);
+class UserProfileView extends ConsumerStatefulWidget {
+  const UserProfileView({super.key});
 
   @override
-  _UserProfileViewState createState() => _UserProfileViewState();
+  ConsumerState<UserProfileView> createState() => _UserProfileViewState();
 }
 
-class _UserProfileViewState extends State<UserProfileView> {
+class _UserProfileViewState extends ConsumerState<UserProfileView> {
   bool darkMode = false;
   bool faceID = true;
 

@@ -21,8 +21,6 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView> {
-  int indexUpperCarousel = 0;
-  int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider);
@@ -136,8 +134,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         onPressed: () {
                           Helpers.launchToWebsite(
                               'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
-                          //     // const url = 'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung';
-                          //     // launchURL(url);
                         },
                         text: 'Mehr News',
                       ),
@@ -169,7 +165,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 },
                               ),
                             ),
-                            // Icon(Icons.arrow_forward)
                           ],
                         )
                       ],
