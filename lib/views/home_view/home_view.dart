@@ -161,7 +161,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ),
                             Padding(
                               padding: AppTheme.paddingM,
-                              padding: AppTheme.paddingM,
                               child: SymetricButton(
                                 text: 'ZUM SHOP',
                                 color: AppTheme.buttonBackgroundColor,
