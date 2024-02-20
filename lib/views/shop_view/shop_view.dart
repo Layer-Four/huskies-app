@@ -57,15 +57,20 @@ class ShopView extends ConsumerWidget {
                       Image.network(products[i].imageUrl, height: 100, width: 100),
                       Column(
                         mainAxisAlignment: AppTheme.mainAlignEvenly,
-                        crossAxisAlignment: AppTheme.crossAlignStart,
                         children: [
-                          Text(
-                            products[i].title,
-                            maxLines: 2,
-                            style: AppTheme.textMedium,
+                          SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              products[i].title,
+                              maxLines: 2,
+                              style: AppTheme.textMedium,
+                            ),
                           ),
-                          Text('${products[i].price.toStringAsFixed(2)}€',
-                              style: AppTheme.textDefaultRed),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Text('${products[i].price.toStringAsFixed(2)}€',
+                                style: AppTheme.textDefaultRed),
+                          ),
                         ],
                       ),
                     ],
