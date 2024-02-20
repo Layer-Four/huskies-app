@@ -39,6 +39,8 @@ class AppTheme {
   static const EdgeInsets paddingTopSmall = EdgeInsets.only(top: 8);
   static const EdgeInsets paddingTopMedium = EdgeInsets.only(top: 20);
   static const EdgeInsets paddingBottom20 = EdgeInsets.only(bottom: 20);
+  static const EdgeInsets paddingBottom4 = EdgeInsets.only(bottom: 4);
+
   static const EdgeInsets paddingXL = EdgeInsets.all(20);
   static const EdgeInsets paddingL = EdgeInsets.all(16);
   static const EdgeInsets paddingM = EdgeInsets.all(8);

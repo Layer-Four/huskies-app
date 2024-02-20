@@ -15,28 +15,21 @@ class ShopView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Product>? products = ref.watch(productProvider).when(
-      data: (data) {
-        final list = <Product>[];
-        for (var element in data) {
-          list.add(element);
-        }
-        return list;
-      },
-      loading: () {
-        const LoadingView();
-        return null;
-      },
-      error: (error, stackTrace) {
-        throw Exception('error ->$error ,this was the callstack\n$stackTrace');
-      },
-    );
+          data: (data) => data,
+          loading: () => null,
+          error: (error, stackTrace) {
+            throw Exception('error ->$error ,this was the callstack\n$stackTrace');
+          },
+        );
     if (products != null) {
       return Scaffold(
-        backgroundColor: AppTheme.white,
         appBar: AppBar(
+          backgroundColor: AppTheme.white,
           centerTitle: true,
           title: const HeadWidget(
-            start: Icon(Icons.shopping_basket_outlined),
+            start: Icon(
+              Icons.shopping_basket_outlined,
+            ),
             center: Text('Shop', style: AppTheme.titleBlack),
             end: UserIconWidget(),
           ),
@@ -44,6 +37,8 @@ class ShopView extends ConsumerWidget {
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            crossAxisSpacing: AppTheme.xtraSmall - 4,
+            mainAxisExtent: 182,
           ),
           itemCount: products.length,
           itemBuilder: (BuildContext context, int i) {
@@ -52,30 +47,27 @@ class ShopView extends ConsumerWidget {
                 Helpers.launchToWebsite(products[i].shopUrl, mode: LaunchMode.inAppBrowserView);
               },
               child: Card(
+                elevation: 4,
                 child: Container(
-                  height: 120,
+                  alignment: Alignment.center,
+                  padding: AppTheme.paddingS,
                   decoration: AppTheme.whiteBox,
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.network(products[i].imageUrl, height: 95, width: 95),
-                      Padding(
-                        padding: AppTheme.paddingM,
-                        child: Column(
-                          mainAxisAlignment: AppTheme.mainAlignEvenly,
-                          crossAxisAlignment: AppTheme.crossAlignStart,
-                          children: [
-                            Padding(
-                              padding: AppTheme.paddingM,
-                              child: Text(
-                                products[i].title,
-                                maxLines: 2,
-                                style: AppTheme.textMedium,
-                              ),
-                            ),
-                            Text('${products[i].price.toStringAsFixed(2)}€',
-                                style: AppTheme.textDefaultRed),
-                          ],
-                        ),
+                      Image.network(products[i].imageUrl, height: 100, width: 100),
+                      Column(
+                        mainAxisAlignment: AppTheme.mainAlignEvenly,
+                        crossAxisAlignment: AppTheme.crossAlignStart,
+                        children: [
+                          Text(
+                            products[i].title,
+                            maxLines: 2,
+                            style: AppTheme.textMedium,
+                          ),
+                          Text('${products[i].price.toStringAsFixed(2)}€',
+                              style: AppTheme.textDefaultRed),
+                        ],
                       ),
                     ],
                   ),
