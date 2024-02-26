@@ -14,7 +14,7 @@ class LoadingView extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         body: BackgroundWidget(
-          image: 'background_image.jpg',
+          imageName: 'background_image.jpg',
           body: Column(
             mainAxisAlignment: AppTheme.mainAlignCenter,
             children: [

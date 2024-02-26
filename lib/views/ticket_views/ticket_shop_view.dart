@@ -41,7 +41,8 @@ class TicketShopView extends ConsumerWidget {
                   itemBuilder: ((context, index) {
                     Color backgroundColor = Colors.white;
                     if (index.isEven) {
-                      backgroundColor = const Color.fromARGB(255, 215, 234, 249);
+                      backgroundColor =
+                          const Color.fromARGB(255, 215, 234, 249);
                     }
                     return TicketItemRowWidget(
                       image: 'fuechse.png',

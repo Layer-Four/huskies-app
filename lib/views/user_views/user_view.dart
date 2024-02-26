@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
-import 'package:huskies_app/provider/error_provider/error_provider.dart';
+// import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
@@ -11,7 +11,8 @@ import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_wid
 class UserProfileView extends ConsumerStatefulWidget {
   const UserProfileView({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserProfileViewState();
 }
 
 class _UserProfileViewState extends ConsumerState<UserProfileView> {
@@ -24,10 +25,6 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
       email: 'marten.layer4@gmail.com',
       appUserID: 132155135,
     );
-    // final user = ref.watch(userProvider);
-    if (user == null) {
-      ref.read(errorProvider.notifier).catchError(throw ('call a non nullable User with null'));
-    }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -53,7 +50,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: user.userImageUrl == null
-                          ? Image.asset('assets/user.png', height: 90, width: 90)
+                          ? Image.asset('assets/user.png',
+                              height: 90, width: 90)
                           : Image.network(
                               user.userImageUrl!,
                               height: 90,
@@ -79,8 +77,9 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                             color: AppTheme.primary,
                             text: 'Profil bearbeiten',
                             onPressed: () {
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => const UpdateUserView()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const UpdateUserView()));
                             }),
                       ],
                     )
@@ -90,7 +89,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             ),
             const Padding(
               padding: AppTheme.paddingL,
-              child: Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
+              child:
+                  Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
             ),
             Card(
               elevation: 7,
@@ -119,7 +119,8 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                               activeTrackColor: AppTheme.black,
                               inactiveTrackColor: AppTheme.black,
                               inactiveThumbColor: AppTheme.white,
-                              materialTapTargetSize: MaterialTapTargetSize.padded,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
                               value: darkMode,
                               onChanged: (_) => setState(() {
                                 darkMode = !darkMode;

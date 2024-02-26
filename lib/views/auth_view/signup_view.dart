@@ -41,7 +41,7 @@ class _SignupState extends ConsumerState<Signup> {
                           width: 180,
                           height: 180,
                           child: Image.asset(
-                            "assets/huskies.png",
+                            "assets/images/huskies.png",
                             width: 100,
                             height: 100,
                           ),
@@ -99,8 +99,10 @@ class _SignupState extends ConsumerState<Signup> {
                         ref
                             .watch(statusProvider.notifier)
                             .registerUserWithEmailAndPassword(
-                                email: email.text.trim(), password: password.text.trim())
-                            .then((value) => value ? Navigator.of(context).pop() : null);
+                                email: email.text.trim(),
+                                password: password.text.trim())
+                            .then((value) =>
+                                value ? Navigator.of(context).pop() : null);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -152,8 +154,9 @@ class _SignupState extends ConsumerState<Signup> {
                             ),
                             TextSpan(
                                 text: "Anmelden",
-                                style:
-                                    TextStyle(color: AppTheme.white, fontWeight: FontWeight.bold)),
+                                style: TextStyle(
+                                    color: AppTheme.white,
+                                    fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),

@@ -28,7 +28,8 @@ class ShowErrorScreen extends ConsumerWidget {
                 SymetricButton(
                   color: Colors.blue,
                   text: 'Geh zurück',
-                  onPressed: () => ref.read(statusProvider.notifier).reRouteToLogin(),
+                  onPressed: () =>
+                      ref.read(statusProvider.notifier).reRouteToLogin(),
                 ),
                 const SymetricButton(
                   color: AppTheme.red,
@@ -39,6 +40,6 @@ class ShowErrorScreen extends ConsumerWidget {
             )
           ],
         ),
-        image: 'background_image.jpg');
+        imageName: 'background_image.jpg');
   }
 }

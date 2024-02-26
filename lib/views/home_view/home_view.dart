@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
+import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
@@ -26,34 +27,24 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(),
+        // drawer: const Drawer(),
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
+          toolbarHeight: 60,
+          // iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: AppTheme.primary,
-          toolbarHeight: 70,
-          title: Align(
-            alignment: Alignment.centerLeft,
-            child: Row(
-              children: [
-                const UserIconWidget(),
-                const SizedBox(
-                  width: 6,
-                ),
-                Text(
-                  "Hallo ${user?.displayedName?.split(',').first ?? ''}",
-                  style: AppTheme.titleWhite,
-                ),
-                user?.displayedName != null
-                    ? const Text(
-                        "Willkommon zurück!",
-                        style: AppTheme.whiteDefaultText,
-                      )
-                    : const SizedBox(),
-              ],
+          // toolbarHeight: 70,
+          title: HeadWidget(
+            start: user != null
+                ? UserIconWidget(onPressed: () {})
+                : const SizedBox(),
+            center: Text(
+              "Hallo ${user?.displayedName?.split(',').first ?? ''}${user == null ? '' : ' Willkommen zurück'}",
+              style: AppTheme.titleWhite,
             ),
           ),
         ),
         body: Container(
+          height: double.infinity,
           padding: AppTheme.paddingXL,
           color: AppTheme.primary,
           child: SingleChildScrollView(
@@ -67,7 +58,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       children: [
                         Padding(
                           padding: AppTheme.padding8_4,
-                          child: Text('Nachstes Match', style: AppTheme.defaultText),
+                          child: Text('Nachstes Match',
+                              style: AppTheme.defaultText),
                         ),
                         MatchViewWidget(),
                       ],
@@ -86,7 +78,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           children: [
                             ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.3), // Set opacity level here
+                                Colors.black
+                                    .withOpacity(0.3), // Set opacity level here
                                 BlendMode.srcOver,
                               ),
                               child: SizedBox(
@@ -117,7 +110,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 8, bottom: 17, top: 5),
+                                    padding: EdgeInsets.only(
+                                        left: 8, bottom: 17, top: 5),
                                     child: Text(
                                       'STEPHEN MACAULAY WIRD EIN HUSKY',
                                       style: TextStyle(
@@ -136,7 +130,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
                       //--------- Mehr News -----------------------//
                       SymetricButton(
-                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 90),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 90),
                         color: AppTheme.white,
                         style: AppTheme.textMedium,
                         onPressed: () {
@@ -155,7 +150,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     decoration: AppTheme.whiteBox,
                     child: Row(
                       children: [
-                        Image.asset('assets/first.png'),
+                        Image.asset('assets/images/first.png'),
                         const Column(
                           children: [
                             Padding(

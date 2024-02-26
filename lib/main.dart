@@ -11,6 +11,7 @@ import 'package:huskies_app/services/firebase_options.dart';
 import 'package:huskies_app/views/error_view/error_screen_widget.dart';
 import 'package:huskies_app/views/loading_view.dart';
 import 'package:huskies_app/views/navigation_view/nav_layer.dart';
+// import 'package:huskies_app/views/shop_view/shop_view.dart';
 import 'package:huskies_app/views/wait_registry_view/wait_register_widget.dart';
 
 Future<void> main() async {
@@ -48,7 +49,8 @@ class MyApp extends ConsumerWidget {
           ),
       AuthState.loading => const LoadingView(),
       AuthState.onRegistration => const WaitForRegistry(),
-      AuthState.onError => ShowErrorScreen(error: ref.watch(errorProvider).last),
+      AuthState.onError =>
+        ShowErrorScreen(error: ref.watch(errorProvider).last),
       _ => const ViewNavigator(),
     };
   }

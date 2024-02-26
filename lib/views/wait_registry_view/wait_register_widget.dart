@@ -15,12 +15,12 @@ class WaitForRegistry extends ConsumerWidget {
     double? circuleSize = MediaQuery.of(context).size.height / 7;
     final adversiting = Helpers.getAdvertising();
 
-    const localTextStyle =
-        TextStyle(fontSize: 21, color: AppTheme.white, decoration: TextDecoration.none);
+    const localTextStyle = TextStyle(
+        fontSize: 21, color: AppTheme.white, decoration: TextDecoration.none);
     return SafeArea(
       child: Scaffold(
         body: BackgroundWidget(
-          image: 'background_image.jpg',
+          imageName: 'background_image.jpg',
           body: Column(
             mainAxisAlignment: AppTheme.mainAlignEvenly,
             children: [
@@ -35,7 +35,8 @@ class WaitForRegistry extends ConsumerWidget {
                   height: MediaQuery.of(context).size.width / 1.7,
                 ),
               ),
-              Text(adversiting.$1, textAlign: TextAlign.center, style: AppTheme.titleWhite),
+              Text(adversiting.$1,
+                  textAlign: TextAlign.center, style: AppTheme.titleWhite),
               const Card(
                 color: AppTheme.buttonBackgroundColor,
                 child: Padding(

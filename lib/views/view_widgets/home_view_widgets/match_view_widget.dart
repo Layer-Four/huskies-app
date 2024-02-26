@@ -17,7 +17,7 @@ class MatchViewWidget extends StatelessWidget {
       children: [
         imageHome == null
             ? Image.asset(
-                'assets/fuechse.png',
+                'assets/images/fuechse.png',
                 height: 90,
                 width: 90,
               )
@@ -44,7 +44,7 @@ class MatchViewWidget extends StatelessWidget {
         ),
         imageVisitor == null
             ? Image.asset(
-                'assets/huskies.png',
+                'assets/images/huskies.png',
                 height: 90,
                 width: 90,
               )

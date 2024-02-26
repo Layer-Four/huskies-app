@@ -4,12 +4,12 @@ import 'package:huskies_app/constants/app_theme.dart';
 class NavBarIconWidget extends StatelessWidget {
   final void Function()? onPressed;
   final IconData icon;
-  final String name;
+  // final String? name;
   final bool isCurrentView;
   const NavBarIconWidget(
       {super.key,
       required this.icon,
-      required this.name,
+      // this.name,
       this.onPressed,
       this.isCurrentView = false});
 
@@ -34,7 +34,7 @@ class NavBarIconWidget extends StatelessWidget {
                 mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
                   Icon(size: 25, color: AppTheme.white, icon),
-                  Text(name, style: AppTheme.textSmallWhite)
+                  const Text('', style: AppTheme.textSmallWhite)
                 ],
               ),
             ),
