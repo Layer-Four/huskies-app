@@ -12,7 +12,6 @@ class MatchStatisticsView extends ConsumerWidget {
   factory MatchStatisticsView() {
     return _instance;
   }
-  // const MatchStatisticsView();
   const MatchStatisticsView._();
 
   @override

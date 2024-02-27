@@ -1,18 +1,21 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/user_vm/user_model.dart';
 import 'package:huskies_app/views/user_views/user_edit_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/settingsrow_widget.dart';
 
-class UserProfileView extends StatefulWidget {
-  const UserProfileView({Key? key}) : super(key: key);
+class UserProfileView extends ConsumerStatefulWidget {
+  const UserProfileView({super.key});
 
   @override
-  _UserProfileViewState createState() => _UserProfileViewState();
+  ConsumerState<UserProfileView> createState() => _UserProfileViewState();
 }
 
-class _UserProfileViewState extends State<UserProfileView> {
+class _UserProfileViewState extends ConsumerState<UserProfileView> {
   bool darkMode = false;
   bool faceID = true;
 
@@ -49,10 +52,10 @@ class _UserProfileViewState extends State<UserProfileView> {
                       child: user.userImageUrl == null
                           ? Image.asset('assets/images/user.png', height: 90, width: 90)
                           : Image.network(
-                        user.userImageUrl!,
-                        height: 90,
-                        width: 90,
-                      ),
+                              user.userImageUrl!,
+                              height: 90,
+                              width: 90,
+                            ),
                     ),
                     Column(
                       crossAxisAlignment: AppTheme.crossAlignStart,
@@ -61,7 +64,9 @@ class _UserProfileViewState extends State<UserProfileView> {
                             ? user.displayedName!.split(',').first
                             : 'Username'),
                         Text(
-                          user.email == null || user.email!.isEmpty ? 'beispiel@email.etc' : user.email!,
+                          user.email == null || user.email!.isEmpty
+                              ? 'beispiel@email.etc'
+                              : user.email!,
                           style: AppTheme.textSmallGrey,
                         ),
                         Text(
@@ -72,7 +77,8 @@ class _UserProfileViewState extends State<UserProfileView> {
                           color: AppTheme.primary,
                           text: 'Profil bearbeiten',
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UpdateUserView()));
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const UpdateUserView()));
                           },
                         ),
                       ],
@@ -96,20 +102,24 @@ class _UserProfileViewState extends State<UserProfileView> {
                   crossAxisAlignment: AppTheme.crossAlignStart,
                   children: [
                     SettingsRow(
-                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(value: darkMode, onChanged: (newValue) {
-                        setState(() {
-                          darkMode = newValue;
-                        });
-                      }),
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: darkMode,
+                          onChanged: (newValue) {
+                            setState(() {
+                              darkMode = newValue;
+                            });
+                          }),
                       optionText: 'Dark-mode',
                       leadingIcon: const Icon(Icons.dark_mode_outlined),
                     ),
                     SettingsRow(
-                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(value: faceID, onChanged: (newValue){
-                        setState(() {
-                          faceID = newValue;
-                        });
-                      }),
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: faceID,
+                          onChanged: (newValue) {
+                            setState(() {
+                              faceID = newValue;
+                            });
+                          }),
                       optionText: 'Face ID',
                       leadingIcon: const Icon(Icons.face_5_outlined),
                     ),
