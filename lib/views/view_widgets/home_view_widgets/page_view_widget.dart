@@ -50,7 +50,7 @@ class UserInfoWidget extends StatelessWidget {
           Container(
             height: 44,
             width: 1,
-            color: Colors.red.withOpacity(0.4),
+            color: AppTheme.red.withOpacity(0.4),
           ),
           Row(
             children: [

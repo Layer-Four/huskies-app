@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebTeamContainer extends StatefulWidget {
-  const WebTeamContainer({Key? key}) : super(key: key);
+  const WebTeamContainer({super.key});
 
   @override
-  _WebTeamContainerState createState() => _WebTeamContainerState();
+  State<WebTeamContainer> createState() => _WebTeamContainerState();
 }
 
 class _WebTeamContainerState extends State<WebTeamContainer> {

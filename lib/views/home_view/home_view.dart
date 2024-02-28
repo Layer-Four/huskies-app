@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
+import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
@@ -20,8 +22,6 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView> {
-  int indexUpperCarousel = 0;
-  int indexLowerCarousel = 0;
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider);
@@ -29,6 +29,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
       child: Scaffold(
         // drawer: const Drawer(),
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: AppTheme.white),
           toolbarHeight: 60,
           // iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: AppTheme.primary,
@@ -78,7 +79,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           children: [
                             ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                Colors.black
+                                AppTheme.black
                                     .withOpacity(0.3), // Set opacity level here
                                 BlendMode.srcOver,
                               ),
@@ -102,11 +103,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     padding: EdgeInsets.only(left: 8),
                                     child: Text(
                                       '15.02.2024 . TEAMUPDATE',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTheme.whiteDefaultTextBold,
                                     ),
                                   ),
                                   Padding(
@@ -114,11 +111,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                         left: 8, bottom: 17, top: 5),
                                     child: Text(
                                       'STEPHEN MACAULAY WIRD EIN HUSKY',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTheme.whiteDefaultTextBold,
                                     ),
                                   ),
                                 ],
@@ -137,8 +130,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         onPressed: () {
                           Helpers.launchToWebsite(
                               'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
-                          //     // const url = 'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung';
-                          //     // launchURL(url);
                         },
                         text: 'Mehr News',
                       ),
@@ -151,9 +142,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     child: Row(
                       children: [
                         Image.asset('assets/images/first.png'),
-                        const Column(
+                        Column(
                           children: [
-                            Padding(
+                            const Padding(
                               padding: AppTheme.padding0_30,
                               child: Text(
                                 'Neue Fanartikel',
@@ -161,13 +152,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: AppTheme.paddingM,
                               child: SymetricButton(
                                 text: 'ZUM SHOP',
                                 color: AppTheme.buttonBackgroundColor,
+                                onPressed: () {
+                                  ref.read(viewProvider.notifier).state =
+                                      ViewPage.shop;
+                                },
                               ),
                             ),
-                            // Icon(Icons.arrow_forward)
                           ],
                         )
                       ],

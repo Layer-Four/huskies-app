@@ -36,7 +36,7 @@ class WaitForRegistry extends ConsumerWidget {
                 ),
               ),
               Text(adversiting.$1,
-                  textAlign: TextAlign.center, style: AppTheme.titleWhite),
+                  textAlign: AppTheme.textCenter, style: AppTheme.titleWhite),
               const Card(
                 color: AppTheme.buttonBackgroundColor,
                 child: Padding(

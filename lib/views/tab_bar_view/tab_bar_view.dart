@@ -37,8 +37,8 @@ class _MyTabBarState extends State<MyTabBar>
               child: TabBar(
                 controller: _tabController,
                 indicatorColor: AppTheme.primary,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.white,
+                labelColor: AppTheme.black,
+                unselectedLabelColor: AppTheme.white,
                 indicatorSize:
                     TabBarIndicatorSize.tab, // Set indicator size to label
                 indicator: BoxDecoration(

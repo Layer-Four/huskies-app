@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
+// import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
 import 'package:huskies_app/views/loading_view.dart';
@@ -27,8 +28,8 @@ class Helpers {
         activeIndex: selectedIndex,
         count: length,
         effect: const SlideEffect(
-          dotColor: Colors.grey,
-          activeDotColor: Colors.black,
+          dotColor: AppTheme.grey,
+          activeDotColor: AppTheme.black,
           dotHeight: 8,
           dotWidth: 8,
         ),
@@ -61,8 +62,9 @@ class Helpers {
               height: 30,
               //TODO: whnen Statistic API change to etwork
               child: Center(
-                  child: Image.asset('assets/images/$imageSource',
-                      width: 20, height: 20)),
+                child: Image.asset('assets/images/$imageSource',
+                    width: 20, height: 20),
+              ),
             ),
             Center(child: Text('$games')),
             Center(child: Text('$points')),
@@ -205,11 +207,16 @@ class Helpers {
     return null;
   }
 
-  static void launchToWebsite(String url) async {
+  static void launchToWebsite(String url, {LaunchMode? mode}) async {
     final uri = Uri.parse(url);
     try {
-      launchUrl(uri, mode: LaunchMode.inAppBrowserView);
-      // launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (mode == LaunchMode.inAppBrowserView) {
+        launchUrl(uri, mode: LaunchMode.inAppBrowserView);
+      } else if (mode == LaunchMode.inAppWebView) {
+        launchUrl(uri, mode: LaunchMode.inAppWebView);
+      } else {
+        launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
     } catch (e) {
       throw Exception(
           'its a trap \ncheck launchToWebsite and refactor error handling');

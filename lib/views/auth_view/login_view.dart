@@ -67,7 +67,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         padding: AppTheme.paddingBottom20,
                         child: Center(
                           child: Image.asset(
-                            "assets/huskies.png",
+                            "assets/images/huskies.png",
                             width: 170,
                             height: 170,
                           ),

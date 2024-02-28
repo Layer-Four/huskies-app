@@ -39,6 +39,7 @@ class MyApp extends ConsumerWidget {
       AuthState.loggedIn => ref.watch(authProvider).when(
             loading: () => const LoadingView(),
             error: (error, stackTrace) {
+              log('a Error occurrences: ${error.toString()} \n this was the path: $stackTrace');
               log('a Error occurents: ${error.toString()} \n this was the path: $stackTrace');
               final errors = ref.watch(errorProvider);
               return ShowErrorScreen(
