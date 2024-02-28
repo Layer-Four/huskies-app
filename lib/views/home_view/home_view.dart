@@ -10,6 +10,7 @@ import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -73,7 +74,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       GestureDetector(
                         onTap: () {
                           Helpers.launchToWebsite(
-                              'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
+                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
+                            mode: LaunchMode.inAppWebView,
+                          );
                         },
                         child: Stack(
                           children: [
@@ -129,7 +132,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         style: AppTheme.textMedium,
                         onPressed: () {
                           Helpers.launchToWebsite(
-                              'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
+                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
+                            mode: LaunchMode.inAppWebView,
+                          );
                         },
                         text: 'Mehr News',
                       ),
