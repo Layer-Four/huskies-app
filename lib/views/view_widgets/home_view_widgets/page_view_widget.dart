@@ -60,7 +60,7 @@ class UserInfoWidget extends StatelessWidget {
                   decoration: AppTheme.pointsBoxLayout,
                   child: const ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      AppTheme.red, // Change the color of the icon here
+                      AppTheme.red,
                       BlendMode.srcIn,
                     ),
                     child: Icon(

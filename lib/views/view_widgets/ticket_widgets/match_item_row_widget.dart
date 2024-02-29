@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/views/view_widgets/ticket_widgets/red_text_button.dart';
 
@@ -29,7 +30,13 @@ class TicketItemRowWidget extends StatelessWidget {
             child: Image.asset('assets/images/$image', width: 60),
           ),
           Text(gameDate, style: AppTheme.textMedium),
-          RedTextButton(onPressed: onPressed, title: 'Ticket'),
+          BlueTextButton(
+            onPressed: onPressed,
+            title: const Icon(
+              FontAwesomeIcons.ticket,
+              color: AppTheme.white,
+            ),
+          ),
         ],
       ),
     );

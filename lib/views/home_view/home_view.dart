@@ -6,9 +6,11 @@ import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
+import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -26,34 +28,25 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final user = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(),
+        // drawer: const Drawer(),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: AppTheme.white),
+          toolbarHeight: 60,
+          // iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: AppTheme.primary,
-          toolbarHeight: 70,
-          title: Align(
-            alignment: AppTheme.alignCenterLeft,
-            child: Row(
-              children: [
-                const UserIconWidget(),
-                const SizedBox(
-                  width: 6,
-                ),
-                Text(
-                  "Hallo ${user?.displayedName?.split(',').first ?? ''}",
-                  style: AppTheme.titleWhite,
-                ),
-                user?.displayedName != null
-                    ? const Text(
-                        "Willkommon zurück!",
-                        style: AppTheme.whiteDefaultText,
-                      )
-                    : const SizedBox(),
-              ],
+          // toolbarHeight: 70,
+          title: HeadWidget(
+            start: user != null
+                ? UserIconWidget(onPressed: () {})
+                : const SizedBox(),
+            center: Text(
+              "Hallo ${user?.displayedName?.split(',').first ?? ''}${user == null ? '' : ' Willkommen zurück'}",
+              style: AppTheme.titleWhite,
             ),
           ),
         ),
         body: Container(
+          height: double.infinity,
           padding: AppTheme.paddingXL,
           color: AppTheme.primary,
           child: SingleChildScrollView(
@@ -67,7 +60,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       children: [
                         Padding(
                           padding: AppTheme.padding8_4,
-                          child: Text('Nachstes Match', style: AppTheme.defaultText),
+                          child: Text('Nachstes Match',
+                              style: AppTheme.defaultText),
                         ),
                         MatchViewWidget(),
                       ],
@@ -80,13 +74,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       GestureDetector(
                         onTap: () {
                           Helpers.launchToWebsite(
-                              'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
+                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
+                            mode: LaunchMode.inAppWebView,
+                          );
                         },
                         child: Stack(
                           children: [
                             ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                AppTheme.black.withOpacity(0.3), // Set opacity level here
+                                AppTheme.black
+                                    .withOpacity(0.3), // Set opacity level here
                                 BlendMode.srcOver,
                               ),
                               child: SizedBox(
@@ -113,7 +110,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 8, bottom: 17, top: 5),
+                                    padding: EdgeInsets.only(
+                                        left: 8, bottom: 17, top: 5),
                                     child: Text(
                                       'STEPHEN MACAULAY WIRD EIN HUSKY',
                                       style: AppTheme.whiteDefaultTextBold,
@@ -128,12 +126,15 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
                       //--------- Mehr News -----------------------//
                       SymetricButton(
-                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 90),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 90),
                         color: AppTheme.white,
                         style: AppTheme.textMedium,
                         onPressed: () {
                           Helpers.launchToWebsite(
-                              'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung');
+                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
+                            mode: LaunchMode.inAppWebView,
+                          );
                         },
                         text: 'Mehr News',
                       ),
@@ -161,7 +162,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 text: 'ZUM SHOP',
                                 color: AppTheme.buttonBackgroundColor,
                                 onPressed: () {
-                                  ref.read(viewProvider.notifier).state = ViewPage.shop;
+                                  ref.read(viewProvider.notifier).state =
+                                      ViewPage.shop;
                                 },
                               ),
                             ),

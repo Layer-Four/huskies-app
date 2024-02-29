@@ -22,7 +22,8 @@ import 'package:url_launcher/url_launcher.dart';
 class Helpers {
   const Helpers();
 
-  static Widget buildIndicator({required int selectedIndex, required int length}) =>
+  static Widget buildIndicator(
+          {required int selectedIndex, required int length}) =>
       AnimatedSmoothIndicator(
         activeIndex: selectedIndex,
         count: length,
@@ -48,7 +49,9 @@ class Helpers {
         margin: const EdgeInsets.only(bottom: 2),
         decoration:
             //
-            BoxDecoration(color: place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor
+            BoxDecoration(
+                color:
+                    place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor
                 //  const Color.fromARGB(255, 235, 231, 231)),
                 ),
         child: Row(
@@ -57,9 +60,11 @@ class Helpers {
             Text('$place.'),
             SizedBox(
               height: 30,
-              //TODO: when Statistic API change to network
-              child:
-                  Center(child: Image.asset('assets/images/$imageSource', width: 20, height: 20)),
+              //TODO: whnen Statistic API change to etwork
+              child: Center(
+                child: Image.asset('assets/images/$imageSource',
+                    width: 20, height: 20),
+              ),
             ),
             Center(child: Text('$games')),
             Center(child: Text('$points')),
@@ -151,14 +156,17 @@ class Helpers {
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
                         onPressed: () async {
-                          PermissionStatus storeStatus = await Permission.storage.request();
+                          PermissionStatus storeStatus =
+                              await Permission.storage.request();
                           if (!storeStatus.isGranted) {
                             await Permission.storage.request();
                           }
                           if (storeStatus.isGranted || storeStatus.isDenied) {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
-                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              ref
+                                  .read(userProvider.notifier)
+                                  .updateUserProfile(image: image);
                               showSnackbar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
@@ -175,12 +183,16 @@ class Helpers {
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
                         onPressed: () async {
-                          final cameraPermission = await Permission.camera.request();
-                          if (cameraPermission.isGranted || cameraPermission.isDenied) {
+                          final cameraPermission =
+                              await Permission.camera.request();
+                          if (cameraPermission.isGranted ||
+                              cameraPermission.isDenied) {
                             final image = await Helpers.pickImageFromCamera();
                             if (image != null) {
                               showSnackbar(context, 'Bild ausgewählt!');
-                              ref.read(userProvider.notifier).updateUserProfile(image: image);
+                              ref
+                                  .read(userProvider.notifier)
+                                  .updateUserProfile(image: image);
                               Navigator.of(context).pop();
                               return image;
                             }
@@ -206,11 +218,13 @@ class Helpers {
         launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
-      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
+      throw Exception(
+          'its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
 }
