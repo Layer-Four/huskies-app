@@ -29,11 +29,11 @@ class NavBarIconWidget extends StatelessWidget {
                   )
                 : const SizedBox(),
             SizedBox(
-              height: 40,
+              height: 35,
               child: Column(
                 mainAxisAlignment: AppTheme.mainAlignCenter,
                 children: [
-                  Icon(size: 25, color: AppTheme.white, icon),
+                  Icon(size: 20, color: AppTheme.white, icon),
                   const Text('', style: AppTheme.textSmallWhite)
                 ],
               ),

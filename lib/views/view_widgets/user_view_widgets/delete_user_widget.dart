@@ -15,7 +15,7 @@ class DeleteUserCard extends ConsumerWidget {
       width: MediaQuery.of(context).size.width,
       padding:
           EdgeInsets.only(left: MediaQuery.of(context).size.width / 1.4, right: 12, bottom: 12),
-      child: SymetricButton(
+      child: SymmetricButton(
         color: AppTheme.red,
         text: 'Nutzer Löschen',
         onPressed: () {
@@ -46,7 +46,7 @@ class DeleteUserCard extends ConsumerWidget {
                             textAlign: AppTheme.textCenter,
                           ),
                         ),
-                        SymetricButton(
+                        SymmetricButton(
                             color: AppTheme.red,
                             text: 'Konto löschen?',
                             onPressed: () {

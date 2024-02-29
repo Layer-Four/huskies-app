@@ -13,16 +13,12 @@ class HeadWidget extends StatelessWidget {
     required this.center,
   });
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: AppTheme.paddingM,
-        child: Row(
-          mainAxisAlignment: AppTheme.mainAlignBetween,
-          children: [
-            SizedBox(
-                width: start == null ? AppTheme.big50 : null, child: start),
-            center,
-            SizedBox(width: end == null ? AppTheme.big50 : null, child: end),
-          ],
-        ),
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: AppTheme.mainAlignBetween,
+        children: [
+          SizedBox(width: start == null ? AppTheme.big50 : null, child: start),
+          center,
+          SizedBox(width: end == null ? AppTheme.big50 : null, child: end),
+        ],
       );
 }

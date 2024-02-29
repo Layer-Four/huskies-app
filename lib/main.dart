@@ -50,9 +50,9 @@ class MyApp extends ConsumerWidget {
           ),
       AuthState.loading => const LoadingView(),
       AuthState.onRegistration => const WaitForRegistry(),
-      AuthState.onError =>
-        ShowErrorScreen(error: ref.watch(errorProvider).last),
+      AuthState.onError => ShowErrorScreen(error: ref.watch(errorProvider).last),
       _ => const ViewNavigator(),
+      // _ => const NewsTeaser(),
     };
   }
 }

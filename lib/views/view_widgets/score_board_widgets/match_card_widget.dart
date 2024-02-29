@@ -69,7 +69,7 @@ class _MatchCardState extends State<MatchCard> {
                           ),
                           Padding(
                               padding: AppTheme.paddingM,
-                              child: SymetricButton(
+                              child: SymmetricButton(
                                 color: AppTheme.primary,
                                 text: 'Spielbericht',
                                 onPressed: () => showDialog(

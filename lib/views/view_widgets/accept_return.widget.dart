@@ -17,12 +17,12 @@ class AcceptOrReturnWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: AppTheme.mainAlignAround,
         children: [
-          SymetricButton(
+          SymmetricButton(
             color: AppTheme.red,
             text: 'Zurück',
             onPressed: () => Navigator.of(context).pop(),
           ),
-          SymetricButton(
+          SymmetricButton(
             color: AppTheme.green,
             text: 'Ändern',
             onPressed: onPressed,

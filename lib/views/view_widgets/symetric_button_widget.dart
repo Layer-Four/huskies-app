@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 
-class SymetricButton extends StatelessWidget {
+class SymmetricButton extends StatelessWidget {
   final String text;
   final Function()? onPressed;
   final Color color;
   final EdgeInsets padding;
   final TextStyle style;
-  const SymetricButton({
+  const SymmetricButton({
     super.key,
     this.onPressed,
     this.padding = AppTheme.padding12_8,
