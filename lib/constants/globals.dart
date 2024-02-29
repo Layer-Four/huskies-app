@@ -16,14 +16,3 @@ Widget fakeHomeView() {
     ),
   );
 }
-
-enum ViewPage {
-  home,
-  shop,
-  table,
-  ticket,
-  newsFeed,
-  myTabBar,
-  error,
-  loading,
-}
