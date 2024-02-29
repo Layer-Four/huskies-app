@@ -7,7 +7,8 @@ import 'package:huskies_app/views/view_widgets/ticket_widgets/ticket_info_widget
 import 'package:huskies_app/views/view_widgets/ticket_widgets/barcode_widget.dart';
 
 class TicketWalletView extends StatefulWidget {
-  static const TicketWalletView _ticketViewInstance = TicketWalletView._internal();
+  static const TicketWalletView _ticketViewInstance =
+      TicketWalletView._internal();
   factory TicketWalletView() => _ticketViewInstance;
 
   const TicketWalletView._internal();
@@ -20,6 +21,8 @@ class _TicketWalletViewState extends State<TicketWalletView> {
   int currentIndex = 0;
   final List seasonGames = List.generate(8, (index) => index++);
   final barcodesListFromState = [
+    'assets/images/barcode.png',
+    'assets/images/barcode.png',
     'assets/images/barcode.png',
     'assets/images/barcode.png',
   ];
@@ -65,12 +68,14 @@ class _TicketWalletViewState extends State<TicketWalletView> {
                     height: 430,
                     enableInfiniteScroll: false,
                     // enlargeCenterPage: true,
-                    onPageChanged: (index, _) => setState(() => currentIndex = index),
+                    onPageChanged: (index, _) =>
+                        setState(() => currentIndex = index),
                   ),
                 ),
               ),
               Helpers.buildIndicator(
-                  selectedIndex: currentIndex, length: barcodesListFromState.length),
+                  selectedIndex: currentIndex,
+                  length: barcodesListFromState.length),
               const AGBViewWidget(),
             ],
           ),
