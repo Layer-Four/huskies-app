@@ -4,14 +4,9 @@ import 'package:huskies_app/constants/app_theme.dart';
 class NavBarIconWidget extends StatelessWidget {
   final void Function()? onPressed;
   final IconData icon;
-  // final String? name;
   final bool isCurrentView;
   const NavBarIconWidget(
-      {super.key,
-      required this.icon,
-      // this.name,
-      this.onPressed,
-      this.isCurrentView = false});
+      {super.key, required this.icon, this.onPressed, this.isCurrentView = false});
 
   @override
   Widget build(BuildContext context) => InkWell(
@@ -32,10 +27,7 @@ class NavBarIconWidget extends StatelessWidget {
               height: 35,
               child: Column(
                 mainAxisAlignment: AppTheme.mainAlignCenter,
-                children: [
-                  Icon(size: 20, color: AppTheme.white, icon),
-                  const Text('', style: AppTheme.textSmallWhite)
-                ],
+                children: [Icon(size: 20, icon), const Text('', style: AppTheme.textSmallWhite)],
               ),
             ),
           ],

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:huskies_app/constants/theme/main_theme.dart';
 import 'package:huskies_app/provider/auth_provider/auth_notifier.dart';
 import 'package:huskies_app/provider/auth_provider/auth_state_provider.dart';
 import 'package:huskies_app/provider/error_provider/error_provider.dart';
@@ -19,10 +20,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ProviderScope(
+  runApp(ProviderScope(
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyApp(),
+      theme: MainTheme.lightTheme(),
+      themeMode: ThemeMode.light,
+      home: const MyApp(),
     ),
   ));
 }

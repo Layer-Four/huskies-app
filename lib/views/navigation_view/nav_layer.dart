@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/views/error_view/error_screen_widget.dart';
@@ -24,23 +23,18 @@ class ViewNavigator extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppTheme.primary,
         title: HeadWidget(
-            start: const Icon(
-              Icons.menu,
-              color: AppTheme.white,
-              size: 50,
+          start: const Icon(Icons.menu, size: 40),
+          center: SizedBox(
+            child: Image.asset(
+              'assets/images/huskies.png',
+              height: 50,
+              width: 50,
             ),
-            center: SizedBox(
-              child: Image.asset(
-                'assets/images/huskies.png',
-                height: 50,
-                width: 50,
-              ),
-            )),
+          ),
+        ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 239, 237, 237),
         child: switch (view) {
           ViewPage.ticket => TicketView(),
           ViewPage.table => MatchStatisticsView(),
@@ -53,50 +47,34 @@ class ViewNavigator extends ConsumerWidget {
       ),
       bottomNavigationBar: NavigationBar(
         height: MediaQuery.of(context).size.height / 12,
-        backgroundColor: AppTheme.primary,
+        // backgroundColor: AppTheme.primary,
         destinations: [
           NavBarIconWidget(
             icon: FontAwesomeIcons.house,
-            // name: 'Home',
             isCurrentView: view == ViewPage.home,
             onPressed: () => viewNotifier.state = ViewPage.home,
           ),
           // NavBarIconWidget(
           //   icon: Icons.newspaper,
-          //   name: 'News',
           //   isCurrentView: view == ViewPage.newsFeed,
           //   onPressed: () => viewNotifier.state = ViewPage.newsFeed,
           // ),
           NavBarIconWidget(
             icon: FontAwesomeIcons.trophy,
-            // name: 'Team',
             isCurrentView: view == ViewPage.myTabBar,
             onPressed: () => viewNotifier.state = ViewPage.myTabBar,
           ),
           NavBarIconWidget(
             icon: FontAwesomeIcons.ticket,
-            // name: 'Tickets',
             isCurrentView: view == ViewPage.ticket,
             onPressed: () => viewNotifier.state = ViewPage.ticket,
           ),
-          // NavBarIconWidget(
-          //   icon: Icons.mail_outline,
-          //   name: 'Ergebnisse',
-          //   isCurrentView: view == ViewPage.table,
-          //   onPressed: () => viewNotifier.state = ViewPage.table,
-          // ),
+
           NavBarIconWidget(
             icon: Icons.shopping_cart,
-            // name: 'shop',
             isCurrentView: view == ViewPage.shop,
             onPressed: () {
-              if (view != ViewPage.shop) {
-                ref.read(statusProvider.notifier).onLoading(
-                      duration: const Duration(seconds: 2),
-                    );
-
-                viewNotifier.state = ViewPage.shop;
-              }
+              viewNotifier.state = ViewPage.shop;
             },
           ),
         ],

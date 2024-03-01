@@ -17,10 +17,14 @@ class TicketView extends ConsumerWidget {
       children: [
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-              child:
-                  Card(child: Container(decoration: AppTheme.whiteBox, child: MatchViewWidget())),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(6),
+                  child: MatchViewWidget(),
+                ),
+              ),
             ),
             const Padding(padding: AppTheme.paddingXL),
             SizedBox(

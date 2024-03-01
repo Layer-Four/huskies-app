@@ -23,7 +23,7 @@ class ItemsDetails extends StatelessWidget {
                 ),
                 Text(
                   " Shop",
-                  style: TextStyle(color: Colors.orange),
+                  style: TextStyle(),
                 ),
               ],
             ),

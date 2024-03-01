@@ -23,20 +23,19 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final height = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: const BoxDecoration(color: Color.fromARGB(255, 239, 237, 237)),
+      // decoration: const BoxDecoration(color: Color.fromARGB(255, 239, 237, 237)),
       child: Column(
         mainAxisAlignment: AppTheme.mainAlignEvenly,
         children: [
           Card(
             elevation: 7,
-            child: Container(
-              decoration: AppTheme.whiteBox,
+            child: SizedBox(
               height: height / 6,
               child: const Column(
                 children: [
                   Padding(
                     padding: AppTheme.padding8_4,
-                    child: Text('Nachstes Match', style: AppTheme.defaultText),
+                    child: Text('Nächstes Match', style: AppTheme.defaultText),
                   ),
                   MatchViewWidget(),
                 ],
@@ -44,8 +43,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
             ),
           ),
           Card(
-            child: Container(
-              decoration: BoxDecoration(borderRadius: AppSpacing.lowRoundedCorner),
+            child: SizedBox(
               height: height / 2.5,
               child: Column(
                 children: [
@@ -124,10 +122,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
             ),
           ),
           Card(
-            elevation: 7,
-            child: Container(
+            child: SizedBox(
               height: height / 6,
-              decoration: AppTheme.whiteBox,
               child: Row(
                 children: [
                   Image.asset(

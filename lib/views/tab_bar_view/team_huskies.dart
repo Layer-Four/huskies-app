@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebTeamContainer extends StatefulWidget {
@@ -28,7 +29,10 @@ class _WebTeamContainerState extends State<WebTeamContainer> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppTheme.black,
+              ),
               onPressed: () async {
                 if (await controller.canGoBack()) {
                   await controller.goBack();
@@ -36,7 +40,10 @@ class _WebTeamContainerState extends State<WebTeamContainer> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.arrow_forward),
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: AppTheme.black,
+              ),
               onPressed: () async {
                 if (await controller.canGoForward()) {
                   await controller.goForward();
