@@ -3,14 +3,21 @@ import 'package:flutter/material.dart';
 class MainTheme {
   MainTheme._();
   static ThemeData lightTheme() => ThemeData(
-        cardTheme: const CardTheme(color: AppColor.white, elevation: 7),
-        useMaterial3: false,
-        unselectedWidgetColor: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
-        iconTheme: IconThemeData(color: Colors.white),
+        cardTheme: const CardTheme(
+            color: AppColor.white,
+            elevation: 3,
+            shape: ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+        // unselectedWidgetColor: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
+        iconTheme: const IconThemeData(color: Colors.white),
+        textTheme: ThemeData().textTheme.apply(
+              fontFamily: 'poppins',
+              bodyColor: Colors.black,
+            ),
         checkboxTheme: CheckboxThemeData(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(8),
           ),
+
           // side: MaterialStateBorderSide.resolveWith(
           //   (states) =>
           //       BorderSide(width: 0.5, color: Colors.black.withOpacity(0.3)),
@@ -32,7 +39,7 @@ class MainTheme {
         primaryColorLight: const Color.fromARGB(255, 22, 63, 92),
         scaffoldBackgroundColor: const Color.fromARGB(255, 239, 237, 237),
         brightness: Brightness.light,
-        disabledColor: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.95),
+        disabledColor: const Color.fromARGB(255, 255, 255, 255),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 22, 63, 92),
         ),
@@ -42,9 +49,6 @@ class MainTheme {
         tabBarTheme: const TabBarTheme(
           labelColor: Colors.black,
         ),
-        textTheme: ThemeData().textTheme.apply(
-              fontFamily: 'Poppins',
-            ),
         listTileTheme: const ListTileThemeData(
           dense: true,
           contentPadding: EdgeInsets.all(0),
@@ -72,6 +76,7 @@ class MainTheme {
             .copyWith(
               error: const Color.fromARGB(255, 211, 47, 47),
             ),
+        useMaterial3: false,
       );
   // static ThemeData lightTheme() => ThemeData.light().copyWith(
   //       unselectedWidgetColor: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
@@ -110,9 +115,9 @@ class MainTheme {
   //       tabBarTheme: const TabBarTheme(
   //         labelColor: Colors.black,
   //       ),
-  //       textTheme: ThemeData().textTheme.apply(
-  //             fontFamily: 'Poppins',
-  //           ),
+  // textTheme: ThemeData().textTheme.apply(
+  //       fontFamily: 'Poppins',
+  //     ),
   //       listTileTheme: const ListTileThemeData(
   //         dense: true,
   //         contentPadding: EdgeInsets.all(0),
@@ -202,4 +207,29 @@ abstract class AppColor {
   static const Color ticketViewBody = Color.fromARGB(255, 155, 151, 151);
   static const Color fakeHomeViewColor = Color.fromARGB(255, 187, 219, 235);
   static const Color cardHighlightedColor = Color.fromARGB(255, 215, 234, 249);
+}
+
+class AppTextStyle {
+  static const TextStyle titleWhite = TextStyle(fontSize: 25, color: AppColor.white);
+  static const TextStyle titleBlue = TextStyle(fontSize: 25, color: AppColor.primary);
+  static const TextStyle titleBlack = TextStyle(fontWeight: FontWeight.w500, fontSize: 25);
+  static const TextStyle whiteDefaultText = TextStyle(fontSize: 16, color: AppColor.white);
+  static const TextStyle whiteDefaultTextBold =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white);
+  static const TextStyle textDefaultGrey = TextStyle(fontSize: 16, color: AppColor.grey);
+  static const TextStyle textDefaultTeal = TextStyle(fontSize: 16, color: AppColor.teal);
+  static const TextStyle defaultText = TextStyle(fontSize: 16);
+  static const TextStyle textDefaultBlue = TextStyle(fontSize: 16, color: AppColor.primary);
+  static const TextStyle textWhiteMid = TextStyle(fontSize: 13, color: AppColor.white);
+  static const TextStyle defaultTextSmallRed = TextStyle(fontSize: 13, color: AppColor.red);
+  static const TextStyle textMedium = TextStyle(fontSize: 13);
+  static const TextStyle textSmallWhite = TextStyle(color: AppColor.white, fontSize: 10);
+  static const TextStyle textSmallGrey = TextStyle(color: AppColor.grey, fontSize: 10);
+  static const TextStyle smallText = TextStyle(fontSize: 9);
+  static const TextStyle largBoldText = TextStyle(fontSize: 19, fontWeight: FontWeight.bold);
+  static const TextStyle textDefaultRed = TextStyle(fontSize: 16, color: AppColor.red);
+  static const TextStyle whiteBoldText =
+      TextStyle(fontWeight: FontWeight.bold, color: AppColor.white);
+  static const redBoldTextStyle =
+      TextStyle(color: AppColor.red, fontWeight: FontWeight.bold, fontSize: 17);
 }

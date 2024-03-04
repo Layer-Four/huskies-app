@@ -55,8 +55,16 @@ flutter:
     - family: poppins
       fonts:
         - asset: assets/fonts/PoppinsMedium.ttf
-          weight: 500
         - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 600
+    - family: jersey_m54
+      fonts:
+        - asset: assets\fonts\jersey_m54.ttf
+          weight: 500
+    - family: varsity
+      fonts:
+        - asset: assets\fonts\varsity_regular.ttf
+          weight: 600
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

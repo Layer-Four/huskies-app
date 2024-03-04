@@ -31,21 +31,24 @@ class MatchViewWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "VS",
-                style: Theme.of(context).textTheme.headlineSmall,
+                "Viertelfinale",
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               Text(
-                "Freitag, 01.03.2024. \n19.30 Uhr",
-                style: AppTheme.textMedium,
+                "Sonntag, 17.03.2024. \n17.00 Uhr",
+                style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
-              Text('Nordhessen Arena')
+              Text(
+                'Nordhessen Arena',
+                style: Theme.of(context).textTheme.labelMedium,
+              )
             ],
           ),
         ),
         imageVisitor == null
             ? Image.asset(
-                'assets/images/rosenheim.png',
+                'assets/images/playoffs.png',
                 height: 90,
                 width: 90,
               )

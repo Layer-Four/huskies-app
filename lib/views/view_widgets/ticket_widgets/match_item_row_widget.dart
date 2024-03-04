@@ -29,7 +29,7 @@ class TicketItemRowWidget extends StatelessWidget {
             padding: AppTheme.paddingM,
             child: Image.asset('assets/images/$image', width: 60),
           ),
-          Text(gameDate, style: AppTheme.textMedium),
+          Text(gameDate, style: Theme.of(context).textTheme.titleSmall),
           ShrinkinButton(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             onTap: onPressed,

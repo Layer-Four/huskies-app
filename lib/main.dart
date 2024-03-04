@@ -20,14 +20,15 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(ProviderScope(
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: MainTheme.lightTheme(),
-      themeMode: ThemeMode.light,
-      home: const MyApp(),
+  runApp(
+    ProviderScope(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: MainTheme.lightTheme(),
+          themeMode: ThemeMode.light,
+          home: MyApp()),
     ),
-  ));
+  );
 }
 
 // TODO: image da.jpg doesnt work anymore, check why!!
@@ -37,7 +38,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    // return const ViewNavigator();
     return switch (ref.watch(statusProvider)) {
       AuthState.loggedIn => ref.watch(authProvider).when(
             loading: () => const LoadingView(),

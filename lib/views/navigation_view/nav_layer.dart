@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/provider/error_provider/error_provider.dart';
@@ -10,6 +11,7 @@ import 'package:huskies_app/views/shop_view/shop_view.dart';
 import 'package:huskies_app/views/tab_bar_view/tab_bar_view.dart';
 import 'package:huskies_app/views/ticket_views/ticket_view.dart';
 import 'package:huskies_app/views/statistic_view/match_statisctics_view.dart';
+import 'package:huskies_app/views/view_widgets/button_widgets/shrinking_button.dart';
 import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 // import 'package:huskies_app/views/view_widgets/newsfeed/newsfeed.dart';
 
@@ -18,13 +20,20 @@ class ViewNavigator extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
     final view = ref.watch(viewProvider);
     final viewNotifier = ref.read(viewProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: HeadWidget(
-          start: const Icon(Icons.menu, size: 40),
+          start: IconButton(
+            icon: const Icon(Icons.menu, size: 40),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const ImpressumView())),
+          ),
           center: SizedBox(
             child: Image.asset(
               'assets/images/huskies.png',
@@ -46,7 +55,7 @@ class ViewNavigator extends ConsumerWidget {
         },
       ),
       bottomNavigationBar: NavigationBar(
-        height: MediaQuery.of(context).size.height / 12,
+        height: MediaQuery.of(context).size.height / 13,
         // backgroundColor: AppTheme.primary,
         destinations: [
           NavBarIconWidget(
@@ -78,6 +87,31 @@ class ViewNavigator extends ConsumerWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ImpressumView extends StatelessWidget {
+  const ImpressumView({super.key});
+
+  Widget build(context) {
+    return Material(
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Center(
+              child: Text('Impressum'),
+            ),
+            Center(
+              child: ShrinkinButton(
+                child: const Icon(Icons.arrow_back),
+                onTap: () => Navigator.of(context).pop(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

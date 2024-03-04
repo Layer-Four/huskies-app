@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/views/ticket_views/ticket_wallet_view.dart';
+import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/ticket_widgets/match_item_row_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TicketView extends ConsumerWidget {
   static const TicketView _instance = TicketView._();
@@ -12,7 +13,7 @@ class TicketView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List gamesInSeason = List.generate(4, (index) => index++);
+    final List gamesInSeason = List.generate(1, (index) => index++);
     return Column(
       children: [
         Column(
@@ -37,12 +38,13 @@ class TicketView extends ConsumerWidget {
                     backgroundColor = AppTheme.ticketBackground;
                   }
                   return TicketItemRowWidget(
-                    image: 'fuechse.png',
-                    backgroundColor: backgroundColor,
-                    gameDate: 'Freitag, 01.03.24 19:30 Uhr',
-                    onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
-                  );
+                      image: 'playoffs.png',
+                      backgroundColor: backgroundColor,
+                      gameDate: 'Sonntag, 17.03.2024: 17.00 Uhr',
+                      onPressed: () {
+                        Helpers.launchToWebsite('https://tickets.kassel-huskies.de/tickets/962973',
+                            mode: LaunchMode.inAppBrowserView);
+                      });
                 }),
               ),
             ),
