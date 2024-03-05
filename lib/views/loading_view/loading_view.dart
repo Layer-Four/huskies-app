@@ -19,7 +19,7 @@ class LoadingView extends ConsumerWidget {
           mainAxisAlignment: AppTheme.mainAlignCenter,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 60, bottom: 50),
+              padding: const EdgeInsets.only(top: 60, bottom: 50),
               child: Image.asset('assets/images/huskies.png', width: 180),
             ),
             Padding(
@@ -37,18 +37,18 @@ class LoadingView extends ConsumerWidget {
               width: 80,
               padding: AppTheme.paddingBottom20,
               child: LoadingAnimationWidget.inkDrop(
-                color: Color.fromARGB(194, 255, 255, 255),
+                color: const Color.fromARGB(194, 255, 255, 255),
                 size: 50,
               ),
             ),
-            Spacer(),
-            Text(
+            const Spacer(),
+            const Text(
               'Powerd by',
               style: TextStyle(color: Colors.white, fontSize: 13),
             ),
-            Container(
-              child: Image.asset('assets/images/Bild.png'),
+            SizedBox(
               width: 180,
+              child: Image.asset('assets/images/Bild.png'),
             )
           ],
         ),

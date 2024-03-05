@@ -13,7 +13,7 @@ class TicketView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List gamesInSeason = List.generate(1, (index) => index++);
+    final List gamesInSeason = List.generate(2, (index) => index++);
     return Column(
       children: [
         Column(

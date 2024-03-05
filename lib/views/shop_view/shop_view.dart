@@ -76,6 +76,6 @@ class ShopView extends ConsumerWidget {
     if (products == null) {
       return const LoadingView();
     }
-    return SizedBox();
+    return const SizedBox();
   }
 }

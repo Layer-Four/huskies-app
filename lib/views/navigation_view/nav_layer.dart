@@ -91,6 +91,7 @@ class ViewNavigator extends ConsumerWidget {
 class ImpressumView extends StatelessWidget {
   const ImpressumView({super.key});
 
+  @override
   Widget build(context) {
     return Material(
       child: SizedBox(

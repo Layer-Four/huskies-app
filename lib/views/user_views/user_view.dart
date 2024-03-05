@@ -99,7 +99,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             Card(
               elevation: 7,
               child: Container(
-                padding: EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
+                padding: const EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
