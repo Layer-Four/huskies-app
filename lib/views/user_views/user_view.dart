@@ -77,12 +77,12 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           'Kundennummer: ${user.appUserID}',
                           style: AppTheme.textSmallGrey,
                         ),
-                        SymetricButton(
+                        SymmetricButton(
                           color: AppTheme.primary,
                           text: 'Profil bearbeiten',
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const UpdateUserView()));
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const UpdateUserView()));
                           },
                         ),
                       ],
@@ -94,54 +94,49 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.only(left: 8),
-              child:
-                  Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
+              child: Text('Einstellungen', style: TextStyle(color: AppTheme.grey)),
             ),
             Card(
               elevation: 7,
               child: Container(
-                padding: EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
+                padding: const EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: AppTheme.crossAlignStart,
                   children: [
                     SettingsRow(
-                      customSwitchBuilder: (value, onChanged) =>
-                          CustomCupertinoSwitch(
-                              value: darkMode,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  darkMode = newValue;
-                                });
-                              }),
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: darkMode,
+                          onChanged: (newValue) {
+                            setState(() {
+                              darkMode = newValue;
+                            });
+                          }),
                       optionText: 'Dark-mode',
                       leadingIcon: const Icon(Icons.dark_mode_outlined),
                     ),
                     SettingsRow(
-                      customSwitchBuilder: (value, onChanged) =>
-                          CustomCupertinoSwitch(
-                              value: faceID,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  faceID = newValue;
-                                });
-                              }),
+                      customSwitchBuilder: (value, onChanged) => CustomCupertinoSwitch(
+                          value: faceID,
+                          onChanged: (newValue) {
+                            setState(() {
+                              faceID = newValue;
+                            });
+                          }),
                       optionText: 'Face ID',
                       leadingIcon: const Icon(Icons.face_5_outlined),
                     ),
                     const SettingsRow(
                       leadingIcon: Icon(Icons.flag_outlined),
                       optionText: 'Sprache',
-                      endingWidget:
-                          Icon(Icons.arrow_right), // Icon as endingWidget
+                      endingWidget: Icon(Icons.arrow_right), // Icon as endingWidget
                     ),
                     // Push-Benachrichtigung
                     const SettingsRow(
                       leadingIcon: Icon(Icons.notifications_outlined),
                       optionText: 'Push-Benachrichtigung',
-                      endingWidget:
-                          Icon(Icons.arrow_right), // Icon as endingWidget
+                      endingWidget: Icon(Icons.arrow_right), // Icon as endingWidget
                     ),
                   ],
                 ),

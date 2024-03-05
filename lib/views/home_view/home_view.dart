@@ -1,15 +1,10 @@
-// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/helpers.dart';
 import 'package:huskies_app/provider/static_provider.dart';
-import 'package:huskies_app/provider/user_provider/user_provider.dart';
-import 'package:huskies_app/views/view_widgets/headline_widget.dart';
 import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
-import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -25,158 +20,123 @@ class HomeView extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
-    return SafeArea(
-      child: Scaffold(
-        // drawer: const Drawer(),
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: AppTheme.white),
-          toolbarHeight: 60,
-          // iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: AppTheme.primary,
-          // toolbarHeight: 70,
-          title: HeadWidget(
-            start: user != null
-                ? UserIconWidget(onPressed: () {})
-                : const SizedBox(),
-            center: Text(
-              "Hallo ${user?.displayedName?.split(',').first ?? ''}${user == null ? '' : ' Willkommen zurück'}",
-              style: AppTheme.titleWhite,
+    const url =
+        'https://www.kassel-huskies.de/news/detail/erster-karriere-sieg-fuer-pankraz-huskies-holen-zwei-punkte-in-weisswasser';
+    final height = MediaQuery.of(context).size.height;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      // decoration: const BoxDecoration(color: Color.fromARGB(255, 239, 237, 237)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () => ref.read(viewProvider.notifier).state = ViewPage.ticket,
+            child: Card(
+              child: SizedBox(
+                height: height / 6,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: AppTheme.padding8_4,
+                      child: Text(
+                        'Nächstes Match',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    const MatchViewWidget(),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-        body: Container(
-          height: double.infinity,
-          padding: AppTheme.paddingXL,
-          color: AppTheme.primary,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Card(
-                  child: Container(
-                    decoration: AppTheme.whiteBox,
-                    height: 130,
-                    child: const Column(
-                      children: [
-                        Padding(
-                          padding: AppTheme.padding8_4,
-                          child: Text('Nachstes Match',
-                              style: AppTheme.defaultText),
+          Card(
+            child: SizedBox(
+              height: height / 2.5,
+              child: Column(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Helpers.launchToWebsite(
+                          url,
+                          mode: LaunchMode.inAppWebView,
+                        );
+                      },
+                      child: Container(
+                        clipBehavior: Clip.antiAlias,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(3),
+                            topRight: Radius.circular(3),
+                          ),
                         ),
-                        MatchViewWidget(),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Helpers.launchToWebsite(
-                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
-                            mode: LaunchMode.inAppWebView,
-                          );
-                        },
-                        child: Stack(
-                          children: [
-                            ColorFiltered(
-                              colorFilter: ColorFilter.mode(
-                                AppTheme.black
-                                    .withOpacity(0.3), // Set opacity level here
-                                BlendMode.srcOver,
-                              ),
-                              child: SizedBox(
-                                height: 200,
-                                child: Image.network(
-                                  'https://www.kassel-huskies.de/fileadmin/_processed_/b/5/csm_Huskies_MacAulay_ce60d17c73.jpg',
-                                  width: MediaQuery.of(context).size.width * 1,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            // Positioned widgets to position the text at the bottom left
-                            const Positioned(
-                              bottom: 0,
-                              left: 0,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: Text(
-                                      '15.02.2024 . TEAMUPDATE',
-                                      style: AppTheme.whiteDefaultTextBold,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 8, bottom: 17, top: 5),
-                                    child: Text(
-                                      'STEPHEN MACAULAY WIRD EIN HUSKY',
-                                      style: AppTheme.whiteDefaultTextBold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: Image.asset(
+                          'assets/images/new_news.png',
+                        ),
+                      )),
+                  InkWell(
+                    onTap: () {
+                      Helpers.launchToWebsite(
+                        'https://www.kassel-huskies.de/news',
+                        mode: LaunchMode.inAppWebView,
+                      );
+                    },
+                    child: SizedBox(
+                      height: 45,
+                      width: 400,
+                      child: Center(
+                        child: Text(
+                          'Mehr News',
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                       ),
-
-                      //--------- Mehr News -----------------------//
-                      SymetricButton(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 90),
-                        color: AppTheme.white,
-                        style: AppTheme.textMedium,
-                        onPressed: () {
-                          Helpers.launchToWebsite(
-                            'https://www.kassel-huskies.de/news/detail/macaulay-verpflichtung',
-                            mode: LaunchMode.inAppWebView,
-                          );
-                        },
-                        text: 'Mehr News',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: SizedBox(
+              height: height / 6,
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/halloween_jersy.jpg',
+                    width: 180,
+                    height: 180,
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          'Neue Fanartikel',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontWeight: FontWeight.w800),
+                        ),
+                      ),
+                      Padding(
+                        padding: AppTheme.paddingM,
+                        child: SymmetricButton(
+                          text: 'ZUM SHOP',
+                          color: AppTheme.buttonBackgroundColor,
+                          onPressed: () {
+                            ref.read(viewProvider.notifier).state = ViewPage.shop;
+                          },
+                        ),
                       ),
                     ],
-                  ),
-                ),
-                Card(
-                  child: Container(
-                    decoration: AppTheme.whiteBox,
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/first.png'),
-                        Column(
-                          children: [
-                            const Padding(
-                              padding: AppTheme.padding0_30,
-                              child: Text(
-                                'Neue Fanartikel',
-                                style: AppTheme.largBoldText,
-                              ),
-                            ),
-                            Padding(
-                              padding: AppTheme.paddingM,
-                              child: SymetricButton(
-                                text: 'ZUM SHOP',
-                                color: AppTheme.buttonBackgroundColor,
-                                onPressed: () {
-                                  ref.read(viewProvider.notifier).state =
-                                      ViewPage.shop;
-                                },
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ),
+          )
+        ],
       ),
     );
   }

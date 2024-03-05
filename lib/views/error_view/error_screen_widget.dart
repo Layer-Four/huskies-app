@@ -25,13 +25,12 @@ class ShowErrorScreen extends ConsumerWidget {
             Row(
               mainAxisAlignment: AppTheme.mainAlignEvenly,
               children: [
-                SymetricButton(
+                SymmetricButton(
                   color: Colors.blue,
                   text: 'Geh zurück',
-                  onPressed: () =>
-                      ref.read(statusProvider.notifier).reRouteToLogin(),
+                  onPressed: () => ref.read(statusProvider.notifier).reRouteToLogin(),
                 ),
-                const SymetricButton(
+                const SymmetricButton(
                   color: AppTheme.red,
                   text: 'Geh Weiter',
                   padding: AppTheme.padding12_8,

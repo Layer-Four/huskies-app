@@ -7,12 +7,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
-// import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
-import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/loading_view/loading_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -22,8 +20,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Helpers {
   const Helpers();
 
-  static Widget buildIndicator(
-          {required int selectedIndex, required int length}) =>
+  static Widget buildIndicator({required int selectedIndex, required int length}) =>
       AnimatedSmoothIndicator(
         activeIndex: selectedIndex,
         count: length,
@@ -49,9 +46,7 @@ class Helpers {
         margin: const EdgeInsets.only(bottom: 2),
         decoration:
             //
-            BoxDecoration(
-                color:
-                    place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor
+            BoxDecoration(color: place != 1 ? AppTheme.white : AppTheme.cardHighlightedColor
                 //  const Color.fromARGB(255, 235, 231, 231)),
                 ),
         child: Row(
@@ -62,8 +57,7 @@ class Helpers {
               height: 30,
               //TODO: whnen Statistic API change to etwork
               child: Center(
-                child: Image.asset('assets/images/$imageSource',
-                    width: 20, height: 20),
+                child: Image.asset('assets/images/$imageSource', width: 20, height: 20),
               ),
             ),
             Center(child: Text('$games')),
@@ -152,21 +146,18 @@ class Helpers {
                 children: [
                   Padding(
                     padding: AppTheme.paddingM,
-                    child: SymetricButton(
+                    child: SymmetricButton(
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
                         onPressed: () async {
-                          PermissionStatus storeStatus =
-                              await Permission.storage.request();
+                          PermissionStatus storeStatus = await Permission.storage.request();
                           if (!storeStatus.isGranted) {
                             await Permission.storage.request();
                           }
                           if (storeStatus.isGranted || storeStatus.isDenied) {
                             final image = await Helpers.pickImageFromGalery();
                             if (image != null) {
-                              ref
-                                  .read(userProvider.notifier)
-                                  .updateUserProfile(image: image);
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
                               showSnackbar(context, ' Bild ausgewählt');
                               Navigator.of(context).pop();
                               return image;
@@ -179,20 +170,16 @@ class Helpers {
                   ),
                   Padding(
                     padding: AppTheme.paddingM,
-                    child: SymetricButton(
+                    child: SymmetricButton(
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
                         onPressed: () async {
-                          final cameraPermission =
-                              await Permission.camera.request();
-                          if (cameraPermission.isGranted ||
-                              cameraPermission.isDenied) {
+                          final cameraPermission = await Permission.camera.request();
+                          if (cameraPermission.isGranted || cameraPermission.isDenied) {
                             final image = await Helpers.pickImageFromCamera();
                             if (image != null) {
                               showSnackbar(context, 'Bild ausgewählt!');
-                              ref
-                                  .read(userProvider.notifier)
-                                  .updateUserProfile(image: image);
+                              ref.read(userProvider.notifier).updateUserProfile(image: image);
                               Navigator.of(context).pop();
                               return image;
                             }
@@ -218,13 +205,11 @@ class Helpers {
         launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
-      throw Exception(
-          'its a trap \ncheck launchToWebsite and refactor error handling');
+      throw Exception('its a trap \ncheck launchToWebsite and refactor error handling');
     }
   }
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackbar(
           context, String message) =>
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }

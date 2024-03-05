@@ -12,8 +12,7 @@ class MyTabBar extends StatefulWidget {
   _MyTabBarState createState() => _MyTabBarState();
 }
 
-class _MyTabBarState extends State<MyTabBar>
-    with SingleTickerProviderStateMixin {
+class _MyTabBarState extends State<MyTabBar> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -24,55 +23,50 @@ class _MyTabBarState extends State<MyTabBar>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              height: 45,
-              decoration: BoxDecoration(
-                color: AppTheme.primary,
-                borderRadius: BorderRadius.circular(2),
-              ),
-              child: TabBar(
-                controller: _tabController,
-                indicatorColor: AppTheme.primary,
-                labelColor: AppTheme.black,
-                unselectedLabelColor: AppTheme.white,
-                indicatorSize:
-                    TabBarIndicatorSize.tab, // Set indicator size to label
-                indicator: BoxDecoration(
-                  // Use BoxDecoration for custom indicator
-                  color: AppTheme.huskiesPuzzle,
-                  borderRadius: BorderRadius.circular(2), // Adjust as needed
-                ),
-                tabs: const [
-                  Tab(
-                    child: Text("Spiel Plan"),
-                  ),
-                  Tab(
-                    child: Text("Tabelle"),
-                  ),
-                  Tab(
-                    child: Text("Team"),
-                  ),
-                ],
-              ),
+    return Column(
+      children: [
+        Container(
+          height: 45,
+          decoration: BoxDecoration(
+            color: AppTheme.primary,
+            borderRadius: BorderRadius.circular(2),
+          ),
+          child: TabBar(
+            controller: _tabController,
+            indicatorColor: AppTheme.primary,
+            labelColor: AppTheme.black,
+            unselectedLabelColor: AppTheme.white,
+            indicatorSize: TabBarIndicatorSize.tab, // Set indicator size to label
+            indicator: BoxDecoration(
+              // Use BoxDecoration for custom indicator
+              color: AppTheme.huskiesPuzzle,
+              borderRadius: BorderRadius.circular(2), // Adjust as needed
             ),
-            Expanded(
-              child: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: _tabController,
-                children: const [
-                  WebTeamSpielPlan(),
-                  ScoreboardViewWidget(),
-                  WebTeamContainer(),
-                ],
+            tabs: const [
+              Tab(
+                child: Text("Spiel Plan"),
               ),
-            )
-          ],
+              Tab(
+                child: Text("Tabelle"),
+              ),
+              Tab(
+                child: Text("Team"),
+              ),
+            ],
+          ),
         ),
-      ),
+        Expanded(
+          child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _tabController,
+            children: const [
+              WebTeamSpielPlan(),
+              ScoreboardViewWidget(),
+              WebTeamContainer(),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

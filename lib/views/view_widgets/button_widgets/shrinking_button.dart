@@ -4,15 +4,22 @@ import 'package:huskies_app/constants/app_theme.dart';
 class ShrinkinButton extends StatefulWidget {
   final Widget child;
   final VoidCallback? onTap;
+  final Color color;
+  final EdgeInsets padding;
 
-  const ShrinkinButton({super.key, required this.child, this.onTap});
+  const ShrinkinButton({
+    super.key,
+    required this.child,
+    this.onTap,
+    this.color = AppTheme.primary,
+    this.padding = AppTheme.padding12_8,
+  });
 
   @override
   ShrinkinButtonState createState() => ShrinkinButtonState();
 }
 
-class ShrinkinButtonState extends State<ShrinkinButton>
-    with SingleTickerProviderStateMixin {
+class ShrinkinButtonState extends State<ShrinkinButton> with SingleTickerProviderStateMixin {
   static const clickAnimationDurationMillis = 100;
 
   double _scaleTransformValue = 1;
@@ -64,9 +71,9 @@ class ShrinkinButtonState extends State<ShrinkinButton>
         scale: _scaleTransformValue,
         child: Container(
           margin: AppTheme.padding12_8,
-          padding: AppTheme.padding12_8,
+          padding: widget.padding,
           decoration: BoxDecoration(
-            color: AppTheme.primary,
+            color: widget.color,
             borderRadius: AppTheme.lowRoundedCorner,
           ),
           child: widget.child,

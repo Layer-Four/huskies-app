@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/views/view_widgets/ticket_widgets/red_text_button.dart';
+import 'package:huskies_app/views/view_widgets/button_widgets/shrinking_button.dart';
 
 class TicketItemRowWidget extends StatelessWidget {
   const TicketItemRowWidget({
@@ -29,12 +29,14 @@ class TicketItemRowWidget extends StatelessWidget {
             padding: AppTheme.paddingM,
             child: Image.asset('assets/images/$image', width: 60),
           ),
-          Text(gameDate, style: AppTheme.textMedium),
-          BlueTextButton(
-            onPressed: onPressed,
-            title: const Icon(
+          Text(gameDate, style: Theme.of(context).textTheme.titleSmall),
+          ShrinkinButton(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            onTap: onPressed,
+            child: const Icon(
               FontAwesomeIcons.ticket,
               color: AppTheme.white,
+              size: 20,
             ),
           ),
         ],

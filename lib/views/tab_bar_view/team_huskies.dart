@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebTeamContainer extends StatefulWidget {
@@ -13,41 +14,45 @@ class _WebTeamContainerState extends State<WebTeamContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: WebView(
-              initialUrl: 'https://www.kassel-huskies.de/team',
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController webViewController) {
-                controller = webViewController;
+    return Column(
+      children: [
+        Expanded(
+          child: WebView(
+            initialUrl: 'https://www.kassel-huskies.de/team',
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webViewController) {
+              controller = webViewController;
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppTheme.black,
+              ),
+              onPressed: () async {
+                if (await controller.canGoBack()) {
+                  await controller.goBack();
+                }
               },
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () async {
-                  if (await controller.canGoBack()) {
-                    await controller.goBack();
-                  }
-                },
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: AppTheme.black,
               ),
-              IconButton(
-                icon: const Icon(Icons.arrow_forward),
-                onPressed: () async {
-                  if (await controller.canGoForward()) {
-                    await controller.goForward();
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
+              onPressed: () async {
+                if (await controller.canGoForward()) {
+                  await controller.goForward();
+                }
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

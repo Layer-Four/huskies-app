@@ -4,9 +4,7 @@ import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/product_provider/product_provider.dart';
 import 'package:huskies_app/constants/helpers.dart';
-import 'package:huskies_app/views/loading_view.dart';
-import 'package:huskies_app/views/view_widgets/headline_widget.dart';
-import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:huskies_app/views/loading_view/loading_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ShopView extends ConsumerWidget {
@@ -23,17 +21,6 @@ class ShopView extends ConsumerWidget {
         );
     if (products != null) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppTheme.white,
-          centerTitle: true,
-          title: const HeadWidget(
-            start: Icon(
-              Icons.shopping_basket_outlined,
-            ),
-            center: Text('Shop', style: AppTheme.titleBlack),
-            end: UserIconWidget(),
-          ),
-        ),
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -80,10 +67,15 @@ class ShopView extends ConsumerWidget {
             );
           },
         ),
-        // ],
-        // ),
       );
     }
-    return const LoadingView();
+    return _buildLoadingScreen(products);
+  }
+
+  Widget _buildLoadingScreen(List<Product>? products) {
+    if (products == null) {
+      return const LoadingView();
+    }
+    return const SizedBox();
   }
 }

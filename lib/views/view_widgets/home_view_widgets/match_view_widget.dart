@@ -17,7 +17,7 @@ class MatchViewWidget extends StatelessWidget {
       children: [
         imageHome == null
             ? Image.asset(
-                'assets/images/fuechse.png',
+                'assets/images/huskies.png',
                 height: 90,
                 width: 90,
               )
@@ -28,23 +28,27 @@ class MatchViewWidget extends StatelessWidget {
               ),
         Container(
           margin: const EdgeInsets.only(right: 12),
-          height: 90,
-          child: const Column(
+          child: Column(
             children: [
               Text(
-                "VS",
-                style: AppTheme.defaultText,
+                "Viertelfinale",
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               Text(
-                "Eis-arena Weiswasser, \n 08.12.2023. 19.30 Uhr",
-                style: AppTheme.textMedium,
+                "Sonntag, 17.03.2024. \n17.00 Uhr",
+                style: Theme.of(context).textTheme.labelLarge,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Nordhessen Arena',
+                style: Theme.of(context).textTheme.labelMedium,
               )
             ],
           ),
         ),
         imageVisitor == null
             ? Image.asset(
-                'assets/images/huskies.png',
+                'assets/images/playoffs.png',
                 height: 90,
                 width: 90,
               )
