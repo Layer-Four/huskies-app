@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:huskies_app/constants/theme/main_theme.dart';
@@ -10,7 +13,8 @@ import 'package:huskies_app/provider/error_provider/error_provider.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/services/firebase_options.dart';
 import 'package:huskies_app/views/error_view/error_screen_widget.dart';
-import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/loading_view/initial_view.dart';
+import 'package:huskies_app/views/loading_view/loading_view.dart';
 import 'package:huskies_app/views/navigation_view/nav_layer.dart';
 // import 'package:huskies_app/views/shop_view/shop_view.dart';
 import 'package:huskies_app/views/wait_registry_view/wait_register_widget.dart';
@@ -20,6 +24,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   runApp(
     ProviderScope(
       child: MaterialApp(
@@ -54,8 +61,8 @@ class MyApp extends ConsumerWidget {
       AuthState.loading => const LoadingView(),
       AuthState.onRegistration => const WaitForRegistry(),
       AuthState.onError => ShowErrorScreen(error: ref.watch(errorProvider).last),
-      _ => const ViewNavigator(),
-      // _ => const NewsTeaser(),
+      // _ => const ViewNavigator(),
+      _ => const InitialView(),
     };
   }
 }

@@ -10,7 +10,7 @@ import 'package:huskies_app/constants/app_theme.dart';
 import 'package:huskies_app/constants/sponsors.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
-import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/loading_view/loading_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';

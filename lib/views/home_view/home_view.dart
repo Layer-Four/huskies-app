@@ -30,23 +30,26 @@ class _HomeViewState extends ConsumerState<HomeView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Card(
-            child: SizedBox(
-              height: height / 6,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: AppTheme.padding8_4,
-                    child: Text(
-                      'Nächstes Match',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(fontWeight: FontWeight.w700),
+          InkWell(
+            onTap: () => ref.read(viewProvider.notifier).state = ViewPage.ticket,
+            child: Card(
+              child: SizedBox(
+                height: height / 6,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: AppTheme.padding8_4,
+                      child: Text(
+                        'Nächstes Match',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.w700),
+                      ),
                     ),
-                  ),
-                  const MatchViewWidget(),
-                ],
+                    const MatchViewWidget(),
+                  ],
+                ),
               ),
             ),
           ),
