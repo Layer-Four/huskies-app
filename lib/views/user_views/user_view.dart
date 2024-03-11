@@ -50,7 +50,11 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                       decoration: const BoxDecoration(shape: BoxShape.circle),
                       clipBehavior: Clip.antiAlias,
                       child: user.userImageUrl == null
-                          ? Image.asset('assets/images/user.png', height: 90, width: 90)
+                          ? Image.asset(
+                              'assets/images/user.png',
+                              height: 90,
+                              width: 90,
+                            )
                           : Image.network(
                               user.userImageUrl!,
                               height: 90,
@@ -73,7 +77,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
                           'Kundennummer: ${user.appUserID}',
                           style: AppTheme.textSmallGrey,
                         ),
-                        SymetricButton(
+                        SymmetricButton(
                           color: AppTheme.primary,
                           text: 'Profil bearbeiten',
                           onPressed: () {
@@ -95,7 +99,7 @@ class _UserProfileViewState extends ConsumerState<UserProfileView> {
             Card(
               elevation: 7,
               child: Container(
-                padding: EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
+                padding: const EdgeInsets.only(left: 4.0, right: 12.0, top: 4.0),
                 decoration: AppTheme.whiteBox,
                 width: double.infinity,
                 child: Column(

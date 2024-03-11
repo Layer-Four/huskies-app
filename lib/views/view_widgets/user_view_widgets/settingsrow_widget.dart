@@ -10,6 +10,7 @@ class SettingsRow extends StatelessWidget {
   final Widget Function(bool value, ValueChanged<bool> onChanged)? customSwitchBuilder;
 
   const SettingsRow({
+    super.key,
     required this.leadingIcon,
     this.onTextPressed,
     required this.optionText,
@@ -42,17 +43,15 @@ class SettingsRow extends StatelessWidget {
   }
 }
 
-
-
 class CustomCupertinoSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
 
   const CustomCupertinoSwitch({
-    Key? key,
+    super.key,
     required this.value,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

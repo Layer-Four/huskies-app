@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:huskies_app/constants/app_theme.dart';
 
-class RedTextButton extends StatelessWidget {
-  const RedTextButton({super.key, required this.onPressed, required this.title});
-
-  final String title;
+class ColoredButton extends StatelessWidget {
+  const ColoredButton({
+    super.key,
+    required this.onPressed,
+    required this.title,
+    this.textColor = AppTheme.white,
+    required this.buttonColor,
+  });
+  final Color textColor;
+  final Color buttonColor;
+  final Widget title;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-        decoration: BoxDecoration(
-          color: AppTheme.red,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Text(
-          title,
-          style: AppTheme.textWhiteMid,
-        ),
+    return Container(
+      margin: AppTheme.padding12_8,
+      decoration: BoxDecoration(
+        color: buttonColor,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: TextButton(
+        onPressed: onPressed,
+        child: title,
       ),
     );
   }

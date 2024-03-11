@@ -7,12 +7,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/constants/sponsors.dart';
-// import 'package:huskies_app/models/products_model/product.dart';
 import 'package:huskies_app/provider/static_provider.dart';
 import 'package:huskies_app/provider/user_provider/user_provider.dart';
-import 'package:huskies_app/views/loading_view.dart';
+import 'package:huskies_app/views/loading_view/loading_view.dart';
 import 'package:huskies_app/views/view_widgets/symetric_button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -57,9 +55,10 @@ class Helpers {
             Text('$place.'),
             SizedBox(
               height: 30,
-              //TODO: when Statistic API change to network
-              child:
-                  Center(child: Image.asset('assets/images/$imageSource', width: 20, height: 20)),
+              //TODO: whnen Statistic API change to etwork
+              child: Center(
+                child: Image.asset('assets/images/$imageSource', width: 20, height: 20),
+              ),
             ),
             Center(child: Text('$games')),
             Center(child: Text('$points')),
@@ -147,7 +146,7 @@ class Helpers {
                 children: [
                   Padding(
                     padding: AppTheme.paddingM,
-                    child: SymetricButton(
+                    child: SymmetricButton(
                         color: Colors.green,
                         text: 'Wähle ein Bild aus \ndeiner Galerie',
                         onPressed: () async {
@@ -171,7 +170,7 @@ class Helpers {
                   ),
                   Padding(
                     padding: AppTheme.paddingM,
-                    child: SymetricButton(
+                    child: SymmetricButton(
                         color: Colors.green,
                         text: 'Erstelle ein neues \nProfile von dir',
                         onPressed: () async {

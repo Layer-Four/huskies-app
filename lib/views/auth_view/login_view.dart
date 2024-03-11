@@ -37,7 +37,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
   }
 
   String? emailValidator(value) {
-    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value!);
 
     if (value.isEmpty) {
@@ -53,7 +54,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
     return SafeArea(
       child: Scaffold(
         body: BackgroundWidget(
-          image: 'background_image.jpg',
+          imageName: 'background_image.jpg',
           body: Container(
             padding: AppTheme.paddingXL,
             child: ListView(
@@ -74,7 +75,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       ),
                       const Padding(
                         padding: AppTheme.paddingM,
-                        child: Text("Anmelden", style: AppTheme.whiteDefaultText),
+                        child:
+                            Text("Anmelden", style: AppTheme.whiteDefaultText),
                       ),
                       const Text("E-Mail", style: AppTheme.whiteDefaultText),
                       Padding(
@@ -101,11 +103,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => const Signup()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Signup()));
                               },
-                              child:
-                                  const Text("Passwort vergessen?", style: AppTheme.textWhiteMid),
+                              child: const Text("Passwort vergessen?",
+                                  style: AppTheme.textWhiteMid),
                             ),
                           ],
                         ),
@@ -116,8 +120,11 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 CustomButtonAuth(
                   title: "Anmelden",
                   onPress: () {
-                    ref.watch(statusProvider.notifier).signInWithEmailAndPassword(
-                        email: email.text.trim(), password: password.text.trim());
+                    ref
+                        .watch(statusProvider.notifier)
+                        .signInWithEmailAndPassword(
+                            email: email.text.trim(),
+                            password: password.text.trim());
                     Navigator.of(context).pop();
                   },
                   formKey: formKey,
@@ -141,7 +148,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         context,
                         MaterialPageRoute(builder: (context) => const Signup()),
                       ),
-                      child: const Text(" Registieren", style: AppTheme.whiteDefaultText),
+                      child: const Text(" Registieren",
+                          style: AppTheme.whiteDefaultText),
                     ),
                   ],
                 ),

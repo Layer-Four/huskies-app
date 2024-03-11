@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/views/ticket_views/ticket_shop_view.dart';
-import 'package:huskies_app/views/ticket_views/ticket_wallet_view.dart';
-import 'package:huskies_app/views/view_widgets/headline_widget.dart';
+import 'package:huskies_app/constants/helpers.dart';
+import 'package:huskies_app/views/view_widgets/home_view_widgets/match_view_widget.dart';
 import 'package:huskies_app/views/view_widgets/ticket_widgets/match_item_row_widget.dart';
-import 'package:huskies_app/views/view_widgets/ticket_widgets/red_text_button.dart';
-import 'package:huskies_app/views/view_widgets/user_view_widgets/user_icon_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TicketView extends ConsumerWidget {
   static const TicketView _instance = TicketView._();
@@ -15,15 +13,19 @@ class TicketView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List gamesInSeason = List.generate(4, (index) => index++);
+    final List gamesInSeason = List.generate(2, (index) => index++);
     return Column(
-      mainAxisAlignment: AppTheme.mainAlignBetween,
       children: [
         Column(
           children: [
-            const HeadWidget(
-              center: Text('Tickets', style: AppTheme.titleBlack),
-              end: UserIconWidget(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(6),
+                  child: MatchViewWidget(),
+                ),
+              ),
             ),
             const Padding(padding: AppTheme.paddingXL),
             SizedBox(
@@ -36,35 +38,49 @@ class TicketView extends ConsumerWidget {
                     backgroundColor = AppTheme.ticketBackground;
                   }
                   return TicketItemRowWidget(
-                    image: 'fuechse.png',
-                    backgroundColor: backgroundColor,
-                    gameDate: 'Freitag, 01.03.24 19:30 Uhr',
-                    onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => TicketWalletView())),
-                  );
+                      image: 'playoffs.png',
+                      backgroundColor: backgroundColor,
+                      gameDate: 'Sonntag, 17.03.2024: 17.00 Uhr',
+                      onPressed: () {
+                        Helpers.launchToWebsite('https://tickets.kassel-huskies.de/tickets/962973',
+                            mode: LaunchMode.inAppBrowserView);
+                      });
                 }),
               ),
             ),
           ],
         ),
-        Padding(
-          padding: AppTheme.paddingS,
-          child: RedTextButton(
-              onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => TicketShopView(
-                              gamesInSeason: List.generate(5, (index) => null),
-                            )),
-                  ),
-              title: 'Weiter Tickets'),
-          //  Helpers.loadAndNavigate(
-          //       context: context,
-          //       ref: ref,
-          //       nextView: 1,
-          //       image: 'profile.jpg',
-          //       advertising: 'gegen Langeweile',
-          //     ),
-        ),
+        // SizedBox(
+        //   height: 250,
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       const Padding(
+        //         padding: AppTheme.padding16_0,
+        //         child: Text('Dauerkarte'),
+        //       ),
+        //       ShrinkinButton(
+        //           onTap: () {},
+        //           // => Navigator.of(context).push(
+        //           //       MaterialPageRoute(
+        //           //           builder: (context) => TicketShopView(
+        //           //                 gamesInSeason:
+        //           //                     List.generate(5, (index) => null),
+        //           // )
+        //           // ),
+        //           // ),
+        //           child: const SizedBox(
+        //             width: 260,
+        //             child: Text(
+        //               'Dauerkarte Kaufen',
+        //               style: AppTheme.textWhiteMid,
+        //               textAlign: AppTheme.textCenter,
+        //             ),
+        //           )),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

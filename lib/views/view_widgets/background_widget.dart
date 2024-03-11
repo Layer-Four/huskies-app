@@ -3,9 +3,9 @@ import 'package:huskies_app/constants/app_theme.dart';
 
 class BackgroundWidget extends StatelessWidget {
   final Widget body;
-  final String image;
+  final String imageName;
 
-  const BackgroundWidget({super.key, required this.body, required this.image});
+  const BackgroundWidget({super.key, required this.body, required this.imageName});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BackgroundWidget extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/$image'),
+              image: AssetImage('assets/images/$imageName'),
               fit: BoxFit.cover,
             ),
           ),
@@ -23,8 +23,7 @@ class BackgroundWidget extends StatelessWidget {
         Container(
           height: double.infinity,
           decoration: const BoxDecoration(
-            //TODO: Ask for FeedBack
-            color: Color.fromARGB(188, 66, 64, 64),
+            color: Color.fromARGB(150, 66, 64, 64),
           ),
           padding: AppTheme.paddingBottom20,
           child: body,

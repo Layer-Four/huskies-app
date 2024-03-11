@@ -15,7 +15,7 @@ class GameStaticsFooterWidget extends StatelessWidget {
       crossAxisAlignment: AppTheme.crossAlignStart,
       mainAxisAlignment: AppTheme.mainAlignBetween,
       children: [
-        SymetricButton(
+        SymmetricButton(
           onPressed: () => showDialog(
             context: context,
             builder: (context) => Container(

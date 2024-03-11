@@ -63,7 +63,7 @@ class _UpdateUserState extends ConsumerState<UpdateUserView> {
                             ? Image.network(currentUser!.userImageUrl!, height: 90, width: 90)
                             : Image.asset('assets/images/user.png', width: 90),
                       ),
-                      SymetricButton(
+                      SymmetricButton(
                           color: AppTheme.blueGrey,
                           text: 'Profilbild ändern',
                           onPressed: () async {

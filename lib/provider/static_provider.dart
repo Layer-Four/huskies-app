@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:huskies_app/constants/app_theme.dart';
-import 'package:huskies_app/constants/globals.dart';
 import 'package:huskies_app/provider/auth_provider/auth_notifier.dart';
 export 'package:huskies_app/provider/error_provider/error_notifier.dart';
 export 'package:huskies_app/provider/user_provider/user_notifer.dart';
@@ -20,6 +19,17 @@ final loggerProvider = Provider<Logger>((ref) => Logger());
 
 /// listen on the userprovider that is, possible to react to Firebase and the updates of the user.
 final statusProvider = NotifierProvider<AuthNotifier, AuthState>(() => AuthNotifier());
+
+enum ViewPage {
+  home,
+  shop,
+  table,
+  ticket,
+  newsFeed,
+  myTabBar,
+  error,
+  loading,
+}
 
 /// provide the current mainview and allow to navigate on itself to children views.
 /// the Stateprovider was used here because the ref object must be mutable,

@@ -19,8 +19,9 @@ class UserIconWidget extends ConsumerWidget {
             () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) =>
-                        user != null ? const UserProfileView() : const LoginView()),
+                    builder: (context) => user != null
+                        ? const UserProfileView()
+                        : const LoginView()),
               );
             },
         child: Container(

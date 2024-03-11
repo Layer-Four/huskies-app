@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huskies_app/constants/app_theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebTeamContainer extends StatefulWidget {
@@ -13,24 +14,45 @@ class _WebTeamContainerState extends State<WebTeamContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Huskies Team'),
-      ),
-      body: WebView(
-        initialUrl: 'https://www.kassel-huskies.de/team',
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) {
-          controller = webViewController;
-        },
-        onPageFinished: (String url) {
-          // Execute JavaScript code after page has finished loading
-          controller.runJavascript("document.querySelector('.img-fluid').style.display = 'none' ");
-          controller
-              .runJavascript("document.getElementsByTagName('footer')[0].style.display='none'");
-          // Additional JavaScript code can be executed here if needed
-        },
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: WebView(
+            initialUrl: 'https://www.kassel-huskies.de/team',
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webViewController) {
+              controller = webViewController;
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppTheme.black,
+              ),
+              onPressed: () async {
+                if (await controller.canGoBack()) {
+                  await controller.goBack();
+                }
+              },
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: AppTheme.black,
+              ),
+              onPressed: () async {
+                if (await controller.canGoForward()) {
+                  await controller.goForward();
+                }
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
