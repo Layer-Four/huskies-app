@@ -1,58 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:huskies_app/constants/app_theme.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
-class WebTeamContainer extends StatefulWidget {
-  const WebTeamContainer({super.key});
+class TeamMemberGrid extends StatelessWidget {
+  final List<Map<String, dynamic>> jsonData;
 
-  @override
-  State<WebTeamContainer> createState() => _WebTeamContainerState();
-}
-
-class _WebTeamContainerState extends State<WebTeamContainer> {
-  late WebViewController controller;
+  TeamMemberGrid({required this.jsonData});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: WebView(
-            initialUrl: 'https://www.kassel-huskies.de/team',
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController webViewController) {
-              controller = webViewController;
-            },
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20), // Extra space above "MEET THE TEAM UNSER RUDEL" title
+          Text(
+            "MEET THE TEAM",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: AppTheme.black,
-              ),
-              onPressed: () async {
-                if (await controller.canGoBack()) {
-                  await controller.goBack();
-                }
-              },
+          SizedBox(height: 10), // Space between titles
+          Text(
+            "UNSER RUDEL",
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 20), // Space between titles and grids
+          for (var roleData in jsonData)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    roleData['title'],
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 200,
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(), // Disable GridView scrolling
+                    shrinkWrap: true, // Allow GridView to occupy minimum space
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                    ),
+                    itemCount: roleData['members'].length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Image.network(
+                              roleData['members'][index]['image'],
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(height: 4),
+                            Text(roleData['members'][index]['name']),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_forward,
-                color: AppTheme.black,
-              ),
-              onPressed: () async {
-                if (await controller.canGoForward()) {
-                  await controller.goForward();
-                }
-              },
-            ),
-          ],
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
